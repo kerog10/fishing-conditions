@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b3d5c">
+<title>Fishing Conditions</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="app.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<header class="topbar">
+  <h1>Fishing Conditions</h1>
+  <form id="spot-search-form" class="search" role="search">
+    <input id="spot-search" type="search" placeholder="Search a place, or tap the map" autocomplete="off">
+    <button type="submit">Find</button>
+  </form>
+  <ul id="spot-results" class="results" hidden></ul>
+</header>
+
+<div id="map" aria-label="Pick a fishing spot"></div>
+
+<main>
+  <p id="spot-name" class="spot-name">Tap the map to pick a spot</p>
+  <p id="status" class="status" role="status"></p>
+
+  <section id="now-bar" class="now-bar" aria-label="Right now"></section>
+
+  <section aria-labelledby="windows-heading">
+    <h2 id="windows-heading">Best windows</h2>
+    <div id="windows" class="windows"></div>
+  </section>
+
+  <section aria-labelledby="days-heading">
+    <h2 id="days-heading">Next 7 days</h2>
+    <div id="days" class="days"></div>
+  </section>
+
+  <p id="tide-notice" class="tide-notice">
+    <strong>Tides are modelled, not measured.</strong>
+    Tide heights come from a global ocean model and are typically accurate to
+    within about 30&ndash;45 minutes near the coast. This is not SANHO data.
+    Do not use it for navigation or bar crossings.
+  </p>
+</main>
+
+<script src="vendor/leaflet.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
