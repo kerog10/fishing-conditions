@@ -122,3 +122,11 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .slot-rows dt { color: var(--muted); font-size: 13px; }
 .slot-rows dd { margin: 0; font-size: 13px; text-align: right; }
 .slot-why { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+
+.spot-card { position: relative; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.spot-open { display: block; width: 100%; text-align: left; padding: 12px 40px 12px 12px; background: none; border: 0; color: var(--ink); }
+.spot-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.spot-title { font-weight: 600; }
+.spot-line { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.spot-remove { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: none; border: 0; color: var(--muted); font-size: 18px; line-height: 1; }
+.empty { color: var(--muted); font-size: 14px; }
