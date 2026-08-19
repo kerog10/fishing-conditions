@@ -20,6 +20,10 @@ const els = {
   results: $('spot-results'),
 };
 
+const marineNote = (payload) => (payload.hasMarine
+  ? ''
+  : 'No tide or swell data here — scoring on weather and solunar only.');
+
 function paint(payload, lat, lon) {
   const scored = scoreHours(payload.hours, lat, lon);
   const now = new Date();
@@ -28,36 +32,38 @@ function paint(payload, lat, lon) {
   renderDays(els.days, scored, now);
 }
 
+// Cached data paints immediately, then the network revalidates. navigator.onLine
+// is not consulted: it reports that a link exists, not that anything is
+// reachable, so a dead cell connection would still claim to be online. A failed
+// refresh is the only honest signal that what you are looking at is not live.
+let pending = 0;
+
 async function show(lat, lon) {
+  const token = ++pending;
   if (!els.spotName.dataset.named) {
     els.spotName.textContent = `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
   }
   els.spotName.dataset.named = '';
-  setStatus(els.status, 'Loading forecast…');
 
   const cached = loadCache(lat, lon);
-  if (cached?.fresh) {
+  if (cached) {
     paint(cached.payload, lat, lon);
-    setStatus(els.status, cached.payload.hasMarine
-      ? ''
-      : 'No tide or swell data here — scoring on weather and solunar only.');
-    return;
+    setStatus(els.status,
+      cached.fresh ? marineNote(cached.payload) : ageNotice(cached.ageMs), !cached.fresh);
+  } else {
+    setStatus(els.status, 'Loading forecast…');
   }
 
   try {
     const payload = await fetchConditions(lat, lon);
+    if (token !== pending) return; // a newer spot was picked while this was in flight
     saveCache(lat, lon, payload);
     paint(payload, lat, lon);
-    setStatus(els.status, payload.hasMarine
-      ? ''
-      : 'No tide or swell data here — scoring on weather and solunar only.');
+    setStatus(els.status, marineNote(payload));
   } catch (err) {
-    if (cached) {
-      paint(cached.payload, lat, lon);
-      setStatus(els.status, ageNotice(cached.ageMs), true);
-    } else {
-      setStatus(els.status, `Could not load a forecast: ${err.message}`, true);
-    }
+    if (token !== pending) return;
+    if (cached) setStatus(els.status, ageNotice(cached.ageMs), true);
+    else setStatus(els.status, `Could not load a forecast: ${err.message}`, true);
   }
 }
 

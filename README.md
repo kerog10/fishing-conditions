@@ -25,6 +25,13 @@ npm test
 The logic (`config`, `astro`, `score`, `windows`, `cache`, `format`, `api`) is
 pure and unit-tested. `ui` and `map` are verified in a browser.
 
+## Editing the app
+
+The service worker caches the shell cache-first, so a browser that has already
+installed the app will keep serving the old files after you edit them. Bump
+`CACHE` in `sw.js` (`fishing-conditions-v1` → `-v2`) whenever you change
+anything under `js/`, `index.html` or `app.css`.
+
 ## How the score works
 
 Two numbers, never blended:
