@@ -1,4 +1,5 @@
 import { compass, scoreBand, hhmm, dayLabel } from './format.js';
+import { buildBand, extremaMarkers } from './bands.js';
 
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
@@ -10,52 +11,82 @@ const el = (tag, className, text) => {
 const n0 = (v) => (Number.isFinite(v) ? String(Math.round(v)) : '–');
 const n1 = (v) => (Number.isFinite(v) ? v.toFixed(1) : '–');
 
-// Wind shading mirrors the comfort thresholds: comfortable, workable, ugly.
-function windClass(kmh) {
-  if (!Number.isFinite(kmh)) return '';
-  if (kmh >= 45) return 'wind-hard';
-  if (kmh >= 25) return 'wind-fresh';
-  return 'wind-easy';
+// A row of hourly bars. Screen readers get the range as text -- 24 unlabelled
+// bars are noise to anyone not looking at them.
+function band(label, values, summary, marks = []) {
+  const built = buildBand(values);
+  const row = el('div', 'band');
+  row.appendChild(el('span', 'band-label', label));
+
+  const bars = el('div', 'bars');
+  bars.setAttribute('role', 'img');
+  bars.setAttribute('aria-label', `${label}: ${summary}`);
+
+  const byIndex = new Map(marks.map((m) => [m.index, m]));
+  built.bars.forEach((bar, i) => {
+    const mark = byIndex.get(i);
+    const b = el('span', `bar${mark ? ` bar-${mark.type}` : ''}`);
+    b.style.height = `${bar.pct}%`;
+    bars.appendChild(b);
+  });
+
+  row.appendChild(bars);
+  row.appendChild(el('span', 'band-range', summary));
+  return row;
 }
 
-const ROWS = [
-  { label: 'Score', get: (s) => n0(s.score), cls: (s) => `bg-${scoreBand(s.score)} score-cell` },
-  { label: 'Wind km/h', get: (s) => n0(s.wind), cls: (s) => windClass(s.wind) },
-  { label: 'Gust km/h', get: (s) => n0(s.gust), cls: (s) => windClass(s.gust) },
-  { label: 'Direction', get: (s) => compass(s.windDirection) || '–' },
-  { label: 'Tide m', get: (s) => n1(s.tide) },
-  { label: 'Swell m', get: (s) => n1(s.swellHeight) },
-  { label: 'Period s', get: (s) => n0(s.swellPeriod) },
-  { label: 'Temp °C', get: (s) => n0(s.temperature) },
-  { label: 'Rain mm', get: (s) => (s.rain > 0.05 ? s.rain.toFixed(1) : '–') },
-  { label: 'Cloud %', get: (s) => n0(s.cloud) },
-  { label: 'Pressure', get: (s) => n0(s.pressure) },
+// The bands are drawn hourly so the tide peaks land on the printed high-water
+// times, but 24 bars across a phone is a 14px tap target. The 3-hour slots
+// are the things you actually press.
+function axis(day, openSlot, onSlot) {
+  const row = el('div', 'slots');
+  day.slots.forEach((slot, i) => {
+    const b = el('button', `slot${i === openSlot ? ' slot-open' : ''}`, hhmm(slot.start).slice(0, 2));
+    b.type = 'button';
+    b.setAttribute('aria-expanded', String(i === openSlot));
+    b.setAttribute('aria-label', `${hhmm(slot.start)}, score ${Math.round(slot.score)}`);
+    b.addEventListener('click', () => onSlot(day.key, i === openSlot ? null : i));
+    row.appendChild(b);
+  });
+  return row;
+}
+
+const DETAIL_ROWS = [
+  { label: 'Tide', marine: true, get: (s) => (Number.isFinite(s.tide) ? `${s.tide.toFixed(1)} m` : null) },
+  { label: 'Wind', get: (s) => (Number.isFinite(s.wind) ? `${n0(s.wind)} km/h ${compass(s.windDirection)}`.trim() : null) },
+  { label: 'Gusts', get: (s) => (Number.isFinite(s.gust) ? `${n0(s.gust)} km/h` : null) },
+  { label: 'Swell', marine: true, get: (s) => (Number.isFinite(s.swellHeight) ? `${n1(s.swellHeight)} m` : null) },
+  { label: 'Period', marine: true, get: (s) => (Number.isFinite(s.swellPeriod) ? `${n0(s.swellPeriod)} s` : null) },
+  { label: 'Temp', get: (s) => (Number.isFinite(s.temperature) ? `${n0(s.temperature)} °C` : null) },
+  { label: 'Rain', get: (s) => (s.rain > 0.05 ? `${s.rain.toFixed(1)} mm` : '—') },
+  { label: 'Cloud', get: (s) => (Number.isFinite(s.cloud) ? `${n0(s.cloud)} %` : null) },
+  { label: 'Pressure', get: (s) => (Number.isFinite(s.pressure) ? `${n0(s.pressure)} hPa` : null) },
 ];
 
-function grid(day) {
-  const table = el('table', 'grid');
+function slotDetail(day, index) {
+  const slot = day.slots[index];
+  const panel = el('div', 'slot-detail');
 
-  const headRow = el('tr');
-  headRow.appendChild(el('th', 'row-label', ''));
-  for (const slot of day.slots) headRow.appendChild(el('th', null, hhmm(slot.start)));
-  const head = el('thead');
-  head.appendChild(headRow);
-  table.appendChild(head);
+  const head = el('div', 'slot-head');
+  head.appendChild(el('span', null, `${hhmm(slot.start)}–${hhmm(new Date(slot.start.getTime() + slot.hours.length * 3600000))}`));
+  head.appendChild(el('span', `score band-${scoreBand(slot.score)}`, String(Math.round(slot.score))));
+  panel.appendChild(head);
 
-  const body = el('tbody');
-  for (const row of ROWS) {
-    const tr = el('tr');
-    tr.appendChild(el('th', 'row-label', row.label));
-    for (const slot of day.slots) {
-      tr.appendChild(el('td', row.cls ? row.cls(slot) : null, row.get(slot)));
-    }
-    body.appendChild(tr);
+  const list = el('dl', 'slot-rows');
+  for (const row of DETAIL_ROWS) {
+    const value = row.get(slot);
+    // Inland spots have no tide, swell or period at all. Three rows of dashes
+    // is worse than not printing them.
+    if (value === null) continue;
+    list.appendChild(el('dt', null, row.label));
+    list.appendChild(el('dd', null, value));
   }
-  table.appendChild(body);
+  panel.appendChild(list);
 
-  const scroller = el('div', 'grid-scroll');
-  scroller.appendChild(table);
-  return scroller;
+  const why = [...new Set(slot.hours.flatMap((h) => h.reasons ?? []))];
+  if (why.length) panel.appendChild(el('p', 'slot-why', `Why: ${why.join(' · ')}`));
+
+  return panel;
 }
 
 function tideLine(day) {
@@ -82,7 +113,7 @@ function digest(day) {
   return bits.join(' · ');
 }
 
-export function renderDays(target, days, now = new Date(), { openKey = null } = {}) {
+export function renderDays(target, days, now = new Date(), { openKey = null, openSlot = null, onSlot = () => {} } = {}) {
   target.replaceChildren();
 
   for (const day of days) {
@@ -101,7 +132,27 @@ export function renderDays(target, days, now = new Date(), { openKey = null } = 
 
     card.appendChild(el('p', 'tide-line', tideLine(day)));
     card.appendChild(el('p', 'sky-line', skyLine(day)));
-    card.appendChild(grid(day));
+
+    if (day.tides.length) {
+      card.appendChild(band(
+        'Tide',
+        day.series.tide,
+        `${n1(Math.min(...day.series.tide.filter(Number.isFinite)))}–${n1(Math.max(...day.series.tide.filter(Number.isFinite)))} m`,
+        extremaMarkers(day.tides, day.key),
+      ));
+    }
+    card.appendChild(band(
+      'Wind',
+      day.series.wind,
+      `${n0(day.wind.min)}–${n0(day.wind.max)} km/h ${compass(day.wind.direction)}`.trim(),
+    ));
+    card.appendChild(band('Score', day.series.score, `best ${day.best.score}`));
+
+    card.appendChild(axis(day, day.key === openKey ? openSlot : null, onSlot));
+    if (day.key === openKey && openSlot !== null && day.slots[openSlot]) {
+      card.appendChild(slotDetail(day, openSlot));
+    }
+
     target.appendChild(card);
   }
 }
