@@ -90,3 +90,18 @@ test('an empty forecast produces an empty card rather than throwing', () => {
   assert.equal(card.tide.state, null);
   assert.equal(card.nextWindow, null);
 });
+
+test('a gap before now does not invert a rising tide', () => {
+  // If the hour before now is missing, the code must compare against the hour
+  // after. But the sign must follow whichever neighbour is actually used, or a
+  // gap before a rising series looks like it is falling.
+  const hours = [
+    H(9, { seaLevel: null }), // gap
+    H(10, { seaLevel: 1.0 }), // now
+    H(11, { seaLevel: 2.0 }), // clearly rising from 1.0 to 2.0
+  ];
+
+  const card = summariseSpot(hours, [], [], NOW);
+
+  assert.equal(card.tide.state, 'rising');
+});

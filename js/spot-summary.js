@@ -21,13 +21,18 @@ function tideState(hours, i) {
   const here = hours[i]?.seaLevel;
   if (!Number.isFinite(here)) return null;
 
-  // Compare against the previous hour where there is one, the next where
-  // there is not, so the first hour of the series still gets a direction.
-  const other = Number.isFinite(hours[i - 1]?.seaLevel) ? hours[i - 1].seaLevel
-    : (Number.isFinite(hours[i + 1]?.seaLevel) ? hours[i + 1].seaLevel : null);
-  if (other === null) return 'slack';
+  // Prefer the hour behind us, fall back to the one ahead, so the first hour of
+  // the series still gets a direction. The sign has to follow whichever one we
+  // actually used: a gap behind us with data ahead would otherwise report a
+  // rising tide as falling.
+  const prev = hours[i - 1]?.seaLevel;
+  const next = hours[i + 1]?.seaLevel;
 
-  const delta = i > 0 ? here - other : other - here;
+  let delta;
+  if (Number.isFinite(prev)) delta = here - prev;
+  else if (Number.isFinite(next)) delta = next - here;
+  else return 'slack';
+
   if (Math.abs(delta) < SLACK_M) return 'slack';
   return delta > 0 ? 'rising' : 'falling';
 }
