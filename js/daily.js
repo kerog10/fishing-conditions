@@ -148,6 +148,14 @@ export function summariseDays(scoredHours, lat, lon, offsetSeconds = 0) {
       hours,
       best: { score: best.final, time: best.time },
       slots: toSlots(hours),
+      // The bands draw hourly. slots above are 3-hour means, which would put a
+      // tide peak up to 90 minutes away from the high-water time printed
+      // beside it.
+      series: {
+        tide: hours.map((h) => h.seaLevel),
+        wind: hours.map((h) => h.windSpeed),
+        score: hours.map((h) => h.final),
+      },
       tides: allTides.filter((t) => dayKey(t.time) === key),
       sun: sunTimes(noon, lat, lon, offsetSeconds),
       moon: {

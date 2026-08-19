@@ -152,3 +152,19 @@ test('summariseDays reports no swell for an inland spot', () => {
   assert.equal(day.swell, null);
   assert.deepEqual(day.tides, []);
 });
+
+test('each day carries its raw hourly series for the bands', () => {
+  const HOURS = twoDays();
+  const days = summariseDays(HOURS, -29.85, 31.05, 7200);
+  const day = days[0];
+
+  assert.equal(day.series.tide.length, day.hours.length);
+  assert.equal(day.series.wind.length, day.hours.length);
+  assert.equal(day.series.score.length, day.hours.length);
+
+  // Hourly, not the 3-hour means: a 24-hour day must give 24 points, which is
+  // what puts a tide peak on the right bar.
+  assert.equal(day.series.score[0], day.hours[0].final);
+  assert.equal(day.series.tide[3], day.hours[3].seaLevel);
+  assert.equal(day.series.wind[5], day.hours[5].windSpeed);
+});
