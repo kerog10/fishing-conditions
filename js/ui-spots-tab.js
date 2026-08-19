@@ -26,7 +26,7 @@ export function renderSpotsTab(target, cards, { onOpen, onRemove, onClearAll }) 
   }
 
   for (const { spot, summary } of cards) {
-    const card = el('article', 'spot-card');
+    const card = el('article', `spot-card band-${scoreBand(summary.score ?? 0)}`);
 
     // The whole card opens the spot, so the remove control sits outside the
     // button rather than nested inside it.
@@ -35,7 +35,7 @@ export function renderSpotsTab(target, cards, { onOpen, onRemove, onClearAll }) 
 
     const head = el('div', 'spot-head');
     head.appendChild(el('span', 'spot-title', spot.name));
-    head.appendChild(el('span', `score band-${scoreBand(summary.score ?? 0)}`,
+    head.appendChild(el('span', 'score',
       Number.isFinite(summary.score) ? String(summary.score) : '–'));
     open.appendChild(head);
 

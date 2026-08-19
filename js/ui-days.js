@@ -65,11 +65,11 @@ const DETAIL_ROWS = [
 
 function slotDetail(day, index) {
   const slot = day.slots[index];
-  const panel = el('div', 'slot-detail');
+  const panel = el('div', `slot-detail band-${scoreBand(slot.score)}`);
 
   const head = el('div', 'slot-head');
   head.appendChild(el('span', null, `${hhmm(slot.start)}–${hhmm(new Date(slot.start.getTime() + slot.hours.length * 3600000))}`));
-  head.appendChild(el('span', `score band-${scoreBand(slot.score)}`, String(Math.round(slot.score))));
+  head.appendChild(el('span', 'score', String(Math.round(slot.score))));
   panel.appendChild(head);
 
   const list = el('dl', 'slot-rows');
