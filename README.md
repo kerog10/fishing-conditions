@@ -8,10 +8,13 @@ No API keys. No signups. No backend.
 
 Tap a point on the map to preview it, then add it to the comparison. Up to 6
 spots are compared as a grid of best-score-per-day; tap any cell to jump to that
-spot's detail for that day. Each of the 7 days expands into a 3-hourly grid of
-score, wind, gusts, direction, tide, swell, temperature, rain, cloud and
-pressure, with the day's tide turning points, sunrise and sunset, moon phase and
-solunar periods above it.
+spot's detail for that day.
+
+Two tabs: **Spots** ranks every saved spot by its current score, with tide
+state, wind and the next good window on each card, plus a week-at-a-glance
+grid. **7 days** shows one spot at a time as day cards — hourly tide, wind
+and score bands with the high and low water times marked, and a tap on any
+3-hour block for all eleven readings and the reasons behind the score.
 
 The place search suggests matches as you type (debounced, keyboard-navigable)
 using Open-Meteo's geocoder — no API key, no signup.
