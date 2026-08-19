@@ -22,7 +22,6 @@
 
 <div id="map" aria-label="Pick a fishing spot"></div>
 <section id="preview" class="preview" aria-live="polite" hidden></section>
-<div id="spots" class="spots" aria-label="Saved spots"></div>
 
 <main>
   <p id="spot-name" class="spot-name">Tap the map to pick a spot</p>
@@ -30,19 +29,29 @@
 
   <section id="now-bar" class="now-bar" aria-label="Right now"></section>
 
-  <section id="compare-section" aria-labelledby="compare-heading" hidden>
-    <h2 id="compare-heading">Compare spots</h2>
-    <div id="compare"></div>
+  <div class="tabs" role="tablist" aria-label="Views">
+    <button id="tab-spots" class="tab" role="tab" type="button" aria-controls="panel-spots" aria-selected="true">Spots</button>
+    <button id="tab-days" class="tab" role="tab" type="button" aria-controls="panel-days" aria-selected="false" tabindex="-1">7 days</button>
+  </div>
+
+  <section id="panel-spots" role="tabpanel" aria-labelledby="tab-spots">
+    <div id="spot-cards" class="spot-cards"></div>
+    <section id="compare-section" aria-labelledby="compare-heading" hidden>
+      <h2 id="compare-heading">Week at a glance</h2>
+      <div id="compare"></div>
+    </section>
   </section>
 
-  <section aria-labelledby="windows-heading">
-    <h2 id="windows-heading">Best windows</h2>
-    <div id="windows" class="windows"></div>
-  </section>
-
-  <section aria-labelledby="days-heading">
-    <h2 id="days-heading">Next 7 days</h2>
-    <div id="days" class="days"></div>
+  <section id="panel-days" role="tabpanel" aria-labelledby="tab-days" hidden>
+    <div id="spots" class="spots" aria-label="Saved spots"></div>
+    <section aria-labelledby="windows-heading">
+      <h2 id="windows-heading">Best windows</h2>
+      <div id="windows" class="windows"></div>
+    </section>
+    <section aria-labelledby="days-heading">
+      <h2 id="days-heading">Next 7 days</h2>
+      <div id="days" class="days"></div>
+    </section>
   </section>
 
   <p id="tide-notice" class="tide-notice">

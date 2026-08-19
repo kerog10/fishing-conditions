@@ -1,7 +1,7 @@
 import { fetchConditions, geocode } from './api.js';
 import { scoreHours } from './score.js';
 import { findWindows } from './windows.js';
-import { summariseDays } from './daily.js';
+import { summariseDays, tideExtremes } from './daily.js';
 import { buildComparison } from './compare.js';
 import { load as loadCache, save as saveCache, clearAll, clearCaches } from './cache.js';
 import { loadSpots, saveSpots, addSpot, removeSpot, makeSpot } from './spots.js';
@@ -11,6 +11,9 @@ import { renderDays } from './ui-days.js';
 import { renderSpotChips, renderCompare, renderPreview } from './ui-compare.js';
 import { createSuggester } from './suggest.js';
 import { CONFIG } from './config.js';
+import { createTabs } from './tabs.js';
+import { summariseSpot } from './spot-summary.js';
+import { renderSpotsTab } from './ui-spots-tab.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -27,6 +30,9 @@ const els = {
   searchForm: $('spot-search-form'),
   search: $('spot-search'),
   results: $('spot-results'),
+  spotCards: $('spot-cards'),
+  panels: { spots: $('panel-spots'), days: $('panel-days') },
+  tabButtons: { spots: $('tab-spots'), days: $('tab-days') },
 };
 
 const state = {
@@ -38,6 +44,7 @@ const state = {
   active: null,   // spot id, or null while a preview is showing
   preview: null,  // {lat, lon, name, hours, offset}
   openDay: null,
+  openSlot: null,
 };
 
 const marineNote = (hasMarine) => (hasMarine
@@ -77,7 +84,15 @@ function paintDetail() {
     els.days,
     summariseDays(view.hours, view.spot.lat, view.spot.lon, view.offset),
     now,
-    { openKey: state.openDay },
+    {
+      openKey: state.openDay,
+      openSlot: state.openSlot,
+      onSlot(dayKey, index) {
+        state.openDay = dayKey;
+        state.openSlot = index;
+        paintDetail();
+      },
+    },
   );
 }
 
@@ -96,12 +111,95 @@ function paintCompare() {
       state.active = spotId;
       state.preview = null;
       state.openDay = dayKey;
+      state.openSlot = null;
       renderPreview(els.preview, null);
       paintChips();
       paintDetail();
+      tabs.select('days');
       els.days.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
   });
+}
+
+const tabs = createTabs({
+  names: ['spots', 'days'],
+  onChange: () => paintTabs(),
+});
+
+function paintTabs() {
+  for (const name of tabs.names) {
+    const selected = name === tabs.current();
+    els.panels[name].hidden = !selected;
+    els.tabButtons[name].setAttribute('aria-selected', String(selected));
+    els.tabButtons[name].tabIndex = selected ? 0 : -1;
+  }
+  if (tabs.current() === 'spots') paintSpotCards();
+}
+
+for (const name of tabs.names) {
+  els.tabButtons[name].addEventListener('click', () => tabs.select(name));
+  els.tabButtons[name].addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    const i = tabs.names.indexOf(name);
+    const next = tabs.names[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.names.length) % tabs.names.length];
+    tabs.select(next);
+    els.tabButtons[next].focus();
+  });
+}
+
+function paintSpotCards() {
+  const now = new Date();
+  const cards = state.spots
+    .filter((s) => state.scored.has(s.id))
+    .map((s) => {
+      const { hours } = state.scored.get(s.id);
+      return { spot: s, summary: summariseSpot(hours, findWindows(hours), tideExtremes(hours), now) };
+    })
+    // Best first: the whole point of the tab is "which one right now".
+    .sort((a, b) => (b.summary.score ?? -1) - (a.summary.score ?? -1));
+
+  renderSpotsTab(els.spotCards, cards, {
+    onOpen(id) {
+      state.active = id;
+      state.preview = null;
+      state.openDay = null;
+      state.openSlot = null;
+      renderPreview(els.preview, null);
+      paintChips();
+      paintDetail();
+      tabs.select('days');
+    },
+    onRemove: removeSpotById,
+    onClearAll: clearEverything,
+  });
+}
+
+async function clearEverything() {
+  const what = state.spots.length
+    ? `Remove all ${state.spots.length} saved spots and every cached forecast?`
+    : 'Clear every cached forecast and start fresh?';
+  // eslint-disable-next-line no-alert
+  if (!globalThis.confirm(what)) return;
+  setStatus(els.status, 'Resetting…');
+  clearAll();
+  // Awaited, unlike the localStorage wipe: the reload below would otherwise
+  // race the deletion and could be served the very shell being deleted.
+  await clearCaches();
+  // Reloading is the honest reset: it drops the in-memory scores, the map
+  // markers and the remembered view in one step rather than unpicking them.
+  globalThis.location.reload();
+}
+
+function removeSpotById(id) {
+  state.spots = removeSpot(state.spots, id);
+  state.scored.delete(id);
+  saveSpots(state.spots);
+  if (state.active === id) state.active = state.spots[0]?.id ?? null;
+  paintChips();
+  paintCompare();
+  paintSpotCards();
+  paintDetail();
 }
 
 function paintChips() {
@@ -116,30 +214,8 @@ function paintChips() {
       paintChips();
       paintDetail();
     },
-    async onClearAll() {
-      const what = state.spots.length
-        ? `Remove all ${state.spots.length} saved spots and every cached forecast?`
-        : 'Clear every cached forecast and start fresh?';
-      // eslint-disable-next-line no-alert
-      if (!globalThis.confirm(what)) return;
-      setStatus(els.status, 'Resetting…');
-      clearAll();
-      // Awaited, unlike the localStorage wipe: the reload below would otherwise
-      // race the deletion and could be served the very shell being deleted.
-      await clearCaches();
-      // Reloading is the honest reset: it drops the in-memory scores, the map
-      // markers and the remembered view in one step rather than unpicking them.
-      globalThis.location.reload();
-    },
-    onRemove(id) {
-      state.spots = removeSpot(state.spots, id);
-      state.scored.delete(id);
-      saveSpots(state.spots);
-      if (state.active === id) state.active = state.spots[0]?.id ?? null;
-      paintChips();
-      paintCompare();
-      paintDetail();
-    },
+    onClearAll: clearEverything,
+    onRemove: removeSpotById,
   });
   map.setMarkers(state.spots, state.active);
 }
@@ -243,6 +319,7 @@ async function refreshSavedSpots() {
     if (payload) state.scored.set(spot.id, score(payload, spot.lat, spot.lon));
   }
   paintCompare();
+  paintSpotCards();
   paintDetail();
 }
 
@@ -355,6 +432,7 @@ els.searchForm.addEventListener('submit', async (e) => {
 });
 
 paintChips();
+paintTabs();
 
 if (state.spots.length) {
   state.active = state.spots[0].id;
