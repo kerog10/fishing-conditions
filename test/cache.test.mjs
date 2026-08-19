@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cacheKey, save, load, clearAll } from '../js/cache.js';
+import { cacheKey, save, load, clearAll, clearCaches } from '../js/cache.js';
 import { CONFIG } from '../js/config.js';
 
 function fakeStorage() {
@@ -85,4 +85,29 @@ test('clearAll leaves other sites and apps alone', () => {
 
 test('clearAll copes with storage being unavailable', () => {
   assert.doesNotThrow(() => clearAll(null));
+});
+
+const fakeCaches = (names) => {
+  const live = new Set(names);
+  return {
+    live,
+    keys: async () => [...live],
+    delete: async (name) => live.delete(name),
+  };
+};
+
+test('clearCaches deletes the offline app shell', async () => {
+  const c = fakeCaches(['fishing-conditions-v2', 'fishing-conditions-v1']);
+  assert.equal(await clearCaches(c), 2);
+  assert.equal(c.live.size, 0);
+});
+
+test('clearCaches leaves caches belonging to other apps alone', async () => {
+  const c = fakeCaches(['fishing-conditions-v2', 'some-other-pwa']);
+  await clearCaches(c);
+  assert.deepEqual([...c.live], ['some-other-pwa']);
+});
+
+test('clearCaches copes with the Cache API being unavailable', async () => {
+  assert.equal(await clearCaches(undefined), 0);
 });

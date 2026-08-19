@@ -62,3 +62,24 @@ export function clearAll(storage = globalThis.localStorage) {
     return 0;
   }
 }
+
+// The service worker keeps its own copy of the app shell in Cache Storage,
+// which localStorage knows nothing about. A reset that skipped it would leave
+// the layer that caused the "site never updates" bug fully intact, so a real
+// reset has to clear both.
+//
+// Matched on the name prefix, not emptied outright: Cache Storage is shared
+// across the origin like localStorage is. Must stay in step with the CACHE
+// name in sw.js.
+const SHELL_CACHE_PREFIX = 'fishing-conditions';
+
+export async function clearCaches(cacheStorage = globalThis.caches) {
+  if (!cacheStorage) return 0;
+  try {
+    const names = (await cacheStorage.keys()).filter((n) => n.startsWith(SHELL_CACHE_PREFIX));
+    await Promise.all(names.map((n) => cacheStorage.delete(n)));
+    return names.length;
+  } catch {
+    return 0;
+  }
+}

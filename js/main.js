@@ -3,7 +3,7 @@ import { scoreHours } from './score.js';
 import { findWindows } from './windows.js';
 import { summariseDays } from './daily.js';
 import { buildComparison } from './compare.js';
-import { load as loadCache, save as saveCache, clearAll } from './cache.js';
+import { load as loadCache, save as saveCache, clearAll, clearCaches } from './cache.js';
 import { loadSpots, saveSpots, addSpot, removeSpot, makeSpot } from './spots.js';
 import { initMap } from './map.js';
 import { renderNow, renderWindows, renderSpotResults, setStatus, ageNotice } from './ui.js';
@@ -115,13 +115,17 @@ function paintChips() {
       paintChips();
       paintDetail();
     },
-    onClearAll() {
+    async onClearAll() {
       const what = state.spots.length
         ? `Remove all ${state.spots.length} saved spots and every cached forecast?`
         : 'Clear every cached forecast and start fresh?';
       // eslint-disable-next-line no-alert
       if (!globalThis.confirm(what)) return;
+      setStatus(els.status, 'Resetting…');
       clearAll();
+      // Awaited, unlike the localStorage wipe: the reload below would otherwise
+      // race the deletion and could be served the very shell being deleted.
+      await clearCaches();
       // Reloading is the honest reset: it drops the in-memory scores, the map
       // markers and the remembered view in one step rather than unpicking them.
       globalThis.location.reload();
