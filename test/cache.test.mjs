@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cacheKey, save, load } from '../js/cache.js';
+import { cacheKey, save, load, clearAll } from '../js/cache.js';
 import { CONFIG } from '../js/config.js';
 
 function fakeStorage() {
@@ -9,6 +9,8 @@ function fakeStorage() {
     getItem: (k) => (map.has(k) ? map.get(k) : null),
     setItem: (k, v) => map.set(k, String(v)),
     removeItem: (k) => map.delete(k),
+    get length() { return map.size; },
+    key: (i) => [...map.keys()][i] ?? null,
   };
 }
 
@@ -52,4 +54,35 @@ test('corrupt cache entries are discarded, not thrown', () => {
   const s = fakeStorage();
   s.setItem(cacheKey(-29.85, 31.05), '{not json');
   assert.equal(load(-29.85, 31.05, s, 0), null);
+});
+
+test('clearAll removes every key the app owns', () => {
+  const storage = fakeStorage();
+  save(-29.85, 31.05, PAYLOAD, storage, 0);
+  save(-31.05, 30.22, PAYLOAD, storage, 0);
+  storage.setItem(CONFIG.spots.storageKey, '[{"lat":-29.85,"lon":31.05}]');
+  storage.setItem('fc:last-spot', '{"lat":-29.85,"lon":31.05}');
+
+  clearAll(storage);
+
+  assert.equal(storage.length, 0);
+});
+
+test('clearAll leaves other sites and apps alone', () => {
+  // localStorage is shared per origin. Wiping keys we do not own would be
+  // destroying someone else's data.
+  const storage = fakeStorage();
+  save(-29.85, 31.05, PAYLOAD, storage, 0);
+  storage.setItem('theme', 'dark');
+  storage.setItem('other-app:session', 'abc');
+
+  clearAll(storage);
+
+  assert.equal(storage.getItem('theme'), 'dark');
+  assert.equal(storage.getItem('other-app:session'), 'abc');
+  assert.equal(load(-29.85, 31.05, storage, 0), null);
+});
+
+test('clearAll copes with storage being unavailable', () => {
+  assert.doesNotThrow(() => clearAll(null));
 });

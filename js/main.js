@@ -3,7 +3,7 @@ import { scoreHours } from './score.js';
 import { findWindows } from './windows.js';
 import { summariseDays } from './daily.js';
 import { buildComparison } from './compare.js';
-import { load as loadCache, save as saveCache } from './cache.js';
+import { load as loadCache, save as saveCache, clearAll } from './cache.js';
 import { loadSpots, saveSpots, addSpot, removeSpot, makeSpot } from './spots.js';
 import { initMap } from './map.js';
 import { renderNow, renderWindows, renderSpotResults, setStatus, ageNotice } from './ui.js';
@@ -114,6 +114,17 @@ function paintChips() {
       if (spot) map.setPreview(spot.lat, spot.lon);
       paintChips();
       paintDetail();
+    },
+    onClearAll() {
+      const what = state.spots.length
+        ? `Remove all ${state.spots.length} saved spots and every cached forecast?`
+        : 'Clear every cached forecast and start fresh?';
+      // eslint-disable-next-line no-alert
+      if (!globalThis.confirm(what)) return;
+      clearAll();
+      // Reloading is the honest reset: it drops the in-memory scores, the map
+      // markers and the remembered view in one step rather than unpicking them.
+      globalThis.location.reload();
     },
     onRemove(id) {
       state.spots = removeSpot(state.spots, id);

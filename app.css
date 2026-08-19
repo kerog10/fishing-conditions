@@ -102,3 +102,5 @@ table.grid .score-cell { color: #06231a; font-weight: 700; }
 
 table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-weight: 700; color: #06231a; min-width: 40px; }
 .best-line { margin: 10px 0 0; font-size: 14px; }
+
+.clear-all { margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); padding: 6px 12px; font-size: 13px; }

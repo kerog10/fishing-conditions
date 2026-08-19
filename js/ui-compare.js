@@ -7,7 +7,7 @@ const el = (tag, className, text) => {
   return node;
 };
 
-export function renderSpotChips(target, spots, activeId, { onSelect, onRemove }) {
+export function renderSpotChips(target, spots, activeId, { onSelect, onRemove, onClearAll }) {
   target.replaceChildren();
 
   for (const spot of spots) {
@@ -27,6 +27,15 @@ export function renderSpotChips(target, spots, activeId, { onSelect, onRemove })
 
     target.appendChild(chip);
   }
+
+  // Always offered, even with no spots saved: it is also the way out of a stale
+  // cache, which is the state you are in when the forecast looks wrong and
+  // reloading does not help.
+  const clear = el('button', 'clear-all', spots.length ? 'Clear all' : 'Reset');
+  clear.type = 'button';
+  clear.title = 'Remove every saved spot and cached forecast';
+  clear.addEventListener('click', onClearAll);
+  target.appendChild(clear);
 }
 
 // The bar that appears when you tap the map. Tapping is cheap and easy to do by

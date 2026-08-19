@@ -41,3 +41,24 @@ export function load(lat, lon, storage = globalThis.localStorage, now = Date.now
 
   return { payload, ageMs, fresh: ageMs <= CONFIG.cache.freshMs };
 }
+
+// Wipes everything this app owns: cached forecasts, the saved spot list and the
+// last map position. localStorage is shared across the whole origin, so it is
+// matched on our own prefix rather than emptied outright.
+//
+// Keys are collected before any are removed. Deleting while walking the index
+// shifts every later key down one and would silently skip half of them.
+export function clearAll(storage = globalThis.localStorage) {
+  if (!storage) return 0;
+  try {
+    const doomed = [];
+    for (let i = 0; i < storage.length; i++) {
+      const key = storage.key(i);
+      if (key?.startsWith(CONFIG.cache.keyPrefix)) doomed.push(key);
+    }
+    for (const key of doomed) storage.removeItem(key);
+    return doomed.length;
+  } catch {
+    return 0;
+  }
+}
