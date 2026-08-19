@@ -23,6 +23,7 @@ const SHELL = [
   './js/daily.js',
   './js/spots.js',
   './js/compare.js',
+  './js/ui-compare.js',
   './js/windows.js',
   './vendor/suncalc.mjs',
   './vendor/leaflet.js',

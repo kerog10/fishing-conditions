@@ -86,3 +86,19 @@ table.grid .score-cell { color: #06231a; font-weight: 700; }
 
 .tide-notice { margin: 28px 0 40px; padding: 12px; border: 1px solid var(--line); border-left: 4px solid var(--fair); border-radius: 8px; background: var(--panel); color: var(--muted); font-size: 13px; }
 .tide-notice strong { color: var(--ink); display: block; margin-bottom: 4px; }
+
+.preview { padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.preview-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+.preview-name { font-weight: 600; }
+.preview-score { font-weight: 700; font-size: 20px; }
+.preview-reason { color: var(--muted); font-size: 13px; }
+.add-spot { margin-left: auto; padding: 8px 12px; border: 0; border-radius: 8px; background: #2b6ea8; color: #fff; }
+
+.spots { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px 0; max-width: 900px; margin: 0 auto; }
+.chip { display: inline-flex; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.chip-active { border-color: #2b6ea8; }
+.chip-name { background: none; border: 0; color: var(--ink); padding: 6px 4px 6px 12px; font-size: 14px; }
+.chip-remove { background: none; border: 0; color: var(--muted); padding: 6px 10px 6px 6px; font-size: 16px; line-height: 1; }
+
+table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-weight: 700; color: #06231a; min-width: 40px; }
+.best-line { margin: 10px 0 0; font-size: 14px; }

@@ -20,12 +20,19 @@
 </header>
 
 <div id="map" aria-label="Pick a fishing spot"></div>
+<section id="preview" class="preview" aria-live="polite" hidden></section>
+<div id="spots" class="spots" aria-label="Saved spots"></div>
 
 <main>
   <p id="spot-name" class="spot-name">Tap the map to pick a spot</p>
   <p id="status" class="status" role="status"></p>
 
   <section id="now-bar" class="now-bar" aria-label="Right now"></section>
+
+  <section id="compare-section" aria-labelledby="compare-heading" hidden>
+    <h2 id="compare-heading">Compare spots</h2>
+    <div id="compare"></div>
+  </section>
 
   <section aria-labelledby="windows-heading">
     <h2 id="windows-heading">Best windows</h2>
