@@ -103,26 +103,6 @@ export function renderWindows(target, windows, now = new Date()) {
   }
 }
 
-export function renderDays(target, hours, now = new Date()) {
-  target.replaceChildren();
-
-  const byDay = new Map();
-  for (const h of hours) {
-    const key = h.time.toISOString().slice(0, 10);
-    if (!byDay.has(key)) byDay.set(key, []);
-    byDay.get(key).push(h);
-  }
-
-  for (const dayHours of byDay.values()) {
-    const best = dayHours.reduce((a, b) => (b.final > a.final ? b : a));
-    const card = el('article', `day band-${scoreBand(best.final)}`);
-    card.appendChild(el('div', 'label', dayLabel(best.time, now)));
-    card.appendChild(el('div', 'score', String(best.final)));
-    card.appendChild(el('div', 'head', `best ${hhmm(best.time)}`));
-    target.appendChild(card);
-  }
-}
-
 export function renderSpotResults(target, results, onPick) {
   target.replaceChildren();
   target.hidden = results.length === 0;

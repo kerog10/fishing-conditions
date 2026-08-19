@@ -53,11 +53,26 @@ h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: v
 .window .metrics { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
 .capped { color: var(--fair); font-size: 13px; margin: 6px 0 0; }
 
-.days { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
-.day { background: var(--panel); border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 10px; }
-.day .label { font-size: 13px; color: var(--muted); }
+.days { display: grid; gap: 8px; }
+.day { background: var(--panel); border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 10px 12px; }
+.day summary { cursor: pointer; list-style: none; }
+.day summary::-webkit-details-marker { display: none; }
+.day-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.day .label { font-weight: 600; }
 .day .score { font-size: 24px; font-weight: 700; }
-.day .head { font-size: 13px; color: var(--muted); }
+.day .digest { color: var(--muted); font-size: 13px; }
+.tide-line, .sky-line { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+
+.grid-scroll { overflow-x: auto; margin-top: 10px; -webkit-overflow-scrolling: touch; }
+table.grid { border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+table.grid th, table.grid td { padding: 4px 8px; text-align: right; border-bottom: 1px solid var(--line); }
+table.grid thead th { color: var(--muted); font-weight: 500; }
+/* The parameter names must stay readable while the times scroll under them. */
+table.grid .row-label { position: sticky; left: 0; background: var(--panel); text-align: left; color: var(--muted); font-weight: 500; }
+table.grid .score-cell { color: #06231a; font-weight: 700; }
+.wind-easy { color: var(--good); }
+.wind-fresh { color: var(--fair); }
+.wind-hard { color: var(--poor); }
 
 .band-excellent { border-left-color: var(--excellent); } .band-excellent .score, .band-excellent .now-score { color: var(--excellent); }
 .band-good { border-left-color: var(--good); } .band-good .score, .band-good .now-score { color: var(--good); }

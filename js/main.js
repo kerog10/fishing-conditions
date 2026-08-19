@@ -4,8 +4,10 @@ import { findWindows } from './windows.js';
 import { load as loadCache, save as saveCache } from './cache.js';
 import { initMap } from './map.js';
 import {
-  renderNow, renderWindows, renderDays, renderSpotResults, setStatus, ageNotice,
+  renderNow, renderWindows, renderSpotResults, setStatus, ageNotice,
 } from './ui.js';
+import { renderDays } from './ui-days.js';
+import { summariseDays } from './daily.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -29,7 +31,7 @@ function paint(payload, lat, lon) {
   const now = new Date();
   renderNow(els.now, scored, now);
   renderWindows(els.windows, findWindows(scored), now);
-  renderDays(els.days, scored, now);
+  renderDays(els.days, summariseDays(scored, lat, lon), now);
 }
 
 // Cached data paints immediately, then the network revalidates. navigator.onLine
