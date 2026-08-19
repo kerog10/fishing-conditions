@@ -1,0 +1,52 @@
+// Leaflet is loaded as a classic script in index.html, so it is a global here.
+/* global L */
+
+const DEFAULT_VIEW = { lat: -29.85, lon: 31.05, zoom: 9 }; // Durban
+const LAST_SPOT_KEY = 'fc:last-spot';
+
+function saveLastSpot(lat, lon, zoom) {
+  try {
+    localStorage.setItem(LAST_SPOT_KEY, JSON.stringify({ lat, lon, zoom }));
+  } catch {
+    // Storage disabled; the map simply starts at the default next time.
+  }
+}
+
+function loadLastSpot() {
+  try {
+    const raw = localStorage.getItem(LAST_SPOT_KEY);
+    if (!raw) return null;
+    const v = JSON.parse(raw);
+    return Number.isFinite(v?.lat) && Number.isFinite(v?.lon) ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+export function initMap(elementId, onPick) {
+  const start = loadLastSpot() ?? DEFAULT_VIEW;
+  const map = L.map(elementId).setView([start.lat, start.lon], start.zoom ?? 11);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors',
+  }).addTo(map);
+
+  const marker = L.marker([start.lat, start.lon]).addTo(map);
+
+  const pick = (lat, lon) => {
+    marker.setLatLng([lat, lon]);
+    saveLastSpot(lat, lon, map.getZoom());
+    onPick({ lat, lon });
+  };
+
+  map.on('click', (e) => pick(e.latlng.lat, e.latlng.lng));
+
+  return {
+    start,
+    moveTo(lat, lon, zoom = 12) {
+      map.setView([lat, lon], zoom);
+      pick(lat, lon);
+    },
+  };
+}

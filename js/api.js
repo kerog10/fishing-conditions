@@ -47,7 +47,12 @@ const at = (arr, i) => {
 export function normalise(forecastJson, marineJson) {
   const f = forecastJson.hourly;
   const m = marineJson?.hourly ?? null;
-  const hasMarine = Boolean(m && Array.isArray(m.time) && m.time.length > 0);
+  // The marine API answers 200 for inland points with every value null, so
+  // presence of the arrays is not enough: require at least one real reading.
+  const hasMarine = Boolean(
+    m && Array.isArray(m.time) && m.time.length > 0
+    && (m.sea_level_height_msl ?? []).some((v) => Number.isFinite(v)),
+  );
 
   // Index marine rows by time rather than position, so a length mismatch
   // cannot silently misalign tide data against the wrong hour.

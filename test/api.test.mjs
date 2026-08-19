@@ -57,3 +57,21 @@ test('fetchConditions throws when the forecast itself fails', async () => {
   const fakeFetch = async () => ({ ok: false, status: 503, statusText: 'down' });
   await assert.rejects(() => fetchConditions(-29.85, 31.05, fakeFetch), /503/);
 });
+
+test('an all-null marine response counts as no marine data', () => {
+  // The marine API answers 200 for inland points, with every value null.
+  const inlandMarine = {
+    hourly: {
+      time: marine.hourly.time,
+      sea_level_height_msl: marine.hourly.time.map(() => null),
+      wave_height: marine.hourly.time.map(() => null),
+      swell_wave_height: marine.hourly.time.map(() => null),
+      swell_wave_period: marine.hourly.time.map(() => null),
+      swell_wave_direction: marine.hourly.time.map(() => null),
+      sea_surface_temperature: marine.hourly.time.map(() => null),
+    },
+  };
+  const { hours, hasMarine } = normalise(forecast, inlandMarine);
+  assert.equal(hasMarine, false);
+  assert.equal(hours[0].seaLevel, null);
+});
