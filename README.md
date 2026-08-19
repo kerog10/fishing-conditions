@@ -13,6 +13,9 @@ score, wind, gusts, direction, tide, swell, temperature, rain, cloud and
 pressure, with the day's tide turning points, sunrise and sunset, moon phase and
 solunar periods above it.
 
+The place search suggests matches as you type (debounced, keyboard-navigable)
+using Open-Meteo's geocoder — no API key, no signup.
+
 ## Run it
 
 ```bash

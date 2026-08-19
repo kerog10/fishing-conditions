@@ -13,10 +13,11 @@
 <header class="topbar">
   <h1>Fishing Conditions</h1>
   <form id="spot-search-form" class="search" role="search">
-    <input id="spot-search" type="search" placeholder="Search a place, or tap the map" autocomplete="off">
+    <input id="spot-search" type="search" placeholder="Search a place, or tap the map" autocomplete="off"
+           role="combobox" aria-controls="spot-results" aria-expanded="false" aria-autocomplete="list">
     <button type="submit">Find</button>
   </form>
-  <ul id="spot-results" class="results" hidden></ul>
+  <ul id="spot-results" class="results" role="listbox" aria-label="Place suggestions" hidden></ul>
 </header>
 
 <div id="map" aria-label="Pick a fishing spot"></div>

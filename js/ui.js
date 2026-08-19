@@ -103,22 +103,40 @@ export function renderWindows(target, windows, now = new Date()) {
   }
 }
 
-export function renderSpotResults(target, results, onPick) {
+export function renderSpotResults(target, results, onPick, { activeIndex = -1 } = {}) {
   target.replaceChildren();
   target.hidden = results.length === 0;
 
-  for (const r of results) {
+  results.forEach((r, i) => {
     const item = el('li');
     const label = [r.name, r.admin, r.country].filter(Boolean).join(', ');
-    const button = el('button', null, label);
+    const button = el('button', i === activeIndex ? 'active' : null, label);
     button.type = 'button';
-    button.addEventListener('click', () => {
+    button.id = `suggest-${i}`;
+    button.setAttribute('role', 'option');
+    button.setAttribute('aria-selected', String(i === activeIndex));
+    // pointerdown, not click: the input loses focus first, and the focusout
+    // handler hides this list before a click would ever land.
+    button.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
       target.hidden = true;
       onPick(r);
     });
     item.appendChild(button);
     target.appendChild(item);
-  }
+  });
+}
+
+// Moves the highlight without rebuilding the list, so the arrow keys stay
+// responsive while a look-up is still in flight.
+export function highlightResult(target, index) {
+  const buttons = [...target.querySelectorAll('button')];
+  buttons.forEach((b, i) => {
+    b.classList.toggle('active', i === index);
+    b.setAttribute('aria-selected', String(i === index));
+  });
+  buttons[index]?.scrollIntoView({ block: 'nearest' });
+  return buttons[index] ? `suggest-${index}` : '';
 }
 
 export function ageNotice(ageMs) {

@@ -104,3 +104,4 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .best-line { margin: 10px 0 0; font-size: 14px; }
 
 .clear-all { margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); padding: 6px 12px; font-size: 13px; }
+.results li button.active { border-color: var(--excellent); background: var(--panel); }

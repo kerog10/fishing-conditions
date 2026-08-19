@@ -6,9 +6,10 @@ import { buildComparison } from './compare.js';
 import { load as loadCache, save as saveCache, clearAll, clearCaches } from './cache.js';
 import { loadSpots, saveSpots, addSpot, removeSpot, makeSpot } from './spots.js';
 import { initMap } from './map.js';
-import { renderNow, renderWindows, renderSpotResults, setStatus, ageNotice } from './ui.js';
+import { renderNow, renderWindows, renderSpotResults, highlightResult, setStatus, ageNotice } from './ui.js';
 import { renderDays } from './ui-days.js';
 import { renderSpotChips, renderCompare, renderPreview } from './ui-compare.js';
+import { createSuggester } from './suggest.js';
 import { CONFIG } from './config.js';
 
 const $ = (id) => document.getElementById(id);
@@ -247,26 +248,107 @@ async function refreshSavedSpots() {
 
 const map = initMap('map', ({ lat, lon }) => previewPoint(lat, lon));
 
+// --- Place search -----------------------------------------------------------
+
+// What is currently offered under the search box, and which of them the arrow
+// keys have landed on. -1 means nothing is highlighted, so Enter submits the
+// typed text instead of picking a suggestion.
+let suggestions = [];
+let activeIndex = -1;
+
+function choose(r) {
+  const name = [r.name, r.admin, r.country].filter(Boolean).join(', ');
+  els.search.value = name;
+  closeSuggestions();
+  suggester.cancel();
+  // moveTo fires onPick, which previews the bare coordinates; this call
+  // re-previews with the place name and wins because it bumps pending.
+  map.moveTo(r.lat, r.lon);
+  previewPoint(r.lat, r.lon, name);
+}
+
+function closeSuggestions() {
+  suggestions = [];
+  activeIndex = -1;
+  els.results.hidden = true;
+  els.search.removeAttribute('aria-activedescendant');
+  els.search.setAttribute('aria-expanded', 'false');
+}
+
+function showSuggestions(results) {
+  suggestions = results;
+  activeIndex = -1;
+  renderSpotResults(els.results, results, choose);
+  els.search.setAttribute('aria-expanded', String(results.length > 0));
+  els.search.removeAttribute('aria-activedescendant');
+}
+
+function moveActive(step) {
+  if (!suggestions.length) return;
+  // Wraps at both ends, and passes through -1 so you can arrow back out to
+  // whatever you actually typed.
+  const span = suggestions.length + 1;
+  activeIndex = ((activeIndex + 1 + step + span) % span) - 1;
+  const id = highlightResult(els.results, activeIndex);
+  if (id) els.search.setAttribute('aria-activedescendant', id);
+  else els.search.removeAttribute('aria-activedescendant');
+}
+
+const suggester = createSuggester({
+  search: geocode,
+  onResults: showSuggestions,
+  // A failed look-up while typing is not worth an error banner: the next
+  // keystroke usually fixes it, and the map is still there to tap.
+  onError: () => {},
+});
+
+els.search.addEventListener('input', () => suggester.query(els.search.value));
+
+els.search.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    moveActive(e.key === 'ArrowDown' ? 1 : -1);
+  } else if (e.key === 'Enter' && activeIndex >= 0) {
+    e.preventDefault();
+    choose(suggestions[activeIndex]);
+  } else if (e.key === 'Escape') {
+    closeSuggestions();
+  }
+});
+
+// Tapping the map or anything else dismisses the list, but not while the tap
+// is landing on a suggestion.
+els.search.addEventListener('focusout', (e) => {
+  if (!els.results.contains(e.relatedTarget)) closeSuggestions();
+});
+
+// Submitting still works: it is the fallback when the suggestions have not
+// arrived yet, and on a phone keyboard it is the obvious thing to press.
 els.searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const term = els.search.value.trim();
   if (!term) return;
 
+  if (activeIndex >= 0) {
+    choose(suggestions[activeIndex]);
+    return;
+  }
+
+  suggester.cancel();
   setStatus(els.status, 'Searching…');
   try {
     const results = await geocode(term);
     if (!results.length) {
       setStatus(els.status, `No match for “${term}”.`, true);
+      closeSuggestions();
       return;
     }
     setStatus(els.status, '');
-    renderSpotResults(els.results, results, (r) => {
-      const name = [r.name, r.admin, r.country].filter(Boolean).join(', ');
-      // moveTo fires onPick, which previews the bare coordinates; this call
-      // re-previews with the place name and wins because it bumps pending.
-      map.moveTo(r.lat, r.lon);
-      previewPoint(r.lat, r.lon, name);
-    });
+    if (results.length === 1) {
+      choose(results[0]);
+      return;
+    }
+    showSuggestions(results);
   } catch (err) {
     setStatus(els.status, `Search failed: ${err.message}`, true);
   }
