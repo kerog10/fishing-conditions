@@ -6,6 +6,13 @@ estuary fishing.
 
 No API keys. No signups. No backend.
 
+Tap a point on the map to preview it, then add it to the comparison. Up to 6
+spots are compared as a grid of best-score-per-day; tap any cell to jump to that
+spot's detail for that day. Each of the 7 days expands into a 3-hourly grid of
+score, wind, gusts, direction, tide, swell, temperature, rain, cloud and
+pressure, with the day's tide turning points, sunrise and sunset, moon phase and
+solunar periods above it.
+
 ## Run it
 
 ```bash

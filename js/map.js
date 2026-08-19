@@ -32,10 +32,11 @@ export function initMap(elementId, onPick) {
     attribution: '&copy; OpenStreetMap contributors',
   }).addTo(map);
 
-  const marker = L.marker([start.lat, start.lon]).addTo(map);
+  const previewMarker = L.marker([start.lat, start.lon], { opacity: 0.6 }).addTo(map);
+  const saved = L.layerGroup().addTo(map);
 
   const pick = (lat, lon) => {
-    marker.setLatLng([lat, lon]);
+    previewMarker.setLatLng([lat, lon]);
     saveLastSpot(lat, lon, map.getZoom());
     onPick({ lat, lon });
   };
@@ -47,6 +48,23 @@ export function initMap(elementId, onPick) {
     moveTo(lat, lon, zoom = 12) {
       map.setView([lat, lon], zoom);
       pick(lat, lon);
+    },
+    setPreview(lat, lon) {
+      previewMarker.setLatLng([lat, lon]);
+    },
+    // Saved spots are drawn as labelled circles so they read differently from
+    // the single translucent pin marking whatever you last tapped.
+    setMarkers(spots, activeId) {
+      saved.clearLayers();
+      for (const spot of spots) {
+        L.circleMarker([spot.lat, spot.lon], {
+          radius: spot.id === activeId ? 10 : 7,
+          color: '#2b6ea8',
+          fillColor: spot.id === activeId ? '#2b6ea8' : '#17222a',
+          fillOpacity: 1,
+          weight: 3,
+        }).bindTooltip(spot.name).addTo(saved);
+      }
     },
   };
 }
