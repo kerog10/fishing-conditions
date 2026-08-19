@@ -16,6 +16,38 @@ npm run serve    # http://127.0.0.1:8080
 ES modules do not load over `file://`, so it must be served. Any static host
 works — GitHub Pages, Netlify, or the command above.
 
+## Run it in a container
+
+```bash
+podman build --format docker -t fishing-conditions:1.0.0 .
+podman run -d --name fishing -p 8080:8080 --restart unless-stopped fishing-conditions:1.0.0
+```
+
+Then open <http://127.0.0.1:8080>. `--format docker` is needed for the
+`HEALTHCHECK` line; OCI format silently drops it.
+
+### Reaching it from a phone
+
+Podman runs inside a WSL VM, and WSL's relay only listens on `127.0.0.1` on the
+Windows side, so publishing the port is not enough to reach it over wifi. In an
+**Administrator** PowerShell:
+
+```powershell
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=8080 connectaddress=127.0.0.1 connectport=8080
+New-NetFirewallRule -DisplayName "fishing-conditions 8080" -Direction Inbound -Protocol TCP -LocalPort 8080 -Action Allow -Profile Private
+```
+
+To undo:
+
+```powershell
+netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=8080
+Remove-NetFirewallRule -DisplayName "fishing-conditions 8080"
+```
+
+Over plain `http://` on a LAN address the browser is not in a secure context, so
+the service worker will not register: the app loads and fetches forecasts, but
+"Add to home screen" and offline mode need HTTPS.
+
 ## Test
 
 ```bash
