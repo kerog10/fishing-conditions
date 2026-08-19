@@ -11,9 +11,26 @@ function startOfUTCDay(date) {
   return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
 }
 
+// Two clocks meet here. api.js stamps Open-Meteo's local wall-clock strings with
+// a Z, so every forecast hour in the app is local time wearing a UTC label.
+// SunCalc, correctly, works in true UTC. Comparing the two directly puts sunrise,
+// moonrise and the solunar peaks the spot's whole UTC offset away from the hours
+// they are supposed to line up with -- two hours out in Durban, twelve in
+// Auckland. So: subtract the offset going in to get a real instant, add it back
+// coming out to return to the app frame. Callers that omit the offset get the
+// old true-UTC behaviour, which is correct for a spot on the meridian.
+const toInstant = (date, offsetSeconds) => new Date(date.getTime() - offsetSeconds * 1000);
+
+function toAppFrame(date, offsetSeconds) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return null;
+  return new Date(date.getTime() + offsetSeconds * 1000);
+}
+
 // Scans one day of moon altitude and returns the instants of peak and trough.
-export function solunarPeriods(date, lat, lon) {
-  const start = startOfUTCDay(date);
+export function solunarPeriods(date, lat, lon, offsetSeconds = 0) {
+  // The day being scanned is the spot's local day, which in the app frame is
+  // exactly the UTC day of `date`.
+  const start = toInstant(startOfUTCDay(date), offsetSeconds);
   const stepMs = SAMPLE_MINUTES * 60 * 1000;
   const steps = (24 * 60) / SAMPLE_MINUTES;
 
@@ -27,11 +44,15 @@ export function solunarPeriods(date, lat, lon) {
     if (altitude < trough.alt) trough = { alt: altitude, at };
   }
 
-  const majors = [peak.at, trough.at].filter(Boolean).sort((a, b) => a - b);
+  const majors = [peak.at, trough.at]
+    .filter(Boolean)
+    .map((t) => toAppFrame(t, offsetSeconds))
+    .sort((a, b) => a - b);
 
   const times = SunCalc.getMoonTimes(start, lat, lon);
   const minors = [times.rise, times.set]
-    .filter((t) => t instanceof Date && !Number.isNaN(t.getTime()))
+    .map((t) => (t instanceof Date ? toAppFrame(t, offsetSeconds) : null))
+    .filter(Boolean)
     .sort((a, b) => a - b);
 
   return { majors, minors };
@@ -56,8 +77,10 @@ export function daysFromNewOrFull(date) {
   return Math.min(toNew, toFull) * SYNODIC_DAYS;
 }
 
-export function sunTimes(date, lat, lon) {
-  const t = SunCalc.getTimes(startOfUTCDay(date), lat, lon);
-  const ok = (d) => (d instanceof Date && !Number.isNaN(d.getTime()) ? d : null);
-  return { sunrise: ok(t.sunrise), sunset: ok(t.sunset) };
+export function sunTimes(date, lat, lon, offsetSeconds = 0) {
+  const t = SunCalc.getTimes(toInstant(startOfUTCDay(date), offsetSeconds), lat, lon);
+  return {
+    sunrise: toAppFrame(t.sunrise, offsetSeconds),
+    sunset: toAppFrame(t.sunset, offsetSeconds),
+  };
 }

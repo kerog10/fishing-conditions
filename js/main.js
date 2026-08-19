@@ -27,11 +27,11 @@ const marineNote = (payload) => (payload.hasMarine
   : 'No tide or swell data here — scoring on weather and solunar only.');
 
 function paint(payload, lat, lon) {
-  const scored = scoreHours(payload.hours, lat, lon);
+  const scored = scoreHours(payload.hours, lat, lon, payload.utcOffsetSeconds ?? 0);
   const now = new Date();
   renderNow(els.now, scored, now);
   renderWindows(els.windows, findWindows(scored), now);
-  renderDays(els.days, summariseDays(scored, lat, lon), now);
+  renderDays(els.days, summariseDays(scored, lat, lon, payload.utcOffsetSeconds ?? 0), now);
 }
 
 // Cached data paints immediately, then the network revalidates. navigator.onLine

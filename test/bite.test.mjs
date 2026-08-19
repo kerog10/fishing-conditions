@@ -65,3 +65,16 @@ test('an inland spot with no tide data still scores', () => {
   const scored = scoreHours(inland, -29.0, 26.0);
   assert.ok(scored.every((h) => Number.isFinite(h.final)));
 });
+
+test('scoreHours reads dawn and dusk in the spot local frame', () => {
+  // flatDay() hours are local wall-clock stamped as UTC, so 06:00 in the series
+  // is 06:00 in Durban -- right on the 06:27 sunrise. Read as true UTC instead,
+  // sunrise is thought to be 04:27 and the dawn credit lands two hours early.
+  const dawn = (offset) => scoreHours(flatDay(), -29.85, 31.05, offset)
+    .filter((h) => h.reasons.includes('Near dawn or dusk'))
+    .map((h) => h.time.getUTCHours());
+
+  assert.ok(dawn(7200).includes(6), `dawn credit went to hours ${dawn(7200)}`);
+  assert.ok(!dawn(7200).includes(4), '04:00 is not dawn in Durban');
+  assert.ok(dawn(0).includes(4), 'without the offset the old skew should reappear');
+});

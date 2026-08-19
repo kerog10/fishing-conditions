@@ -42,3 +42,30 @@ test('sunrise precedes sunset in Durban', () => {
   assert.ok(sunset instanceof Date);
   assert.ok(sunrise < sunset);
 });
+
+// Open-Meteo hands back local wall-clock strings which api.js stamps as UTC, so
+// every hour in the app lives in a "local time wearing a Z" frame. SunCalc works
+// in true UTC. Without the offset the two frames are compared directly and every
+// sun, moon and solunar time lands the spot's UTC offset away from the forecast
+// hour it is meant to line up with -- 2 hours for Durban, 12 for New Zealand.
+test('sunTimes shifts into the spot local frame when given its UTC offset', () => {
+  // Open-Meteo's own daily.sunrise for Durban on this date is 06:25 local.
+  const { sunrise, sunset } = sunTimes(DAY, DURBAN.lat, DURBAN.lon, 7200);
+  assert.equal(sunrise.getUTCHours(), 6, `sunrise read ${sunrise.toISOString()}`);
+  assert.ok(Math.abs(sunrise.getUTCMinutes() - 25) <= 5);
+  assert.equal(sunset.getUTCHours(), 17, `sunset read ${sunset.toISOString()}`);
+});
+
+test('sunTimes with no offset is unchanged, so a zero-offset spot still works', () => {
+  const plain = sunTimes(DAY, DURBAN.lat, DURBAN.lon);
+  const zero = sunTimes(DAY, DURBAN.lat, DURBAN.lon, 0);
+  assert.equal(plain.sunrise.getTime(), zero.sunrise.getTime());
+});
+
+test('solunar periods land on the local day, not the UTC one', () => {
+  const { majors } = solunarPeriods(DAY, DURBAN.lat, DURBAN.lon, 7200);
+  assert.equal(majors.length, 2);
+  for (const m of majors) {
+    assert.equal(m.getUTCDate(), DAY.getUTCDate(), `major escaped the local day: ${m.toISOString()}`);
+  }
+});

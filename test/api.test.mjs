@@ -75,3 +75,16 @@ test('an all-null marine response counts as no marine data', () => {
   assert.equal(hasMarine, false);
   assert.equal(hours[0].seaLevel, null);
 });
+
+test('normalise carries the spot UTC offset through', () => {
+  // Everything downstream needs this to line astronomy up with the forecast
+  // hours; without it dawn, dusk and the solunar peaks are scored at the wrong
+  // time of day. Durban is UTC+2.
+  const { utcOffsetSeconds } = normalise(forecast, marine);
+  assert.equal(utcOffsetSeconds, 7200);
+});
+
+test('normalise defaults the offset to zero when the response omits it', () => {
+  const { utc_offset_seconds: _drop, ...noOffset } = forecast;
+  assert.equal(normalise(noOffset, marine).utcOffsetSeconds, 0);
+});

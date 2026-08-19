@@ -139,7 +139,7 @@ function explain(parts, hasTide, hours, i) {
 
 // Extends each hour with bite (0-100), comfort (0-1), final (0-100) and the
 // plain-English reasons behind them.
-export function scoreHours(hours, lat, lon) {
+export function scoreHours(hours, lat, lon, offsetSeconds = 0) {
   const w = CONFIG.biteWeights;
 
   // Normalise tide movement against this spot's own strongest hourly change.
@@ -158,8 +158,8 @@ export function scoreHours(hours, lat, lon) {
     const key = dayKey(time);
     if (!astroCache.has(key)) {
       astroCache.set(key, {
-        periods: solunarPeriods(time, lat, lon),
-        sun: sunTimes(time, lat, lon),
+        periods: solunarPeriods(time, lat, lon, offsetSeconds),
+        sun: sunTimes(time, lat, lon, offsetSeconds),
       });
     }
     return astroCache.get(key);

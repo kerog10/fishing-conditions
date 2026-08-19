@@ -80,7 +80,16 @@ export function normalise(forecastJson, marineJson) {
     };
   });
 
-  return { hours, timezone: forecastJson.timezone ?? 'auto', hasMarine };
+  return {
+    hours,
+    timezone: forecastJson.timezone ?? 'auto',
+    // Hours above are local wall-clock strings stamped as UTC. Astronomy is
+    // computed in true UTC, so it needs this to be shifted into the same frame.
+    utcOffsetSeconds: Number.isFinite(forecastJson.utc_offset_seconds)
+      ? forecastJson.utc_offset_seconds
+      : 0,
+    hasMarine,
+  };
 }
 
 async function getJson(url, fetchImpl) {

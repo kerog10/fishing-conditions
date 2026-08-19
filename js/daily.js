@@ -118,7 +118,7 @@ function dayKey(d) {
 // Groups scored hours into calendar days and attaches everything the detail
 // view shows: the 3-hour grid, the day's tide turning points, sun times and
 // the moon. Astronomy is computed once per day, not once per hour.
-export function summariseDays(scoredHours, lat, lon) {
+export function summariseDays(scoredHours, lat, lon, offsetSeconds = 0) {
   const byDay = new Map();
   for (const hour of scoredHours) {
     const key = dayKey(hour.time);
@@ -149,12 +149,12 @@ export function summariseDays(scoredHours, lat, lon) {
       best: { score: best.final, time: best.time },
       slots: toSlots(hours),
       tides: allTides.filter((t) => dayKey(t.time) === key),
-      sun: sunTimes(noon, lat, lon),
+      sun: sunTimes(noon, lat, lon, offsetSeconds),
       moon: {
         phase,
         illumination: fraction,
         name: moonPhaseName(phase),
-        ...solunarPeriods(noon, lat, lon), // contributes majors and minors
+        ...solunarPeriods(noon, lat, lon, offsetSeconds), // majors and minors
       },
       wind: {
         min: minOf(hours.map((h) => h.windSpeed)),
