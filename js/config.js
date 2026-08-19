@@ -55,6 +55,15 @@ export const CONFIG = {
     topN: 8,
   },
 
+  spots: {
+    max: 6,
+    storageKey: 'fc:spots',
+  },
+
+  daily: {
+    slotHours: 3, // columns per day in the detail grid: 24 / 3 = 8
+  },
+
   cache: {
     freshMs: 60 * 60 * 1000,
     coordPrecision: 2,
