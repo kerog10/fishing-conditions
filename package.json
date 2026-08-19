@@ -1,0 +1,12 @@
+{
+  "name": "fishing-conditions",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Ranks fishing windows from weather, tide, swell and solunar data. No API keys, no backend.",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "vendor": "node tools/vendor.mjs",
+    "serve": "npx --yes http-server -p 8080 -c-1 ."
+  }
+}
