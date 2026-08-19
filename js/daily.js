@@ -1,4 +1,6 @@
 import { CONFIG } from './config.js';
+import { solunarPeriods, sunTimes, moonIllumination } from './astro.js';
+import { moonPhaseName } from './format.js';
 
 const num = (v) => (Number.isFinite(v) ? v : null);
 
@@ -101,4 +103,79 @@ export function toSlots(hours) {
       cloud: mean(group.map((h) => h.cloudCover)),
       pressure: mean(group.map((h) => h.pressure)),
     }));
+}
+
+const minOf = (values) => {
+  const real = values.filter(Number.isFinite);
+  return real.length ? Math.min(...real) : null;
+};
+
+function dayKey(d) {
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())}`;
+}
+
+// Groups scored hours into calendar days and attaches everything the detail
+// view shows: the 3-hour grid, the day's tide turning points, sun times and
+// the moon. Astronomy is computed once per day, not once per hour.
+export function summariseDays(scoredHours, lat, lon) {
+  const byDay = new Map();
+  for (const hour of scoredHours) {
+    const key = dayKey(hour.time);
+    if (!byDay.has(key)) byDay.set(key, []);
+    byDay.get(key).push(hour);
+  }
+
+  // Extrema need a neighbour on each side, so they are found across the whole
+  // series once and filtered per day. Finding them day by day would miss any
+  // turn falling in a day's first or last hour.
+  const allTides = tideExtremes(scoredHours);
+
+  return [...byDay.entries()].map(([key, hours]) => {
+    const noon = new Date(Date.UTC(
+      hours[0].time.getUTCFullYear(),
+      hours[0].time.getUTCMonth(),
+      hours[0].time.getUTCDate(),
+      12,
+    ));
+    const best = hours.reduce((a, b) => (b.final > a.final ? b : a));
+    const { phase, fraction } = moonIllumination(noon);
+    const swellHeights = hours.map((h) => h.swellHeight).filter(Number.isFinite);
+
+    return {
+      key,
+      date: hours[0].time,
+      hours,
+      best: { score: best.final, time: best.time },
+      slots: toSlots(hours),
+      tides: allTides.filter((t) => dayKey(t.time) === key),
+      sun: sunTimes(noon, lat, lon),
+      moon: {
+        phase,
+        illumination: fraction,
+        name: moonPhaseName(phase),
+        ...solunarPeriods(noon, lat, lon), // contributes majors and minors
+      },
+      wind: {
+        min: minOf(hours.map((h) => h.windSpeed)),
+        max: maxOf(hours.map((h) => h.windSpeed)),
+        maxGust: maxOf(hours.map((h) => h.windGusts)),
+        direction: meanDirection(hours.map((h) => h.windDirection)),
+      },
+      swell: swellHeights.length ? {
+        min: Math.min(...swellHeights),
+        max: Math.max(...swellHeights),
+        maxPeriod: maxOf(hours.map((h) => h.swellPeriod)),
+      } : null,
+      temperature: {
+        min: minOf(hours.map((h) => h.temperature)),
+        max: maxOf(hours.map((h) => h.temperature)),
+      },
+      rain: sum(hours.map((h) => h.precipitation)),
+      pressure: {
+        min: minOf(hours.map((h) => h.pressure)),
+        max: maxOf(hours.map((h) => h.pressure)),
+      },
+    };
+  });
 }

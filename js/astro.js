@@ -41,6 +41,13 @@ export function moonPhaseFraction(date) {
   return SunCalc.getMoonIllumination(date).phase;
 }
 
+// phase runs 0 (new) through 0.5 (full) to 1 (new again); fraction is the lit
+// portion of the disc, which is what people mean by "62% moon".
+export function moonIllumination(date) {
+  const { phase, fraction } = SunCalc.getMoonIllumination(date);
+  return { phase, fraction };
+}
+
 // Distance in days to the nearest new (phase 0 or 1) or full (phase 0.5) moon.
 export function daysFromNewOrFull(date) {
   const phase = moonPhaseFraction(date);

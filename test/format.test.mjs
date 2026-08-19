@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { compass, scoreBand, timeRange, relativeAge, dayLabel } from '../js/format.js';
+import { compass, scoreBand, timeRange, relativeAge, dayLabel, moonPhaseName } from '../js/format.js';
 
 test('compass covers the cardinals', () => {
   assert.equal(compass(0), 'N');
@@ -39,4 +39,14 @@ test('day labels name today and tomorrow', () => {
   assert.equal(dayLabel(new Date(Date.UTC(2026, 7, 19, 18)), today), 'Today');
   assert.equal(dayLabel(new Date(Date.UTC(2026, 7, 20, 6)), today), 'Tomorrow');
   assert.match(dayLabel(new Date(Date.UTC(2026, 7, 21, 6)), today), /21 Aug/);
+});
+
+test('moonPhaseName names the eight phases from the SunCalc phase fraction', () => {
+  assert.equal(moonPhaseName(0), 'New moon');
+  assert.equal(moonPhaseName(0.25), 'First quarter');
+  assert.equal(moonPhaseName(0.5), 'Full moon');
+  assert.equal(moonPhaseName(0.75), 'Last quarter');
+  assert.equal(moonPhaseName(0.99), 'New moon');
+  assert.equal(moonPhaseName(0.13), 'Waxing crescent');
+  assert.equal(moonPhaseName(0.63), 'Waning gibbous');
 });

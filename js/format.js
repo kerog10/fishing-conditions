@@ -10,6 +10,17 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+const MOON_PHASES = [
+  'New moon', 'Waxing crescent', 'First quarter', 'Waxing gibbous',
+  'Full moon', 'Waning gibbous', 'Last quarter', 'Waning crescent',
+];
+
+// SunCalc's phase runs 0 (new) -> 0.5 (full) -> 1 (new). Rounding to eighths
+// puts each name on the phase it is centred on, and wraps 1 back to new.
+export function moonPhaseName(phase) {
+  return MOON_PHASES[Math.round((((phase % 1) + 1) % 1) * 8) % 8];
+}
+
 export function compass(degrees) {
   if (!Number.isFinite(degrees)) return '';
   const idx = Math.round((((degrees % 360) + 360) % 360) / 22.5) % 16;

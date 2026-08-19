@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { tideExtremes, toSlots } from '../js/daily.js';
+import { tideExtremes, toSlots, summariseDays } from '../js/daily.js';
 
 const HOUR = 3600000;
 const base = Date.UTC(2026, 7, 19, 0, 0, 0);
@@ -93,4 +93,62 @@ test('toSlots leaves marine fields null for an inland spot', () => {
   const [slot] = toSlots(hours);
   assert.equal(slot.tide, null);
   assert.equal(slot.swellHeight, null);
+});
+
+const twoDays = () => Array.from({ length: 48 }, (_, i) => ({
+  time: new Date(base + i * HOUR),
+  final: 30 + (i % 24),
+  bite: 50,
+  comfort: 0.8,
+  reasons: [],
+  windSpeed: 5 + (i % 12),
+  windGusts: 10 + (i % 12),
+  windDirection: 180,
+  seaLevel: 1.5 + 1.5 * Math.sin((2 * Math.PI * i) / 12.4),
+  swellHeight: 1 + (i % 3) * 0.2,
+  swellPeriod: 10,
+  temperature: 15 + (i % 10),
+  precipitation: 0.1,
+  cloudCover: 40,
+  pressure: 1010 + (i % 5),
+}));
+
+test('summariseDays returns one entry per calendar day', () => {
+  const days = summariseDays(twoDays(), -29.85, 31.05);
+  assert.equal(days.length, 2);
+  assert.equal(days[0].key, '2026-08-19');
+  assert.equal(days[1].key, '2026-08-20');
+});
+
+test('summariseDays reports the best hour of each day', () => {
+  const [day] = summariseDays(twoDays(), -29.85, 31.05);
+  assert.equal(day.best.score, 53);
+  assert.equal(day.best.time.getUTCHours(), 23);
+});
+
+test('summariseDays carries slots, tides, sun and moon for the day', () => {
+  const [day] = summariseDays(twoDays(), -29.85, 31.05);
+  assert.equal(day.slots.length, 8);
+  assert.ok(day.tides.length >= 1);
+  assert.ok(day.sun.sunrise instanceof Date);
+  assert.ok(day.moon.illumination >= 0 && day.moon.illumination <= 1);
+  assert.equal(typeof day.moon.name, 'string');
+  assert.ok(Array.isArray(day.moon.majors));
+});
+
+test('summariseDays ranges cover the day, and rain is a daily total', () => {
+  const [day] = summariseDays(twoDays(), -29.85, 31.05);
+  assert.equal(day.wind.min, 5);
+  assert.equal(day.wind.max, 16);
+  assert.equal(day.temperature.min, 15);
+  assert.ok(Math.abs(day.rain - 2.4) < 1e-9, `expected 24 x 0.1 mm, got ${day.rain}`);
+});
+
+test('summariseDays reports no swell for an inland spot', () => {
+  const inland = twoDays().map((h) => ({
+    ...h, seaLevel: null, swellHeight: null, swellPeriod: null,
+  }));
+  const [day] = summariseDays(inland, -29.1, 26.2);
+  assert.equal(day.swell, null);
+  assert.deepEqual(day.tides, []);
 });
