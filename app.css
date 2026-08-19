@@ -69,15 +69,10 @@ table.grid th, table.grid td { padding: 4px 8px; text-align: right; border-botto
 table.grid thead th { color: var(--muted); font-weight: 500; }
 /* The parameter names must stay readable while the times scroll under them. */
 table.grid .row-label { position: sticky; left: 0; background: var(--panel); text-align: left; color: var(--muted); font-weight: 500; }
-table.grid .score-cell { color: #06231a; font-weight: 700; }
-.wind-easy { color: var(--good); }
-.wind-fresh { color: var(--fair); }
-.wind-hard { color: var(--poor); }
-
-.band-excellent { border-left-color: var(--excellent); } .band-excellent .score, .band-excellent .now-score { color: var(--excellent); }
-.band-good { border-left-color: var(--good); } .band-good .score, .band-good .now-score { color: var(--good); }
-.band-fair { border-left-color: var(--fair); } .band-fair .score, .band-fair .now-score { color: var(--fair); }
-.band-poor { border-left-color: var(--poor); } .band-poor .score, .band-poor .now-score { color: var(--poor); }
+.band-excellent { border-left-color: var(--excellent); } .band-excellent .score, .band-excellent .now-score, .band-excellent .preview-score { color: var(--excellent); }
+.band-good { border-left-color: var(--good); } .band-good .score, .band-good .now-score, .band-good .preview-score { color: var(--good); }
+.band-fair { border-left-color: var(--fair); } .band-fair .score, .band-fair .now-score, .band-fair .preview-score { color: var(--fair); }
+.band-poor { border-left-color: var(--poor); } .band-poor .score, .band-poor .now-score, .band-poor .preview-score { color: var(--poor); }
 
 .bg-excellent { background: var(--excellent); }
 .bg-good { background: var(--good); }

@@ -1,4 +1,4 @@
-import { compass, scoreBand, hhmm, dayLabel } from './format.js';
+import { compass, scoreBand, hhmm, dayLabel, timeRange, tideLabel } from './format.js';
 import { buildBand, extremaMarkers } from './bands.js';
 
 const el = (tag, className, text) => {
@@ -44,7 +44,8 @@ function axis(day, openSlot, onSlot) {
     const b = el('button', `slot${i === openSlot ? ' slot-open' : ''}`, hhmm(slot.start).slice(0, 2));
     b.type = 'button';
     b.setAttribute('aria-expanded', String(i === openSlot));
-    b.setAttribute('aria-label', `${hhmm(slot.start)}, score ${Math.round(slot.score)}`);
+    const slotEnd = new Date(slot.start.getTime() + slot.hours.length * 3600000);
+    b.setAttribute('aria-label', `${timeRange(slot.start, slotEnd)}, score ${Math.round(slot.score)}`);
     b.addEventListener('click', () => onSlot(day.key, i === openSlot ? null : i));
     row.appendChild(b);
   });
@@ -67,8 +68,9 @@ function slotDetail(day, index) {
   const slot = day.slots[index];
   const panel = el('div', `slot-detail band-${scoreBand(slot.score)}`);
 
+  const end = new Date(slot.start.getTime() + slot.hours.length * 3600000);
   const head = el('div', 'slot-head');
-  head.appendChild(el('span', null, `${hhmm(slot.start)}–${hhmm(new Date(slot.start.getTime() + slot.hours.length * 3600000))}`));
+  head.appendChild(el('span', null, timeRange(slot.start, end)));
   head.appendChild(el('span', 'score', String(Math.round(slot.score))));
   panel.appendChild(head);
 
@@ -91,7 +93,7 @@ function slotDetail(day, index) {
 
 function tideLine(day) {
   if (!day.tides.length) return 'No tide data for this spot';
-  const parts = day.tides.map((t) => `${t.type === 'high' ? 'High' : 'Low'} ${hhmm(t.time)} (${t.height.toFixed(1)} m)`);
+  const parts = day.tides.map((t) => `${tideLabel(t.type)} ${hhmm(t.time)} (${t.height.toFixed(1)} m)`);
   return `Tides (modelled): ${parts.join(' · ')}`;
 }
 

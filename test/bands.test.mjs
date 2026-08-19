@@ -36,6 +36,7 @@ test('gaps inside a series stay gaps', () => {
   assert.equal(band.bars[1].pct, 0);
   assert.equal(band.bars[1].value, null);
   assert.equal(band.bars[2].pct, 100);
+  assert.equal(band.bars[0].pct, 6);
 });
 
 test('tide turns are placed on the bar for their own hour', () => {

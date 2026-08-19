@@ -35,12 +35,16 @@ export function buildBand(values, { minBarPct = MIN_BAR_PCT } = {}) {
   return { bars, min, max, hasData: true };
 }
 
-// Tide turns are found across the whole 7-day series, so they arrive here
-// carrying days we are not drawing.
+// Defensive filter: callers already pass only the tides for this day
+// (daily.js filters day.tides before ui-days.js hands it here), so this
+// never removes anything today, but it keeps the function safe if that
+// upstream guarantee ever changes.
 export function extremaMarkers(tides, key) {
   return tides
     .filter((t) => dayKeyOf(t.time) === key)
     .map((t) => ({
+      // Assumes each day's hours start at 00:00 UTC and run contiguously, so
+      // the UTC hour lines up 1:1 with the bar's index in `bars`.
       index: t.time.getUTCHours(),
       type: t.type,
       time: t.time,

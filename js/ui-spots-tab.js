@@ -1,4 +1,4 @@
-import { scoreBand, compass, hhmm, timeRange } from './format.js';
+import { scoreBand, compass, hhmm, timeRange, tideLabel } from './format.js';
 
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
@@ -13,7 +13,7 @@ function tideLine(tide) {
   if (!tide.state) return 'No tide data here';
   const bits = [tide.state];
   if (Number.isFinite(tide.height)) bits.push(`${tide.height.toFixed(1)} m`);
-  if (tide.nextTurn) bits.push(`${tide.nextTurn.type} ${hhmm(tide.nextTurn.time)}`);
+  if (tide.nextTurn) bits.push(`${tideLabel(tide.nextTurn.type)} ${hhmm(tide.nextTurn.time)}`);
   return bits.join(' · ');
 }
 

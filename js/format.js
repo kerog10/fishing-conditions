@@ -42,6 +42,10 @@ export function timeRange(start, end) {
   return `${hhmm(start)}–${hhmm(end)}`;
 }
 
+export function tideLabel(type) {
+  return type === 'high' ? 'High' : 'Low';
+}
+
 export function relativeAge(ms) {
   const minutes = Math.floor(ms / 60000);
   if (minutes < 2) return 'just now';

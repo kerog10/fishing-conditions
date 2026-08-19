@@ -150,10 +150,12 @@ for (const name of tabs.names) {
 
 function paintSpotCards() {
   const now = new Date();
+  // paintTabs() can run before refreshSavedSpots() resolves, so a spot may not
+  // be scored yet. Keep it in the list with a null-score summary rather than
+  // hiding it (and tripping the "no spots saved" empty state on cold start).
   const cards = state.spots
-    .filter((s) => state.scored.has(s.id))
     .map((s) => {
-      const { hours } = state.scored.get(s.id);
+      const { hours = [] } = state.scored.get(s.id) ?? {};
       return { spot: s, summary: summariseSpot(hours, findWindows(hours), tideExtremes(hours), now) };
     })
     // Best first: the whole point of the tab is "which one right now".
