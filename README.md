@@ -59,10 +59,18 @@ pure and unit-tested. `ui` and `map` are verified in a browser.
 
 ## Editing the app
 
-The service worker caches the shell cache-first, so a browser that has already
-installed the app will keep serving the old files after you edit them. Bump
-`CACHE` in `sw.js` (`fishing-conditions-v1` → `-v2`) whenever you change
-anything under `js/`, `index.html` or `app.css`.
+Edits show up on the next load. The service worker is network-first and asks
+the server on every shell request (with `cache: 'no-cache'`, so the browser's
+own HTTP cache cannot answer for it), and nginx sends `Cache-Control: no-cache`
+for HTML, CSS and JS. The cache is the offline fallback, not the source of
+truth, so there is no version constant to remember to bump.
+
+If you are running the container, the files are copied into the image at build
+time — rebuild and restart it to pick up an edit:
+
+```bash
+podman build --format docker -t fishing-conditions:1.0.0 . &&   podman rm -f fishing &&   podman run -d --name fishing -p 8080:8080 --restart unless-stopped fishing-conditions:1.0.0
+```
 
 ## How the score works
 
