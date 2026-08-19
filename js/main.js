@@ -208,6 +208,7 @@ function paintChips() {
       state.active = id;
       state.preview = null;
       state.openDay = null;
+      state.openSlot = null;
       renderPreview(els.preview, null);
       const spot = state.spots.find((s) => s.id === id);
       if (spot) map.setPreview(spot.lat, spot.lon);
@@ -251,6 +252,7 @@ function paintPreviewBar() {
       paintPreviewBar();
       paintChips();
       paintCompare();
+      paintSpotCards();
       paintDetail();
     },
   });
@@ -287,6 +289,7 @@ async function previewPoint(lat, lon, name = '') {
   const token = ++pending;
   state.active = null;
   state.openDay = null;
+  state.openSlot = null;
   state.preview = {
     lat, lon, name: name || `${lat.toFixed(3)}, ${lon.toFixed(3)}`, hours: null, offset: 0,
   };
