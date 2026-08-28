@@ -5,6 +5,13 @@
 export const CONFIG = {
   forecastDays: 7,
 
+  feed: {
+    path: 'data/feeds/kingfisher.json',
+    // Past this the card disappears rather than presenting an old report as
+    // current. Weekly reports, so three weeks means two have been missed.
+    maxAgeDays: 21,
+  },
+
   // Bite score: will fish feed? Weights sum to 100.
   biteWeights: {
     pressure: 30,
