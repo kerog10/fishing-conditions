@@ -1,0 +1,47 @@
+name: feeds
+
+on:
+  schedule:
+    # 02:17 UTC daily. The report lands Thursday afternoon SAST, but polling
+    # daily means a late or rescheduled post is still picked up the next day.
+    # An odd minute avoids the top-of-hour crush, when GitHub's scheduler
+    # queues and runs are delayed.
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+
+# Needed to push the rebuilt feed back to the default branch.
+permissions:
+  contents: write
+
+concurrency:
+  group: feeds
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No dependencies to install: the builder uses Node built-ins and the
+      # global fetch only.
+      - name: Build feeds
+        run: npm run feeds
+
+      - name: Commit if the feed changed
+        run: |
+          # --porcelain rather than `git diff --quiet`, so a first run that
+          # creates the file (untracked, invisible to diff) still commits it.
+          if [ -z "$(git status --porcelain -- data/feeds)" ]; then
+            echo "no feed change"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/feeds
+          git commit -m "chore: update feeds"
+          git push
