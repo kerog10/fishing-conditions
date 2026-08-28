@@ -23,7 +23,7 @@ using Open-Meteo's geocoder — no API key, no signup.
 
 ```bash
 npm run vendor   # once: downloads Leaflet and SunCalc into vendor/
-npm run serve    # http://127.0.0.1:8080
+npm run serve    # http://127.0.0.1:8090
 ```
 
 ES modules do not load over `file://`, so it must be served. Any static host
@@ -33,10 +33,10 @@ works — GitHub Pages, Netlify, or the command above.
 
 ```bash
 podman build --format docker -t fishing-conditions:1.0.0 .
-podman run -d --name fishing -p 8080:8080 --restart unless-stopped fishing-conditions:1.0.0
+podman run -d --name fishing -p 8090:8090 --restart unless-stopped fishing-conditions:1.0.0
 ```
 
-Then open <http://127.0.0.1:8080>. `--format docker` is needed for the
+Then open <http://127.0.0.1:8090>. `--format docker` is needed for the
 `HEALTHCHECK` line; OCI format silently drops it.
 
 ### Reaching it from a phone
@@ -46,15 +46,15 @@ Windows side, so publishing the port is not enough to reach it over wifi. In an
 **Administrator** PowerShell:
 
 ```powershell
-netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=8080 connectaddress=127.0.0.1 connectport=8080
-New-NetFirewallRule -DisplayName "fishing-conditions 8080" -Direction Inbound -Protocol TCP -LocalPort 8080 -Action Allow -Profile Private
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=8090 connectaddress=127.0.0.1 connectport=8090
+New-NetFirewallRule -DisplayName "fishing-conditions 8090" -Direction Inbound -Protocol TCP -LocalPort 8090 -Action Allow -Profile Private
 ```
 
 To undo:
 
 ```powershell
-netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=8080
-Remove-NetFirewallRule -DisplayName "fishing-conditions 8080"
+netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=8090
+Remove-NetFirewallRule -DisplayName "fishing-conditions 8090"
 ```
 
 Over plain `http://` on a LAN address the browser is not in a secure context, so
@@ -82,7 +82,7 @@ If you are running the container, the files are copied into the image at build
 time — rebuild and restart it to pick up an edit:
 
 ```bash
-podman build --format docker -t fishing-conditions:1.0.0 . &&   podman rm -f fishing &&   podman run -d --name fishing -p 8080:8080 --restart unless-stopped fishing-conditions:1.0.0
+podman build --format docker -t fishing-conditions:1.0.0 . &&   podman rm -f fishing &&   podman run -d --name fishing -p 8090:8090 --restart unless-stopped fishing-conditions:1.0.0
 ```
 
 ## How the score works

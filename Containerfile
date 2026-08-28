@@ -10,7 +10,7 @@ COPY index.html app.css manifest.json sw.js icon-192.png icon-512.png ./
 COPY js/     ./js/
 COPY vendor/ ./vendor/
 
-EXPOSE 8080
+EXPOSE 8090
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s \
-  CMD wget -q -O /dev/null http://127.0.0.1:8080/index.html || exit 1
+  CMD wget -q -O /dev/null http://127.0.0.1:8090/index.html || exit 1

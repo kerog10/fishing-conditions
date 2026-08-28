@@ -7,6 +7,6 @@
   "scripts": {
     "test": "node --test \"test/**/*.test.mjs\"",
     "vendor": "node tools/vendor.mjs",
-    "serve": "npx --yes http-server -p 8080 -c-1 ."
+    "serve": "npx --yes http-server -p 8090 -c-1 ."
   }
 }
