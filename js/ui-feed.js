@@ -9,11 +9,25 @@ const el = (tag, className, text) => {
   return node;
 };
 
+// The Kingfisher copyright constraint requires a rendered card to always
+// link out, so a link that cannot safely become an href (a javascript:
+// value, a bare string, anything but http/https) must suppress the whole
+// card rather than render without one.
+function isHttpUrl(value) {
+  try {
+    return ['http:', 'https:'].includes(new URL(value).protocol);
+  } catch {
+    return false;
+  }
+}
+
 export function renderFeedCard(target, entry, now = new Date()) {
   target.replaceChildren();
-  // No feed, a stale one, or a broken one: the section simply is not there.
-  target.hidden = !entry;
-  if (!entry) return;
+  const linkable = Boolean(entry) && isHttpUrl(entry.link);
+  // No feed, a stale one, a broken one, or one with an unsafe link: the
+  // section simply is not there.
+  target.hidden = !linkable;
+  if (!linkable) return;
 
   const card = el('article', 'feed-card');
 

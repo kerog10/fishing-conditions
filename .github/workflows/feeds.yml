@@ -20,6 +20,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Bounds a hung fetch: without this the job inherits GitHub's 6-hour
+    # default, and cancel-in-progress: false would leave the next day's run
+    # queued behind it.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 

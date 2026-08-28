@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
-  EXCERPT_WORDS, MAX_ENTRIES, parseEntry, mergeEntries, newPosts,
+  EXCERPT_WORDS, MIN_EXCERPT_WORDS, MAX_ENTRIES, parseEntry, mergeEntries, newPosts,
 } from '../tools/feeds/kingfisher.mjs';
 
 const html = readFileSync(new URL('./fixtures/kingfisher-post.html', import.meta.url), 'utf8');
@@ -66,6 +66,45 @@ test('a CSS combinator selector mentioning entry-content is not mistaken for the
 
   assert.doesNotMatch(entry.excerpt, /color:\s*red/);
   assert.match(entry.excerpt, /Shad Championship/);
+});
+
+test('a cookie-wall / interstitial 200 response is rejected, not stored as a report', () => {
+  // Built inline rather than touching the fixture: a real cookie-wall page,
+  // shaped like the live one that prompted this fix (200 status, no
+  // entry-content, a short meta description). No entry-content element
+  // exists at all, so the parser must fall through to the meta description
+  // -- and then reject it too, because it is far below a real report's
+  // length.
+  const interstitial = `<html><head>
+    <meta name="description" content="Attention Required! Please enable cookies to continue to kingfisher.co.za" />
+  </head><body><p>Attention Required! Please enable cookies to continue.</p></body></html>`;
+
+  const entry = parseEntry(POST, interstitial);
+
+  assert.equal(entry, null, 'a short interstitial body should not become a stored entry');
+});
+
+test('a genuine short entry-content body still falls back to meta if too short, and meta is checked too', () => {
+  const shortBoth = `<html><head>
+    <meta name="description" content="Too short to trust as a real report body text here now." />
+  </head><body><div class="entry-content">Also short.</div></body></html>`;
+
+  assert.equal(parseEntry(POST, shortBoth), null);
+});
+
+test('MIN_EXCERPT_WORDS comfortably clears a one-sentence wall but not a real report', () => {
+  assert.ok(MIN_EXCERPT_WORDS < EXCERPT_WORDS);
+  assert.ok(MIN_EXCERPT_WORDS >= 15, 'floor should clearly exceed a one-sentence interstitial');
+});
+
+test('a post with no usable date_gmt is skipped rather than sorting first as "undefinedZ"', () => {
+  const noDate = { ...POST, date_gmt: undefined };
+  assert.equal(parseEntry(noDate, html), null);
+});
+
+test('a post with an unparseable date_gmt is skipped', () => {
+  const badDate = { ...POST, date_gmt: 'not-a-date' };
+  assert.equal(parseEntry(badDate, html), null);
 });
 
 test('a post already stored is not offered for fetching again', () => {

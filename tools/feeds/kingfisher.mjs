@@ -10,6 +10,16 @@
 // their page, never a substitute for it.
 export const EXCERPT_WORDS = 50;
 
+// A 200 response is not proof the page is a fishing report: a cookie wall,
+// consent interstitial, or soft-404 also returns 200 with real, non-empty
+// text in both entry-content and the meta description, and would otherwise
+// parse into a complete, storable entry (verified against a live cookie
+// wall, whose meta description is a single ~9-word sentence). Real weekly
+// reports run to hundreds of words and always hit the EXCERPT_WORDS cap; a
+// genuine report this short is not plausible. The floor sits comfortably
+// above an interstitial's one sentence and far below any real report.
+export const MIN_EXCERPT_WORDS = 20;
+
 // Roughly two months of weekly reports: enough for the card plus a little
 // history, small enough that the committed file stays trivial.
 export const MAX_ENTRIES = 8;
@@ -56,23 +66,42 @@ function metaText(html) {
   return m ? text(m[1]) : '';
 }
 
+function wordsOf(source) {
+  return source.split(/\s+/).filter(Boolean);
+}
+
 function excerptOf(source) {
-  const parts = source.split(/\s+/).filter(Boolean);
+  const parts = wordsOf(source);
   if (!parts.length) return '';
   const head = parts.slice(0, EXCERPT_WORDS).join(' ');
   return parts.length > EXCERPT_WORDS ? `${head}…` : head;
 }
 
+// Below the floor, a source is not trusted as a real report: entry-content
+// falls through to the meta description, and the meta description (if also
+// too short) is rejected outright rather than stored.
+function longEnough(source) {
+  return wordsOf(source).length >= MIN_EXCERPT_WORDS;
+}
+
 export function parseEntry(post, html) {
-  const source = bodyText(html) || metaText(html);
-  const excerpt = excerptOf(source);
+  const body = bodyText(html);
+  const source = longEnough(body) ? body : metaText(html);
+  const excerpt = longEnough(source) ? excerptOf(source) : '';
   // Half an entry renders an empty card, which is worse than no card. The post
-  // stays absent from the stored entries, so tomorrow's run retries it.
+  // stays absent from the stored entries, so tomorrow's run retries it. The
+  // same applies to a source that parsed but never cleared MIN_EXCERPT_WORDS.
   if (!excerpt) return null;
+
+  // date_gmt missing or unparseable would otherwise store the literal string
+  // "undefinedZ", which sorts ahead of every real ISO date and can evict a
+  // genuine entry from the merge window.
+  const date = `${post.date_gmt}Z`;
+  if (!Number.isFinite(Date.parse(date))) return null;
 
   return {
     id: post.id,
-    date: `${post.date_gmt}Z`,
+    date,
     title: decode(post.title.rendered),
     link: post.link,
     excerpt,
