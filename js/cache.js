@@ -5,7 +5,11 @@ import { CONFIG } from './config.js';
 
 export function cacheKey(lat, lon) {
   const p = CONFIG.cache.coordPrecision;
-  return `${CONFIG.cache.keyPrefix}${lat.toFixed(p)},${lon.toFixed(p)}`;
+  // The model list is part of the key. Without it, editing CONFIG.models would
+  // keep serving a payload built from the old list -- single-model data with
+  // no agreement marks -- and nothing in the UI could tell you.
+  const models = [...CONFIG.models.forecast, ...CONFIG.models.marine].join('+');
+  return `${CONFIG.cache.keyPrefix}${lat.toFixed(p)},${lon.toFixed(p)}:${models}`;
 }
 
 export function save(lat, lon, payload, storage = globalThis.localStorage, now = Date.now()) {
