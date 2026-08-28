@@ -7,7 +7,8 @@ import { load as loadCache, save as saveCache, clearAll, clearCaches } from './c
 import { loadSpots, saveSpots, addSpot, removeSpot, makeSpot } from './spots.js';
 import { initMap } from './map.js';
 import { renderNow, renderWindows, renderSpotResults, highlightResult, setStatus, ageNotice } from './ui.js';
-import { renderDays } from './ui-days.js';
+import { buildTable } from './table.js';
+import { renderTable } from './ui-table.js';
 import { renderSpotChips, renderCompare, renderPreview } from './ui-compare.js';
 import { createSuggester } from './suggest.js';
 import { CONFIG } from './config.js';
@@ -80,9 +81,9 @@ function paintDetail() {
   els.spotName.textContent = view.spot.name;
   renderNow(els.now, view.hours, now);
   renderWindows(els.windows, findWindows(view.hours), now);
-  renderDays(
+  renderTable(
     els.days,
-    summariseDays(view.hours, view.spot.lat, view.spot.lon, view.offset),
+    buildTable(summariseDays(view.hours, view.spot.lat, view.spot.lon, view.offset), now),
     now,
     {
       openKey: state.openDay,

@@ -55,6 +55,80 @@ export const CONFIG = {
     topN: 8,
   },
 
+  // Severity ramps for the forecast table: the upper bound of each band. A
+  // value above the last bound falls into one final band beyond the array, so
+  // a ramp of six bounds paints seven bands.
+  //
+  // wind and gusts deliberately bracket comfort.wind and comfort.gusts above,
+  // so a cell turning red and the comfort multiplier collapsing happen at the
+  // same wind speed. Retuning one without the other is the bug this prevents.
+  severity: {
+    wind: [10, 15, 20, 25, 30, 40],         // km/h
+    gusts: [16, 25, 32, 40, 50, 60],        // km/h
+    swell: [0.5, 1.0, 1.5, 2.0, 2.5, 3.5],  // m
+    rain: [0.1, 0.5, 1.0, 2.0, 5.0],        // mm/h
+    // Tide has no absolute ramp: tidal range varies by spot and by spring or
+    // neap, so an absolute scale would leave some spots one colour all week
+    // and tell you nothing about when the water moves. It is normalised
+    // within each day's own range into this many steps instead.
+    tideSteps: 4,
+    // The good boundary is windows.threshold, not a second definition of
+    // "good". Only the poor boundary is new here.
+    scorePoor: 35,
+  },
+
+  // Multi-model agreement. These are requests, not guarantees: model coverage
+  // is regional and Open-Meteo drops an unavailable model silently, so the
+  // models actually present are always read back off the response.
+  models: {
+    forecast: ['gfs_seamless', 'icon_seamless', 'ecmwf_ifs025'],
+    marine: ['gwam', 'ecmwf_wam025'],
+    // Only the parameters that decide whether you go. Tripling all twenty
+    // across three models would be payload for nothing. Keys are table row
+    // keys; values are Open-Meteo parameter names.
+    forecastParams: {
+      wind: 'wind_speed_10m',
+      gusts: 'wind_gusts_10m',
+      pressure: 'pressure_msl',
+      rain: 'precipitation',
+    },
+    // swell_wave_height, not wave_height: agreement must be computed on the
+    // same quantity the swell row displays.
+    marineParams: {
+      swell: 'swell_wave_height',
+    },
+    // Spread (max - min) across the available models above which a cell is
+    // marked disputed.
+    tolerance: {
+      wind: 8,      // km/h
+      gusts: 12,    // km/h
+      pressure: 2,  // hPa
+      rain: 1,      // mm/h
+      swell: 0.5,   // m
+    },
+    // A dispute in any of these is a dispute in the score built from them.
+    scoreInputs: ['wind', 'gusts', 'pressure', 'rain', 'swell'],
+  },
+
+  // The forecast table, top row first. `slot` names the property on a slot
+  // from daily.js; `ramp` names a severity ramp above. Changing the table is
+  // an edit to this array.
+  tableRows: [
+    { key: 'score', label: 'SCORE', slot: 'score', kind: 'score' },
+    { key: 'bite', label: 'bite', slot: 'bite', kind: 'plain', digits: 0 },
+    { key: 'comfort', label: 'comf', slot: 'comfort', kind: 'plain', digits: 2 },
+    { key: 'wind', label: 'wind', slot: 'wind', kind: 'tinted', ramp: 'wind', digits: 0 },
+    { key: 'gusts', label: 'gust', slot: 'gust', kind: 'tinted', ramp: 'gusts', digits: 0 },
+    { key: 'dir', label: 'dir', slot: 'windDirection', kind: 'arrow' },
+    { key: 'swell', label: 'swell', slot: 'swellHeight', kind: 'tinted', ramp: 'swell', digits: 1 },
+    { key: 'period', label: 'per s', slot: 'swellPeriod', kind: 'plain', digits: 0 },
+    { key: 'tide', label: 'tide', slot: 'tide', kind: 'tinted', ramp: 'tide', digits: 1 },
+    { key: 'rain', label: 'rain', slot: 'rain', kind: 'tinted', ramp: 'rain', digits: 1 },
+    { key: 'cloud', label: 'cloud', slot: 'cloud', kind: 'plain', digits: 0 },
+    { key: 'air', label: 'air °C', slot: 'temperature', kind: 'plain', digits: 0 },
+    { key: 'sea', label: 'sea °C', slot: 'seaTemperature', kind: 'plain', digits: 0 },
+  ],
+
   spots: {
     max: 6,
     storageKey: 'fc:spots',

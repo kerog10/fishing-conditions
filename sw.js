@@ -1,4 +1,4 @@
-const CACHE = 'fishing-conditions-v3';
+const CACHE = 'fishing-conditions-v4';
 
 // How long to wait for the network before falling back to the cached copy.
 // Long enough to ride out a slow beach connection, short enough that a dead
@@ -13,7 +13,6 @@ const SHELL = [
   './js/main.js',
   './js/api.js',
   './js/astro.js',
-  './js/bands.js',
   './js/cache.js',
   './js/config.js',
   './js/format.js',
@@ -21,7 +20,11 @@ const SHELL = [
   './js/score.js',
   './js/spot-summary.js',
   './js/ui.js',
-  './js/ui-days.js',
+  './js/table.js',
+  './js/ui-table.js',
+  './js/ui-slot.js',
+  './js/severity.js',
+  './js/models.js',
   './js/daily.js',
   './js/spots.js',
   './js/suggest.js',

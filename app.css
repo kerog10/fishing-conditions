@@ -8,6 +8,8 @@
   --good: #8fd14f;
   --fair: #e8b83b;
   --poor: #d1594a;
+  /* Tunable without a code change: the hatch has to stay legible in daylight. */
+  --hatch-opacity: 0.22;
 }
 
 * { box-sizing: border-box; }
@@ -53,16 +55,6 @@ h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: v
 .window .metrics { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
 .capped { color: var(--fair); font-size: 13px; margin: 6px 0 0; }
 
-.days { display: grid; gap: 8px; }
-.day { background: var(--panel); border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 10px 12px; }
-.day summary { cursor: pointer; list-style: none; }
-.day summary::-webkit-details-marker { display: none; }
-.day-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.day .label { font-weight: 600; }
-.day .score { font-size: 24px; font-weight: 700; }
-.day .digest { color: var(--muted); font-size: 13px; }
-.tide-line, .sky-line { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
-
 .grid-scroll { overflow-x: auto; margin-top: 10px; -webkit-overflow-scrolling: touch; }
 table.grid { border-collapse: collapse; font-size: 13px; white-space: nowrap; }
 table.grid th, table.grid td { padding: 4px 8px; text-align: right; border-bottom: 1px solid var(--line); }
@@ -101,22 +93,116 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .clear-all { margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); padding: 6px 12px; font-size: 13px; }
 .results li button.active { border-color: var(--excellent); background: var(--panel); }
 
-.band { display: grid; grid-template-columns: 52px 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: end; margin: 10px 0; }
-.band-label { font-size: 12px; color: var(--muted); grid-row: 1; }
-.bars { display: flex; align-items: flex-end; gap: 1px; height: 44px; grid-row: 1; }
-.bar { flex: 1 1 0; min-width: 0; background: var(--line); border-radius: 1px 1px 0 0; }
-.bar-high { background: var(--excellent); }
-.bar-low { background: var(--fair); }
-.band-range { grid-column: 2; grid-row: 2; font-size: 12px; color: var(--muted); margin-top: 2px; }
-.slots { display: grid; grid-template-columns: repeat(8, 1fr); gap: 2px; margin-top: 6px; }
-.slot { padding: 8px 0; font-size: 12px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); border-radius: 6px; }
-.slot-open { color: var(--ink); border-color: var(--excellent); }
+/* --- forecast table --------------------------------------------------- */
+/* Label column 68px + 8 columns x 34px = 340px, so a full day fits a 356px
+   phone with no horizontal scrolling inside that day. */
+
+.ftable-scroll {
+  display: flex; overflow-x: auto; overflow-y: visible;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+}
+.ftable-scroll::-webkit-scrollbar { height: 6px; }
+.ftable-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+.ftable-labels {
+  position: sticky; left: 0; z-index: 2;
+  flex: 0 0 68px; background: var(--panel);
+  border-right: 1px solid var(--line);
+}
+.ftable-corner { height: 22px; }
+.ftable-corner.is-hours { height: 18px; }
+.ftable-rowlabel {
+  height: 19px; line-height: 19px; padding-left: 6px;
+  font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden;
+}
+.ftable-rowlabel.is-score { color: var(--ink); font-weight: 700; }
+
+.ftable-day {
+  flex: 0 0 auto; scroll-snap-align: start;
+  border-collapse: collapse; table-layout: fixed;
+  border-left: 1px solid var(--line);
+}
+.ftable-day:focus-visible { outline: 2px solid var(--good); outline-offset: -2px; }
+.ftable-dayhead {
+  height: 22px; font-size: 12px; font-weight: 600; color: var(--ink);
+  text-align: left; padding-left: 6px; white-space: nowrap;
+  position: sticky; top: 0; z-index: 1; background: var(--panel);
+}
+.ftable-hour {
+  height: 18px; width: 34px; font-size: 10px; font-weight: 400;
+  color: var(--muted); position: sticky; top: 22px; z-index: 1;
+  background: var(--panel);
+}
+
+.ftable-day td {
+  width: 34px; height: 19px; padding: 0;
+  text-align: center; font-size: 11px; line-height: 19px;
+  /* Proportional digits make a column of numbers visibly ragged at 34px. */
+  font-variant-numeric: tabular-nums;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+.ftable-day tr[data-row="score"] td { font-weight: 700; font-size: 12px; }
+
+.wind-arrow { width: 11px; height: 11px; fill: var(--ink); vertical-align: middle; }
+.tide-mark {
+  position: absolute; top: 0; right: 1px;
+  font-size: 8px; line-height: 1; color: var(--ink); opacity: 0.8;
+}
+
+/* Hatching, not a colour change: the cell keeps its severity tint and gains a
+   texture, so "windy" and "we are not sure how windy" are separate readings.
+   The opacity is a variable so it can be tuned for daylight without a code
+   change. */
+.disputed {
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255, 255, 255, var(--hatch-opacity)) 0 2px, transparent 2px 4px);
+}
+
+.col-open { box-shadow: inset 0 0 0 1px var(--excellent); }
+.col-focus { box-shadow: inset 0 0 0 1px var(--good); }
+
+/* One severity ramp shared by wind, gusts and swell. rain has one fewer bound
+   and so simply never reaches the last step. */
+.ramp-wind, .ramp-gusts, .ramp-swell, .ramp-rain { color: var(--ink); }
+.ramp-wind[data-band="0"], .ramp-gusts[data-band="0"], .ramp-swell[data-band="0"], .ramp-rain[data-band="0"] { background: #123028; }
+.ramp-wind[data-band="1"], .ramp-gusts[data-band="1"], .ramp-swell[data-band="1"], .ramp-rain[data-band="1"] { background: #1b5138; }
+.ramp-wind[data-band="2"], .ramp-gusts[data-band="2"], .ramp-swell[data-band="2"], .ramp-rain[data-band="2"] { background: #46682a; }
+.ramp-wind[data-band="3"], .ramp-gusts[data-band="3"], .ramp-swell[data-band="3"], .ramp-rain[data-band="3"] { background: #7a6a1f; }
+.ramp-wind[data-band="4"], .ramp-gusts[data-band="4"], .ramp-swell[data-band="4"], .ramp-rain[data-band="4"] { background: #8c5320; }
+.ramp-wind[data-band="5"], .ramp-gusts[data-band="5"], .ramp-swell[data-band="5"], .ramp-rain[data-band="5"] { background: #93331f; }
+.ramp-wind[data-band="6"], .ramp-gusts[data-band="6"], .ramp-swell[data-band="6"] { background: #a01f1f; }
+
+/* Blue, and only four steps: tide is normalised inside the day, so the ramp
+   says "low or high for today", not "deep or shallow". */
+.ramp-tide[data-band="0"] { background: #12303f; }
+.ramp-tide[data-band="1"] { background: #17435a; }
+.ramp-tide[data-band="2"] { background: #1c5878; }
+.ramp-tide[data-band="3"] { background: #206e97; }
+
+/* Three bands, from the same variables the day cards use, so the table and the
+   cards cannot disagree about what 56 means. */
+.ramp-score[data-band="0"] { background: #14361f; color: var(--excellent); }
+.ramp-score[data-band="1"] { background: #3a3016; color: var(--fair); }
+.ramp-score[data-band="2"] { background: #3c1d18; color: var(--poor); }
+
+.ftable-detail { margin-top: 10px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
 .slot-detail { margin-top: 8px; padding: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
 .slot-head { display: flex; justify-content: space-between; align-items: center; font-weight: 600; margin-bottom: 8px; }
 .slot-rows { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
 .slot-rows dt { color: var(--muted); font-size: 13px; }
 .slot-rows dd { margin: 0; font-size: 13px; text-align: right; }
 .slot-why { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+.slot-detail h4 { margin: 10px 0 4px; font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.slot-models { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 8px; }
+.slot-note { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
 
 .spot-card { position: relative; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .spot-open { display: block; width: 100%; text-align: left; padding: 12px 40px 12px 12px; background: none; border: 0; color: var(--ink); }

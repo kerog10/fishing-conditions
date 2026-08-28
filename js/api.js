@@ -1,29 +1,58 @@
 import { CONFIG } from './config.js';
+import { agreementByTime } from './models.js';
 
 const FORECAST_HOURLY = [
   'temperature_2m', 'precipitation', 'cloud_cover', 'pressure_msl',
   'wind_speed_10m', 'wind_direction_10m', 'wind_gusts_10m',
+  // Added for the forecast table's slot detail. All verified against live
+  // responses; none of them need a key or a different endpoint.
+  'relative_humidity_2m', 'dew_point_2m', 'apparent_temperature',
+  'visibility', 'cape', 'freezing_level_height',
+  'cloud_cover_low', 'cloud_cover_mid', 'cloud_cover_high', 'uv_index',
 ].join(',');
 
 const MARINE_HOURLY = [
   'sea_level_height_msl', 'wave_height', 'wave_period',
   'swell_wave_height', 'swell_wave_period', 'swell_wave_direction',
   'sea_surface_temperature',
+  // Wind wave and swell wave are different seas arriving at the same beach,
+  // and the table's swell row only shows one of them.
+  'wind_wave_height', 'wind_wave_period', 'wind_wave_direction',
+  'secondary_swell_wave_height', 'wave_direction',
+  'ocean_current_velocity', 'ocean_current_direction',
 ].join(',');
+
+const base = (lat, lon) => `?latitude=${lat}&longitude=${lon}`
+  + `&timezone=auto&forecast_days=${CONFIG.forecastDays}`;
 
 export function forecastUrl(lat, lon) {
   return 'https://api.open-meteo.com/v1/forecast'
-    + `?latitude=${lat}&longitude=${lon}`
+    + base(lat, lon)
     + `&hourly=${FORECAST_HOURLY}`
-    + '&daily=sunrise,sunset'
-    + `&timezone=auto&forecast_days=${CONFIG.forecastDays}`;
+    + '&daily=sunrise,sunset';
 }
 
 export function marineUrl(lat, lon) {
   return 'https://marine-api.open-meteo.com/v1/marine'
-    + `?latitude=${lat}&longitude=${lon}`
-    + `&hourly=${MARINE_HOURLY}`
-    + `&timezone=auto&forecast_days=${CONFIG.forecastDays}`;
+    + base(lat, lon)
+    + `&hourly=${MARINE_HOURLY}`;
+}
+
+// The agreement requests. Deliberately narrow: only the parameters that decide
+// whether you go fishing, because tripling all twenty across three models
+// would be payload for nothing.
+export function modelForecastUrl(lat, lon) {
+  return 'https://api.open-meteo.com/v1/forecast'
+    + base(lat, lon)
+    + `&hourly=${Object.values(CONFIG.models.forecastParams).join(',')}`
+    + `&models=${CONFIG.models.forecast.join(',')}`;
+}
+
+export function modelMarineUrl(lat, lon) {
+  return 'https://marine-api.open-meteo.com/v1/marine'
+    + base(lat, lon)
+    + `&hourly=${Object.values(CONFIG.models.marineParams).join(',')}`
+    + `&models=${CONFIG.models.marine.join(',')}`;
 }
 
 export function geocodeUrl(name) {
@@ -44,7 +73,7 @@ const at = (arr, i) => {
   return v === undefined || v === null ? null : v;
 };
 
-export function normalise(forecastJson, marineJson) {
+export function normalise(forecastJson, marineJson, agreement = {}) {
   const f = forecastJson.hourly;
   const m = marineJson?.hourly ?? null;
   // The marine API answers 200 for inland points with every value null, so
@@ -71,12 +100,35 @@ export function normalise(forecastJson, marineJson) {
       windSpeed: at(f.wind_speed_10m, i),
       windDirection: at(f.wind_direction_10m, i),
       windGusts: at(f.wind_gusts_10m, i),
+      humidity: at(f.relative_humidity_2m, i),
+      dewPoint: at(f.dew_point_2m, i),
+      apparentTemperature: at(f.apparent_temperature, i),
+      visibility: at(f.visibility, i),
+      cape: at(f.cape, i),
+      freezingLevel: at(f.freezing_level_height, i),
+      cloudLow: at(f.cloud_cover_low, i),
+      cloudMid: at(f.cloud_cover_mid, i),
+      cloudHigh: at(f.cloud_cover_high, i),
+      uvIndex: at(f.uv_index, i),
       seaLevel: hasRow ? at(m.sea_level_height_msl, mi) : null,
       waveHeight: hasRow ? at(m.wave_height, mi) : null,
+      wavePeriod: hasRow ? at(m.wave_period, mi) : null,
+      waveDirection: hasRow ? at(m.wave_direction, mi) : null,
       swellHeight: hasRow ? at(m.swell_wave_height, mi) : null,
       swellPeriod: hasRow ? at(m.swell_wave_period, mi) : null,
       swellDirection: hasRow ? at(m.swell_wave_direction, mi) : null,
+      secondarySwellHeight: hasRow ? at(m.secondary_swell_wave_height, mi) : null,
+      windWaveHeight: hasRow ? at(m.wind_wave_height, mi) : null,
+      windWavePeriod: hasRow ? at(m.wind_wave_period, mi) : null,
+      windWaveDirection: hasRow ? at(m.wind_wave_direction, mi) : null,
+      currentVelocity: hasRow ? at(m.ocean_current_velocity, mi) : null,
+      currentDirection: hasRow ? at(m.ocean_current_direction, mi) : null,
       seaSurfaceTemperature: hasRow ? at(m.sea_surface_temperature, mi) : null,
+      // Attached by time string, not by position: the multi-model request can
+      // resolve to a different grid cell, and nothing guarantees it returns
+      // the same row count. null rather than {}, so "no model data" is one
+      // check for every consumer.
+      agreement: agreement[t] ?? null,
     };
   });
 
@@ -99,18 +151,26 @@ async function getJson(url, fetchImpl) {
 }
 
 export async function fetchConditions(lat, lon, fetchImpl = globalThis.fetch) {
-  const forecast = await getJson(forecastUrl(lat, lon), fetchImpl);
+  // All four in parallel. Only the first is required: a marine outage or an
+  // inland point degrades to no tide and no swell, and a failed model request
+  // degrades to no agreement marks, which is the honest rendering of "we do
+  // not know" rather than a claim that the models agree.
+  const [forecast, marine, modelForecast, modelMarine] = await Promise.allSettled([
+    getJson(forecastUrl(lat, lon), fetchImpl),
+    getJson(marineUrl(lat, lon), fetchImpl),
+    getJson(modelForecastUrl(lat, lon), fetchImpl),
+    getJson(modelMarineUrl(lat, lon), fetchImpl),
+  ]);
 
-  // A marine outage, or an inland point outside the ocean grid, must not take
-  // the whole app down. Degrade to a no-tide, no-swell forecast.
-  let marine = null;
-  try {
-    marine = await getJson(marineUrl(lat, lon), fetchImpl);
-  } catch {
-    marine = null;
-  }
+  if (forecast.status !== 'fulfilled') throw forecast.reason;
+  const value = (r) => (r.status === 'fulfilled' ? r.value : null);
 
-  return normalise(forecast, marine);
+  const agreement = agreementByTime([
+    { json: value(modelForecast), params: CONFIG.models.forecastParams },
+    { json: value(modelMarine), params: CONFIG.models.marineParams },
+  ]);
+
+  return normalise(forecast.value, value(marine), agreement);
 }
 
 export async function geocode(name, fetchImpl = globalThis.fetch) {

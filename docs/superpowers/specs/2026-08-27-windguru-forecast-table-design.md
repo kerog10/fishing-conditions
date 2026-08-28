@@ -156,7 +156,7 @@ colour shown and the comfort cap it feeds cannot drift apart. Upper bounds:
 
 ```
 wind    km/h : [10, 15, 20, 25, 30, 40]
-gusts   km/h : [16, 22, 28, 35, 45, 60]
+gusts   km/h : [16, 25, 32, 40, 50, 60]
 swell   m    : [0.5, 1.0, 1.5, 2.0, 2.5, 3.5]
 rain    mm/h : [0.1, 0.5, 1.0, 2.0, 5.0]
 ```

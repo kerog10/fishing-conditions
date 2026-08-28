@@ -76,6 +76,25 @@ export function tideExtremes(hours) {
 // its best score, because averaging hides the one good hour you would actually
 // fish; by its worst gust, because that is what decides whether you can stand
 // on the rocks; and by total rain, because millimetres accumulate.
+// A three-hour block counts as disputed if any hour in it is disputed: a blow
+// arriving at 16:00 is a disputed afternoon. The readings kept are the ones
+// from the hour the score came from, so the numbers in the slot detail are the
+// numbers the score was built on.
+function mergeAgreement(group, best) {
+  const keys = new Set(group.flatMap((h) => Object.keys(h.agreement ?? {})));
+  if (!keys.size) return null;
+
+  const out = {};
+  for (const key of keys) {
+    const entries = group.map((h) => h.agreement?.[key]).filter(Boolean);
+    let agree = null;
+    if (entries.some((e) => e.agree === false)) agree = false;
+    else if (entries.some((e) => e.agree === true)) agree = true;
+    out[key] = { agree, readings: (best?.agreement?.[key] ?? entries[0]).readings };
+  }
+  return out;
+}
+
 export function toSlots(hours) {
   const size = CONFIG.daily.slotHours;
   const buckets = new Map();
@@ -88,21 +107,54 @@ export function toSlots(hours) {
 
   return [...buckets.entries()]
     .sort((a, b) => a[0] - b[0])
-    .map(([, group]) => ({
-      start: group[0].time,
-      hours: group,
-      score: maxOf(group.map((h) => h.final)) ?? 0,
-      wind: mean(group.map((h) => h.windSpeed)),
-      gust: maxOf(group.map((h) => h.windGusts)),
-      windDirection: meanDirection(group.map((h) => h.windDirection)),
-      tide: mean(group.map((h) => h.seaLevel)),
-      swellHeight: mean(group.map((h) => h.swellHeight)),
-      swellPeriod: mean(group.map((h) => h.swellPeriod)),
-      temperature: mean(group.map((h) => h.temperature)),
-      rain: sum(group.map((h) => h.precipitation)),
-      cloud: mean(group.map((h) => h.cloudCover)),
-      pressure: mean(group.map((h) => h.pressure)),
-    }));
+    .map(([, group]) => {
+      // The block's score is its best hour, so bite and comfort come from that
+      // same hour. Mixing aggregates would print three numbers that do not
+      // multiply together.
+      const best = group.reduce((a, b) => ((b.final ?? -Infinity) > (a.final ?? -Infinity) ? b : a));
+
+      return {
+        start: group[0].time,
+        hours: group,
+        score: maxOf(group.map((h) => h.final)) ?? 0,
+        bite: mean([best.bite]),
+        comfort: mean([best.comfort]),
+        wind: mean(group.map((h) => h.windSpeed)),
+        gust: maxOf(group.map((h) => h.windGusts)),
+        windDirection: meanDirection(group.map((h) => h.windDirection)),
+        tide: mean(group.map((h) => h.seaLevel)),
+        swellHeight: mean(group.map((h) => h.swellHeight)),
+        swellPeriod: mean(group.map((h) => h.swellPeriod)),
+        swellDirection: meanDirection(group.map((h) => h.swellDirection)),
+        secondarySwellHeight: mean(group.map((h) => h.secondarySwellHeight)),
+        waveHeight: mean(group.map((h) => h.waveHeight)),
+        wavePeriod: mean(group.map((h) => h.wavePeriod)),
+        waveDirection: meanDirection(group.map((h) => h.waveDirection)),
+        windWaveHeight: mean(group.map((h) => h.windWaveHeight)),
+        windWavePeriod: mean(group.map((h) => h.windWavePeriod)),
+        windWaveDirection: meanDirection(group.map((h) => h.windWaveDirection)),
+        currentVelocity: mean(group.map((h) => h.currentVelocity)),
+        currentDirection: meanDirection(group.map((h) => h.currentDirection)),
+        seaTemperature: mean(group.map((h) => h.seaSurfaceTemperature)),
+        temperature: mean(group.map((h) => h.temperature)),
+        apparentTemperature: mean(group.map((h) => h.apparentTemperature)),
+        dewPoint: mean(group.map((h) => h.dewPoint)),
+        humidity: mean(group.map((h) => h.humidity)),
+        visibility: mean(group.map((h) => h.visibility)),
+        // The peak, not the average: a UV index of 9 for one hour is what
+        // burns you, and the CAPE peak is what builds the thunderstorm.
+        uvIndex: maxOf(group.map((h) => h.uvIndex)),
+        cape: maxOf(group.map((h) => h.cape)),
+        freezingLevel: mean(group.map((h) => h.freezingLevel)),
+        rain: sum(group.map((h) => h.precipitation)),
+        cloud: mean(group.map((h) => h.cloudCover)),
+        cloudLow: mean(group.map((h) => h.cloudLow)),
+        cloudMid: mean(group.map((h) => h.cloudMid)),
+        cloudHigh: mean(group.map((h) => h.cloudHigh)),
+        pressure: mean(group.map((h) => h.pressure)),
+        agreement: mergeAgreement(group, best),
+      };
+    });
 }
 
 const minOf = (values) => {

@@ -168,3 +168,70 @@ test('each day carries its raw hourly series for the bands', () => {
   assert.equal(day.series.tide[3], day.hours[3].seaLevel);
   assert.equal(day.series.wind[5], day.hours[5].windSpeed);
 });
+
+const scored = (overrides = {}) => ({
+  time: new Date(base),
+  final: 40, bite: 50, comfort: 0.8,
+  windSpeed: 10, windGusts: 20, windDirection: 90,
+  seaLevel: 1, swellHeight: 1, swellPeriod: 8, precipitation: 0,
+  temperature: 20, cloudCover: 50, pressure: 1015,
+  seaSurfaceTemperature: 22, uvIndex: 3, humidity: 70,
+  agreement: null,
+  ...overrides,
+});
+
+test('bite and comfort come from the hour the slot score belongs to', () => {
+  // score is the best hour in the block. If bite were the max and comfort the
+  // mean, bite x comfort would not equal the score printed above them and the
+  // table would look broken.
+  const [slot] = toSlots([
+    scored({ time: new Date(base), final: 20, bite: 90, comfort: 0.2 }),
+    scored({ time: new Date(base + HOUR), final: 64, bite: 80, comfort: 0.8 }),
+    scored({ time: new Date(base + 2 * HOUR), final: 30, bite: 60, comfort: 0.5 }),
+  ]);
+
+  assert.equal(slot.score, 64);
+  assert.equal(slot.bite, 80);
+  assert.equal(slot.comfort, 0.8);
+});
+
+test('sea temperature is averaged and UV is the peak in the block', () => {
+  const [slot] = toSlots([
+    scored({ time: new Date(base), seaSurfaceTemperature: 22, uvIndex: 1 }),
+    scored({ time: new Date(base + HOUR), seaSurfaceTemperature: 24, uvIndex: 7 }),
+  ]);
+  assert.equal(slot.seaTemperature, 23);
+  assert.equal(slot.uvIndex, 7, 'a UV index of 7 for one hour is what burns you');
+});
+
+test('a slot is disputed if any hour in it is disputed', () => {
+  const [slot] = toSlots([
+    scored({ time: new Date(base), agreement: { wind: { agree: true, readings: [] } } }),
+    scored({ time: new Date(base + HOUR), agreement: { wind: { agree: false, readings: [] } } }),
+  ]);
+  assert.equal(slot.agreement.wind.agree, false);
+});
+
+test('a slot where only one model answered stays null, not agreed', () => {
+  const one = { readings: [{ model: 'gfs', value: 12 }], agree: null };
+  const [slot] = toSlots([
+    scored({ time: new Date(base), agreement: { wind: one } }),
+    scored({ time: new Date(base + HOUR), agreement: { wind: one } }),
+  ]);
+  assert.equal(slot.agreement.wind.agree, null);
+});
+
+test('the readings shown are the ones behind the score', () => {
+  const [slot] = toSlots([
+    scored({ time: new Date(base), final: 10,
+      agreement: { wind: { agree: true, readings: [{ model: 'gfs', value: 5 }] } } }),
+    scored({ time: new Date(base + HOUR), final: 70,
+      agreement: { wind: { agree: true, readings: [{ model: 'gfs', value: 50 }] } } }),
+  ]);
+  assert.equal(slot.agreement.wind.readings[0].value, 50);
+});
+
+test('no model data anywhere in the slot means no agreement object at all', () => {
+  const [slot] = toSlots([scored()]);
+  assert.equal(slot.agreement, null);
+});

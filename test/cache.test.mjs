@@ -111,3 +111,14 @@ test('clearCaches leaves caches belonging to other apps alone', async () => {
 test('clearCaches copes with the Cache API being unavailable', async () => {
   assert.equal(await clearCaches(undefined), 0);
 });
+
+test('the cache key includes the model list', () => {
+  // Without this, editing CONFIG.models keeps serving a payload built from the
+  // old list -- single-model data with no agreement marks -- and nothing in
+  // the UI could tell you it was stale.
+  const key = cacheKey(-29.85, 31.05);
+  for (const m of [...CONFIG.models.forecast, ...CONFIG.models.marine]) {
+    assert.ok(key.includes(m), `${m} missing from ${key}`);
+  }
+  assert.ok(key.startsWith(CONFIG.cache.keyPrefix), 'clearAll matches on the prefix');
+});
