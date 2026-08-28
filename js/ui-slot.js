@@ -1,10 +1,10 @@
 import { CONFIG } from './config.js';
 import { compass, scoreBand, timeRange } from './format.js';
 
-// The slot detail panel, lifted out of ui-days.js and extended. The table shows
-// the thirteen readings you scan; everything else Open-Meteo gives us lives
-// here, which is how "more parameters" and "a scannable table" are satisfied at
-// the same time.
+// The slot detail panel, lifted out of the retired day cards and extended.
+// The table carries the thirteen readings you scan; everything else Open-Meteo
+// gives us lives here, which is how "more parameters" and "a scannable table"
+// are satisfied at the same time.
 
 const el = (tag, className, text) => {
   const node = document.createElement(tag);

@@ -55,16 +55,6 @@ h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: v
 .window .metrics { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
 .capped { color: var(--fair); font-size: 13px; margin: 6px 0 0; }
 
-.days { display: grid; gap: 8px; }
-.day { background: var(--panel); border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 10px 12px; }
-.day summary { cursor: pointer; list-style: none; }
-.day summary::-webkit-details-marker { display: none; }
-.day-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.day .label { font-weight: 600; }
-.day .score { font-size: 24px; font-weight: 700; }
-.day .digest { color: var(--muted); font-size: 13px; }
-.tide-line, .sky-line { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
-
 .grid-scroll { overflow-x: auto; margin-top: 10px; -webkit-overflow-scrolling: touch; }
 table.grid { border-collapse: collapse; font-size: 13px; white-space: nowrap; }
 table.grid th, table.grid td { padding: 4px 8px; text-align: right; border-bottom: 1px solid var(--line); }
@@ -204,16 +194,6 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-.band { display: grid; grid-template-columns: 52px 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: end; margin: 10px 0; }
-.band-label { font-size: 12px; color: var(--muted); grid-row: 1; }
-.bars { display: flex; align-items: flex-end; gap: 1px; height: 44px; grid-row: 1; }
-.bar { flex: 1 1 0; min-width: 0; background: var(--line); border-radius: 1px 1px 0 0; }
-.bar-high { background: var(--excellent); }
-.bar-low { background: var(--fair); }
-.band-range { grid-column: 2; grid-row: 2; font-size: 12px; color: var(--muted); margin-top: 2px; }
-.slots { display: grid; grid-template-columns: repeat(8, 1fr); gap: 2px; margin-top: 6px; }
-.slot { padding: 8px 0; font-size: 12px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); border-radius: 6px; }
-.slot-open { color: var(--ink); border-color: var(--excellent); }
 .slot-detail { margin-top: 8px; padding: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
 .slot-head { display: flex; justify-content: space-between; align-items: center; font-weight: 600; margin-bottom: 8px; }
 .slot-rows { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
