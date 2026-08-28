@@ -15,6 +15,8 @@ import { CONFIG } from './config.js';
 import { createTabs } from './tabs.js';
 import { summariseSpot } from './spot-summary.js';
 import { renderSpotsTab } from './ui-spots-tab.js';
+import { loadFeed, currentEntry } from './feed.js';
+import { renderFeedCard } from './ui-feed.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -32,6 +34,7 @@ const els = {
   search: $('spot-search'),
   results: $('spot-results'),
   spotCards: $('spot-cards'),
+  feed: $('feed'),
   panels: { spots: $('panel-spots'), days: $('panel-days') },
   tabButtons: { spots: $('tab-spots'), days: $('tab-days') },
 };
@@ -46,6 +49,7 @@ const state = {
   preview: null,  // {lat, lon, name, hours, offset}
   openDay: null,
   openSlot: null,
+  feed: null,
 };
 
 const marineNote = (hasMarine) => (hasMarine
@@ -149,7 +153,12 @@ for (const name of tabs.names) {
   });
 }
 
+function paintFeed() {
+  renderFeedCard(els.feed, currentEntry(state.feed), new Date());
+}
+
 function paintSpotCards() {
+  paintFeed();
   const now = new Date();
   // paintTabs() can run before refreshSavedSpots() resolves, so a spot may not
   // be scored yet. Keep it in the list with a null-score summary rather than
@@ -447,6 +456,13 @@ if (state.spots.length) {
 } else {
   previewPoint(map.start.lat, map.start.lon);
 }
+
+// Additive context, so it is deliberately not awaited: the forecast paints
+// without it and the card appears whenever it arrives.
+loadFeed().then((feed) => {
+  state.feed = feed;
+  paintFeed();
+});
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {
