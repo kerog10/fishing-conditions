@@ -1073,3 +1073,531 @@ Expected: PASS, including the existing `toSlots` tests — score, gust, rain and
 git add js/daily.js test/daily.test.mjs
 git commit -m "feat: slot aggregates for every forecast table row"
 ```
+
+---
+
+### Task 6: `table.js` — days and slots to a render-ready table model
+
+**Files:**
+- Create: `js/table.js`
+- Create: `test/table.test.mjs`
+
+**Interfaces:**
+
+```js
+// js/table.js
+export function buildTable(days, now = new Date()): TableModel
+```
+
+```
+TableModel {
+  days: [ { key, date, label, columns: [ Column ] } ]
+  rows: [ { key, label, kind, digits } ]        // CONFIG.tableRows, minus empty ones
+}
+Column {
+  time,                       // Date, slot start
+  slotIndex,                  // index into day.slots
+  slot,                       // the raw daily.js slot (deviation 3)
+  tideExtreme: 'H' | 'L' | null,
+  cells: { [rowKey]: { value, band, agree } }
+}
+```
+
+Pure: no DOM, no `toFixed`, no colour. `value` stays a number (or `null`);
+formatting is `ui-table.js`'s job so the same model could be rendered as text.
+
+**Decisions this task settles:**
+
+1. **The tide ramp is not in `CONFIG.severity`.** `tableRows` names `ramp: 'tide'`
+   but `severity` has `tideSteps`, not a `tide` bounds array — deliberately, since
+   the spec normalises tide *within each day's own range*. `buildTable` therefore
+   special-cases `ramp === 'tide'` and calls `tideBand(value, dayMin, dayMax)`,
+   where the min and max are taken across that day's columns only. Every other
+   tinted row goes through `band(ramp, value)`.
+2. **Row dropping is by emptiness** (deviation 4). A row is kept if any column of
+   any day has a finite value for it. `score`, `bite` and `comfort` are never
+   dropped — a day with no score at all is a bug, not an inland spot.
+3. **Score hatching propagates.** `cells.score.agree` is `false` if any key in
+   `CONFIG.models.scoreInputs` is `false` for that slot; otherwise `true` if any
+   is `true`; otherwise `null`. Same precedence as `mergeAgreement`, for the same
+   reason: uncertainty in an input is uncertainty in the output.
+4. **Tide extremes attach to the column that contains them.** A turning point at
+   14:20 belongs to the 12:00–15:00 column. Matching is by
+   `slot.start <= t.time < slot.start + slot.hours.length hours`, not by
+   nearest-hour rounding, so a turn never lands in the neighbouring block. If two
+   turns fall in one column, the first wins — a 3-hour block that holds both a
+   high and a low cannot be labelled with one glyph, and the slot detail lists
+   both anyway.
+
+- [ ] **Step 1: Write the failing tests**
+
+Create `test/table.test.mjs`. Build days with `summariseDays` from synthetic
+scored hours rather than hand-rolling a day object, so the test breaks if
+`daily.js` changes shape. Reuse the `HOUR` / `base` constants from
+`test/daily.test.mjs`.
+
+```js
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { buildTable } from '../js/table.js';
+import { summariseDays } from '../js/daily.js';
+import { CONFIG } from '../js/config.js';
+```
+
+Tests to write:
+
+1. **Shape** — `buildTable(days)` returns `{ days, rows }`; `rows` is an array of
+   `{ key, label, kind }`; every `rows[i].key` appears in `CONFIG.tableRows`.
+2. **Day and column counts** — two days of 24 hours each gives `model.days.length
+   === 2` and `model.days[0].columns.length === 24 / CONFIG.daily.slotHours` (8).
+3. **Cell values track the slot** — `columns[0].cells.wind.value` equals
+   `days[0].slots[0].wind`, and `columns[0].slotIndex === 0`.
+4. **Tinted rows carry a band, plain rows do not** — `cells.wind.band` is an
+   integer in `[0, bandCount('wind') - 1]`; `cells.air.band === null`.
+5. **Tide is banded within the day** — a day whose sea level runs 0.2 m to 1.8 m
+   puts the lowest column at band 0 and the highest at `tideSteps - 1`, and the
+   *same absolute height* in a second day with a smaller range gets a different
+   band. This is the whole reason tide is special-cased; assert it directly.
+6. **Tide extreme placement** — a synthetic series with a high at 14:00 marks
+   `columns[4].tideExtreme === 'H'` (12:00 block) and every other column `null`.
+7. **Score hatching propagates** — a slot whose `agreement.wind.agree === false`
+   yields `cells.score.agree === false`; a slot where every input is `true`
+   yields `true`; a slot with `agreement: null` yields `null`.
+8. **Empty marine rows are dropped** — days built from hours with no `seaLevel`,
+   `swellHeight` or `seaSurfaceTemperature` produce a `rows` array containing no
+   `tide`, `swell`, `period` or `sea` key, while still containing `wind`.
+9. **`score`, `bite` and `comfort` survive an all-null day** — dropping them
+   would leave a table with no score row, which is never what you want.
+
+Run: `npm test`
+Expected: FAIL — `Cannot find module '../js/table.js'`.
+
+- [ ] **Step 2: Implement `js/table.js`**
+
+```js
+import { CONFIG } from './config.js';
+import { band, tideBand } from './severity.js';
+import { dayLabel } from './format.js';
+```
+
+Sketch:
+
+```js
+const ALWAYS_KEEP = new Set(['score', 'bite', 'comfort']);
+
+// Uncertainty in an input is uncertainty in the output: one disputed
+// contributor hatches the score. Same precedence as daily.js mergeAgreement --
+// false beats true beats null -- so "we do not know" never reads as agreement.
+function scoreAgreement(agreement) {
+  if (!agreement) return null;
+  const states = CONFIG.models.scoreInputs
+    .map((k) => agreement[k]?.agree)
+    .filter((v) => v !== undefined);
+  if (states.includes(false)) return false;
+  if (states.includes(true)) return true;
+  return null;
+}
+
+function extremeFor(day, slot) {
+  const start = slot.start.getTime();
+  const end = start + slot.hours.length * 3600000;
+  const hit = day.tides.find((t) => t.time.getTime() >= start && t.time.getTime() < end);
+  return hit ? (hit.type === 'high' ? 'H' : 'L') : null;
+}
+```
+
+`buildTable` then, per day: compute the day's finite tide min/max once, map
+`day.slots` to columns, and per column map `CONFIG.tableRows` to cells —
+`value = slot[row.slot] ?? null`, `band` per the rules above, `agree` =
+`row.key === 'score' ? scoreAgreement(slot.agreement) : slot.agreement?.[row.key]?.agree ?? null`.
+
+Finally filter `CONFIG.tableRows` down to the rows that survive:
+
+```js
+  const kept = CONFIG.tableRows.filter((row) => ALWAYS_KEEP.has(row.key)
+    || model.some((d) => d.columns.some((c) => Number.isFinite(c.cells[row.key].value))));
+```
+
+Cells are built for every configured row and only the *row list* is filtered, so
+`ui-table.js` can index `cells[row.key]` for any row in `rows` without a guard.
+
+- [ ] **Step 3: Run the tests and make sure they pass**
+
+Run: `npm test`
+Expected: PASS, all previous tests included.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add js/table.js test/table.test.mjs
+git commit -m "feat: table model - days, columns, banded and agreement-marked cells"
+```
+
+---
+
+### Task 7: `ui-table.js` — render the forecast table
+
+**Files:**
+- Create: `js/ui-table.js`
+- Modify: `app.css` (add the table styles; band-card CSS is removed in Task 9)
+
+**Interfaces:**
+
+```js
+// js/ui-table.js
+export function renderTable(target, model, now = new Date(), {
+  openKey = null, openSlot = null, onSlot = () => {},
+} = {}): void
+```
+
+Same callback contract as `renderDays` so `main.js`'s existing `onSlot(dayKey,
+index)` handler and `state.openDay` / `state.openSlot` need no change.
+
+No unit test: this is DOM, and the project's convention is that render modules
+are verified in a browser. The pure part is already covered by Task 6.
+
+**Geometry, from the spec:** label column 68 px frozen, 8 × 34 px columns,
+19 px rows, one `scroll-snap-align: start` per day, whole column is the tap
+target.
+
+- [ ] **Step 1: Markup**
+
+One `<table>` per day inside a horizontally scrolling flex strip, rather than a
+single table spanning the week. A single table cannot scroll-snap per day, and
+seven small tables also let a day be re-rendered without touching the rest.
+
+```
+<div class="ftable-scroll">            // overflow-x: auto; scroll-snap-type: x mandatory
+  <div class="ftable-labels">          // position: sticky; left: 0 - row labels, drawn once
+    <div class="ftable-corner"></div>  // spacer aligned with the day header
+    <div class="ftable-rowlabel">wind</div> ...
+  </div>
+  <table class="ftable-day" data-day-key="2026-08-28">   // scroll-snap-align: start
+    <caption>Fri 28</caption>
+    <tbody>
+      <tr data-row="wind">
+        <td class="cell ramp-wind" data-band="3">18</td> ...
+```
+
+The label column is a sibling of the day tables, not a first `<th>` in each —
+one sticky element, and the seven tables stay pure grids of equal-width cells.
+Row order and heights are identical on both sides because both are driven by
+`model.rows`.
+
+Accessibility: each day table gets `aria-label` "Forecast for Friday 28 August";
+each cell gets a `title` of `"<row label> <value> <unit>"` so a long-press or a
+desktop hover reads it; the hatch gets `aria-label` "models disagree" via a
+visually-hidden span, not colour alone.
+
+- [ ] **Step 2: Cell rendering by kind**
+
+```js
+const KIND = {
+  score:  (cell) => Math.round(cell.value),
+  plain:  (cell, row) => cell.value.toFixed(row.digits ?? 0),
+  tinted: (cell, row) => cell.value.toFixed(row.digits ?? 0),
+  arrow:  (cell) => arrowSvg(cell.value),
+};
+```
+
+- `null` value renders an empty cell, never a dash and never `NaN`. At 34 px wide
+  a dash is noise; a blank column reads as "no data" on sight.
+- `rain` renders blank when `< 0.05`, per the spec's "blank rather than 0.0 when
+  dry". Config-free: it is a formatting rule, not a threshold.
+- `arrow` is an inline `<svg>` rotated to `direction + 180deg` — it points where
+  the wind is *going*, matching Windguru. Rotation is set via
+  `style.transform`, not a class, since it is continuous.
+- Tinted cells get `class="cell ramp-<ramp>"` and `data-band="<n>"`. Colour is
+  entirely in CSS: `.ramp-wind[data-band="5"] { background: ... }`. This keeps
+  every colour in one file, and a ramp can be retuned without touching JS.
+- `score` cells get `data-band` from `scoreBandIndex` (0 good / 1 moderate /
+  2 poor) and reuse the existing `--excellent` / `--fair` / `--poor` variables,
+  so the table and the day cards cannot disagree about what 56 means.
+- `cell.agree === false` adds `class="disputed"`, a `repeating-linear-gradient`
+  overlay at `--hatch-opacity` (a CSS variable so it can be tuned outdoors
+  without a code change, per the spec's risk table). `agree === null` adds
+  nothing — silence must not read as agreement, and must not read as dispute
+  either.
+
+- [ ] **Step 3: Interaction**
+
+Clicking anywhere in a column opens that slot. The listener is delegated on the
+day table, resolving `event.target.closest('td')?.cellIndex` to a `slotIndex` —
+13 rows × 8 columns × 7 days is 728 cells and binding each is waste.
+
+```js
+  table.addEventListener('click', (e) => {
+    const td = e.target.closest('td');
+    if (!td) return;
+    const i = td.cellIndex;
+    onSlot(dayKey, dayKey === openKey && i === openSlot ? null : i);
+  });
+```
+
+Keyboard: the day table is `tabindex="0"` with left/right arrows moving the
+selected column and Enter opening it, so the view is not mouse-only.
+
+The open column gets `class="col-open"` on every cell in it, drawn as a 2 px
+outline spanning the column — the whole column is the tap target, so the whole
+column is what highlights.
+
+`ui-slot.js` renders the detail panel; `renderTable` appends it directly below
+the day table it belongs to.
+
+- [ ] **Step 4: Scroll behaviour**
+
+- `scroll-snap-type: x mandatory` on the strip, `scroll-snap-align: start` on
+  each day table, so a swipe advances exactly one day.
+- On first render with no `openKey`, scroll today's table into view with
+  `scrollIntoView({ inline: 'start', behavior: 'auto' })` — instant, not smooth,
+  because an animated scroll on page load reads as a glitch.
+- **Preserve scroll position across re-renders.** `renderTable` runs again on
+  every slot tap; reading `scrollLeft` before `replaceChildren` and restoring it
+  after is the difference between tapping a column and being thrown back to
+  Monday. This is the one bug most likely to survive to the browser check —
+  write it in the first version, not as a fix.
+- The day header row uses `position: sticky; top: 0` so the date stays visible
+  while scrolling vertically.
+
+- [ ] **Step 5: CSS**
+
+Add to `app.css`, above the band-card block that Task 9 deletes:
+
+```css
+.ftable-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+                 -webkit-overflow-scrolling: touch; }
+.ftable-labels { position: sticky; left: 0; z-index: 2; flex: 0 0 68px;
+                 background: var(--panel); }
+.ftable-day    { flex: 0 0 auto; scroll-snap-align: start; border-collapse: collapse; }
+.ftable-day td { width: 34px; height: 19px; text-align: center; font-size: 11px;
+                 font-variant-numeric: tabular-nums; }
+.ftable-rowlabel { height: 19px; font-size: 11px; color: var(--muted); }
+.disputed { background-image: repeating-linear-gradient(45deg,
+              rgba(255,255,255,var(--hatch-opacity)) 0 2px, transparent 2px 4px); }
+```
+
+Seven-step ramps as `[data-band]` rules per ramp, four steps of blue for
+`.ramp-tide`, three score colours from the existing variables. `--hatch-opacity`
+goes in `:root` beside the other tokens.
+
+`font-variant-numeric: tabular-nums` matters: at 34 px, proportional digits make
+a column of numbers visibly ragged.
+
+- [ ] **Step 6: Browser check**
+
+Serve with `npm run serve` and open at 356 px width (device toolbar) and on
+desktop. Verify:
+- label + one full day = 340 px, no horizontal scrolling *inside* a day
+- swiping advances one day at a time
+- tapping a column opens the detail; tapping it again closes it
+- scroll position survives a tap
+- hatched cells are legible; numbers are readable at 11 px
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add js/ui-table.js app.css
+git commit -m "feat: render the 3-hourly forecast table"
+```
+
+---
+
+### Task 8: `ui-slot.js` — the extended slot detail panel
+
+**Files:**
+- Create: `js/ui-slot.js`
+- Modify: `app.css` (extend the existing `.slot-detail` rules)
+
+**Interfaces:**
+
+```js
+// js/ui-slot.js
+export function renderSlotDetail(day, slotIndex): HTMLElement
+```
+
+Returns a detached element; the caller appends it. Lifted from
+`ui-days.js`'s private `slotDetail`, which is deleted with that file in Task 9.
+
+- [ ] **Step 1: Move the existing panel across**
+
+Copy `slotDetail`, its `el` / `n0` / `n1` helpers and `DETAIL_ROWS` from
+`ui-days.js` into `js/ui-slot.js` unchanged, and export it as
+`renderSlotDetail`. Keep the existing behaviour exactly: header with time range
+and score, `<dl>` of rows, `null`-valued rows skipped, and the `Why:` line from
+`slot.hours.flatMap(h => h.reasons)`.
+
+Moving first and extending second keeps the diff readable and means a regression
+in the panel is attributable to the extension, not the move.
+
+- [ ] **Step 2: Add the readings that are not in the table**
+
+Extend `DETAIL_ROWS` with everything Task 5 added to the slot that the table
+does not show — this is what makes "more parameters" and "a scannable table"
+compatible:
+
+| Group | Rows |
+|---|---|
+| Air | apparent temperature, dew point, humidity, visibility, UV index, CAPE, freezing level |
+| Cloud | low / mid / high split |
+| Sea | wind wave (height, period, direction), secondary swell height, wave height/period/direction, current velocity and direction |
+
+Rules that must hold:
+- Every row keeps the existing `get(s) => string | null` contract, and `null`
+  still means "omit the row". Inland spots must not grow a block of dashes.
+- Group the rows under small headings rather than one 25-row list — a flat list
+  of that length is unreadable on a phone.
+- Directions use `compass()`; keep the units in the value string as the existing
+  rows do (`"18 km/h NE"`), not in a separate column.
+- CAPE and UV are the *peak* for the block (Task 5 aggregates them with `maxOf`);
+  label them so, e.g. "UV (peak)". The other rows are means and need no
+  qualifier.
+
+- [ ] **Step 3: Add the per-model spread**
+
+The hatch's only job is to say the column is worth tapping; this is what it is
+worth tapping *for*.
+
+For each key in `slot.agreement` with `agree === false`, print the readings:
+
+```
+Models disagree
+  wind   GFS 18 - ICON 24 - ECMWF 31 km/h
+  swell  GWAM 1.2 - ECMWF-WAM 2.1 m
+```
+
+- Model ids come from the `readings` map that `models.js` builds
+  (`{ gfs_seamless: 18, ... }`). Render them upper-cased with `_seamless` and
+  `_ifs025` stripped, in `CONFIG.models.forecast` order so the same model is
+  always in the same position.
+- Where `agree === null`, print "Only one model available for these values" and
+  name it. Silence must not read as agreement — the spec is explicit, and the
+  panel is the only place it can be said in words.
+- Where `slot.agreement` is `null` entirely (the model requests failed, or the
+  payload came from a pre-Task-4 cache), print "Model comparison unavailable".
+  A missing section would be indistinguishable from full agreement.
+
+- [ ] **Step 4: Browser check**
+
+At 356 px: open a slot from the table. Verify the panel scrolls rather than
+overflowing, that an inland spot shows no marine rows and no empty headings,
+and that a hatched column's detail actually names the disagreeing models.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add js/ui-slot.js app.css
+git commit -m "feat: extended slot detail with per-model spread"
+```
+
+---
+
+### Task 9: Wire it up and retire the band cards
+
+**Files:**
+- Modify: `js/main.js`, `index.html`, `app.css`, `sw.js`
+- Delete: `js/bands.js`, `js/ui-days.js`, `test/bands.test.mjs`
+
+Done last so that every earlier task leaves the app in a working state: up to
+here the table exists but nothing renders it, and the day cards still work.
+
+- [ ] **Step 1: Confirm `bands.js` has no other caller**
+
+```bash
+grep -rn "bands\.js\|ui-days\.js\|buildBand\|extremaMarkers\|renderDays" js test index.html
+```
+
+Expected: only `js/ui-days.js`, `js/main.js`, `test/bands.test.mjs` and the
+files being deleted. **If `ui-spots-tab.js` or `ui-compare.js` appears, stop** —
+the Spots tab is explicitly out of scope and must not lose a dependency.
+
+- [ ] **Step 2: Swap the render call in `main.js`**
+
+```js
+import { buildTable } from './table.js';
+import { renderTable } from './ui-table.js';
+```
+
+In `paintDetail`, replace the `renderDays(...)` call with:
+
+```js
+  renderTable(
+    els.days,
+    buildTable(summariseDays(view.hours, view.spot.lat, view.spot.lon, view.offset), now),
+    now,
+    { openKey: state.openDay, openSlot: state.openSlot, onSlot(dayKey, index) { ... } },
+  );
+```
+
+The `onSlot` body, `state.openDay` / `state.openSlot` and every other site that
+resets them (the compare-cell handler, the spot switch, the refresh) are
+unchanged — that is why Task 7 kept the callback signature.
+
+- [ ] **Step 3: `index.html`**
+
+The `#days` container and its `7 days` tab stay. Update the `<h2>` from
+"Next 7 days" to match the table, and check the tide notice at the bottom is
+still present and unedited — it is a Global Constraint.
+
+- [ ] **Step 4: Delete the retired modules**
+
+```bash
+git rm js/bands.js js/ui-days.js test/bands.test.mjs
+```
+
+Then remove the now-dead CSS from `app.css`: `.band`, `.band-label`, `.bars`,
+`.bar`, `.bar-high`, `.bar-low`, `.band-range`, `.slots`, `.slot`, `.slot-open`,
+`.day-head`, `.digest`, `.tide-line`, `.sky-line`.
+
+**Keep** `.band-excellent` / `.band-good` / `.band-fair` / `.band-poor` and
+`.slot-detail` / `.slot-head` / `.slot-rows` / `.slot-why`: the score-band
+classes are used by `ui.js` and `ui-compare.js` for the now-card and the preview
+badge, and the slot-detail classes are used by `ui-slot.js`. Grep before
+deleting each one:
+
+```bash
+grep -rn "band-excellent\|slot-detail\|digest\|tide-line" js index.html
+```
+
+- [ ] **Step 5: Run the tests**
+
+Run: `npm test`
+Expected: PASS. The count drops by the `bands.test.mjs` cases and rises by
+`table.test.mjs`. `test/smoke.test.mjs` imports every module — if it names
+`ui-days.js`, update it in this step.
+
+- [ ] **Step 6: Bump the service worker cache name**
+
+`sw.js` is network-first, but its precache list names the files. Add
+`js/table.js`, `js/ui-table.js`, `js/ui-slot.js`, `js/severity.js`,
+`js/models.js`, drop `js/bands.js` and `js/ui-days.js`, and bump the cache name
+(`fishing-conditions-v3` to `-v4`) so an old shell cannot serve a deleted
+module.
+
+- [ ] **Step 7: Full browser check**
+
+`npm run serve`, then at 356 px and on desktop:
+- a coastal spot shows all 13 rows; an inland spot shows the table with tide,
+  swell, period and sea dropped and no empty rows
+- the Spots tab is visually and behaviourally unchanged
+- switching spots, refreshing and tapping a compare cell all still land on the
+  right day with the right column open
+- hard-reload with the service worker active picks up the new modules
+
+- [ ] **Step 8: Commit**
+
+```bash
+git add -A
+git commit -m "refactor: replace the 7-day band cards with the forecast table"
+```
+
+---
+
+## Done when
+
+- `npm test` passes with `test/table.test.mjs` present and `test/bands.test.mjs`
+  gone.
+- The `7 days` tab renders the 3-hourly table for a coastal spot and a degraded
+  table for an inland one.
+- Hatched cells appear where models disagree, and tapping one names the models.
+- No file in `js/` references `bands.js` or `ui-days.js`.
+- The Spots tab is byte-identical in behaviour.
