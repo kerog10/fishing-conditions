@@ -56,6 +56,18 @@ test('a page with neither body nor meta description is skipped, not half-stored'
   assert.equal(entry, null, 'a partial entry would render an empty card');
 });
 
+test('a CSS combinator selector mentioning entry-content is not mistaken for the body', () => {
+  // Themes commonly emit ".entry-content > p { ... }" inside an earlier
+  // <style> block. A bare substring search for "entry-content" would match
+  // that text and hand back CSS as the excerpt instead of the real article.
+  const styleBlock = '<style>.entry-content > p { color: red }</style>';
+  const withStyle = html.replace('<head>', `<head>${styleBlock}`);
+  const entry = parseEntry(POST, withStyle);
+
+  assert.doesNotMatch(entry.excerpt, /color:\s*red/);
+  assert.match(entry.excerpt, /Shad Championship/);
+});
+
 test('a post already stored is not offered for fetching again', () => {
   const existing = [{ id: 30568 }];
   const posts = [{ id: 30568 }, { id: 30566 }];

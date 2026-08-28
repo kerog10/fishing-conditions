@@ -35,12 +35,17 @@ function text(html) {
 }
 
 // The body sits inside the element whose class list contains entry-content.
-// Slice from the end of that opening tag; the class attribute runs on past the
-// name, so the next '>' is the tag's own close.
+// Anchor on the class attribute itself, not a bare substring match -- a
+// <style> block earlier in the page can contain a ".entry-content > p { }"
+// combinator selector, and a bare indexOf('entry-content') would match that
+// text and hand back CSS as if it were the article. Slice from the end of
+// the matched tag's opening '>'.
+const ENTRY_CONTENT_CLASS = /class=(?:"[^"]*entry-content[^"]*"|'[^']*entry-content[^']*')/;
+
 function bodyText(html) {
-  const at = html.indexOf('entry-content');
-  if (at === -1) return '';
-  const open = html.indexOf('>', at);
+  const match = html.match(ENTRY_CONTENT_CLASS);
+  if (!match) return '';
+  const open = html.indexOf('>', match.index);
   if (open === -1) return '';
   return text(html.slice(open + 1, open + 20000));
 }
