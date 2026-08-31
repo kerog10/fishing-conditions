@@ -117,3 +117,106 @@ export function firstRound() {
     channel,
   }));
 }
+
+export const videosUrl = (id) => `${channelUrl(id)}/videos`;
+
+// A first run would otherwise ask for a date on every one of the ~30 videos a
+// channel page lists, for every channel without a feed. Eight per channel
+// fills the 40-entry window across five channels in one run and keeps the job
+// well inside its ten-minute budget; later runs ask for almost nothing,
+// because everything else is already stored.
+export const SCRAPE_PER_CHANNEL = 8;
+
+// The channel page carries its video list inside ytInitialData as
+// lockupMetadataViewModel records. This is an undocumented shape and YouTube
+// can change it: parseChannelPage returning [] is a supported outcome, not an
+// error, and the build simply keeps whatever it already stored.
+const LOCKUP = /"lockupMetadataViewModel":\{"title":\{"content":"((?:[^"\\]|\\.)*)"/g;
+const VIDEO_ID_AFTER = /"videoId":"([A-Za-z0-9_-]{11})"/;
+
+// The id sits inside the same lockup object as its title. Measured against a
+// real capture, the furthest an id ever sat from its title was ~1300
+// characters; 4000 is comfortable headroom without reaching the next record.
+const LOCKUP_SPAN = 4000;
+
+// JSON string escapes, not HTML entities: the titles live inside a JSON blob.
+function unescapeJson(s) {
+  try {
+    return JSON.parse(`"${s}"`);
+  } catch {
+    return s.replace(/\\u0026/g, '&').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+  }
+}
+
+export function parseChannelPage(html, channel) {
+  const pending = [];
+  const seen = new Set();
+
+  for (const match of html.matchAll(LOCKUP)) {
+    const title = unescapeJson(match[1]).trim();
+    if (!title) continue;
+
+    const after = html.slice(match.index, match.index + LOCKUP_SPAN);
+    const idMatch = after.match(VIDEO_ID_AFTER);
+    if (!idMatch) continue;
+
+    const id = idMatch[1];
+    if (seen.has(id)) continue;
+    seen.add(id);
+
+    pending.push({
+      id,
+      channel: channel.name,
+      channelUrl: channelUrl(channel.id),
+      title,
+      link: watchUrl(id),
+    });
+  }
+
+  return pending;
+}
+
+export function consume(results, existing) {
+  const stored = new Set(existing.map((e) => e.id));
+
+  // Round one: the Atom feeds. A non-200, or a 200 with no entries at all
+  // (both measured, real states), means "no data here" and sends that channel
+  // to its page.
+  const feeds = results.filter((r) => r.key.startsWith('rss:'));
+  if (feeds.length) {
+    const entries = [];
+    const next = [];
+    for (const result of feeds) {
+      if (result.ok && hasEntries(result.body)) {
+        entries.push(...parseFeed(result.body, result.channel));
+      } else {
+        next.push({
+          key: `page:${result.channel.id}`,
+          url: videosUrl(result.channel.id),
+          type: 'text',
+          channel: result.channel,
+        });
+      }
+    }
+    return { entries, next };
+  }
+
+  // Round two: the channel pages. These yield videos with no date, so each
+  // unstored one needs a watch-page lookup in round three.
+  const pages = results.filter((r) => r.key.startsWith('page:'));
+  if (pages.length) {
+    const next = [];
+    for (const result of pages) {
+      if (!result.ok) continue;
+      const pending = parseChannelPage(result.body, result.channel)
+        .filter((video) => !stored.has(video.id))
+        .slice(0, SCRAPE_PER_CHANNEL);
+      for (const video of pending) {
+        next.push({ key: `watch:${video.id}`, url: video.link, type: 'text', video });
+      }
+    }
+    return { entries: [], next };
+  }
+
+  return { entries: [], next: [] };
+}
