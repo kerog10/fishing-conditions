@@ -122,3 +122,56 @@ export function mergeEntries(existing, incoming) {
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, MAX_ENTRIES);
 }
+
+// --- source contract -------------------------------------------------------
+// tools/build-feeds.mjs drives every source through the same three functions.
+// This module stays pure: it describes requests and interprets their results,
+// but never performs them.
+
+const SITE = 'https://www.kingfisher.co.za/';
+
+// Category 644 is KZN Fishing Reports. per_page=5 is enough to recover if the
+// job has been down for a month of weekly reports, and is still one request.
+const LIST = 'https://www.kingfisher.co.za/wp-json/wp/v2/posts'
+  + '?categories=644&per_page=5&_fields=id,date_gmt,link,title';
+
+export const meta = {
+  name: 'kingfisher',
+  url: SITE,
+  out: 'data/feeds/kingfisher.json',
+  maxEntries: MAX_ENTRIES,
+};
+
+export function firstRound() {
+  return [{ key: 'list', url: LIST, type: 'json' }];
+}
+
+export function consume(results, existing) {
+  const list = results.find((r) => r.key === 'list');
+
+  // Round one: the REST category list decides which post pages to fetch.
+  if (list) {
+    if (!list.ok || !Array.isArray(list.body)) return { entries: [], next: [] };
+    const next = newPosts(list.body, existing).map((post) => ({
+      key: `post:${post.id}`,
+      url: post.link,
+      type: 'text',
+      post,
+    }));
+    return { entries: [], next };
+  }
+
+  // Round two: one HTML body per post. A failed fetch or an unparseable page
+  // is skipped, not fatal -- the post stays unstored and is retried tomorrow.
+  const entries = [];
+  for (const result of results) {
+    if (!result.ok) continue;
+    const entry = parseEntry(result.post, result.body);
+    if (entry) entries.push(entry);
+  }
+  return { entries, next: [] };
+}
+
+export function merge(existing, incoming) {
+  return mergeEntries(existing, incoming);
+}

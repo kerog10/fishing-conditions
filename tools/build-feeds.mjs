@@ -1,31 +1,47 @@
 // Builds data/feeds/*.json. Run by .github/workflows/feeds.yml on a daily
 // cron, and by `npm run feeds` locally.
 //
+// This is the only place in the feed pipeline that touches the network or the
+// filesystem. Source modules under tools/feeds/ are pure: they describe the
+// requests they want and interpret the results they are handed.
+//
 // This never exits non-zero on a fetch failure. A cron that goes red every
 // time a website hiccups is a cron you stop reading.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { parseEntry, mergeEntries, newPosts } from './feeds/kingfisher.mjs';
+import * as kingfisher from './feeds/kingfisher.mjs';
 
-const OUT = 'data/feeds/kingfisher.json';
-const SITE = 'https://www.kingfisher.co.za/';
+const SOURCES = [kingfisher];
 
-// Category 644 is KZN Fishing Reports. per_page=5 is enough to recover if the
-// job has been down for a month of weekly reports, and is still one request.
-const LIST = 'https://www.kingfisher.co.za/wp-json/wp/v2/posts'
-  + '?categories=644&per_page=5&_fields=id,date_gmt,link,title';
-
-// The post pages are served differently without one.
+// Some sites serve differently, or not at all, without one.
 const UA = 'Mozilla/5.0 (compatible; fishing-conditions feed builder)';
 
-async function get(url) {
-  const res = await fetch(url, { headers: { 'user-agent': UA } });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`);
-  return res;
+// A source that keeps asking for more rounds is broken, not thorough.
+const MAX_ROUNDS = 3;
+
+async function fetchAll(requests) {
+  const results = [];
+  // Sequential on purpose: these are other people's servers, and a daily job
+  // has no reason to burst.
+  for (const request of requests) {
+    try {
+      const res = await fetch(request.url, { headers: { 'user-agent': UA } });
+      const body = res.ok
+        ? await (request.type === 'json' ? res.json() : res.text())
+        : null;
+      results.push({ ...request, ok: res.ok, status: res.status, body });
+    } catch (err) {
+      // A DNS failure, a reset, or a malformed JSON body all reach the source
+      // as an unsuccessful result rather than as a thrown error.
+      console.error(`fetch failed for ${request.url}: ${err.message}`);
+      results.push({ ...request, ok: false, status: 0, body: null });
+    }
+  }
+  return results;
 }
 
-async function readExisting() {
+async function readExisting(out) {
   try {
-    const parsed = JSON.parse(await readFile(OUT, 'utf8'));
+    const parsed = JSON.parse(await readFile(out, 'utf8'));
     return Array.isArray(parsed.entries) ? parsed.entries : [];
   } catch {
     // Absent on the first run, and a corrupt file should not stop a rebuild.
@@ -33,57 +49,58 @@ async function readExisting() {
   }
 }
 
-async function main() {
-  const existing = await readExisting();
+async function runSource(source) {
+  const { name, url, out } = source.meta;
+  const existing = await readExisting(out);
 
-  let posts;
-  try {
-    posts = await get(LIST).then((r) => r.json());
-  } catch (err) {
-    console.error(`kingfisher: list fetch failed, leaving ${OUT} untouched: ${err.message}`);
+  const collected = [];
+  let requests = source.firstRound(existing);
+  for (let round = 0; round < MAX_ROUNDS && requests.length; round += 1) {
+    console.log(`${name}: round ${round + 1}, ${requests.length} request(s)`);
+    const results = await fetchAll(requests);
+    const { entries, next } = source.consume(results, existing);
+    collected.push(...entries);
+    requests = next ?? [];
+  }
+
+  // Nothing new, or nothing that parsed: leave the file exactly as it was, so
+  // the workflow's commit guard sees no change.
+  if (!collected.length) {
+    console.log(`${name}: nothing new, leaving ${out} as it is`);
     return;
   }
 
-  const wanted = newPosts(posts, existing);
-  console.log(`kingfisher: ${posts.length} listed, ${wanted.length} not yet stored`);
-
-  const fresh = [];
-  for (const post of wanted) {
-    try {
-      const html = await get(post.link).then((r) => r.text());
-      const entry = parseEntry(post, html);
-      if (entry) fresh.push(entry);
-      else console.error(`kingfisher: no usable text in ${post.link}, skipping`);
-    } catch (err) {
-      console.error(`kingfisher: ${post.link} failed: ${err.message}`);
-    }
-  }
-
-  if (!fresh.length && existing.length) {
-    console.log('kingfisher: nothing new, leaving the file as it is');
-    return;
-  }
-
-  const entries = mergeEntries(existing, fresh);
+  const entries = source.merge(existing, collected);
   if (!entries.length) {
-    console.error('kingfisher: nothing to write');
+    console.error(`${name}: nothing to write`);
     return;
   }
 
   await mkdir('data/feeds', { recursive: true });
-  // builtAt is when the job ran; each entry's date is when the report was
-  // published. Debugging wants the first, the card wants the second.
+  // builtAt is when the job ran; each entry's date is when the item was
+  // published. Debugging wants the first, the UI wants the second.
   const payload = {
-    source: 'kingfisher',
-    url: SITE,
+    source: name,
+    url,
     builtAt: new Date().toISOString(),
     entries,
   };
-  await writeFile(OUT, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
-  console.log(`kingfisher: wrote ${entries.length} entries to ${OUT}`);
+  await writeFile(out, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+  console.log(`${name}: wrote ${entries.length} entries to ${out}`);
+}
+
+async function main() {
+  for (const source of SOURCES) {
+    try {
+      await runSource(source);
+    } catch (err) {
+      // One broken source must not stop the others.
+      console.error(`${source.meta.name}: failed: ${err.message}`);
+    }
+  }
 }
 
 main().catch((err) => {
-  // Even an unexpected throw stays green. The file is left as it was.
-  console.error(`kingfisher: unexpected failure: ${err.message}`);
+  // Even an unexpected throw stays green. Files are left as they were.
+  console.error(`build-feeds: unexpected failure: ${err.message}`);
 });
