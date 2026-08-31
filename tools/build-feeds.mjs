@@ -9,8 +9,9 @@
 // time a website hiccups is a cron you stop reading.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import * as kingfisher from './feeds/kingfisher.mjs';
+import * as youtube from './feeds/youtube.mjs';
 
-const SOURCES = [kingfisher];
+const SOURCES = [kingfisher, youtube];
 
 // Some sites serve differently, or not at all, without one.
 const UA = 'Mozilla/5.0 (compatible; fishing-conditions feed builder)';
