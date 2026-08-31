@@ -215,3 +215,27 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 12px 0; }
 .tab { padding: 10px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
 .tab[aria-selected="true"] { color: var(--ink); border-color: var(--excellent); }
+
+/* Kingfisher report card, top of the Spots tab. */
+.feed-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.feed-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.feed-title { margin: 6px 0 4px; font-size: 15px; }
+.feed-excerpt { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
+.feed-link { font-size: 13px; }

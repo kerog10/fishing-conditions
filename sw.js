@@ -32,6 +32,8 @@ const SHELL = [
   './js/compare.js',
   './js/ui-compare.js',
   './js/ui-spots-tab.js',
+  './js/feed.js',
+  './js/ui-feed.js',
   './js/windows.js',
   './vendor/suncalc.mjs',
   './vendor/leaflet.js',

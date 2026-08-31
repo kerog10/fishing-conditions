@@ -7,6 +7,7 @@
   "scripts": {
     "test": "node --test \"test/**/*.test.mjs\"",
     "vendor": "node tools/vendor.mjs",
+    "feeds": "node tools/build-feeds.mjs",
     "serve": "npx --yes http-server -p 8090 -c-1 ."
   }
 }
