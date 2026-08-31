@@ -12,6 +12,15 @@ export const CONFIG = {
     maxAgeDays: 21,
   },
 
+  videos: {
+    path: 'data/feeds/youtube.json',
+    max: 8,
+    // Four of the seven channels posted within four days of each other on the
+    // day this was designed. Without a per-channel cap one prolific poster
+    // takes the whole list.
+    perChannel: 2,
+  },
+
   // Bite score: will fish feed? Weights sum to 100.
   biteWeights: {
     pressure: 30,
