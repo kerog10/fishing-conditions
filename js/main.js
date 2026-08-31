@@ -17,6 +17,8 @@ import { summariseSpot } from './spot-summary.js';
 import { renderSpotsTab } from './ui-spots-tab.js';
 import { loadFeed, currentEntry } from './feed.js';
 import { renderFeedCard } from './ui-feed.js';
+import { loadVideos, pickVideos } from './videos.js';
+import { renderVideoList } from './ui-videos.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -35,6 +37,7 @@ const els = {
   results: $('spot-results'),
   spotCards: $('spot-cards'),
   feed: $('feed'),
+  videos: $('videos'),
   panels: { spots: $('panel-spots'), days: $('panel-days') },
   tabButtons: { spots: $('tab-spots'), days: $('tab-days') },
 };
@@ -50,6 +53,7 @@ const state = {
   openDay: null,
   openSlot: null,
   feed: null,
+  videos: null,
 };
 
 const marineNote = (hasMarine) => (hasMarine
@@ -154,7 +158,9 @@ for (const name of tabs.names) {
 }
 
 function paintFeed() {
-  renderFeedCard(els.feed, currentEntry(state.feed), new Date());
+  const now = new Date();
+  renderFeedCard(els.feed, currentEntry(state.feed), now);
+  renderVideoList(els.videos, pickVideos(state.videos), now);
 }
 
 function paintSpotCards() {
@@ -461,6 +467,12 @@ if (state.spots.length) {
 // without it and the card appears whenever it arrives.
 loadFeed().then((feed) => {
   state.feed = feed;
+  paintFeed();
+});
+
+// Same reasoning: the video list is extra context, never a prerequisite.
+loadVideos().then((videos) => {
+  state.videos = videos;
   paintFeed();
 });
 
