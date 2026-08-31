@@ -2,8 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
-  CHANNELS, MAX_ENTRIES, SCRAPE_PER_CHANNEL, meta, firstRound, consume,
-  parseFeed, hasEntries, channelUrl, watchUrl, videosUrl, parseChannelPage,
+  CHANNELS, MAX_ENTRIES, SCRAPE_PER_CHANNEL, meta, firstRound, consume, merge,
+  parseFeed, hasEntries, parseUploadDate, channelUrl, watchUrl, videosUrl,
+  parseChannelPage,
 } from '../tools/feeds/youtube.mjs';
 
 const fixture = (name) => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8');
@@ -237,4 +238,100 @@ test('a channel page that failed to fetch is skipped silently', () => {
   }];
 
   assert.deepEqual(consume(results, []), { entries: [], next: [] });
+});
+
+test('the watch page yields an exact UTC timestamp', () => {
+  const date = parseUploadDate(fixture('youtube-watch.html'));
+
+  assert.ok(date, 'expected an upload date');
+  assert.match(date, /Z$/);
+  assert.ok(Number.isFinite(Date.parse(date)));
+});
+
+test('an offset upload date is normalised to UTC', () => {
+  const html = '{"uploadDate":"2026-08-23T21:43:42-07:00"}';
+
+  assert.equal(parseUploadDate(html), '2026-08-24T04:43:42.000Z');
+});
+
+test('a watch page with no upload date yields null rather than a guess', () => {
+  assert.equal(parseUploadDate('<html><body>no date here</body></html>'), null);
+});
+
+test('an unparseable upload date yields null', () => {
+  assert.equal(parseUploadDate('{"uploadDate":"not a date"}'), null);
+});
+
+test('the watch round produces dated scrape entries', () => {
+  const video = {
+    id: 'abcdefghijk',
+    channel: "Pa's Xtreme Fishing",
+    channelUrl: channelUrl(PAS.id),
+    title: 'Monster Garrick at Winklespruit',
+    link: watchUrl('abcdefghijk'),
+  };
+  const results = [{
+    key: 'watch:abcdefghijk', ok: true, status: 200,
+    body: '{"uploadDate":"2026-08-23T21:43:42-07:00"}', video,
+  }];
+
+  const { entries, next } = consume(results, []);
+
+  assert.deepEqual(next, []);
+  assert.equal(entries.length, 1);
+  assert.deepEqual(entries[0], {
+    id: 'abcdefghijk',
+    channel: "Pa's Xtreme Fishing",
+    channelUrl: channelUrl(PAS.id),
+    title: 'Monster Garrick at Winklespruit',
+    link: watchUrl('abcdefghijk'),
+    date: '2026-08-24T04:43:42.000Z',
+    description: null,
+    via: 'scrape',
+  });
+});
+
+test('a video whose date cannot be resolved is dropped, not guessed', () => {
+  const video = {
+    id: 'abcdefghijk', channel: 'X', channelUrl: channelUrl(PAS.id),
+    title: 'T', link: watchUrl('abcdefghijk'),
+  };
+  const failed = [{ key: 'watch:abcdefghijk', ok: false, status: 404, body: null, video }];
+  const dateless = [{ key: 'watch:abcdefghijk', ok: true, status: 200, body: '<html></html>', video }];
+
+  assert.deepEqual(consume(failed, []).entries, []);
+  assert.deepEqual(consume(dateless, []).entries, []);
+});
+
+test('merge caps the window newest first', () => {
+  const many = Array.from({ length: 60 }, (_, i) => ({
+    id: `v${i}`,
+    date: new Date(Date.UTC(2026, 0, 1) + (i * 86400000)).toISOString(),
+  }));
+
+  const merged = merge([], many);
+
+  assert.equal(merged.length, MAX_ENTRIES);
+  assert.equal(merged[0].id, 'v59');
+  for (let i = 1; i < merged.length; i += 1) {
+    assert.ok(Date.parse(merged[i - 1].date) >= Date.parse(merged[i].date));
+  }
+});
+
+test('merge never duplicates a video id', () => {
+  const existing = [{ id: 'a', date: '2026-08-01T00:00:00Z', title: 'old' }];
+  const incoming = [{ id: 'a', date: '2026-08-01T00:00:00Z', title: 'new' }];
+
+  const merged = merge(existing, incoming);
+
+  assert.equal(merged.length, 1);
+  // Incoming wins: it is the fresher parse of the same video.
+  assert.equal(merged[0].title, 'new');
+});
+
+test('merge keeps stored entries that this run did not see', () => {
+  const existing = [{ id: 'a', date: '2026-08-01T00:00:00Z' }];
+  const incoming = [{ id: 'b', date: '2026-08-02T00:00:00Z' }];
+
+  assert.deepEqual(merge(existing, incoming).map((e) => e.id), ['b', 'a']);
 });

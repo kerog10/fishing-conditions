@@ -218,5 +218,50 @@ export function consume(results, existing) {
     return { entries: [], next };
   }
 
+  // Round three: one watch page per scraped video, for its exact timestamp.
+  const watches = results.filter((r) => r.key.startsWith('watch:'));
+  if (watches.length) {
+    const entries = [];
+    for (const result of watches) {
+      if (!result.ok) continue;
+      const date = parseUploadDate(result.body);
+      // No real date means no entry. The video stays unstored, so the next
+      // run sees it on the channel page again and retries.
+      if (!date) continue;
+      entries.push({
+        ...result.video,
+        date,
+        // The channel page carries no description, and the watch page's is
+        // empty without JavaScript. Consumers must treat null as normal.
+        description: null,
+        via: 'scrape',
+      });
+    }
+    return { entries, next: [] };
+  }
+
   return { entries: [], next: [] };
+}
+
+// The watch page exposes a real timestamp. This is why no stored entry ever
+// carries a date derived from the channel page's "12 days ago" strings: an
+// approximate date that sorts against real ones is worse than no video.
+const UPLOAD_DATE = /"uploadDate":"([^"]+)"/;
+
+export function parseUploadDate(html) {
+  const match = html.match(UPLOAD_DATE);
+  if (!match) return null;
+  const time = Date.parse(match[1]);
+  if (!Number.isFinite(time)) return null;
+  return new Date(time).toISOString();
+}
+
+export function merge(existing, incoming) {
+  // Incoming wins on a clash: it is the fresher parse of the same video.
+  const byId = new Map(existing.map((e) => [e.id, e]));
+  for (const entry of incoming) byId.set(entry.id, entry);
+
+  return [...byId.values()]
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+    .slice(0, MAX_ENTRIES);
 }
