@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UChm_aUTJIjsy73g02bByoeA"/>
+ <id>yt:channel:hm_aUTJIjsy73g02bByoeA</id>
+ <yt:channelId>hm_aUTJIjsy73g02bByoeA</yt:channelId>
+ <title>Fishing Unfiltered</title>
+ <link rel="alternate" href="https://www.youtube.com/channel/UChm_aUTJIjsy73g02bByoeA"/>
+ <author>
+  <name>Fishing Unfiltered</name>
+  <uri>https://www.youtube.com/channel/UChm_aUTJIjsy73g02bByoeA</uri>
+ </author>
+ <published>2023-04-30T12:23:30+00:00</published>
+</feed>
