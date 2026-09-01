@@ -129,6 +129,16 @@ async function runSource(source, ctx) {
     return;
   }
 
+  // builtAt changes on every run, so writing unconditionally would make the
+  // workflow's commit guard fire every single day even when not one entry
+  // moved -- a daily noise commit forever. Compare the entries themselves and
+  // leave the file alone when they are unchanged. Measured: the first remote
+  // run committed a one-line diff that was only this timestamp.
+  if (JSON.stringify(entries) === JSON.stringify(existing)) {
+    console.log(`${name}: entries unchanged, leaving ${out} as it is`);
+    return;
+  }
+
   await mkdir('data/feeds', { recursive: true });
   // builtAt is when the job ran; each entry's date is when the item was
   // published. Debugging wants the first, the UI wants the second.
