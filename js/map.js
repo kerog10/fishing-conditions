@@ -34,6 +34,7 @@ export function initMap(elementId, onPick) {
 
   const previewMarker = L.marker([start.lat, start.lon], { opacity: 0.6 }).addTo(map);
   const saved = L.layerGroup().addTo(map);
+  const hotspots = L.layerGroup().addTo(map);
 
   const pick = (lat, lon) => {
     previewMarker.setLatLng([lat, lon]);
@@ -64,6 +65,34 @@ export function initMap(elementId, onPick) {
           fillOpacity: 1,
           weight: 3,
         }).bindTooltip(spot.name).addTo(saved);
+      }
+    },
+    // Hotspots are a different kind of thing from saved spots: a saved spot is
+    // a place you track, a hotspot is a place videos mentioned. They must not
+    // read as the same marker. Rows without a coordinate are skipped -- the
+    // Hotspots list still shows them, they just cannot be placed.
+    setHotspots(rows, onPick) {
+      hotspots.clearLayers();
+      for (const row of rows) {
+        if (!Number.isFinite(row.lat) || !Number.isFinite(row.lon)) continue;
+        const pin = L.circleMarker([row.lat, row.lon], {
+          radius: 9,
+          color: '#e8b83b',
+          fillColor: '#e8b83b',
+          fillOpacity: 0.85,
+          weight: 2,
+        });
+        pin.bindTooltip(
+          `${row.name} · ${row.count} video${row.count === 1 ? '' : 's'}`,
+          { className: 'hotspot-tip' },
+        );
+        pin.on('click', (e) => {
+          // Otherwise the map's own click handler fires too and drops a
+          // preview pin underneath the hotspot.
+          L.DomEvent.stopPropagation(e);
+          onPick(row.name);
+        });
+        pin.addTo(hotspots);
       }
     },
   };

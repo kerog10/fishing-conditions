@@ -30,6 +30,11 @@ function link(className, text, href) {
   return node;
 }
 
+// A pin tap scrolls to the row rather than opening a popup: the row already
+// carries the videos, the species and the regional line, and duplicating that
+// in a Leaflet popup would mean two places to maintain and two to get wrong.
+export const hotspotRowId = (name) => `hotspot-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
 export function renderHotspots(target, hotspots, now = new Date()) {
   target.replaceChildren();
 
@@ -42,6 +47,7 @@ export function renderHotspots(target, hotspots, now = new Date()) {
   const list = el('ul', 'hotspot-list');
   for (const spot of rows) {
     const item = el('li', 'hotspot-row');
+    item.id = hotspotRowId(spot.name);
 
     const head = el('div', 'hotspot-head');
     head.appendChild(el('span', 'hotspot-name', spot.name));

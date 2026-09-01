@@ -343,3 +343,10 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
   font-size: 12px;
   color: var(--muted);
 }
+
+/* The hotspot tooltip has to read against the OSM tiles, which are pale. */
+.leaflet-tooltip.hotspot-tip {
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--fair);
+}

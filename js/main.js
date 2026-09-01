@@ -20,7 +20,7 @@ import { renderFeedCard } from './ui-feed.js';
 import { loadVideos, pickVideos } from './videos.js';
 import { renderVideoList } from './ui-videos.js';
 import { buildHotspots } from './hotspots.js';
-import { renderHotspots } from './ui-hotspots.js';
+import { renderHotspots, hotspotRowId } from './ui-hotspots.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -57,6 +57,7 @@ const state = {
   openSlot: null,
   feed: null,
   videos: null,
+  hotspots: [],
 };
 
 const marineNote = (hasMarine) => (hasMarine
@@ -165,8 +166,19 @@ function paintFeed() {
   renderFeedCard(els.feed, currentEntry(state.feed), now);
   // Both feeds load independently, so this runs correctly whichever arrives
   // first -- buildHotspots treats a missing feed as no evidence.
-  renderHotspots(els.hotspots, buildHotspots(state.videos, state.feed, now), now);
+  state.hotspots = buildHotspots(state.videos, state.feed, now);
+  renderHotspots(els.hotspots, state.hotspots, now);
   renderVideoList(els.videos, pickVideos(state.videos), now);
+
+  // `map` is a const declared further down this file, so this is only safe
+  // because paintFeed is never called at module top level -- the earliest
+  // caller is paintTabs() below initMap.
+  map.setHotspots(state.hotspots, (name) => {
+    tabs.select('spots');
+    document.getElementById(hotspotRowId(name))?.scrollIntoView({
+      behavior: 'smooth', block: 'center',
+    });
+  });
 }
 
 function paintSpotCards() {
