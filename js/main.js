@@ -20,6 +20,7 @@ import { renderFeedCard } from './ui-feed.js';
 import { loadVideos, pickVideos } from './videos.js';
 import { renderVideoList } from './ui-videos.js';
 import { buildHotspots } from './hotspots.js';
+import { attachIntel } from './spot-intel.js';
 import { renderHotspots, hotspotRowId } from './ui-hotspots.js';
 
 const $ = (id) => document.getElementById(id);
@@ -182,15 +183,21 @@ function paintFeed() {
 }
 
 function paintSpotCards() {
+  // Refreshes state.hotspots, so the intel joined below is current.
   paintFeed();
   const now = new Date();
+  const intel = attachIntel(state.spots, state.hotspots);
   // paintTabs() can run before refreshSavedSpots() resolves, so a spot may not
   // be scored yet. Keep it in the list with a null-score summary rather than
   // hiding it (and tripping the "no spots saved" empty state on cold start).
   const cards = state.spots
     .map((s) => {
       const { hours = [] } = state.scored.get(s.id) ?? {};
-      return { spot: s, summary: summariseSpot(hours, findWindows(hours), tideExtremes(hours), now) };
+      return {
+        spot: s,
+        summary: summariseSpot(hours, findWindows(hours), tideExtremes(hours), now),
+        intel: intel.get(s.id) ?? null,
+      };
     })
     // Best first: the whole point of the tab is "which one right now".
     .sort((a, b) => (b.summary.score ?? -1) - (a.summary.score ?? -1));
