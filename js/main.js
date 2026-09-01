@@ -17,6 +17,11 @@ import { summariseSpot } from './spot-summary.js';
 import { renderSpotsTab } from './ui-spots-tab.js';
 import { loadFeed, currentEntry } from './feed.js';
 import { renderFeedCard } from './ui-feed.js';
+import { loadVideos, pickVideos } from './videos.js';
+import { renderVideoList } from './ui-videos.js';
+import { buildHotspots } from './hotspots.js';
+import { attachIntel } from './spot-intel.js';
+import { renderHotspots, hotspotRowId } from './ui-hotspots.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -35,6 +40,8 @@ const els = {
   results: $('spot-results'),
   spotCards: $('spot-cards'),
   feed: $('feed'),
+  videos: $('videos'),
+  hotspots: $('hotspots'),
   panels: { spots: $('panel-spots'), days: $('panel-days') },
   tabButtons: { spots: $('tab-spots'), days: $('tab-days') },
 };
@@ -50,6 +57,8 @@ const state = {
   openDay: null,
   openSlot: null,
   feed: null,
+  videos: null,
+  hotspots: [],
 };
 
 const marineNote = (hasMarine) => (hasMarine
@@ -154,19 +163,41 @@ for (const name of tabs.names) {
 }
 
 function paintFeed() {
-  renderFeedCard(els.feed, currentEntry(state.feed), new Date());
+  const now = new Date();
+  renderFeedCard(els.feed, currentEntry(state.feed), now);
+  // Both feeds load independently, so this runs correctly whichever arrives
+  // first -- buildHotspots treats a missing feed as no evidence.
+  state.hotspots = buildHotspots(state.videos, state.feed, now);
+  renderHotspots(els.hotspots, state.hotspots, now);
+  renderVideoList(els.videos, pickVideos(state.videos), now);
+
+  // `map` is a const declared further down this file, so this is only safe
+  // because paintFeed is never called at module top level -- the earliest
+  // caller is paintTabs() below initMap.
+  map.setHotspots(state.hotspots, (name) => {
+    tabs.select('spots');
+    document.getElementById(hotspotRowId(name))?.scrollIntoView({
+      behavior: 'smooth', block: 'center',
+    });
+  });
 }
 
 function paintSpotCards() {
+  // Refreshes state.hotspots, so the intel joined below is current.
   paintFeed();
   const now = new Date();
+  const intel = attachIntel(state.spots, state.hotspots);
   // paintTabs() can run before refreshSavedSpots() resolves, so a spot may not
   // be scored yet. Keep it in the list with a null-score summary rather than
   // hiding it (and tripping the "no spots saved" empty state on cold start).
   const cards = state.spots
     .map((s) => {
       const { hours = [] } = state.scored.get(s.id) ?? {};
-      return { spot: s, summary: summariseSpot(hours, findWindows(hours), tideExtremes(hours), now) };
+      return {
+        spot: s,
+        summary: summariseSpot(hours, findWindows(hours), tideExtremes(hours), now),
+        intel: intel.get(s.id) ?? null,
+      };
     })
     // Best first: the whole point of the tab is "which one right now".
     .sort((a, b) => (b.summary.score ?? -1) - (a.summary.score ?? -1));
@@ -461,6 +492,12 @@ if (state.spots.length) {
 // without it and the card appears whenever it arrives.
 loadFeed().then((feed) => {
   state.feed = feed;
+  paintFeed();
+});
+
+// Same reasoning: the video list is extra context, never a prerequisite.
+loadVideos().then((videos) => {
+  state.videos = videos;
   paintFeed();
 });
 

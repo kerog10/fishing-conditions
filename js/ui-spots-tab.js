@@ -25,7 +25,7 @@ export function renderSpotsTab(target, cards, { onOpen, onRemove, onClearAll }) 
     return;
   }
 
-  for (const { spot, summary } of cards) {
+  for (const { spot, summary, intel } of cards) {
     const card = el('article', `spot-card band-${scoreBand(summary.score ?? 0)}`);
 
     // The whole card opens the spot, so the remove control sits outside the
@@ -45,6 +45,14 @@ export function renderSpotsTab(target, cards, { onOpen, onRemove, onClearAll }) 
     open.appendChild(el('div', 'spot-line', summary.nextWindow
       ? `next ${timeRange(summary.nextWindow.start, summary.nextWindow.end)} · ${summary.nextWindow.score}`
       : 'no good window in the next 7 days'));
+
+    // Additive only: this never replaces the tide, wind or window lines, which
+    // are why the card exists. Omitted entirely when there is nothing to say.
+    if (intel) {
+      const bits = [`${intel.count} recent video${intel.count === 1 ? '' : 's'}`];
+      if (intel.species.length) bits.push(intel.species.join(', '));
+      open.appendChild(el('div', 'spot-line spot-intel', bits.join(' · ')));
+    }
 
     open.addEventListener('click', () => onOpen(spot.id));
     card.appendChild(open);

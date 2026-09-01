@@ -3,7 +3,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   EXCERPT_WORDS, MIN_EXCERPT_WORDS, MAX_ENTRIES, parseEntry, mergeEntries, newPosts,
+  meta, firstRound, consume, merge,
 } from '../tools/feeds/kingfisher.mjs';
+import { loadGazetteer } from '../tools/feeds/places.mjs';
+
+const GZ = loadGazetteer(JSON.parse(
+  readFileSync(new URL('../data/gazetteer.json', import.meta.url), 'utf8'),
+));
 
 const html = readFileSync(new URL('./fixtures/kingfisher-post.html', import.meta.url), 'utf8');
 
@@ -142,4 +148,134 @@ test('the window is capped so the committed file cannot grow without bound', () 
   }));
 
   assert.equal(mergeEntries([], many).length, MAX_ENTRIES);
+});
+
+test('meta names the source and its output file', () => {
+  assert.equal(meta.name, 'kingfisher');
+  assert.equal(meta.out, 'data/feeds/kingfisher.json');
+  assert.equal(meta.maxEntries, MAX_ENTRIES);
+});
+
+test('the first round is a single JSON request for the category list', () => {
+  const requests = firstRound([]);
+
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].type, 'json');
+  assert.match(requests[0].url, /categories=644/);
+});
+
+test('a failed list round yields no entries and no further requests', () => {
+  const results = [{ key: 'list', ok: false, status: 503, body: null }];
+
+  assert.deepEqual(consume(results, []), { entries: [], next: [] });
+});
+
+test('the list round requests only posts that are not already stored', () => {
+  const posts = [
+    { id: 2, link: 'https://example.com/b/', date_gmt: '2026-08-27T14:00:00', title: { rendered: 'B' } },
+    { id: 1, link: 'https://example.com/a/', date_gmt: '2026-08-20T14:00:00', title: { rendered: 'A' } },
+  ];
+  const results = [{ key: 'list', ok: true, status: 200, body: posts }];
+
+  const { entries, next } = consume(results, [{ id: 1 }]);
+
+  assert.deepEqual(entries, []);
+  assert.equal(next.length, 1);
+  assert.equal(next[0].url, 'https://example.com/b/');
+  assert.equal(next[0].type, 'text');
+  // The post travels on the request so the second round can parse it.
+  assert.equal(next[0].post.id, 2);
+});
+
+test('the post round parses bodies into entries and ends the loop', () => {
+  const post = {
+    id: 2, link: 'https://example.com/b/', date_gmt: '2026-08-27T14:00:00',
+    title: { rendered: 'B' },
+  };
+  const body = `<div class="entry-content"><p>${'word '.repeat(60)}</p></div>`;
+  const results = [{ key: 'post:2', ok: true, status: 200, body, post }];
+
+  const { entries, next } = consume(results, []);
+
+  assert.deepEqual(next, []);
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].id, 2);
+  assert.equal(entries[0].date, '2026-08-27T14:00:00Z');
+});
+
+test('a post that failed to fetch is skipped without losing its siblings', () => {
+  const good = {
+    id: 2, link: 'https://example.com/b/', date_gmt: '2026-08-27T14:00:00',
+    title: { rendered: 'B' },
+  };
+  const body = `<div class="entry-content"><p>${'word '.repeat(60)}</p></div>`;
+  const results = [
+    { key: 'post:1', ok: false, status: 404, body: null, post: { id: 1 } },
+    { key: 'post:2', ok: true, status: 200, body, post: good },
+  ];
+
+  const { entries } = consume(results, []);
+
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].id, 2);
+});
+
+test('merge delegates to mergeEntries and keeps the cap', () => {
+  const many = Array.from({ length: 12 }, (_, i) => ({
+    id: i, date: `2026-08-${String(i + 1).padStart(2, '0')}T00:00:00Z`,
+  }));
+
+  assert.equal(merge([], many).length, MAX_ENTRIES);
+});
+
+test('the real report fixture splits into regions with species', () => {
+  const entry = parseEntry(POST, html, GZ);
+
+  assert.ok(entry.regions, 'expected regions on the entry');
+  const keys = Object.keys(entry.regions);
+  assert.ok(keys.length >= 2, `only ${keys.length} regions found: ${keys}`);
+  for (const key of keys) {
+    assert.ok(Array.isArray(entry.regions[key].species), `${key} has no species array`);
+  }
+});
+
+test('the excerpt is untouched by region extraction', () => {
+  const withGz = parseEntry(POST, html, GZ);
+  const without = parseEntry(POST, html);
+
+  assert.equal(withGz.excerpt, without.excerpt);
+  assert.ok(withGz.excerpt.split(/\s+/).length <= EXCERPT_WORDS + 1);
+});
+
+test('parsing without a gazetteer stores no regions', () => {
+  assert.deepEqual(parseEntry(POST, html).regions, {});
+});
+
+test('a stored post lacking regions is re-fetched so it can be stamped', () => {
+  const posts = [
+    { id: 1, link: 'https://example.com/a/', date_gmt: '2026-08-20T14:00:00', title: { rendered: 'A' } },
+    { id: 2, link: 'https://example.com/b/', date_gmt: '2026-08-27T14:00:00', title: { rendered: 'B' } },
+  ];
+  const results = [{ key: 'list', ok: true, status: 200, body: posts }];
+  // Post 1 is stored but predates region extraction; post 2 is fully stamped.
+  const existing = [
+    { id: 1, excerpt: 'x' },
+    { id: 2, excerpt: 'x', regions: { south: { species: ['Shad'] } } },
+  ];
+
+  const { next } = consume(results, existing, { gazetteer: GZ });
+
+  assert.deepEqual(next.map((r) => r.post.id), [1]);
+});
+
+test('nothing is re-fetched once every stored post has regions', () => {
+  const posts = [
+    { id: 1, link: 'https://example.com/a/', date_gmt: '2026-08-20T14:00:00', title: { rendered: 'A' } },
+  ];
+  const results = [{ key: 'list', ok: true, status: 200, body: posts }];
+  const existing = [{ id: 1, excerpt: 'x', regions: {} }];
+
+  const { next } = consume(results, existing, { gazetteer: GZ });
+
+  assert.deepEqual(next, []);
 });

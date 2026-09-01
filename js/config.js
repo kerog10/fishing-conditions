@@ -12,6 +12,32 @@ export const CONFIG = {
     maxAgeDays: 21,
   },
 
+  videos: {
+    path: 'data/feeds/youtube.json',
+    max: 8,
+    // Four of the seven channels posted within four days of each other on the
+    // day this was designed. Without a per-channel cap one prolific poster
+    // takes the whole list.
+    perChannel: 2,
+  },
+
+  hotspots: {
+    // A hotspot is a claim about now. Older videos stay in the list below but
+    // stop contributing here.
+    windowDays: 56,
+    max: 6,
+    // A title says what the video is about; a description says what the
+    // channel is about.
+    titleWeight: 3,
+    bodyWeight: 1,
+    // Recency decays across the window but never to zero -- an eight-week-old
+    // mark still beats one with no evidence at all.
+    minRecencyWeight: 0.2,
+    // Roughly the spacing of the named KZN beaches, so a saved spot matches
+    // the beach it is on rather than its neighbour.
+    maxDistanceKm: 5,
+  },
+
   // Bite score: will fish feed? Weights sum to 100.
   biteWeights: {
     pressure: 30,
