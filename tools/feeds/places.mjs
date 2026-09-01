@@ -121,6 +121,27 @@ export function findRegion(gz, text) {
   return null;
 }
 
+// Headings and boilerplate openings that end a coast section. The reports
+// carry other sections after the coast ones -- Deep Sea and Estuary are about
+// different water entirely -- and close with a fixed promotional block.
+// Species found past either belong to neither this coast nor any coast.
+const SECTION_ENDS = [
+  'Deep Sea', 'Estuary', 'Fly Fishing', 'Bass', 'Freshwater', 'Angler News',
+  'Go to The Kingfisher', 'Please send any info', 'Previous', 'Podcast',
+];
+
+function endOfSection(clean, start, limit) {
+  let end = limit;
+  for (const term of SECTION_ENDS) {
+    const at = clean.slice(start + 1, limit).search(
+      new RegExp(String.raw`\b${escapeRe(term)}\b`, 'i'),
+    );
+    // +1 offsets the slice above, which skips the section's own heading.
+    if (at >= 0) end = Math.min(end, start + 1 + at);
+  }
+  return end;
+}
+
 // The Kingfisher reports are written per coast section. Measured across five
 // live reports, the headings are present in essentially every one and the
 // body splits cleanly on them.
@@ -141,8 +162,15 @@ export function splitRegions(gz, body) {
   const out = {};
   for (let i = 0; i < marks.length; i += 1) {
     const start = marks[i].at;
-    const end = i + 1 < marks.length ? marks[i + 1].at : clean.length;
-    out[marks[i].key] = { species: findSpecies(gz, clean.slice(start, end)) };
+    const nextRegion = i + 1 < marks.length ? marks[i + 1].at : clean.length;
+    // The last coast section would otherwise run to the end of the document
+    // and swallow everything after it. Measured on a real report: North Coast
+    // 80 words, Central 73, South 1272 -- the difference was the Deep Sea
+    // section plus the podcast and Facebook boilerplate, which handed the
+    // South Coast offshore species (Tuna, Snoek, Couta) it never mentioned.
+    out[marks[i].key] = {
+      species: findSpecies(gz, clean.slice(start, endOfSection(clean, start, nextRegion))),
+    };
   }
   return out;
 }

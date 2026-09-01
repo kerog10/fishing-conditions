@@ -1,7 +1,7 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-09-01T06:13:03.171Z",
+  "builtAt": "2026-09-01T06:20:28.475Z",
   "entries": [
     {
       "id": 30568,
@@ -128,7 +128,6 @@
         },
         "south": {
           "species": [
-            "Barbel",
             "Couta",
             "Garrick",
             "Kingfish",

@@ -191,3 +191,29 @@ test('unmatched capitalised phrases are reported for gazetteer growth', () => {
   assert.equal(phrases.includes('Umkomaas'), false, 'a known mark is not unmatched');
   assert.ok(phrases.includes('Nowhereville'), `expected Nowhereville in ${JSON.stringify(phrases)}`);
 });
+
+test('a region section stops at the next report section, not the end of the body', () => {
+  const body = 'South Coast Garrick and shad along the beaches. '
+    + 'Deep Sea Tuna and couta well offshore. '
+    + 'Go to The Kingfisher Daiwa and Like us on Facebook.';
+
+  const regions = splitRegions(GZ, body);
+
+  assert.deepEqual(regions.south.species, ['Garrick', 'Shad']);
+  assert.equal(regions.south.species.includes('Tuna'), false, 'deep sea bled into south');
+});
+
+test('a region section stops at the trailing boilerplate', () => {
+  const body = 'North Coast Shad about. '
+    + 'Please send any info about fishing to our tuna and snoek desk.';
+
+  const regions = splitRegions(GZ, body);
+
+  assert.deepEqual(regions.north.species, ['Shad']);
+});
+
+test('a section with no terminator still runs to the end', () => {
+  const regions = splitRegions(GZ, 'South Coast Garrick have shown up well this week.');
+
+  assert.deepEqual(regions.south.species, ['Garrick']);
+});

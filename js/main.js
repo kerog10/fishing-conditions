@@ -19,6 +19,8 @@ import { loadFeed, currentEntry } from './feed.js';
 import { renderFeedCard } from './ui-feed.js';
 import { loadVideos, pickVideos } from './videos.js';
 import { renderVideoList } from './ui-videos.js';
+import { buildHotspots } from './hotspots.js';
+import { renderHotspots } from './ui-hotspots.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -38,6 +40,7 @@ const els = {
   spotCards: $('spot-cards'),
   feed: $('feed'),
   videos: $('videos'),
+  hotspots: $('hotspots'),
   panels: { spots: $('panel-spots'), days: $('panel-days') },
   tabButtons: { spots: $('tab-spots'), days: $('tab-days') },
 };
@@ -160,6 +163,9 @@ for (const name of tabs.names) {
 function paintFeed() {
   const now = new Date();
   renderFeedCard(els.feed, currentEntry(state.feed), now);
+  // Both feeds load independently, so this runs correctly whichever arrives
+  // first -- buildHotspots treats a missing feed as no evidence.
+  renderHotspots(els.hotspots, buildHotspots(state.videos, state.feed, now), now);
   renderVideoList(els.videos, pickVideos(state.videos), now);
 }
 
