@@ -10,6 +10,8 @@
 // per channel, every run -- a channel that gains or loses a feed needs no
 // code change.
 
+import { findMarks, findSpecies } from './places.mjs';
+
 // The channel id is the stable identifier. Handles are not stored: resolving
 // one costs a fetch that would be repeated daily for no benefit.
 //
@@ -73,7 +75,7 @@ export function hasEntries(xml) {
   return /<yt:videoId>/.test(xml);
 }
 
-export function parseFeed(xml, channel) {
+export function parseFeed(xml, channel, gz = null) {
   const blocks = xml.split('<entry>').slice(1);
   const entries = [];
 
@@ -103,6 +105,8 @@ export function parseFeed(xml, channel) {
       date: new Date(time).toISOString(),
       description: description || null,
       via: 'rss',
+      marks: findMarks(gz, { title, body: description }),
+      species: findSpecies(gz, `${title} ${description}`),
     });
   }
 
@@ -176,7 +180,8 @@ export function parseChannelPage(html, channel) {
   return pending;
 }
 
-export function consume(results, existing) {
+export function consume(results, existing, ctx = {}) {
+  const gz = ctx.gazetteer ?? null;
   const stored = new Set(existing.map((e) => e.id));
 
   // Round one: the Atom feeds. A non-200, or a 200 with no entries at all
@@ -188,7 +193,7 @@ export function consume(results, existing) {
     const next = [];
     for (const result of feeds) {
       if (result.ok && hasEntries(result.body)) {
-        entries.push(...parseFeed(result.body, result.channel));
+        entries.push(...parseFeed(result.body, result.channel, gz));
       } else {
         next.push({
           key: `page:${result.channel.id}`,
@@ -235,6 +240,8 @@ export function consume(results, existing) {
         // empty without JavaScript. Consumers must treat null as normal.
         description: null,
         via: 'scrape',
+        marks: findMarks(gz, { title: result.video.title, body: '' }),
+        species: findSpecies(gz, result.video.title),
       });
     }
     return { entries, next: [] };
@@ -256,12 +263,31 @@ export function parseUploadDate(html) {
   return new Date(time).toISOString();
 }
 
-export function merge(existing, incoming) {
+// Re-derived on every merge, not just at parse time. An entry that survives
+// in the window is never re-parsed from its feed, so without this a mark
+// added to the gazetteer would only ever apply to videos published after the
+// edit -- and entries stored before matching existed would stay blank
+// forever. Matching is pure string work over text already in hand, so doing
+// it for the whole window every run costs nothing and keeps the file
+// consistent with the gazetteer as it stands today.
+function stamp(entry, gz) {
+  if (!gz) return entry;
+  return {
+    ...entry,
+    marks: findMarks(gz, { title: entry.title, body: entry.description ?? '' }),
+    species: findSpecies(gz, `${entry.title} ${entry.description ?? ''}`),
+  };
+}
+
+export function merge(existing, incoming, ctx = {}) {
+  const gz = ctx.gazetteer ?? null;
+
   // Incoming wins on a clash: it is the fresher parse of the same video.
   const byId = new Map(existing.map((e) => [e.id, e]));
   for (const entry of incoming) byId.set(entry.id, entry);
 
   return [...byId.values()]
     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
-    .slice(0, MAX_ENTRIES);
+    .slice(0, MAX_ENTRIES)
+    .map((entry) => stamp(entry, gz));
 }

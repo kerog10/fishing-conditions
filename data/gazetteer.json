@@ -34,6 +34,7 @@
     { "name": "Addington", "region": "central", "aliases": [] },
     { "name": "The Bluff", "region": "central", "aliases": ["Bluff"] },
     { "name": "Cave Rock", "region": "central", "aliases": [] },
+    { "name": "Chain Rocks", "region": "central", "aliases": [] },
     { "name": "Brighton Beach", "region": "central", "aliases": [] },
     { "name": "Anstey's Beach", "region": "central", "aliases": ["Ansteys", "Anstey"] },
     { "name": "Treasure Beach", "region": "central", "aliases": [] },

@@ -10,6 +10,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import * as kingfisher from './feeds/kingfisher.mjs';
 import * as youtube from './feeds/youtube.mjs';
+import { loadGazetteer, unmatchedPhrases } from './feeds/places.mjs';
 
 const SOURCES = [kingfisher, youtube];
 
@@ -50,16 +51,56 @@ async function readExisting(out) {
   }
 }
 
-async function runSource(source) {
+// The gazetteer is data the user edits, so it lives under data/ and is read
+// here rather than imported by the pure source modules. A broken gazetteer
+// costs you place matching, never your feeds.
+async function readGazetteer() {
+  try {
+    const gz = loadGazetteer(JSON.parse(await readFile('data/gazetteer.json', 'utf8')));
+    if (!gz) {
+      console.error('gazetteer: unusable, continuing without place matching');
+      return null;
+    }
+    console.log(`gazetteer: ${gz.marks.length} marks, ${gz.species.length} species`);
+    return gz;
+  } catch (err) {
+    console.error(`gazetteer: not read (${err.message}), continuing without place matching`);
+    return null;
+  }
+}
+
+// Capitalised phrases the gazetteer did not recognise, so data/gazetteer.json
+// can grow from evidence. Logged rather than committed: a file that changes
+// every day would produce a commit every day for no benefit.
+const UNMATCHED_REPORTED = 25;
+
+async function reportUnmatched(gazetteer) {
+  const text = [];
+  for (const source of SOURCES) {
+    const entries = await readExisting(source.meta.out);
+    for (const entry of entries) {
+      text.push(entry.title ?? '', entry.excerpt ?? '', entry.description ?? '');
+    }
+  }
+
+  const found = unmatchedPhrases(gazetteer, text.join(' '));
+  if (!found.length) return;
+  console.log(`unmatched phrases (top ${UNMATCHED_REPORTED}, add real marks to data/gazetteer.json):`);
+  for (const { phrase, count } of found.slice(0, UNMATCHED_REPORTED)) {
+    console.log(`  ${String(count).padStart(3)}  ${phrase}`);
+  }
+}
+
+async function runSource(source, ctx) {
   const { name, url, out } = source.meta;
   const existing = await readExisting(out);
 
   const collected = [];
-  let requests = source.firstRound(existing);
+  let requests = source.firstRound(existing, ctx);
   for (let round = 0; round < MAX_ROUNDS && requests.length; round += 1) {
     console.log(`${name}: round ${round + 1}, ${requests.length} request(s)`);
     const results = await fetchAll(requests);
-    const { entries, next } = source.consume(results, existing);
+    const { entries, next } = source.consume(results, existing, ctx);
     collected.push(...entries);
     requests = next ?? [];
   }
@@ -71,7 +112,7 @@ async function runSource(source) {
     return;
   }
 
-  const entries = source.merge(existing, collected);
+  const entries = source.merge(existing, collected, ctx);
   if (!entries.length) {
     console.error(`${name}: nothing to write`);
     return;
@@ -91,14 +132,19 @@ async function runSource(source) {
 }
 
 async function main() {
+  const gazetteer = await readGazetteer();
+  const ctx = { gazetteer };
+
   for (const source of SOURCES) {
     try {
-      await runSource(source);
+      await runSource(source, ctx);
     } catch (err) {
       // One broken source must not stop the others.
       console.error(`${source.meta.name}: failed: ${err.message}`);
     }
   }
+
+  if (gazetteer) await reportUnmatched(gazetteer);
 }
 
 main().catch((err) => {

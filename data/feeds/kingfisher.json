@@ -1,42 +1,179 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-08-28T14:00:41.764Z",
+  "builtAt": "2026-09-01T06:13:03.171Z",
   "entries": [
     {
       "id": 30568,
       "date": "2026-08-27T14:21:53Z",
       "title": "KZN Fishing Report (27 August 2026)",
       "link": "https://www.kingfisher.co.za/kzn-fishing-report-27-august-2026/",
-      "excerpt": "The Final Countdown: Shad Championship Race Heats Up. Rock and Surf: There are some weeks when Mother Nature reminds us that she calls the shots, and this past week was certainly one of them. Massive winds kept angler contemplating whether to hit the rocks and beaches or not along the…"
+      "excerpt": "The Final Countdown: Shad Championship Race Heats Up. Rock and Surf: There are some weeks when Mother Nature reminds us that she calls the shots, and this past week was certainly one of them. Massive winds kept angler contemplating whether to hit the rocks and beaches or not along the…",
+      "regions": {
+        "north": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Rockcod",
+            "Shad"
+          ]
+        },
+        "central": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Shad"
+          ]
+        },
+        "south": {
+          "species": [
+            "Garrick",
+            "Kingfish",
+            "Kob",
+            "Sardine",
+            "Shad",
+            "Snoek",
+            "Tuna"
+          ]
+        }
+      }
     },
     {
       "id": 30566,
       "date": "2026-08-20T14:18:56Z",
       "title": "KZN Fishing Report (20 August 2026)",
       "link": "https://www.kingfisher.co.za/kzn-fishing-report-20-august-2026/",
-      "excerpt": "Spring Fever Brings Shad Fever Saltwater If there’s one fish stealing the show right now, it’s shad! Their arrival has injected a serious dose of excitement into the tail end of winter fishing, and with good reason. They’re accessible, aggressive and more than willing to smash a variety of baits…"
+      "excerpt": "Spring Fever Brings Shad Fever Saltwater If there’s one fish stealing the show right now, it’s shad! Their arrival has injected a serious dose of excitement into the tail end of winter fishing, and with good reason. They’re accessible, aggressive and more than willing to smash a variety of baits…",
+      "regions": {
+        "north": {
+          "species": [
+            "Couta",
+            "Garrick",
+            "Snoek"
+          ]
+        },
+        "central": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Sardine",
+            "Snoek"
+          ]
+        },
+        "south": {
+          "species": [
+            "Garrick",
+            "Sardine",
+            "Shad",
+            "Tuna"
+          ]
+        }
+      }
     },
     {
       "id": 30463,
       "date": "2026-08-13T07:28:27Z",
       "title": "KZN Fishing Report (13 August 2026)",
       "link": "https://www.kingfisher.co.za/kzn-fishing-report-13-august-2026/",
-      "excerpt": "Shad Fever Grips the KZN Coast Despite Cold Conditions The recent cold front that swept up the East Coast certainly made conditions a little more challenging, with rough seas, cooler water temperatures and strong winds keeping many anglers off the water for parts of the week. Despite these less-than-ideal conditions,…"
+      "excerpt": "Shad Fever Grips the KZN Coast Despite Cold Conditions The recent cold front that swept up the East Coast certainly made conditions a little more challenging, with rough seas, cooler water temperatures and strong winds keeping many anglers off the water for parts of the week. Despite these less-than-ideal conditions,…",
+      "regions": {
+        "north": {
+          "species": [
+            "Couta",
+            "Garrick",
+            "Snoek"
+          ]
+        },
+        "central": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Sardine",
+            "Snoek"
+          ]
+        },
+        "south": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Sardine",
+            "Shad",
+            "Snoek",
+            "Tuna"
+          ]
+        }
+      }
     },
     {
       "id": 30307,
       "date": "2026-08-06T14:27:15Z",
       "title": "KZN Fishing Report (06 August 2026)",
       "link": "https://www.kingfisher.co.za/kzn-fishing-report-06-august-2026/",
-      "excerpt": "The Ocean Took a Breather… Now It’s Time to Get Ready Get ready for the biggest Shad fishing event of 2026! Join the Foton and KingFisher Shad Fishing Competition from 14 to 31 August for your chance to compete for an incredible R85,000 prize pool , including R60,000 for first…"
+      "excerpt": "The Ocean Took a Breather… Now It’s Time to Get Ready Get ready for the biggest Shad fishing event of 2026! Join the Foton and KingFisher Shad Fishing Competition from 14 to 31 August for your chance to compete for an incredible R85,000 prize pool , including R60,000 for first…",
+      "regions": {
+        "north": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Rockcod",
+            "Shad"
+          ]
+        },
+        "central": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Shad"
+          ]
+        },
+        "south": {
+          "species": [
+            "Barbel",
+            "Couta",
+            "Garrick",
+            "Kingfish",
+            "Kob",
+            "Sardine",
+            "Shad",
+            "Snoek",
+            "Tuna"
+          ]
+        }
+      }
     },
     {
       "id": 30253,
       "date": "2026-07-30T16:32:10Z",
       "title": "KZN Fishing Report (30 July 2026)",
       "link": "https://www.kingfisher.co.za/kzn-fishing-report-30-july-2026/",
-      "excerpt": "A Frosty Twist Fuels Fresh Fishing Opportunities Shad Clinic this Saturday morning at Blue Lagoon (08:30)…Don’t miss out on all the latest Shad tips and techniques as well bonus prizes for the biggest Shad fishing event of 2026! Join the Foton and KingFisher Shad Fishing Competition from 14 to 31…"
+      "excerpt": "A Frosty Twist Fuels Fresh Fishing Opportunities Shad Clinic this Saturday morning at Blue Lagoon (08:30)…Don’t miss out on all the latest Shad tips and techniques as well bonus prizes for the biggest Shad fishing event of 2026! Join the Foton and KingFisher Shad Fishing Competition from 14 to 31…",
+      "regions": {
+        "north": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Shad"
+          ]
+        },
+        "central": {
+          "species": [
+            "Grunter",
+            "Shad"
+          ]
+        },
+        "south": {
+          "species": [
+            "Garrick",
+            "Kingfish",
+            "Kob",
+            "Rockcod",
+            "Sardine",
+            "Shad",
+            "Snoek",
+            "Tuna"
+          ]
+        }
+      }
     }
   ]
 }

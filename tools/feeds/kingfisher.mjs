@@ -6,6 +6,8 @@
 // body outside the fields REST renders -- so the text has to come from the
 // post page HTML.
 
+import { splitRegions } from './places.mjs';
+
 // The reports are Kingfisher's copyright. The stored excerpt is a pointer to
 // their page, never a substitute for it.
 export const EXCERPT_WORDS = 50;
@@ -84,7 +86,7 @@ function longEnough(source) {
   return wordsOf(source).length >= MIN_EXCERPT_WORDS;
 }
 
-export function parseEntry(post, html) {
+export function parseEntry(post, html, gz = null) {
   const body = bodyText(html);
   const source = longEnough(body) ? body : metaText(html);
   const excerpt = longEnough(source) ? excerptOf(source) : '';
@@ -105,6 +107,9 @@ export function parseEntry(post, html) {
     title: decode(post.title.rendered),
     link: post.link,
     excerpt,
+    // Facts extracted from the body, not more of it. The 50-word excerpt
+    // above remains the only Kingfisher prose this file ever stores.
+    regions: splitRegions(gz, body),
   };
 }
 
@@ -146,13 +151,24 @@ export function firstRound() {
   return [{ key: 'list', url: LIST, type: 'json' }];
 }
 
-export function consume(results, existing) {
+export function consume(results, existing, ctx = {}) {
+  const gz = ctx.gazetteer ?? null;
   const list = results.find((r) => r.key === 'list');
 
   // Round one: the REST category list decides which post pages to fetch.
   if (list) {
     if (!list.ok || !Array.isArray(list.body)) return { entries: [], next: [] };
-    const next = newPosts(list.body, existing).map((post) => ({
+    // A post already stored but without regions predates place matching, or
+    // was stored while the gazetteer was unreadable. The body it needs lives
+    // only on the page -- the stored excerpt is 50 words by copyright rule --
+    // so it has to be fetched again. One-off per post, then stable.
+    const unstamped = new Set(
+      existing.filter((e) => !e.regions).map((e) => e.id),
+    );
+    const wanted = gz
+      ? list.body.filter((p) => !existing.some((e) => e.id === p.id) || unstamped.has(p.id))
+      : newPosts(list.body, existing);
+    const next = wanted.map((post) => ({
       key: `post:${post.id}`,
       url: post.link,
       type: 'text',
@@ -166,7 +182,7 @@ export function consume(results, existing) {
   const entries = [];
   for (const result of results) {
     if (!result.ok) continue;
-    const entry = parseEntry(result.post, result.body);
+    const entry = parseEntry(result.post, result.body, gz);
     if (entry) entries.push(entry);
   }
   return { entries, next: [] };

@@ -7,7 +7,14 @@ import {
   parseChannelPage,
 } from '../tools/feeds/youtube.mjs';
 
+import { loadGazetteer } from '../tools/feeds/places.mjs';
+
 const fixture = (name) => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8');
+
+const GZ = loadGazetteer(JSON.parse(
+  readFileSync(new URL('../data/gazetteer.json', import.meta.url), 'utf8'),
+));
+const CTX = { gazetteer: GZ };
 
 const KENTS = { name: 'Kents Fishing', id: 'UC1QUL3Z5Ho7_Y0M562eqb8Q' };
 
@@ -288,6 +295,8 @@ test('the watch round produces dated scrape entries', () => {
     date: '2026-08-24T04:43:42.000Z',
     description: null,
     via: 'scrape',
+    marks: [],
+    species: [],
   });
 });
 
@@ -334,4 +343,113 @@ test('merge keeps stored entries that this run did not see', () => {
   const incoming = [{ id: 'b', date: '2026-08-02T00:00:00Z' }];
 
   assert.deepEqual(merge(existing, incoming).map((e) => e.id), ['b', 'a']);
+});
+
+test('rss entries are stamped with marks and species', () => {
+  const xml = `<feed><entry>
+    <yt:videoId>abcdefghijk</yt:videoId>
+    <title>Massive Shad at Umkomaas Beach</title>
+    <published>2026-08-09T20:51:44+00:00</published>
+    <media:description>A great day out. #Durban #KZNFishing</media:description>
+  </entry></feed>`;
+
+  const [entry] = parseFeed(xml, KENTS, GZ);
+
+  assert.deepEqual(entry.marks, [{ name: 'Umkomaas', region: 'south', where: 'title' }]);
+  assert.deepEqual(entry.species, ['Shad']);
+});
+
+test('a hashtag-only place does not become a mark on a stored entry', () => {
+  const xml = `<feed><entry>
+    <yt:videoId>abcdefghijk</yt:videoId>
+    <title>A good session</title>
+    <published>2026-08-09T20:51:44+00:00</published>
+    <media:description>Great day. #Durban #Umkomaas #Fishing</media:description>
+  </entry></feed>`;
+
+  const [entry] = parseFeed(xml, KENTS, GZ);
+
+  assert.deepEqual(entry.marks, []);
+});
+
+test('entries parse with no gazetteer and store empty marks', () => {
+  const xml = `<feed><entry>
+    <yt:videoId>abcdefghijk</yt:videoId>
+    <title>Shad at Umkomaas</title>
+    <published>2026-08-09T20:51:44+00:00</published>
+  </entry></feed>`;
+
+  const [entry] = parseFeed(xml, KENTS, null);
+
+  assert.deepEqual(entry.marks, []);
+  assert.deepEqual(entry.species, []);
+});
+
+test('scraped entries are stamped from the title alone', () => {
+  const video = {
+    id: 'abcdefghijk', channel: "Pa's Xtreme Fishing", channelUrl: channelUrl(PAS.id),
+    title: 'Monster Garrick at Winklespruit', link: watchUrl('abcdefghijk'),
+  };
+  const results = [{
+    key: 'watch:abcdefghijk', ok: true, status: 200,
+    body: '{"uploadDate":"2026-08-23T21:43:42-07:00"}', video,
+  }];
+
+  const { entries } = consume(results, [], CTX);
+
+  assert.deepEqual(entries[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title' }]);
+  assert.deepEqual(entries[0].species, ['Garrick']);
+});
+
+test('the real feed fixture yields at least one mark', () => {
+  const entries = parseFeed(fixture('youtube-feed.xml'), KENTS, GZ);
+  const withMarks = entries.filter((e) => e.marks.length);
+
+  assert.ok(withMarks.length >= 1, 'expected at least one mark in the real feed');
+});
+
+test('merge re-stamps carried-over entries so gazetteer edits take effect', () => {
+  // An entry stored before the gazetteer existed, or before it gained a mark.
+  const stale = {
+    id: 'aaaaaaaaaaa',
+    channel: 'Kents Fishing',
+    channelUrl: channelUrl(KENTS.id),
+    title: 'Monster Garrick at Winklespruit',
+    link: watchUrl('aaaaaaaaaaa'),
+    date: '2026-08-20T00:00:00Z',
+    description: null,
+    via: 'rss',
+  };
+
+  const merged = merge([stale], [], CTX);
+
+  assert.equal(merged.length, 1);
+  assert.deepEqual(merged[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title' }]);
+  assert.deepEqual(merged[0].species, ['Garrick']);
+});
+
+test('merge re-stamps from the description too', () => {
+  const stale = {
+    id: 'aaaaaaaaaaa', channel: 'C', channelUrl: channelUrl(KENTS.id),
+    title: 'A good day', link: watchUrl('aaaaaaaaaaa'),
+    date: '2026-08-20T00:00:00Z', description: 'We fished Scottburgh today', via: 'rss',
+  };
+
+  const merged = merge([stale], [], CTX);
+
+  assert.deepEqual(merged[0].marks, [{ name: 'Scottburgh', region: 'south', where: 'body' }]);
+});
+
+test('merge without a gazetteer leaves entries untouched', () => {
+  const stored = {
+    id: 'aaaaaaaaaaa', channel: 'C', channelUrl: channelUrl(KENTS.id),
+    title: 'Shad at Umkomaas', link: watchUrl('aaaaaaaaaaa'),
+    date: '2026-08-20T00:00:00Z', description: null, via: 'rss',
+    marks: [{ name: 'Umkomaas', region: 'south', where: 'title' }], species: ['Shad'],
+  };
+
+  const merged = merge([stored], []);
+
+  // No gazetteer means no opinion: whatever was stored survives.
+  assert.deepEqual(merged[0].marks, [{ name: 'Umkomaas', region: 'south', where: 'title' }]);
 });
