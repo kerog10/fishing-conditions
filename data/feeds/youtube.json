@@ -1,7 +1,7 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-01T06:13:47.953Z",
+  "builtAt": "2026-09-01T08:06:24.556Z",
   "entries": [
     {
       "id": "VR5x0RCFEjk",
@@ -40,7 +40,9 @@
         {
           "name": "Winklespruit",
           "region": "south",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": [
@@ -61,7 +63,9 @@
         {
           "name": "South Pier",
           "region": "central",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": []
@@ -79,12 +83,16 @@
         {
           "name": "Amanzimtoti",
           "region": "south",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         },
         {
           "name": "Warner Beach",
           "region": "south",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": []
@@ -102,12 +110,16 @@
         {
           "name": "Amanzimtoti",
           "region": "south",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         },
         {
           "name": "Warner Beach",
           "region": "south",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": [
@@ -128,7 +140,9 @@
         {
           "name": "Umkomaas",
           "region": "south",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": [
@@ -198,7 +212,9 @@
         {
           "name": "Umkomaas",
           "region": "south",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": [
@@ -248,7 +264,9 @@
         {
           "name": "Amanzimtoti",
           "region": "south",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": []
@@ -266,12 +284,16 @@
         {
           "name": "Chain Rocks",
           "region": "central",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         },
         {
           "name": "Amanzimtoti",
           "region": "south",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": []
@@ -339,12 +361,16 @@
         {
           "name": "Chain Rocks",
           "region": "central",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         },
         {
           "name": "Amanzimtoti",
           "region": "south",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": [
@@ -498,12 +524,16 @@
         {
           "name": "Amanzimtoti",
           "region": "south",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         },
         {
           "name": "Warner Beach",
           "region": "south",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": []
@@ -547,7 +577,9 @@
         {
           "name": "Isipingo",
           "region": "central",
-          "where": "body"
+          "where": "body",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": []
@@ -565,7 +597,9 @@
         {
           "name": "Isipingo",
           "region": "central",
-          "where": "title"
+          "where": "title",
+          "lat": null,
+          "lon": null
         }
       ],
       "species": [

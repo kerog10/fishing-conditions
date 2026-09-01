@@ -10,7 +10,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import * as kingfisher from './feeds/kingfisher.mjs';
 import * as youtube from './feeds/youtube.mjs';
-import { loadGazetteer, unmatchedPhrases } from './feeds/places.mjs';
+import { loadGazetteer, unmatchedPhrases, marksWithoutCoords } from './feeds/places.mjs';
 
 const SOURCES = [kingfisher, youtube];
 
@@ -91,6 +91,17 @@ async function reportUnmatched(gazetteer) {
   }
 }
 
+// Only the YouTube feed carries marks; the Kingfisher entries carry regions.
+async function reportMissingCoords(gazetteer) {
+  const entries = await readExisting(youtube.meta.out);
+  const missing = marksWithoutCoords(gazetteer, entries);
+  if (!missing.length) return;
+  console.log('marks with evidence but no coordinate (add lat/lon in data/gazetteer.json):');
+  for (const { name, count } of missing) {
+    console.log(`  ${String(count).padStart(3)}  ${name}`);
+  }
+}
+
 async function runSource(source, ctx) {
   const { name, url, out } = source.meta;
   const existing = await readExisting(out);
@@ -144,7 +155,10 @@ async function main() {
     }
   }
 
-  if (gazetteer) await reportUnmatched(gazetteer);
+  if (gazetteer) {
+    await reportUnmatched(gazetteer);
+    await reportMissingCoords(gazetteer);
+  }
 }
 
 main().catch((err) => {

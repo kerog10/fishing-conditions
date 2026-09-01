@@ -355,7 +355,7 @@ test('rss entries are stamped with marks and species', () => {
 
   const [entry] = parseFeed(xml, KENTS, GZ);
 
-  assert.deepEqual(entry.marks, [{ name: 'Umkomaas', region: 'south', where: 'title' }]);
+  assert.deepEqual(entry.marks, [{ name: 'Umkomaas', region: 'south', where: 'title', lat: null, lon: null }]);
   assert.deepEqual(entry.species, ['Shad']);
 });
 
@@ -397,7 +397,7 @@ test('scraped entries are stamped from the title alone', () => {
 
   const { entries } = consume(results, [], CTX);
 
-  assert.deepEqual(entries[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title' }]);
+  assert.deepEqual(entries[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title', lat: null, lon: null }]);
   assert.deepEqual(entries[0].species, ['Garrick']);
 });
 
@@ -424,7 +424,7 @@ test('merge re-stamps carried-over entries so gazetteer edits take effect', () =
   const merged = merge([stale], [], CTX);
 
   assert.equal(merged.length, 1);
-  assert.deepEqual(merged[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title' }]);
+  assert.deepEqual(merged[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title', lat: null, lon: null }]);
   assert.deepEqual(merged[0].species, ['Garrick']);
 });
 
@@ -437,7 +437,7 @@ test('merge re-stamps from the description too', () => {
 
   const merged = merge([stale], [], CTX);
 
-  assert.deepEqual(merged[0].marks, [{ name: 'Scottburgh', region: 'south', where: 'body' }]);
+  assert.deepEqual(merged[0].marks, [{ name: 'Scottburgh', region: 'south', where: 'body', lat: null, lon: null }]);
 });
 
 test('merge without a gazetteer leaves entries untouched', () => {

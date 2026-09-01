@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
   loadGazetteer, cleanText, findMarks, findSpecies, findRegion,
-  splitRegions, unmatchedPhrases,
+  splitRegions, unmatchedPhrases, KZN_BOX, marksWithoutCoords,
 } from '../tools/feeds/places.mjs';
 
 const raw = JSON.parse(readFileSync(new URL('../data/gazetteer.json', import.meta.url), 'utf8'));
@@ -216,4 +216,107 @@ test('a section with no terminator still runs to the end', () => {
   const regions = splitRegions(GZ, 'South Coast Garrick have shown up well this week.');
 
   assert.deepEqual(regions.south.species, ['Garrick']);
+});
+
+const gzWith = (marks) => loadGazetteer({
+  regions: { north: 'North Coast', central: 'Central Coast', south: 'South Coast' },
+  regionTerms: ['Durban'],
+  marks,
+  species: [{ name: 'Shad', aliases: [] }],
+});
+
+test('the KZN box covers the coastal strip and nothing else', () => {
+  assert.ok(KZN_BOX.minLat < KZN_BOX.maxLat);
+  assert.ok(KZN_BOX.minLon < KZN_BOX.maxLon);
+  // Durban, roughly -29.86, 31.02, must sit inside it.
+  assert.ok(-29.86 > KZN_BOX.minLat && -29.86 < KZN_BOX.maxLat);
+  assert.ok(31.02 > KZN_BOX.minLon && 31.02 < KZN_BOX.maxLon);
+});
+
+test('a valid coordinate is kept', () => {
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [], lat: -30.2064, lon: 30.7961 }]);
+
+  assert.equal(gz.marks[0].lat, -30.2064);
+  assert.equal(gz.marks[0].lon, 30.7961);
+});
+
+test('a mark with no coordinate loads with nulls', () => {
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [] }]);
+
+  assert.equal(gz.marks[0].lat, null);
+  assert.equal(gz.marks[0].lon, null);
+});
+
+test('a coordinate outside the KZN box is rejected as absent', () => {
+  // Cape Town: a real place, entirely the wrong one.
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [], lat: -33.92, lon: 18.42 }]);
+
+  assert.equal(gz.marks[0].lat, null);
+  assert.equal(gz.marks[0].lon, null);
+});
+
+test('a transposed lat/lon pair is rejected', () => {
+  // The classic slip: 30.79, -30.20 instead of -30.20, 30.79.
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [], lat: 30.7961, lon: -30.2064 }]);
+
+  assert.equal(gz.marks[0].lat, null);
+});
+
+test('a half-supplied coordinate is rejected outright', () => {
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [], lat: -30.2064, lon: null }]);
+
+  assert.equal(gz.marks[0].lat, null, 'a lone latitude cannot place a pin');
+  assert.equal(gz.marks[0].lon, null);
+});
+
+test('a non-numeric coordinate is rejected', () => {
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [], lat: 'south a bit', lon: 30.79 }]);
+
+  assert.equal(gz.marks[0].lat, null);
+});
+
+test('coordinates are carried onto the stamped mark', () => {
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [], lat: -30.2064, lon: 30.7961 }]);
+
+  const [mark] = findMarks(gz, { title: 'Shad at Umkomaas', body: '' });
+
+  assert.equal(mark.lat, -30.2064);
+  assert.equal(mark.lon, 30.7961);
+  assert.equal(mark.name, 'Umkomaas');
+  assert.equal(mark.where, 'title');
+});
+
+test('a stamped mark with no coordinate carries nulls, not undefined', () => {
+  const gz = gzWith([{ name: 'Umkomaas', region: 'south', aliases: [] }]);
+
+  const [mark] = findMarks(gz, { title: 'Shad at Umkomaas', body: '' });
+
+  assert.equal(mark.lat, null);
+  assert.equal(mark.lon, null);
+});
+
+test('marks that appeared without a coordinate are reported for the build log', () => {
+  const gz = gzWith([
+    { name: 'Umkomaas', region: 'south', aliases: [], lat: -30.2064, lon: 30.7961 },
+    { name: 'Scottburgh', region: 'south', aliases: [] },
+  ]);
+  const entries = [
+    { marks: [{ name: 'Umkomaas', lat: -30.2064, lon: 30.7961 }] },
+    { marks: [{ name: 'Scottburgh', lat: null, lon: null }] },
+    { marks: [{ name: 'Scottburgh', lat: null, lon: null }] },
+    { marks: [] },
+    { title: 'no marks field' },
+  ];
+
+  const missing = marksWithoutCoords(gz, entries);
+
+  assert.deepEqual(missing, [{ name: 'Scottburgh', count: 2 }]);
+});
+
+test('the shipped gazetteer has coordinates only inside the box', () => {
+  for (const m of GZ.marks) {
+    if (m.lat === null) continue;
+    assert.ok(m.lat > KZN_BOX.minLat && m.lat < KZN_BOX.maxLat, `${m.name} lat out of box`);
+    assert.ok(m.lon > KZN_BOX.minLon && m.lon < KZN_BOX.maxLon, `${m.name} lon out of box`);
+  }
 });

@@ -9,6 +9,28 @@
 
 const REGIONS = ['north', 'central', 'south'];
 
+// The KZN coastal strip. Coordinates are hand-supplied, so this is a sanity
+// check on typing, not a geocoder: a transposed pair or a dropped minus sign
+// lands far outside it and is caught here rather than rendering a pin in the
+// wrong hemisphere.
+//
+// Geocoding was measured and rejected on 2026-09-01: of 56 marks, Nominatim
+// resolved 3 to a real shore feature, 37 to inland town centroids, 9 to the
+// wrong feature entirely (La Mercy -> King Shaka Airport, The Bluff -> a
+// hang-gliding site) and 7 not at all -- the 7 being the named fishing marks
+// rather than the towns.
+export const KZN_BOX = { minLat: -31.2, maxLat: -28.8, minLon: 30.0, maxLon: 32.9 };
+
+// Both halves or neither: a lone latitude cannot place a pin.
+function coordsOf(mark) {
+  const lat = Number(mark.lat);
+  const lon = Number(mark.lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return { lat: null, lon: null };
+  const inBox = lat >= KZN_BOX.minLat && lat <= KZN_BOX.maxLat
+    && lon >= KZN_BOX.minLon && lon <= KZN_BOX.maxLon;
+  return inBox ? { lat, lon } : { lat: null, lon: null };
+}
+
 export function loadGazetteer(raw) {
   if (!raw || typeof raw !== 'object') return null;
   if (!Array.isArray(raw.marks) || !raw.marks.length) return null;
@@ -19,6 +41,7 @@ export function loadGazetteer(raw) {
     name: m.name,
     region: m.region,
     aliases: Array.isArray(m.aliases) ? m.aliases.filter((a) => typeof a === 'string') : [],
+    ...coordsOf(m),
   }));
   if (!marks.length) return null;
 
@@ -86,9 +109,15 @@ export function findMarks(gz, { title = '', body = '' } = {}) {
     // what the channel is about. The stronger position wins and the mark is
     // recorded once.
     if (matchesAny(cleanTitle, mark)) {
-      found.push({ name: mark.name, region: mark.region, where: 'title' });
+      found.push({
+        name: mark.name, region: mark.region, where: 'title',
+        lat: mark.lat, lon: mark.lon,
+      });
     } else if (matchesAny(cleanBody, mark)) {
-      found.push({ name: mark.name, region: mark.region, where: 'body' });
+      found.push({
+        name: mark.name, region: mark.region, where: 'body',
+        lat: mark.lat, lon: mark.lon,
+      });
     }
   }
   return found;
@@ -202,4 +231,21 @@ export function unmatchedPhrases(gz, text) {
   return [...counts.entries()]
     .map(([phrase, count]) => ({ phrase, count }))
     .sort((a, b) => b.count - a.count);
+}
+
+// Marks that earned a place in the data but cannot be pinned. The gazetteer
+// grows by evidence: a mark gets a coordinate when it first shows up, not
+// before, so this is the prompt to add one.
+export function marksWithoutCoords(gz, entries) {
+  if (!gz) return [];
+  const counts = new Map();
+  for (const entry of entries) {
+    for (const mark of entry.marks ?? []) {
+      if (mark.lat !== null && mark.lat !== undefined) continue;
+      counts.set(mark.name, (counts.get(mark.name) ?? 0) + 1);
+    }
+  }
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
