@@ -21,6 +21,20 @@ export const CONFIG = {
     perChannel: 2,
   },
 
+  hotspots: {
+    // A hotspot is a claim about now. Older videos stay in the list below but
+    // stop contributing here.
+    windowDays: 56,
+    max: 6,
+    // A title says what the video is about; a description says what the
+    // channel is about.
+    titleWeight: 3,
+    bodyWeight: 1,
+    // Recency decays across the window but never to zero -- an eight-week-old
+    // mark still beats one with no evidence at all.
+    minRecencyWeight: 0.2,
+  },
+
   // Bite score: will fish feed? Weights sum to 100.
   biteWeights: {
     pressure: 30,
