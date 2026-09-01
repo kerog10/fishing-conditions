@@ -44,8 +44,23 @@ export function buildHotspots(videoFeed, reportFeed, now = new Date()) {
       if (!mark || !mark.name) continue;
       let row = byMark.get(mark.name);
       if (!row) {
-        row = { name: mark.name, region: mark.region ?? null, score: 0, species: new Set(), videos: [] };
+        row = {
+          name: mark.name,
+          region: mark.region ?? null,
+          lat: null,
+          lon: null,
+          score: 0,
+          species: new Set(),
+          videos: [],
+        };
         byMark.set(mark.name, row);
+      }
+      // Any one mention carrying a coordinate is enough to place the row: an
+      // older entry stamped before the gazetteer had one would otherwise win
+      // by arriving first.
+      if (row.lat === null && Number.isFinite(mark.lat) && Number.isFinite(mark.lon)) {
+        row.lat = mark.lat;
+        row.lon = mark.lon;
       }
       const position = mark.where === 'title'
         ? CONFIG.hotspots.titleWeight
@@ -66,6 +81,8 @@ export function buildHotspots(videoFeed, reportFeed, now = new Date()) {
       return {
         name: row.name,
         region: row.region,
+        lat: row.lat,
+        lon: row.lon,
         count: row.videos.length,
         species: [...row.species].sort(),
         videos: row.videos.sort((a, b) => Date.parse(b.date) - Date.parse(a.date)),

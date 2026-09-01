@@ -33,6 +33,9 @@ export const CONFIG = {
     // Recency decays across the window but never to zero -- an eight-week-old
     // mark still beats one with no evidence at all.
     minRecencyWeight: 0.2,
+    // Roughly the spacing of the named KZN beaches, so a saved spot matches
+    // the beach it is on rather than its neighbour.
+    maxDistanceKm: 5,
   },
 
   // Bite score: will fish feed? Weights sum to 100.

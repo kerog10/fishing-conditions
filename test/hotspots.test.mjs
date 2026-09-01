@@ -150,3 +150,34 @@ test('a malformed report feed does not stop the hotspots', () => {
   assert.equal(rows.length, 1);
   assert.equal(rows[0].report, null);
 });
+
+test('a hotspot row exposes the mark coordinates', () => {
+  const entry = vid('a', 'Umkomaas');
+  entry.marks[0].lat = -30.2064;
+  entry.marks[0].lon = 30.7961;
+
+  const rows = buildHotspots(feed([entry]), null, NOW);
+
+  assert.equal(rows[0].lat, -30.2064);
+  assert.equal(rows[0].lon, 30.7961);
+});
+
+test('a mark with no coordinates still ranks and carries nulls', () => {
+  const rows = buildHotspots(feed([vid('a', 'Umkomaas')]), null, NOW);
+
+  assert.equal(rows[0].name, 'Umkomaas');
+  assert.equal(rows[0].count, 1);
+  assert.equal(rows[0].lat, null);
+  assert.equal(rows[0].lon, null);
+});
+
+test('a coordinate on any one mention is enough to place the row', () => {
+  const withCoords = vid('a', 'Umkomaas');
+  withCoords.marks[0].lat = -30.2064;
+  withCoords.marks[0].lon = 30.7961;
+
+  const rows = buildHotspots(feed([vid('b', 'Umkomaas', { age: 2 }), withCoords]), null, NOW);
+
+  assert.equal(rows[0].count, 2);
+  assert.equal(rows[0].lat, -30.2064);
+});
