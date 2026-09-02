@@ -1,8 +1,42 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-02T06:50:42.906Z",
+  "builtAt": "2026-09-02T07:12:27.729Z",
   "entries": [
+    {
+      "id": "J_FJ_5LxkEU",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Isipingo Beach - 1 Bedroom Apartment for rent! #IsipingoBeach #RentalProperty #FlatToRent",
+      "link": "https://www.youtube.com/watch?v=J_FJ_5LxkEU",
+      "date": "2026-09-01T10:04:40.000Z",
+      "description": "Isipingo Beach - 1 Bedroom Apartment for rent! Dm for more details!  #IsipingoBeach #RentalProperty #FlatToRent",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Isipingo",
+          "region": "central",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
+    {
+      "id": "0OQbK7Yq7BY",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Sardine Run 2026!",
+      "link": "https://www.youtube.com/watch?v=0OQbK7Yq7BY",
+      "date": "2026-08-31T18:15:17.000Z",
+      "description": "Sardine Run 2026!",
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Sardine"
+      ]
+    },
     {
       "id": "Pm9FQWHyuEY",
       "channel": "Juelz T",
@@ -10,12 +44,32 @@
       "title": "Spinning at Isipingo Beach | Finally Hooked Something!",
       "link": "https://www.youtube.com/watch?v=Pm9FQWHyuEY",
       "date": "2026-08-31T14:57:02.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "How many casts do you think it took me to finally hook something?\n\nI recently spent some time spinning at Isipingo Beach, throwing spoons into the surf and hoping something would take an interest. Shore fishing can test your patience, but every cast brings another opportunity.\n\nWatch until the end to see how many casts it took, what I hooked and whether I managed to land it.\n\nDrop your guess in the comments before the answer is revealed.\n\nIf you enjoy fishing, outdoor adventures and local South African content, please like the video, subscribe to Juelz T and share it with another angler.\n\n📍 Location: Isipingo Beach, KwaZulu Natal, South Africa\n🎣 Fishing method: Spinning from the shore\n🪝 Lure: Spoon\n\n#IsipingoBeach #FishingSouthAfrica #ShoreFishing #Spinning #KZNFishing #JuelzT",
+      "via": "rss",
       "marks": [
         {
           "name": "Isipingo",
           "region": "central",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
+    {
+      "id": "deajJx_x6NY",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Scottburgh 🇿🇦❤️#Scottburgh #Kzn #KznSouthCoast #JuelzVisuelz",
+      "link": "https://www.youtube.com/watch?v=deajJx_x6NY",
+      "date": "2026-08-31T11:00:06.000Z",
+      "description": "Scottburgh 🇿🇦❤️\n\n#Scottburgh #Kzn #KznSouthCoast #JuelzVisuelz",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Scottburgh",
+          "region": "south",
           "where": "title",
           "lat": null,
           "lon": null
@@ -30,9 +84,17 @@
       "title": "MP - Secunda crew @Kzn Southcoast",
       "link": "https://www.youtube.com/watch?v=_VMNrNVbfO0",
       "date": "2026-08-31T05:15:18.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
+      "description": "Hi There Dear Friends, in this amazing video we joined by our crew from Secunda who had a super awesome adventure with Michael and Angie fishing adventures and tours at the beautiful South coast Kzn Margate Pier.\nA Big Thank you!!! To all our dear friends who visited us at the Margate pier, you all are super awesome.\n#michaelandangiefishingadventures #beach #fishing#deepsea #sardines2026 #sardines #daiwa #gaming #2026 #trending #latestnews #latestvideo #viralvideo #latestposts #secunda #sasol #wozaniburggasoline",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Margate",
+          "region": "south",
+          "where": "body",
+          "lat": null,
+          "lon": null
+        }
+      ],
       "species": []
     },
     {
@@ -66,8 +128,8 @@
       "title": "Kantara crew @Kzn Southcoast # fishinguide",
       "link": "https://www.youtube.com/watch?v=2CT6amUK7yk",
       "date": "2026-08-28T08:37:25.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "Greetings dearest and Awesome friends, welcome back to another super spectacular fishing Adventure at the awesome Kzn South Coast. In this episode we are joined with the Kantara crew from JHB who had a super great fishing adventure with #michaelandangiefishingadventures #beach #daiwa #2026 #cocomelon #gaming #ramrodfishingcharters #southcoast #margatepier #fishing #michaelandangiefishingadventures \n#sardines2026 #margateismagic #kantara #kznfishing #asfn #asfnfishing #assassin #assassinchampionship7 #championship8 #championship7 #fishing #fishinglife #nepal",
+      "via": "rss",
       "marks": [],
       "species": []
     },
@@ -78,8 +140,8 @@
       "title": "Scottburgh Beach Fishing | Shad and Big Blacktail Caught",
       "link": "https://www.youtube.com/watch?v=2HG1eBGPMOg",
       "date": "2026-08-27T15:21:55.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "I spent a beautiful morning at Scottburgh Beach on the KwaZulu Natal South Coast, where a number of anglers were fishing from the rocks.\n\nI did not do much fishing myself, but I took out the camera and captured some of the action. A few shad were caught, along with some seriously impressive blacktail.\n\nScottburgh Rock is a fantastic place to cast a line, enjoy the ocean and experience the beauty of the KZN coastline.\n\nIf you enjoy fishing, outdoor adventures and videos showcasing beautiful places around South Africa, please like this video, share it with your fellow anglers and subscribe to Juelz T for more.\n\nLet me know in the comments:\n\nWhat is the biggest blacktail you have ever caught?\n\nLocation: Scottburgh Beach, KwaZulu Natal, South Africa\n\n#ScottburghBeach #FishingSouthAfrica #KZNFishing #JuelzT",
+      "via": "rss",
       "marks": [
         {
           "name": "Scottburgh",
@@ -93,6 +155,18 @@
         "Blacktail",
         "Shad"
       ]
+    },
+    {
+      "id": "7e60YugP5PU",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "https://youtu.be/VE8S9LUFqeI?si=x7Usz0APp_SHSUq_",
+      "link": "https://www.youtube.com/watch?v=7e60YugP5PU",
+      "date": "2026-08-27T13:06:13.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": []
     },
     {
       "id": "ufWZwP0h0AM",
@@ -118,14 +192,36 @@
       ]
     },
     {
+      "id": "FfK_V-Q1XwM",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Sardine Run 2026 - Port Edward!#SardineRun #SardineRun2026 #PortEdward #JuelzT",
+      "link": "https://www.youtube.com/watch?v=FfK_V-Q1XwM",
+      "date": "2026-08-27T07:12:32.000Z",
+      "description": "Sardine Run 2026 - Port Edward!\n\n#SardineRun #SardineRun2026 #PortEdward #JuelzT",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Port Edward",
+          "region": "south",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": [
+        "Sardine"
+      ]
+    },
+    {
       "id": "VE8S9LUFqeI",
       "channel": "Keegan Pillay - Fishing South Africa",
       "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
       "title": "#Fishing Backline Boat Trip,#Catching #Salmon,#Grunters & Lots of Walla Walla /#Homemade Puni Puri",
       "link": "https://www.youtube.com/watch?v=VE8S9LUFqeI",
       "date": "2026-08-27T05:01:02.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "We are back out on the water for a Friday night boat trip! 🎣 In this episode, the crew heads out to fish the ocean backline. We had an awesome session catching Salmon and Grunters, but the Ribbonfish gave us a serious run for our money, biting clean through our hooks and ruining our traces! Despite the gear casualties, it was an incredible night out on the ocean with friends.The very next day, the action moves into my famous kitchen! 👨‍🍳 This time, the whole family teams up to cook an iconic Indian street food snack from scratch: Pani Puri (also known as Golgappa or Phuchka). Usually found at bustling food stalls around the world, we bring this crispy, tangy, and delicious treat straight to our home kitchen.Drop a comment if you’ve ever had your traces wrecked by Ribbonfish, or let me know your favorite Pani Puri filling! Don't forget to like, subscribe, and hit the notification bell for more fishing adventures and family recipes!#Fishing #BoatTrip #OceanFishing #SalmonFishing #GrunterFishing #Ribbonfish #NightFishing #Pani Puri #IndianStreetFood #FamilyCooking #HomeCooking #CatchAndCook #FridayNight #FamousKitchen #FoodStalls\n\n#FullMoonFishing #TideChart #HighTide #LowTide #SpringTide #NeapTide #WaterTemperature #Currents #RipCurrent #BacklineSurfing #AnchorRope #CaptainsLog #BoatMaintenance #FuelMix #TwoStroke #FourStroke #YamahaMarine #MercuryMarine #SuzukiMarine #GarminMarine #Lowrance #Simrad #FishingApparel #PolarizedSunglasses #Headlamps #GlowInTheDark #LightSticks #BaitKnife #FilletKnife #FishScaler #IceBox #CoolerBox #KeepStrapped #TraceWallet #TackleBox #Sinkers #SwivelSnap #LeaderMaterial #SteelWire #AlumiGrip #LongNosePliers #HookRemover #Dehooker #FishHandling #SlimeCoat #Spikes #FinPrick #SafetyFirst #FirstAidKit #SeaSick #Waves #Swell #WindDirection #LandBreeze #SeaBreeze #NorthWester #SouthEaster #SoutherlyBuster #WeatherWindow #BarometricPressure #DropInPressure #FishBite #FeedingFrenzy #TopwaterBite #BottomBite #Midwater #SuspendedFish #MarkingFish #GpsCoordinates #SecretSpot #FishingLedge #SandBar #ReefFishing #DropOff #UnderwaterStructure #WreckFishing #KelpBed #CleanWater #DirtyWater #WorkingTheWater #PatiencePaysOff #HardWork #GearLoss #RebuildingTraces #TackleStore #BaitShop #LocalFishing #LocalKnowledge #AnglingClub #FishingCompetition #SocialFishing #RecreationalFishing #SustainableFishing #OceanToTable #FieldToFork #CatchToCook #FamousKitchenVibes #CookingShow #MyFamousKitchen #SecretIngredient #TasteTest #FamilyReview #KidsApprove #CrunchSound #AsmrCooking #AsmrEating #MukbangPaniPuri #PaniPuriChallenge #HowManyCanYouEat #SpicyChallenge #TearsOfJoy #SweetAndSour #MintyFresh #Corriander #JeeraWater #ImliPani #LemonJuice #PotatoMash #BoiledChickpeas #SproutedMoong #SevPuri #DahiPuri #ChaatLoversFeed #IndianFoodBlogger #GlobalFlavors #TraditionalRecipe #PassedDownGeneration #GrandmasKitchen #AuthenticTaste #PerfectCrunch #PuriFry #FluffyPuri #SemolinaPuri #WheatPuri #OilTemperature #DeepFrying #GoldenBrown #KitchenTools #RollingPin #PooriCutter #DoughMaking #RestingDough #CrispySecrets #StreetVendorStyle #SecretSpiceMix #AlooMasala #KalaNamak #Hing #Asafoetida #DigestionSnack #RefreshingDrink #SummerSnack #MonsoonFood #ComfortFood #FamilyBondingTime #WeekendRoutine #SlowingDown #Grateful #Blessed #HappyLife #Subscribers #LikeAndSubscribe #BellNotification #WatchTillTheEnd #CommentBelow #ShareThisVideo #SupportMyChannel #NewVideoAlert #FishingLifestyle #ChefsOfYouTube #OutdoorLife #NatureLovers #SeaLovers #OceanMagic",
+      "via": "rss",
       "marks": [],
       "species": []
     },
@@ -136,8 +232,8 @@
       "title": "Sardine Run 2026 | Port Edward | Up Close With a Sardine Netting",
       "link": "https://www.youtube.com/watch?v=5GSrtFOlnUk",
       "date": "2026-08-26T16:52:57.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "The Sardine Run 2026 continues to surprise us!\n\nToday I was back in Port Edward on the KZN South Coast, where I managed to capture another sardine netting. But this time, there was no drone in the air.\n\nThis entire video was filmed from the ground, giving you an up close look at what actually happens during a sardine netting.\n\nBy the time I arrived, the net had already been dropped and the team was hard at work pulling it towards the shore. I followed the process from just metres away, capturing the incredible teamwork and physical effort required to bring a net full of sardines onto the beach.\n\nYou’ll also see the divers working in the water alongside the net, helping to control it and prevent fish from escaping.\n\nOnce the catch reaches the beach, we get right up alongside the net where you can see and even HEAR thousands of sardines shimmering and moving together.\n\nThen the next stage begins as the team starts filling crate after crate with fresh sardines.\n\nWatching a sardine netting from this close gives you a completely different appreciation for just how difficult and physically demanding the process really is.\n\nAnd considering we’re already late into August, the Sardine Run continues to surprise us. Just when you think it’s over, the sardines show up again!\n\nIf you enjoy my Sardine Run coverage and videos showcasing KwaZulu Natal, please LIKE this video, SUBSCRIBE to Juelz Visuelz and turn on notifications so you don’t miss the next adventure.\n\nLet me know in the comments: Have you ever watched a sardine netting this close?\n\n📍 Port Edward, KwaZulu Natal, South Africa\n🎥 Filmed entirely from the ground by Juelz Visuelz\n\n⚠️ All rights reserved.\n\nThis content is the intellectual property of Juelz Visuelz. Any use, reproduction, or distribution without prior written consent is strictly prohibited.\n\n📩 For licensing or authorized use, please contact [juelzvisuelz@gmail.com](mailto:juelzvisuelz@gmail.com).\n\n#SardineRun2026 #SardineRun #PortEdward #Sardines #SardineNetting #KZNSouthCoast #KwaZuluNatal #SouthAfrica #JuelzVisuelz",
+      "via": "rss",
       "marks": [
         {
           "name": "Port Edward",
@@ -178,8 +274,8 @@
       "title": "Fought a 70kg monster fish and a drunk aunty at the same time. Shad fun on light tackle",
       "link": "https://www.youtube.com/watch?v=5w5wub78_YY",
       "date": "2026-08-25T18:30:03.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "This video is one we forgot to post. Keenan started the morning by catching some shad before hooking up to his biggest fish.",
+      "via": "rss",
       "marks": [],
       "species": [
         "Shad"
@@ -243,14 +339,28 @@
       ]
     },
     {
+      "id": "7i8KzoLczUY",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Sardine Run 2026 - Glenmore Beach!#SardineRun #SardineRun2026 #GlenmoreBeach #JuelzT",
+      "link": "https://www.youtube.com/watch?v=7i8KzoLczUY",
+      "date": "2026-08-25T10:56:35.000Z",
+      "description": "Sardine Run 2026 - Glenmore Beach!\n\n#SardineRun #SardineRun2026 #GlenmoreBeach #JuelzT",
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Sardine"
+      ]
+    },
+    {
       "id": "eFoWu8Z63Ks",
       "channel": "Juelz Visuelz",
       "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
       "title": "Sardine Run 2026 | Glenmore Beach | The Sardines Are BACK!",
       "link": "https://www.youtube.com/watch?v=eFoWu8Z63Ks",
       "date": "2026-08-25T07:42:11.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "Just when we thought the Sardine Run 2026 was over… the sardines showed up again! 🐟🌊\n\nAfter weeks with very little sardine activity along the KZN South Coast, many of us thought this year’s run had finally come to an end.\n\nThen, seemingly out of nowhere, sardines appeared at Glenmore Beach!\n\nI managed to get there in time to capture a single net being pulled, with crowds gathering along the beach to witness another unexpected chapter of the 2026 Sardine Run.\n\nThat’s the beauty of the Sardine Run. Just when you think it’s finished, the ocean can surprise you all over again.\n\nEnjoy the footage from Glenmore Beach!\n\nIf you enjoy my Sardine Run coverage, drone footage and videos showcasing KwaZulu Natal from a different perspective, please LIKE this video, SUBSCRIBE to the channel and turn on notifications so you don’t miss what comes next.\n\nFollow Juelz Visuelz across social media for more aerial adventures, ocean encounters and incredible views from around South Africa.\n\nFilmed at Glenmore Beach, KwaZulu Natal, South Africa\nFilmed by Juelz Visuelz\n\n⚠️ All rights reserved.\nThis content is the intellectual property of Juelz Visuelz. Any use, reproduction, or distribution without prior written consent is strictly prohibited.\n\n📩 For licensing or authorized use, please contact juelzvisuelz@gmail.com.\n\n#SardineRun2026 #SardineRun #GlenmoreBeach #Sardines #KZN #KwaZuluNatal #SouthAfrica #DroneFootage #JuelzVisuelz",
+      "via": "rss",
       "marks": [],
       "species": [
         "Sardine"
@@ -291,6 +401,18 @@
       "species": []
     },
     {
+      "id": "a1APA1Q4sXw",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Sudden crazy wind in Durban! #Durban #Weather #Wind",
+      "link": "https://www.youtube.com/watch?v=a1APA1Q4sXw",
+      "date": "2026-08-22T14:46:24.000Z",
+      "description": "Sudden crazy wind in Durban! #Durban #Weather #Wind",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
       "id": "DfkX4njUZXQ",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
@@ -311,8 +433,8 @@
       "title": "Unit 6 Arena Park | Chatsworth From Above Ep. 6",
       "link": "https://www.youtube.com/watch?v=DrnWCCWL29A",
       "date": "2026-08-21T11:51:45.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "Welcome to Episode 6 of Chatsworth From Above.\n\nToday our journey through Chatsworth takes us to Unit 6, better known as Arena Park.\n\nAnd this may be one of the most visually interesting episodes of the series so far.\n\nFrom above, we're able to capture Arena Park together with some of the most recognisable landmarks in Chatsworth, including Chatsworth Stadium, the Chatsworth Cricket Oval, Arena Park Swimming Pool, Chatsworth Centre and R.K. Khan Hospital.\n\nBut this episode isn't only about what these places look like today.\n\nWe go back into the history of Unit 6 and explore how Arena Park developed, the origins of its name, why it developed differently from some of Chatsworth's other units, and how the wider precinct became such an important centre for sport, recreation, shopping and community life.\n\n⚽ We revisit the glory days of Chatsworth Stadium, including its famous association with Manning Rangers and their historic triumph as the inaugural Premier Soccer League champions in the 1996/97 season.\n\n🏏 We explore the Chatsworth Cricket Oval and the area's longstanding connection with cricket.\n\n🏊 We look at Arena Park Swimming Pool and the wider sporting and recreational precinct that served generations of Chatsworth residents.\n\n🛍️ We also take a look at Chatsworth Centre, or simply “the Centre” as generations of locals know it, and its development into one of Chatsworth's major commercial landmarks.\n\n🏥 And we explore the history behind R.K. Khan Hospital, which has served generations of families from Chatsworth and surrounding communities since 1969.\n\nThere's also an interesting geographical fact hidden in this episode.\n\nDespite their close proximity to Arena Park, Chatsworth Centre and R.K. Khan Hospital are officially associated with Westcliff in current address records.\n\nHow many of you knew that?\n\nWe didn't feature either landmark during our Westcliff episode, so with both captured so prominently alongside Unit 6 from above, this was the perfect opportunity to include their stories.\n\nThis is what Chatsworth From Above is all about.\n\nNot simply capturing beautiful aerial footage, but documenting the history, landmarks and memories that have shaped generations.\n\n💬 NOW I WANT TO HEAR FROM YOU.\n\nDid you grow up in Arena Park?\n\nWhich road did you live on?\n\nWhich school did you attend?\n\nDo you remember watching Manning Rangers at Chatsworth Stadium?\n\nWhat are your memories of the Cricket Oval, Arena Park Swimming Pool or Chatsworth Centre?\n\nAnd did you always consider Chatsworth Centre and R.K. Khan Hospital part of Westcliff, or did you associate them with the Arena Park precinct?\n\nShare your memories in the comments. Some of the most valuable history of Chatsworth lives in the memories of the people who actually experienced it.\n\n👍 LIKE the video if you enjoyed the episode.\n\n💬 COMMENT with your memories of Unit 6.\n\n📤 SHARE this video with someone from Arena Park or Chatsworth.\n\n🔔 SUBSCRIBE and join us as we continue exploring Chatsworth, one unit at a time.\n\nThis is Unit 6.\nThis is Arena Park.\nAnd this is Chatsworth From Above.\n\n📍 Arena Park, Unit 6\nChatsworth\nDurban, KwaZulu Natal\nSouth Africa\n\n🎥 Filmed, narrated, edited and produced by Juelz Visuelz\n\n#ChatsworthFromAbove #ArenaPark #Unit6 #Chatsworth #JuelzVisuelz\n\n### CHATSWORTH FROM ABOVE\n\nA documentary series exploring the different units and communities of Chatsworth through cinematic aerial footage, local history, iconic landmarks and the memories of the people who call Chatsworth home.\n\nOne unit. One community. One story at a time.\n\n© 2026 Juelz Visuelz. All Rights Reserved.\n\nAll original drone footage, photography, narration, editing and audiovisual content contained in this production are the intellectual property of Juelz Visuelz.\n\nThis content may not be copied, downloaded, reproduced, reuploaded, redistributed, broadcast, modified or commercially used, in whole or in part, without prior written permission.\n\nSharing the original published video using the platform's official share function is welcomed and encouraged.\n\nFor licensing, media usage and commercial enquiries, please contact Juelz Visuelz.\n\nMusic track: Blue Skies by Alegend\nSource: https://freetouse.com/music\nFree Background Music (No Copyright)",
+      "via": "rss",
       "marks": [],
       "species": []
     },
@@ -393,15 +515,42 @@
       ]
     },
     {
+      "id": "csTfxvMXsQg",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "https://youtu.be/toWyWQ3R9_4?si=Ks4CI7dxbh6lQJ_i",
+      "link": "https://www.youtube.com/watch?v=csTfxvMXsQg",
+      "date": "2026-08-19T08:02:12.000Z",
+      "description": "#fishing \n#catchandcook \n#fishinglife \n#fishingvideo \n#garrick",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
       "id": "toWyWQ3R9_4",
       "channel": "Keegan Pillay - Fishing South Africa",
       "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
       "title": "Epic Garrick Catch / Catch and Cook / Cooking Chicken Curry without the Chilli Powder",
       "link": "https://www.youtube.com/watch?v=toWyWQ3R9_4",
       "date": "2026-08-19T05:01:33.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
+      "description": "Epic surf fishing and a delicious kitchen cook-off! In this video, my good friend Kaylin hooks into and lands his very first Garrick of the season after an awesome fight in the surf at Warner Beach in Toti. Kaylin was kind enough to share his catch, so I took these nice thick pieces of Garrick back to my famous kitchen for an epic Catch and Cook! \n\nJoining me is my son, and together we cook up the fresh fish alongside another crowd favorite: a flavorful, aromatic Chicken Curry made completely without chilli powder—perfect for the whole family!If you love surf fishing in South Africa, fresh seafood recipes, and hearty family cooking, this video is for you. Don't forget to like, comment, and subscribe for more fishing and cooking adventures!\n\nGarrick fishing South Africa, Warner Beach fishing, Toti surf fishing, catch and cook Garrick, how to cook Garrick fish, mild chicken curry recipe, chicken curry without chilli powder, family cooking vlog, fishing Amanzimtoti, surf angling KZN.\n\n#GarrickFishing #CatchAndCook #WarnerBeach #Toti Fishing #SurfFishing #SouthAfricaFishing #FishRecipe #ChickenCurry #MildCurry #FamilyCooking #KZNfishing",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Amanzimtoti",
+          "region": "south",
+          "where": "body",
+          "lat": null,
+          "lon": null
+        },
+        {
+          "name": "Warner Beach",
+          "region": "south",
+          "where": "body",
+          "lat": null,
+          "lon": null
+        }
+      ],
       "species": [
         "Garrick"
       ]
@@ -454,6 +603,18 @@
       "species": []
     },
     {
+      "id": "TyolEwzlbmg",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "In Loving Memory of Stephen Tharmiha (Alan Mark) | 1954 – 2026",
+      "link": "https://www.youtube.com/watch?v=TyolEwzlbmg",
+      "date": "2026-08-16T11:24:53.000Z",
+      "description": "In Loving Memory of Stephen Tharmiha, affectionately known as Alan Mark\n\n14 January 1954 – 12 August 2026\n\nThis video is a celebration of the life, memories and legacy of my dad, Stephen Tharmiha, known to many as Alan Mark.\n\nFrom photographs of his younger years, his wedding and family life, to birthdays, special moments with family and friends, and videos of him doing what he loved most, playing music and entertaining, this is a journey through a life that meant so much to so many people.\n\nMusic was a huge part of my dad’s life. He was a gifted musician and entertainer who performed with bands including The Magnets and Gold Medallions before later performing as a solo artist and one man band. Put a guitar in his hands and the quiet, reserved man many of us knew could suddenly become the life of the party.\n\nBut for me, one of the most precious parts of his story came during the latter years of his life.\n\nAfter suffering a stroke, my dad reconnected with Jesus Christ.\n\nIt became one of the greatest privileges of my life to share the love of Jesus with my dad, to speak to him about the Gospel, to pray with him and to serve him communion daily as he reconnected with the Lord and accepted Jesus Christ as the Lord and Saviour of his life.\n\nIncluded in this video is something I will treasure for the rest of my life: the last prayer I heard my dad pray aloud.\n\nThis memorial was originally created and played at his funeral as we gathered to remember and celebrate his life. I am sharing it here so that our family and friends will always have somewhere to return to whenever we want to see his face, hear his voice, hear his music and remember the moments we shared with him.\n\nDad, your journey on this earth may have ended, but the memories you gave us remain.\n\nThe photographs remain.\nThe stories remain.\nYour music remains.\nAnd most importantly, our hope is in Jesus Christ.\n\n\"For whoever calls on the name of the LORD shall be saved.”\nRomans 10:13 NKJV\n\nRest well, Dad.\n\nStephen Tharmiha\nAlan Mark\n14 January 1954 – 12 August 2026\n\nThe music lives on. ❤️",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
       "id": "kxyOhNj3iWw",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
@@ -472,8 +633,8 @@
       "title": "Shad on the Low Tide. Fishing Durban KZN",
       "link": "https://www.youtube.com/watch?v=9KNvgmMrpQs",
       "date": "2026-08-13T08:00:14.000Z",
-      "description": null,
-      "via": "scrape",
+      "description": "A productive ultralight fishing session with a mixed bad of species! \n\n\nSetup: \nRod: Okuma Lrf 7ft \nReel: Okuma Ceymar 2000\nLine: 15lb grinder braid 4x \nLeader: 10lb boss braid 3x \n1/8oz Jighead \n2.5 inch jerk minnow (River prawn Colour)\n\n#fishing #shad #bluefish #tailor #durban #KZN #southafrica",
+      "via": "rss",
       "marks": [],
       "species": [
         "Shad"
@@ -492,170 +653,41 @@
       "species": []
     },
     {
+      "id": "Ei48ud-L7U0",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "https://youtu.be/V9LNWbPqLag",
+      "link": "https://www.youtube.com/watch?v=Ei48ud-L7U0",
+      "date": "2026-08-12T07:02:47.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
       "id": "V9LNWbPqLag",
       "channel": "Keegan Pillay - Fishing South Africa",
       "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
       "title": "EPIC Night Fishing Durban Harbour! (Crew Smashes MULTIPLE Species) #DurbanFishing #BoatFishing",
       "link": "https://www.youtube.com/watch?v=V9LNWbPqLag",
       "date": "2026-08-12T04:58:49.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "yH_jwiLt1So",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "DOUBLE UPS-NAME THE SPECIE IN THE COMMENTS #doubleup",
-      "link": "https://www.youtube.com/watch?v=yH_jwiLt1So",
-      "date": "2026-08-11T14:00:16.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "oqImXVh0eRc",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Nothing Beats this Feeling when it Hits ! 🎣",
-      "link": "https://www.youtube.com/watch?v=oqImXVh0eRc",
-      "date": "2026-08-10T15:02:20.000Z",
-      "description": "In this episode of KayzAdventures, I headed out in search of shad, and the fish were definitely around! After trying different methods, it became clear that the spoon was the only lure they wanted. Sometimes all it takes is finding the right lure, and on this day the spoon absolutely delivered.\n\nWatch the action unfold as I battle these hard-fighting fish, share the conditions on the day, and enjoy another awesome session on the South African coastline. If you're planning your next shad fishing trip, this video might give you a few ideas about what worked for me.\n\nIf you enjoyed the video, don't forget to LIKE, COMMENT, and SUBSCRIBE to KayzAdventures for more fishing adventures, travel content, food reviews, and outdoor experiences from South Africa and beyond.\n\n🔔 Subscribe so you never miss a new adventure!\n#Fishing #FishingLife #FishingAdventure #FishingVlog #Angling #Angler #FishOn #CatchAndRelease #ShoreFishing #RockFishing #SeaFishing #SaltwaterFishing #SouthAfricaFishing #KZNFishing #DurbanFishing #Amanzimtoti #ChainRocks #KayzAdventures #FishingSouthAfrica #FishingCommunity #FishingAddict #FishingTrip #FishingDay #OceanFishing #CoastalFishing #RockAndSurf #SurfFishing #BeachFishing #FishingVideo #YouTubeFishing #FishingChannel #FishingReels #FishingSpot #FishingLifestyle #FishingNation #FishHunter #TightLines #FishingFun #FishingPassion #FishingWorld #FishingExplorer #FishingTime #WeekendFishing #FishingFamily #OutdoorLife #OutdoorAdventure #Nature #Ocean #Sea #Coastline #Durban #KwaZuluNatal #SouthAfrica #FishingGoals #FishingGear #FishingRod #FishingReel #BaitFishing #LureFishing #FishCatch #BigCatch #RockPools #RockyShore #FishingMoments #AdventureFishing #LocalFishing #TravelFishing #ExploreSouthAfrica #OceanViews #Seaside #FishingVibes #FishingGram #InstaFishing #FishingPhoto #FishingPhotography #FishingLovers #FishingCommunitySA #FishingStories #FishingExperience #FishingJourney #ShoreAngler #SaltLife #OceanLife #BeachLife #NatureLover #OutdoorChannel #AdventureChannel #FishingVideos #FishingContent #YouTubeCreator #SouthAfricanYouTuber #DurbanAngler #AmanzimtotiFishing #ChainRocksFishing #RockFish #RockSpecies #FishSpecies #CoastalAngling #MarineFishing #OceanAdventure #FishingExplorer #FishingDestinations #FishingSeason #FishingMemories #FishingFriends #FishingCrew #AnglingLife #CatchOfTheDay #FishingPassionSA #SeaAngler #SurfCaster #RockAngler #OceanHunter #FishLife #FishingWorldWide #TravelVlog #FishingTravel #AdventureVlog #FishingAdventureSA #FishingTripSA #FishingSouthAfrica2026 #FishingLoversSA #KZNCoast #IndianOcean #SouthCoastFishing #SouthCoastKZN #MarineLife #OceanWildlife #RecreationalFishing #SportFishing #FishingTackle #FishingTactics #FishingTips #FishingTechnique #FishingExperienceSA #DurbanCoast #RockFishingSA #SurfFishingSA #AnglingSouthAfrica #FishingNature #FishingCommunityWorldwide #CatchFish #FishingEveryday #FishingObsessed #FishingAddiction #FishingLifeStyle #FishingZone #FishingMagic #FishingTimeSA #FishingDream #FishingVlogger #FishingYouTuber #FishingAdventureKZN #OceanFishingSA #SeaFishingSA #CoastalFishingSA #FishingFromRocks #FishingWithFriends #RockFishingAdventure #SouthAfricanFishing #FishingEnthusiast #ShoreAngling #FishingSpotSA #FishingHotspot #RockAndSurfFishing #OceanAngling #KZNAngling #DurbanAngling #FishingFunSA #FishTales #FishingChronicles #FishingChannelSA #AnglingCommunity #FishingAroundTheWorld #AdventureSeeker #OceanExplorer #NatureAdventure #SeaAdventure #FishingDestination #FishLover #FishingCulture #FishingWorldSA #FishingNetwork #TightLinesAlways #FishingLifestyleSA #OceanVibes #FishingMood #FishingAction #HookedOnFishing #FishingSuccess #FishingCatch #FishOnSA #ShoreFishingSA #RockFishingLife #FishingJourneySA #FishingVlogSA #FishingVideoSA #DurbanBeachFishing #AmanzimtotiBeach #SouthAfricaOutdoors #ExploreKZN #KZNAdventure #FishingExplorerSA #AdventureFishingSA #OceanFishingAdventure #SeaFishingAdventure #RockFishingDurban #FishingSouthCoast #FishingOcean #FishingRockPools #RockFishingExperience #FishingExcitement #FishingMemoriesSA #FishingTimeKZN #FishingAddicts #FishingLoversWorldwide #FishingCommunitySA #FishingLifeSA #FishingMomentsSA #SouthAfricanAdventure #OutdoorSouthAfrica #FishingInAfrica #AfricanFishing #FishingAfrica #IndianOceanFishing #CoastalAdventure #FishingSouthCoastKZN #DurbanSouthAfrica #VisitAmanzimtoti #FishingDestinationSA #AdventureFishingLife #FishingAndNature #OceanAndFishing #FishingTheCoast #HookLineAndSinker #FishingExplorerAfrica #FishingScenes #FishingViews #OceanViewsSA #FishingRecreation #WeekendAdventure #OceanFishingLife #SeaFishingLife #RockFishingCommunity #FishingFanatic #FishingForever #FishingWorldCommunity #FishingAdventureWorld #KayzFishing #KayzAdventuresFishing #DurbanFishingSpots",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "u7neovzHo0c",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Fishing Amanzimtoti | How to catch a Garrick Tutorial and More  !",
-      "link": "https://www.youtube.com/watch?v=u7neovzHo0c",
-      "date": "2026-08-10T15:01:17.000Z",
-      "description": "Join me on another exciting fishing adventure as I head out to the famous Chain Rocks in Amanzimtoti, KwaZulu-Natal. Known for its rugged coastline, crystal-clear waters, and productive fishing spots, Chain Rocks never disappoints!\n\nIn this fishing vlog, I target and catch some amazing rock fish while enjoying the stunning ocean views and the thrill of fishing from the rocks. Whether you're an experienced angler or just love watching fishing adventures, this video captures the excitement, challenges, and beauty of fishing along South Africa's coastline.\n\nIf you enjoy fishing content, kayak fishing, shore angling, and exploring new fishing spots around Durban and KZN, be sure to like, subscribe, and hit the notification bell so you don't miss future adventures on KayzAdventures!\n\n📍 Location: Chain Rocks, Amanzimtoti, KwaZulu-Natal, South Africa\n\n🎣 Tight lines and thanks for watching!\n\n#Fishing #FishingLife #FishingAdventure #FishingVlog #Angling #Angler #FishOn #CatchAndRelease #ShoreFishing #RockFishing #SeaFishing #SaltwaterFishing #SouthAfricaFishing #KZNFishing #DurbanFishing #Amanzimtoti #ChainRocks #KayzAdventures #FishingSouthAfrica #FishingCommunity #FishingAddict #FishingTrip #FishingDay #OceanFishing #CoastalFishing #RockAndSurf #SurfFishing #BeachFishing #FishingVideo #YouTubeFishing #FishingChannel #FishingReels #FishingSpot #FishingLifestyle #FishingNation #FishHunter #TightLines #FishingFun #FishingPassion #FishingWorld #FishingExplorer #FishingTime #WeekendFishing #FishingFamily #OutdoorLife #OutdoorAdventure #Nature #Ocean #Sea #Coastline #Durban #KwaZuluNatal #SouthAfrica #FishingGoals #FishingGear #FishingRod #FishingReel #BaitFishing #LureFishing #FishCatch #BigCatch #RockPools #RockyShore #FishingMoments #AdventureFishing #LocalFishing #TravelFishing #ExploreSouthAfrica #OceanViews #Seaside #FishingVibes #FishingGram #InstaFishing #FishingPhoto #FishingPhotography #FishingLovers #FishingCommunitySA #FishingStories #FishingExperience #FishingJourney #ShoreAngler #SaltLife #OceanLife #BeachLife #NatureLover #OutdoorChannel #AdventureChannel #FishingVideos #FishingContent #YouTubeCreator #SouthAfricanYouTuber #DurbanAngler #AmanzimtotiFishing #ChainRocksFishing #RockFish #RockSpecies #FishSpecies #CoastalAngling #MarineFishing #OceanAdventure #FishingExplorer #FishingDestinations #FishingSeason #FishingMemories #FishingFriends #FishingCrew #AnglingLife #CatchOfTheDay #FishingPassionSA #SeaAngler #SurfCaster #RockAngler #OceanHunter #FishLife #FishingWorldWide #TravelVlog #FishingTravel #AdventureVlog #FishingAdventureSA #FishingTripSA #FishingSouthAfrica2026 #FishingLoversSA #KZNCoast #IndianOcean #SouthCoastFishing #SouthCoastKZN #MarineLife #OceanWildlife #RecreationalFishing #SportFishing #FishingTackle #FishingTactics #FishingTips #FishingTechnique #FishingExperienceSA #DurbanCoast #RockFishingSA #SurfFishingSA #AnglingSouthAfrica #FishingNature #FishingCommunityWorldwide #CatchFish #FishingEveryday #FishingObsessed #FishingAddiction #FishingLifeStyle #FishingZone #FishingMagic #FishingTimeSA #FishingDream #FishingVlogger #FishingYouTuber #FishingAdventureKZN #OceanFishingSA #SeaFishingSA #CoastalFishingSA #FishingFromRocks #FishingWithFriends #RockFishingAdventure #SouthAfricanFishing #FishingEnthusiast #ShoreAngling #FishingSpotSA #FishingHotspot #RockAndSurfFishing #OceanAngling #KZNAngling #DurbanAngling #FishingFunSA #FishTales #FishingChronicles #FishingChannelSA #AnglingCommunity #FishingAroundTheWorld #AdventureSeeker #OceanExplorer #NatureAdventure #SeaAdventure #FishingDestination #FishLover #FishingCulture #FishingWorldSA #FishingNetwork #TightLinesAlways #FishingLifestyleSA #OceanVibes #FishingMood #FishingAction #HookedOnFishing #FishingSuccess #FishingCatch #FishOnSA #ShoreFishingSA #RockFishingLife #FishingJourneySA #FishingVlogSA #FishingVideoSA #DurbanBeachFishing #AmanzimtotiBeach #SouthAfricaOutdoors #ExploreKZN #KZNAdventure #FishingExplorerSA #AdventureFishingSA #OceanFishingAdventure #SeaFishingAdventure #RockFishingDurban #FishingSouthCoast #FishingOcean #FishingRockPools #RockFishingExperience #FishingExcitement #FishingMemoriesSA #FishingTimeKZN #FishingAddicts #FishingLoversWorldwide #FishingCommunitySA #FishingLifeSA #FishingMomentsSA #SouthAfricanAdventure #OutdoorSouthAfrica #FishingInAfrica #AfricanFishing #FishingAfrica #IndianOceanFishing #CoastalAdventure #FishingSouthCoastKZN #DurbanSouthAfrica #VisitAmanzimtoti #FishingDestinationSA #AdventureFishingLife #FishingAndNature #OceanAndFishing #FishingTheCoast #HookLineAndSinker #FishingExplorerAfrica #FishingScenes #FishingViews #OceanViewsSA #FishingRecreation #WeekendAdventure #OceanFishingLife #SeaFishingLife #RockFishingCommunity #FishingFanatic #FishingForever #FishingWorldCommunity #FishingAdventureWorld #KayzFishing #KayzAdventuresFishing #DurbanFishingSpots",
+      "description": "Catching a personal best Grunter at Durban Harbour is an unforgettable experience! Here is a high-energy, keyword-rich YouTube description optimized to grab attention and boost your search rankings.\n\nEPIC Night Fishing Durban Harbour! Catching My PB Grunter! 🎣🚤\n\nWe took the boat out for an incredible night fishing session along the Durban Harbour North Pier, and the action did not stop! The crew and I had an absolute blast smashing multiple fish species in the dark. From stubborn Stumpies and hard-fighting Kingfish to Blacktail, Rockcod, Butterfish, and Ribbonfish, the harbour was alive!\n\nBut the absolute highlight of the night? I managed to hook and land my personal best (PB) Spotted Grunter! Durban Harbour night fishing never disappoints. If you love saltwater boat fishing, intense hookups, and South African angling action, this video is for you!\n\nDon't forget to LIKE, COMMENT your favourite catch, and SUBSCRIBE for more epic Durban fishing adventures with the crew!\n\n🕒 TIMESTAMPS\n\n0:00 - Launching the Boat at Durban Harbour\n1:30 - Arriving at North Pier & Setup\n3:15 - First Hookup! Blacktail & Ribbonfish Action\n5:45 - The Crew Smashes Stumpies & Kingfish\n8:20 - Double Hookups! Rockcod & Butterfish\n11:00 - THE BIG ONE: Catching My PB Grunter!\n14:30 - Final Tally & Wrap Up\n\n🎣 GEAR & BAIT USED (Fill this in if needed!)\n\nRods: [Custom 9ft Loomis Gully Pro]\n\nReels: [Loomis Gulf 5000 size]\n\nBait: Chokka, Sardine\n\nSardine\n\n, and \n\nPrawns\n\nTraces: [Insert Trace Type, e.g., Running Cup Trace]\n\n📲 CONNECT WITH THE CREW\n\nInstagram: @[YourHandle]\n\nFacebook: [Keegan Pillay]\n\n🔍 KEYWORDS & HASHTAGS\n\n#DurbanHarbourFishing #NightFishing #GruterFishing #DurbanFishing #BoatFishing #KZNfishing #SaltwaterFishing #FishingSouthAfrica #NorthPierDurban #Kingfish #Stumpnose #Blacktail #Rockcod #Ribbonfish #Butterfish #PersonalBestGrunter #FishingAdventure #AnglingSA #SeaFishing #FishingCrew #FishingLife",
       "via": "rss",
       "marks": [
         {
-          "name": "Chain Rocks",
+          "name": "North Pier",
           "region": "central",
           "where": "body",
           "lat": null,
           "lon": null
-        },
-        {
-          "name": "Amanzimtoti",
-          "region": "south",
-          "where": "title",
-          "lat": null,
-          "lon": null
         }
       ],
       "species": [
-        "Garrick"
-      ]
-    },
-    {
-      "id": "874gaBuAbbs",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "SPOTTED SOME SILVER BREAM SO WE TARGETED THEM #breamfishing #fishing #sardinerun #livebait_fishing",
-      "link": "https://www.youtube.com/watch?v=874gaBuAbbs",
-      "date": "2026-08-10T14:00:28.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "mp7H-344g5I",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "ONE SHAD TWO BLACKTAILS ONE TRACE",
-      "link": "https://www.youtube.com/watch?v=mp7H-344g5I",
-      "date": "2026-08-10T14:00:01.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "7ky6jc6b02Y",
-      "channel": "Kents Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UC1QUL3Z5Ho7_Y0M562eqb8Q",
-      "title": "Women's Day & the Shad are biting!",
-      "link": "https://www.youtube.com/watch?v=7ky6jc6b02Y",
-      "date": "2026-08-09T20:51:44.000Z",
-      "description": "In this video my wife & I headed out to catch some fresh Shad for dinner.",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "BqXEd_KphC8",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "THE TRIPLE UP THAT EVERYONE'S TALKING ABOUT #tripleup",
-      "link": "https://www.youtube.com/watch?v=BqXEd_KphC8",
-      "date": "2026-08-09T14:00:24.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "YokfKhKp_Dk",
-      "channel": "The RodFather",
-      "channelUrl": "https://www.youtube.com/channel/UC2ilfQtmI6rwd3mbh3bp6Ig",
-      "title": "SHAD BOILING at Umhlanga Beach! Fishing Durban. KZN",
-      "link": "https://www.youtube.com/watch?v=YokfKhKp_Dk",
-      "date": "2026-08-09T12:00:32.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [
-        {
-          "name": "Umhlanga",
-          "region": "north",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "QWs_ZKFwuP0",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "THE TRIPLE UP BAIT",
-      "link": "https://www.youtube.com/watch?v=QWs_ZKFwuP0",
-      "date": "2026-08-08T14:00:24.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "XwJAYzqLadE",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "SHAD COMP HOSTED BY THE REEF BAIT AND TACKLE #shad #shadcompetition",
-      "link": "https://www.youtube.com/watch?v=XwJAYzqLadE",
-      "date": "2026-08-08T10:00:02.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Shad"
+        "Blacktail",
+        "Grunter",
+        "Kingfish",
+        "Rockcod",
+        "Sardine"
       ]
     }
   ]
