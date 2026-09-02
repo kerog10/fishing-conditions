@@ -1,8 +1,40 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-01T12:44:59.532Z",
+  "builtAt": "2026-09-02T06:50:42.906Z",
   "entries": [
+    {
+      "id": "Pm9FQWHyuEY",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Spinning at Isipingo Beach | Finally Hooked Something!",
+      "link": "https://www.youtube.com/watch?v=Pm9FQWHyuEY",
+      "date": "2026-08-31T14:57:02.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [
+        {
+          "name": "Isipingo",
+          "region": "central",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
+    {
+      "id": "_VMNrNVbfO0",
+      "channel": "Michael and Angie Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
+      "title": "MP - Secunda crew @Kzn Southcoast",
+      "link": "https://www.youtube.com/watch?v=_VMNrNVbfO0",
+      "date": "2026-08-31T05:15:18.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "VR5x0RCFEjk",
       "channel": "Kayz Adventures",
@@ -28,6 +60,41 @@
       "species": []
     },
     {
+      "id": "2CT6amUK7yk",
+      "channel": "Michael and Angie Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
+      "title": "Kantara crew @Kzn Southcoast # fishinguide",
+      "link": "https://www.youtube.com/watch?v=2CT6amUK7yk",
+      "date": "2026-08-28T08:37:25.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "2HG1eBGPMOg",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Scottburgh Beach Fishing | Shad and Big Blacktail Caught",
+      "link": "https://www.youtube.com/watch?v=2HG1eBGPMOg",
+      "date": "2026-08-27T15:21:55.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [
+        {
+          "name": "Scottburgh",
+          "region": "south",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": [
+        "Blacktail",
+        "Shad"
+      ]
+    },
+    {
       "id": "ufWZwP0h0AM",
       "channel": "Pa's Xtreme Fishing",
       "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
@@ -51,6 +118,40 @@
       ]
     },
     {
+      "id": "VE8S9LUFqeI",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "#Fishing Backline Boat Trip,#Catching #Salmon,#Grunters & Lots of Walla Walla /#Homemade Puni Puri",
+      "link": "https://www.youtube.com/watch?v=VE8S9LUFqeI",
+      "date": "2026-08-27T05:01:02.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "5GSrtFOlnUk",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Sardine Run 2026 | Port Edward | Up Close With a Sardine Netting",
+      "link": "https://www.youtube.com/watch?v=5GSrtFOlnUk",
+      "date": "2026-08-26T16:52:57.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [
+        {
+          "name": "Port Edward",
+          "region": "south",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": [
+        "Sardine"
+      ]
+    },
+    {
       "id": "ilwJZcPhk4Q",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
@@ -69,6 +170,20 @@
         }
       ],
       "species": []
+    },
+    {
+      "id": "5w5wub78_YY",
+      "channel": "Fun Fishing Frenzy",
+      "channelUrl": "https://www.youtube.com/channel/UC3mWWydsffzvNC7bap1rvMg",
+      "title": "Fought a 70kg monster fish and a drunk aunty at the same time. Shad fun on light tackle",
+      "link": "https://www.youtube.com/watch?v=5w5wub78_YY",
+      "date": "2026-08-25T18:30:03.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": [
+        "Shad"
+      ]
     },
     {
       "id": "GUNV-1U3YyA",
@@ -128,6 +243,20 @@
       ]
     },
     {
+      "id": "eFoWu8Z63Ks",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Sardine Run 2026 | Glenmore Beach | The Sardines Are BACK!",
+      "link": "https://www.youtube.com/watch?v=eFoWu8Z63Ks",
+      "date": "2026-08-25T07:42:11.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": [
+        "Sardine"
+      ]
+    },
+    {
       "id": "yrzkasfrH3o",
       "channel": "Fishing Unfiltered",
       "channelUrl": "https://www.youtube.com/channel/UCOZsf26qw8MuprQuq5Ee3DQ",
@@ -174,6 +303,18 @@
       "species": [
         "Bronze Bream"
       ]
+    },
+    {
+      "id": "DrnWCCWL29A",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Unit 6 Arena Park | Chatsworth From Above Ep. 6",
+      "link": "https://www.youtube.com/watch?v=DrnWCCWL29A",
+      "date": "2026-08-21T11:51:45.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": []
     },
     {
       "id": "c1P0S95-30Q",
@@ -252,6 +393,20 @@
       ]
     },
     {
+      "id": "toWyWQ3R9_4",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "Epic Garrick Catch / Catch and Cook / Cooking Chicken Curry without the Chilli Powder",
+      "link": "https://www.youtube.com/watch?v=toWyWQ3R9_4",
+      "date": "2026-08-19T05:01:33.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": [
+        "Garrick"
+      ]
+    },
+    {
       "id": "wDDD4_idgDs",
       "channel": "Kayz Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
@@ -311,6 +466,20 @@
       "species": []
     },
     {
+      "id": "9KNvgmMrpQs",
+      "channel": "The RodFather",
+      "channelUrl": "https://www.youtube.com/channel/UC2ilfQtmI6rwd3mbh3bp6Ig",
+      "title": "Shad on the Low Tide. Fishing Durban KZN",
+      "link": "https://www.youtube.com/watch?v=9KNvgmMrpQs",
+      "date": "2026-08-13T08:00:14.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [],
+      "species": [
+        "Shad"
+      ]
+    },
+    {
       "id": "kcskhkHRdWs",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
@@ -319,6 +488,18 @@
       "date": "2026-08-12T14:00:03.000Z",
       "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
       "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "V9LNWbPqLag",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "EPIC Night Fishing Durban Harbour! (Crew Smashes MULTIPLE Species) #DurbanFishing #BoatFishing",
+      "link": "https://www.youtube.com/watch?v=V9LNWbPqLag",
+      "date": "2026-08-12T04:58:49.000Z",
+      "description": null,
+      "via": "scrape",
       "marks": [],
       "species": []
     },
@@ -430,6 +611,28 @@
       "species": []
     },
     {
+      "id": "YokfKhKp_Dk",
+      "channel": "The RodFather",
+      "channelUrl": "https://www.youtube.com/channel/UC2ilfQtmI6rwd3mbh3bp6Ig",
+      "title": "SHAD BOILING at Umhlanga Beach! Fishing Durban. KZN",
+      "link": "https://www.youtube.com/watch?v=YokfKhKp_Dk",
+      "date": "2026-08-09T12:00:32.000Z",
+      "description": null,
+      "via": "scrape",
+      "marks": [
+        {
+          "name": "Umhlanga",
+          "region": "north",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": [
+        "Shad"
+      ]
+    },
+    {
       "id": "QWs_ZKFwuP0",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
@@ -453,215 +656,6 @@
       "marks": [],
       "species": [
         "Shad"
-      ]
-    },
-    {
-      "id": "xRg98gGMdaA",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "THE REEF BAIT AND TACKLE HOSTS A SHAD #fishing #shadcompetition",
-      "link": "https://www.youtube.com/watch?v=xRg98gGMdaA",
-      "date": "2026-08-08T08:00:24.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "y3odlvT_IdI",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "THE REEF BAIT AND TACKLE HOSTS A SHAD COMP",
-      "link": "https://www.youtube.com/watch?v=y3odlvT_IdI",
-      "date": "2026-08-07T14:00:06.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "ISJIXF6NMzs",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "GARRICK CAUGHT BY SELVAN #garrick #sardinerun",
-      "link": "https://www.youtube.com/watch?v=ISJIXF6NMzs",
-      "date": "2026-08-05T15:00:04.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": [
-        "Garrick"
-      ]
-    },
-    {
-      "id": "yu10dbXQm4I",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Blacktail on the Light Tackle !",
-      "link": "https://www.youtube.com/watch?v=yu10dbXQm4I",
-      "date": "2026-08-05T05:26:18.000Z",
-      "description": null,
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Blacktail"
-      ]
-    },
-    {
-      "id": "BG0yGDcaU_4",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Fishing in Rough Conditions | Amanzimtoti",
-      "link": "https://www.youtube.com/watch?v=BG0yGDcaU_4",
-      "date": "2026-08-05T05:25:40.000Z",
-      "description": "Join me on an exciting fishing adventure in Amanzimtoti In this video, I spend the day fishing along the KZN coastline, enjoying the ocean views, fresh sea breeze, and seeing what bites. From setting up gear to casting into the surf, this was an awesome and relaxing beach fishing session in Durban, South Africa.\n\nWhether you enjoy fishing content, beach adventures, outdoor vlogs, or simply love the ocean, this video is for you. Warner Beach is one of the hidden gems along the South Coast and always delivers amazing scenery and exciting fishing moments.\n\nIf you enjoy the video, make sure to LIKE, COMMENT, and SUBSCRIBE to KayzAdventures for more fishing trips, travel adventures, food reviews, kayaking, and outdoor content from South Africa and beyond! 🎣🌊🔥\n\n#Fishing #Amanzimtoti #WarnerBeach #BeachFishing #FishingSouthAfrica #DurbanFishing #SurfFishing #SaltwaterFishing #FishingLife #FishingAdventure #KayzAdventures #SouthAfrica #FishingVlog #OceanFishing #ShoreFishing #KZNFishing #Durban #SeaFishing #Angler #FishingTrip #CatchAndRelease #FishingDaily #BeachLife #TravelVlog #OutdoorLife #FishingReels #FishingVideo #Adventure #OceanViews #FishingTime #FishingAddict #FishingCommunity #Nature #ExploreSouthAfrica #Fisherman #FishingFun #FishingSpot #SouthCoast #WarnerBeachFishing #AmanzimtotiFishing\n\n#FishingSA #BeachFishingSA #OceanAdventure #SurfCasting #FishingLifestyle #DurbanBeach #FishingLovers #FishingWorld #FishingGram #FishingPhotography #SaltLife #OceanLife #FishingExperience #TravelSouthAfrica #CatchOfTheDay #FishingSeason #ReelLife #FishingPassion #AdventureTime #SouthAfricanYouTuber #KayakFishing #FishOn #FishingExplorer #OutdoorAdventure #NatureLovers #TravelAdventure #DurbanVibes #FishingContent #YouTubeFishing #ExploreDurban #FishingChannel #SouthAfricanFishing #OceanVibes #FishingCrew #FishingAddiction #TravelContent #EpicFishing #BeachAdventure #FishingSouthCoast #FishingJourney\n\n#FishingDay #BeachFishingLife #SurfFishingSA #WarnerBeachSA #FishingVibes #TravelVlogger #YouTubeVlogger #FishingBeach #OceanFishingSA #AdventureVlog #CatchFish #SouthAfricaTravel #KZNCoast #FishingSpotSA #SeaAdventure #FishingClips #FishingLoversSA #DurbanCoast #TravelVideo #OutdoorVlog #FishingExplorerSA #FishLife #FishingStories #FishingNature #SouthAfricanAdventure #FishingTripSA #BeachFishingAdventure #SeaFishingSA #FishingExperienceSA #ExploreKZN #AdventureFishing #OceanTravel #TravelSouthCoast #FishingFunSA #FishingVideoSA #FishingLifestyleSA #NatureAdventure #TravelCreator #YouTubeCreator #BeachFishingDurban\n\n#Fishing2026 #FishingFamily #TravelBlogger #DurbanSouthAfrica #FishingVlogSA #ExploreNature #OceanAdventureSA #FishingWorldWide #FishingBeachSA #SouthAfricanBeaches #AdventureCreator #FishingGoals #ReelAdventure #BeachViews #SeaFishingAdventure #DurbanFishingSpots #FishingContentCreator #TravelAndFishing #SouthAfricaVibes #FishingAddicted #OceanScenery #FishingMissions #BeachFishingTrip #SouthAfricanTravel #FishingOcean #WarnerBeachDurban #FishingFriends #FishingTravel #AdventureChannel #OceanFishingAdventure #FishingPhotographySA #DurbanAdventures #ExploreTheOcean #TravelSouthAfrica2026 #FishingPassionate #BeachFishingVlog #SaltwaterAdventure #FishingViews #SeaLife #OceanLovers\n\n#WarnerBeachVlog #AmanzimtotiVlog #FishingSouthAfrica2026 #BeachFishing2026 #FishingNearDurban #KZNAdventure #OceanFishingDurban #FishingBeachLife #FishingVideos #ExploreAmanzimtoti #TravelAndExplore #SouthCoastAdventure #FishingTheCoast #BeachFishingSouthAfrica #FishingMission #OceanFishingLife #FishingExploration #NatureTravel #FishingAndAdventure #SouthAfricaFishingLife #FishingAndTravel #FishingMoments #AdventureFishingSA #BeachFishingMoments #OceanViewsSA #FishingAndNature #DurbanFishingLife #ExploreSouthCoast #TravelAndFish #FishingWithFriends #OutdoorFishing #FishingByTheSea #BeachFishingFun #FishingExcursion #FishingLifestyle2026 #DurbanOcean #TravelFishingVlog #FishingExperience2026 #ExploreDurbanSA #OceanFishingTrip\n\n#BeachAdventureSA #FishingTravelSA #FishingVideo2026 #SouthAfricaFishingAdventure #WarnerBeachAdventure #FishingAndVlogging #KZNFishingAdventure #FishingBeachVibes #FishingExplorer2026 #TravelVibes #FishingCreator #SouthAfricaOcean #FishingEntertainment #BeachFishingExplorer #FishingAddicts #OceanFishingViews #AdventureTravelSA #FishingTheBeach #ExploreTheBeach #SouthAfricanCoast #FishingAndFun #TravelContentCreator #FishingJourneySA #SeaFishingLife #DurbanTravel #OceanTravelSA #FishingWithView #BeachFishingSouthCoast #SouthAfricaFishingVlog #FishingOutdoors #TravelAndAdventure #FishingAndExploring #OceanAdventureLife #FishingSouthAfricaVlog #WarnerBeachFishingTrip #FishingInDurban #BeachFishingMission #FishingByTheOcean #FishingNatureLife #SouthAfricanFishingVibes",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Amanzimtoti",
-          "region": "south",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        },
-        {
-          "name": "Warner Beach",
-          "region": "south",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": []
-    },
-    {
-      "id": "HQPDoFQNm7o",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Awesome Boat Fishing Adventure with Pa & Rasto | Big Fish, Big Smiles & Great Memories!",
-      "link": "https://www.youtube.com/watch?v=HQPDoFQNm7o",
-      "date": "2026-07-31T09:41:50.000Z",
-      "description": "Join Pa, Rasto, and Yogan for an awesome boat fishing adventure on the river! 🎣🛥️\n\nIt was a day filled with big fish, big smiles, and great memories as the team enjoyed an action-packed session on the water. Pa landed a beautiful Honeycomb Ray, while Rasto and Yogan each hooked into some lovely Grunter, making for an unforgettable day of fishing.\n\nIf you enjoy boat fishing, exciting catches, and spending time with great company, this is a video you won't want to miss!\n\nDon't forget to LIKE 👍, COMMENT 💬, and SUBSCRIBE ❤️ for more awesome fishing adventures with Pa's Xtreme Fishing!",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Grunter"
-      ]
-    },
-    {
-      "id": "ap99w3qDQOw",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "DOUBLE ACTION SATISFACTION #shad #doubleups #sardinerun",
-      "link": "https://www.youtube.com/watch?v=ap99w3qDQOw",
-      "date": "2026-07-30T14:00:27.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "ew7g8AEXHWU",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Fighting with the Ultra Light",
-      "link": "https://www.youtube.com/watch?v=ew7g8AEXHWU",
-      "date": "2026-07-29T14:03:44.000Z",
-      "description": "Welcome back to another adventure on KayzAdventures!\n\nIn today’s video, we head out to Isipingo Beach in Durban for an exciting fishing session along the KwaZulu-Natal coastline. From early casts to unexpected bites, this trip had beautiful ocean views, relaxing beach vibes, and some awesome fishing action. Whether you enjoy shore fishing, beach fishing, or just love the outdoors, this video captures the real experience of fishing in Durban, South Africa.\n\nJoin me as I explore another local fishing spot, test out different techniques, and enjoy a great day by the sea. Don’t forget to like, comment, and subscribe for more fishing adventures, kayak fishing, food experiences, travel content, and outdoor videos from around Durban and beyond!\n\n🎣 Location: Isipingo Beach, Durban, South Africa\n🌊 Fishing • Adventure • Nature • Beach Life • Local Exploration\n\n#Fishing #DurbanFishing #Isipingo #SouthAfricaFishing #BeachFishing #KayzAdventures\n\n#fishing #durban #isipingo #beachfishing #shorefishing #southafrica #durbanfishing #fishinglife #angler #oceanfishing #rockandsurf #surffishing #fishingtrip #fishingvideo #fishingadventure #fishingchannel #youtubefishing #kayzadventures #saltwaterfishing #beachlife #fishingtime #fishingfun #sea #ocean #coastline #kzn #kwazulunatal #travel #outdoors #nature #naturelover #adventure #explore #fishingdaily #fishingworld #fisherman #catchoftheday #fish #rodandreel #castnet #shoreangler #southafricafishing #durbanbeach #beachday #weekendvibes #travelvlog #fishingvlog #anglerlife #oceanlife #coastal #beachwaves #surffishinglife #fishingcommunity #fishingreels #fishingsouthafrica #africafishing #localfishing #outdoorlife #fishinggear #fishon #beachadventure #durbanlife #visitdurban #isipingobeach #beachfishinglife #oceanview #fishinglover #beachsunrise #fishingaddict #surfcasting #rockfishing #saltlife #beachfun #coastalfishing #fishingvideos #shorecast #rodlife #fishingseason #anglerworld #wildlife #travelafrica #adventuretime #beachscape #durbanvibes #fishingfriends #seaadventure #beachwalk #fishingspot #localangler #shoreline #oceanbreeze #sunrisefishing #beachrod #travelvideo #youtubecreator #smallcreator #fishingcontent #viralvideo #outdooradventure #oceanfishingtrip #durbanbeaches #fishingdurban #africanadventure #coastalvibes #reelfishing #fishingreel #fishinglover #catchfish #fishingspots #beachshore #isipingodurban #durbanangler #surfangler #fishingsouthafrica #beachcasting #fishingfunny #seafood #fishingcommunitysa #rodandline #beachwater #surfrod #angleraddict #weekendfishing #sunrisebeach #fishingworldwide #exploresouthafrica #visitkzn #kznfishing #outdoorchannel #beachnature #beachtrip #fishingphotography #beachvideo #fishingaddiction #shorelife #oceanangler #beachcontent #travelcreator #fishingshow #southafricayoutuber #durbancreator #beachfishingtrip #surffish #fishingspotlight #reelaction #fishingvibes #durbansea #southafricatravel #holidayvibes #fishingexpedition #beachrodcast #fishingclip #naturevideo #fishingpassion #saltwaterangler #oceanwaves #beachsunset #africayoutuber #beachscenery #travelandfish #fishandtravel #outdoorvlog #durbantravel #seaside #beachlover #fishingnation #fishingexperience #beachshorefishing #fishingreality #localbeach #seaangler #travelchannel #adventurechannel #fishingsa #durbanadventures #southcoastfishing #durbanocean #beachcaster #surfcaster #fishingtechniques #beachrodsetup #shorefishinglife #oceancontent #fishingexplorer #southafricabeaches #fishingsession #anglercommunity #beachandfishing #oceantrip #beachcastinglife #fishingrod #fishingweather #coastalwaters #surfandfish #beachandsea #fishingjourney #beachshoreline #rodcast #fishingvideo2026 #fishingmemories #adventurevideos #beachfishingdurban #fishingspotdurban #fishingcoast #oceanlover #coastaltrip #fishingfans #fishingholiday #fishingafrica #beachmorning #sunriseangler #beachcoast #travelfishing #fishingscenes #fishingspotsa #shoreanglerlife #beachfishingsouthafrica #fishingfun2026 #travelvibes #beachvibes #kayzadventure #beachangler #fishingsa2026 #fishinglifestyle #anglervideo #durbanshorefishing #fishingcoastline #beachsurf #beachandnature #fishinggoals #adventurefishing #fishingmoments #beachvideos #fishingobsession #fishingspotkzn #coastalexplore #beachjourney #fishinglocal #fishingpassionate #southafricacoast #surfbeachfishing #beachrods #fishingsouthcoast #fishingfunsa #shorefishingdurban #beachlife2026 #travelandexplore #durbanbeachlife #fishingscenery #fishingaction #rodandreelfishing #fishingworld2026 #oceanfisherman #fishingspotexplore #beachsun #outdoorfishing #coastalfishingtrip #durbanfishinglife #beachcast #beachocean #beachdayout #shorecastfishing #travelnature #fishingwaves #fishingspotsouthafrica #durbantravelvlog #fishingcoastal #beachtravel #fishingrodlife #southafricaadventure",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Isipingo",
-          "region": "central",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": []
-    },
-    {
-      "id": "xfi4XjaGrwc",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Fishing Action in Isipingo ! | Shad and Ultra Light Session",
-      "link": "https://www.youtube.com/watch?v=xfi4XjaGrwc",
-      "date": "2026-07-29T14:03:27.000Z",
-      "description": "Welcome back to another adventure on KayzAdventures!\n\nIn today’s video, we head out to Isipingo Beach in Durban for an exciting fishing session along the KwaZulu-Natal coastline. From early casts to unexpected bites, this trip had beautiful ocean views, relaxing beach vibes, and some awesome fishing action. Whether you enjoy shore fishing, beach fishing, or just love the outdoors, this video captures the real experience of fishing in Durban, South Africa.\n\nJoin me as I explore another local fishing spot, test out different techniques, and enjoy a great day by the sea. Don’t forget to like, comment, and subscribe for more fishing adventures, kayak fishing, food experiences, travel content, and outdoor videos from around Durban and beyond!\n\n🎣 Location: Isipingo Beach, Durban, South Africa\n🌊 Fishing • Adventure • Nature • Beach Life • Local Exploration\n\n#Fishing #DurbanFishing #Isipingo #SouthAfricaFishing #BeachFishing #KayzAdventures\n\n#fishing #durban #isipingo #beachfishing #shorefishing #southafrica #durbanfishing #fishinglife #angler #oceanfishing #rockandsurf #surffishing #fishingtrip #fishingvideo #fishingadventure #fishingchannel #youtubefishing #kayzadventures #saltwaterfishing #beachlife #fishingtime #fishingfun #sea #ocean #coastline #kzn #kwazulunatal #travel #outdoors #nature #naturelover #adventure #explore #fishingdaily #fishingworld #fisherman #catchoftheday #fish #rodandreel #castnet #shoreangler #southafricafishing #durbanbeach #beachday #weekendvibes #travelvlog #fishingvlog #anglerlife #oceanlife #coastal #beachwaves #surffishinglife #fishingcommunity #fishingreels #fishingsouthafrica #africafishing #localfishing #outdoorlife #fishinggear #fishon #beachadventure #durbanlife #visitdurban #isipingobeach #beachfishinglife #oceanview #fishinglover #beachsunrise #fishingaddict #surfcasting #rockfishing #saltlife #beachfun #coastalfishing #fishingvideos #shorecast #rodlife #fishingseason #anglerworld #wildlife #travelafrica #adventuretime #beachscape #durbanvibes #fishingfriends #seaadventure #beachwalk #fishingspot #localangler #shoreline #oceanbreeze #sunrisefishing #beachrod #travelvideo #youtubecreator #smallcreator #fishingcontent #viralvideo #outdooradventure #oceanfishingtrip #durbanbeaches #fishingdurban #africanadventure #coastalvibes #reelfishing #fishingreel #fishinglover #catchfish #fishingspots #beachshore #isipingodurban #durbanangler #surfangler #fishingsouthafrica #beachcasting #fishingfunny #seafood #fishingcommunitysa #rodandline #beachwater #surfrod #angleraddict #weekendfishing #sunrisebeach #fishingworldwide #exploresouthafrica #visitkzn #kznfishing #outdoorchannel #beachnature #beachtrip #fishingphotography #beachvideo #fishingaddiction #shorelife #oceanangler #beachcontent #travelcreator #fishingshow #southafricayoutuber #durbancreator #beachfishingtrip #surffish #fishingspotlight #reelaction #fishingvibes #durbansea #southafricatravel #holidayvibes #fishingexpedition #beachrodcast #fishingclip #naturevideo #fishingpassion #saltwaterangler #oceanwaves #beachsunset #africayoutuber #beachscenery #travelandfish #fishandtravel #outdoorvlog #durbantravel #seaside #beachlover #fishingnation #fishingexperience #beachshorefishing #fishingreality #localbeach #seaangler #travelchannel #adventurechannel #fishingsa #durbanadventures #southcoastfishing #durbanocean #beachcaster #surfcaster #fishingtechniques #beachrodsetup #shorefishinglife #oceancontent #fishingexplorer #southafricabeaches #fishingsession #anglercommunity #beachandfishing #oceantrip #beachcastinglife #fishingrod #fishingweather #coastalwaters #surfandfish #beachandsea #fishingjourney #beachshoreline #rodcast #fishingvideo2026 #fishingmemories #adventurevideos #beachfishingdurban #fishingspotdurban #fishingcoast #oceanlover #coastaltrip #fishingfans #fishingholiday #fishingafrica #beachmorning #sunriseangler #beachcoast #travelfishing #fishingscenes #fishingspotsa #shoreanglerlife #beachfishingsouthafrica #fishingfun2026 #travelvibes #beachvibes #kayzadventure #beachangler #fishingsa2026 #fishinglifestyle #anglervideo #durbanshorefishing #fishingcoastline #beachsurf #beachandnature #fishinggoals #adventurefishing #fishingmoments #beachvideos #fishingobsession #fishingspotkzn #coastalexplore #beachjourney #fishinglocal #fishingpassionate #southafricacoast #surfbeachfishing #beachrods #fishingsouthcoast #fishingfunsa #shorefishingdurban #beachlife2026 #travelandexplore #durbanbeachlife #fishingscenery #fishingaction #rodandreelfishing #fishingworld2026 #oceanfisherman #fishingspotexplore #beachsun #outdoorfishing #coastalfishingtrip #durbanfishinglife #beachcast #beachocean #beachdayout #shorecastfishing #travelnature #fishingwaves #fishingspotsouthafrica #durbantravelvlog #fishingcoastal #beachtravel #fishingrodlife #southafricaadventure",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Isipingo",
-          "region": "central",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "zWxyUDidlaI",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "SHAD ON THE BITE IN HORRIBLE SEA CONDITIONS #shad #bluefish #sardinerun",
-      "link": "https://www.youtube.com/watch?v=zWxyUDidlaI",
-      "date": "2026-07-26T15:00:37.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "ujFc_ap4OLI",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "UNCLE JOHN LANDS A GARRICK ON A LIVE SHAD #garrick #sardinerun",
-      "link": "https://www.youtube.com/watch?v=ujFc_ap4OLI",
-      "date": "2026-07-25T13:00:26.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": [
-        "Garrick",
-        "Shad"
-      ]
-    },
-    {
-      "id": "fGSECQcrBlA",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Enjoying the sardine run with some awesome people. Pa's ball-bait demo for bronze bream.",
-      "link": "https://www.youtube.com/watch?v=fGSECQcrBlA",
-      "date": "2026-07-24T09:12:27.000Z",
-      "description": "Join Pa as he takes his subscribers on an unforgettable Sardine Run adventure! The action kicked off with an exciting shark hookup, putting both angler and tackle to the test. After the adrenaline settled, the team headed to the rocks, where Pa shared some of his best rock fishing tips, techniques, and tricks.\n\nWatch as Pa demonstrates his famous MustCatch Ball Bait method and explains how to fish the rocks more effectively. Despite the rough sea conditions, everyone had an incredible time, learned plenty, and enjoyed an action-packed day on the KZN coastline.\n\nIf you enjoy fishing adventures, tips, and epic catches, don't forget to like, subscribe, and hit the notification bell so you never miss an upload!",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Bronze Bream",
-        "Sardine"
-      ]
-    },
-    {
-      "id": "RAop5StOMew",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "GARRICK ON A LIVE MULLET CAUGHT BY PIE #garrick #sardinerun #mullet",
-      "link": "https://www.youtube.com/watch?v=RAop5StOMew",
-      "date": "2026-07-23T16:00:18.000Z",
-      "description": null,
-      "via": "scrape",
-      "marks": [],
-      "species": [
-        "Garrick"
       ]
     }
   ]

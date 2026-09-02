@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
-  CHANNELS, MAX_ENTRIES, SCRAPE_PER_CHANNEL, meta, firstRound, consume, merge,
+  CHANNELS, MAX_ENTRIES, SCRAPE_PER_CHANNEL, MAX_WATCH_LOOKUPS,
+  meta, firstRound, consume, merge,
   parseFeed, hasEntries, parseUploadDate, channelUrl, watchUrl, videosUrl,
   parseChannelPage,
 } from '../tools/feeds/youtube.mjs';
@@ -19,7 +20,8 @@ const CTX = { gazetteer: GZ };
 const KENTS = { name: 'Kents Fishing', id: 'UC1QUL3Z5Ho7_Y0M562eqb8Q' };
 
 test('every configured channel has a name and a UC id', () => {
-  assert.equal(CHANNELS.length, 7);
+  // A floor, not an exact count: the channel list grows as new ones are found.
+  assert.ok(CHANNELS.length >= 7, `only ${CHANNELS.length} channels`);
   for (const c of CHANNELS) {
     assert.ok(c.name.length, 'channel needs a name');
     assert.match(c.id, /^UC[A-Za-z0-9_-]{22}$/);
@@ -452,4 +454,71 @@ test('merge without a gazetteer leaves entries untouched', () => {
 
   // No gazetteer means no opinion: whatever was stored survives.
   assert.deepEqual(merged[0].marks, [{ name: 'Umkomaas', region: 'south', where: 'title' }]);
+});
+
+test('the watch-page round is globally capped, not just per channel', () => {
+  // Every channel fails its feed and every scraped video is unstored: the
+  // worst case, and the one that would blow the workflow's 10-minute budget.
+  const pages = CHANNELS.map((c) => ({
+    key: `page:${c.id}`, ok: true, status: 200,
+    body: fixture('youtube-channel.html'), channel: c,
+  }));
+
+  const { next } = consume(pages, [], CTX);
+
+  assert.ok(next.length <= MAX_WATCH_LOOKUPS, `${next.length} watch requests, cap is ${MAX_WATCH_LOOKUPS}`);
+  // The cap must still be enough to fill the stored window in one run.
+  assert.ok(MAX_WATCH_LOOKUPS >= MAX_ENTRIES, 'cap must be able to fill the window');
+});
+
+test('the global cap does not starve a single-channel run', () => {
+  const one = [{
+    key: `page:${CHANNELS[0].id}`, ok: true, status: 200,
+    body: fixture('youtube-channel.html'), channel: CHANNELS[0],
+  }];
+
+  const { next } = consume(one, [], CTX);
+
+  assert.equal(next.length, SCRAPE_PER_CHANNEL);
+});
+
+test('the watch budget is shared round-robin, not spent on the first channels', () => {
+  // Enough channels to exceed MAX_WATCH_LOOKUPS: 8 per channel x 8 channels =
+  // 64 candidates against a budget of 40, so the cap really does bite. A naive
+  // slice in channel order would hand the whole budget to the first five and
+  // leave the last three with nothing.
+  const chans = CHANNELS.slice(0, 8).map((c, i) => ({ name: `Channel ${i}`, id: c.id }));
+  const pages = chans.map((c) => ({
+    key: `page:${c.id}`, ok: true, status: 200,
+    body: fixture('youtube-channel.html'), channel: c,
+  }));
+
+  const { next } = consume(pages, [], CTX);
+
+  assert.equal(next.length, MAX_WATCH_LOOKUPS, 'the cap should bite here');
+  const per = chans.map((c) => next.filter((r) => r.video.channel === c.name).length);
+  assert.equal(per.filter((n) => n === 0).length, 0, `starved channels: ${JSON.stringify(per)}`);
+  // Round-robin: no channel gets more than one extra over any other.
+  assert.ok(Math.max(...per) - Math.min(...per) <= 1, `uneven split: ${JSON.stringify(per)}`);
+});
+
+test('a channel with few videos does not hold back the others', () => {
+  const many = CHANNELS.slice(0, 7).map((c, i) => ({ name: `Many ${i}`, id: c.id }));
+  const few = { name: 'Few', id: CHANNELS[7].id };
+  const onePage = '"lockupMetadataViewModel":{"title":{"content":"Only video"},'
+    + '"image":{}},"videoId":"zzzzzzzzzzz"';
+  const pages = [
+    { key: `page:${few.id}`, ok: true, status: 200, body: onePage, channel: few },
+    ...many.map((c) => ({
+      key: `page:${c.id}`, ok: true, status: 200,
+      body: fixture('youtube-channel.html'), channel: c,
+    })),
+  ];
+
+  const { next } = consume(pages, [], CTX);
+
+  // The short channel contributes its one video and the rest of the budget
+  // goes to the others rather than being left unspent.
+  assert.equal(next.filter((r) => r.video.channel === 'Few').length, 1);
+  assert.equal(next.length, MAX_WATCH_LOOKUPS);
 });

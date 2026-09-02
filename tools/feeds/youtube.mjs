@@ -26,6 +26,24 @@ export const CHANNELS = [
   { name: 'Kents Fishing', id: 'UC1QUL3Z5Ho7_Y0M562eqb8Q' },
   { name: 'Come Fish With Saags', id: 'UCCuWKw-vw3E8le-5aQNrLdA' },
   { name: 'TightLines South Africa', id: 'UCj-869N0wXMADhy_qmlYWBg' },
+
+  // Added 2026-09-02 after a discovery spike scraped candidate channels and
+  // ran their real titles through the gazetteer. Each of these yielded KZN
+  // marks the original seven never mention -- Port Edward, Uvongo, Ramsgate,
+  // Margate, Umhlanga, Ballito, Scottburgh, Addington, Virginia Beach, The
+  // Bluff -- widening coverage from the upper South Coast to the whole
+  // coastline. Channels yielding zero marks, or fishing other regions
+  // entirely, were rejected.
+  { name: 'Juelz Visuelz', id: 'UCpBFaKuglt7taad6cx-BN5Q' },
+  { name: 'Fun Fishing Frenzy', id: 'UC3mWWydsffzvNC7bap1rvMg' },
+  { name: 'Keegan Pillay - Fishing South Africa', id: 'UCBMsDqoK93sB3GW5r-OvUCA' },
+  { name: 'The RodFather', id: 'UC2ilfQtmI6rwd3mbh3bp6Ig' },
+  { name: 'Juelz T', id: 'UCexoxqWGHpw5fVLhk6M6mog' },
+  { name: 'On Tight Angling ZA', id: 'UCSB_4QdWyr4_wPfQc7skBvg' },
+  // These two also post from outside KZN (Mpumalanga and Qatar). Harmless:
+  // the gazetteer only matches KZN marks, so the rest is filtered out.
+  { name: 'Michael and Angie Fishing Adventures', id: 'UCLsOuB7JTlIY0uz_tIyWZGA' },
+  { name: 'Angler Alton', id: 'UCn3_Swied1AKTWLA7eH9dYQ' },
 ];
 
 // The UI renders eight. The window is larger so that sub-project 3b has
@@ -131,6 +149,13 @@ export const videosUrl = (id) => `${channelUrl(id)}/videos`;
 // because everything else is already stored.
 export const SCRAPE_PER_CHANNEL = 8;
 
+// A ceiling across the whole run, not just per channel. With fifteen channels
+// the per-channel cap alone would allow 120 watch-page fetches on a day when
+// every feed fails -- roughly 150 MB against the workflow's ten-minute budget,
+// and most of it wasted, since merge keeps only MAX_ENTRIES anyway. Sized to
+// still fill the window in a single run.
+export const MAX_WATCH_LOOKUPS = MAX_ENTRIES;
+
 // The channel page carries its video list inside ytInitialData as
 // lockupMetadataViewModel records. This is an undocumented shape and YouTube
 // can change it: parseChannelPage returning [] is a supported outcome, not an
@@ -210,13 +235,28 @@ export function consume(results, existing, ctx = {}) {
   // unstored one needs a watch-page lookup in round three.
   const pages = results.filter((r) => r.key.startsWith('page:'));
   if (pages.length) {
-    const next = [];
+    const perChannel = [];
     for (const result of pages) {
       if (!result.ok) continue;
-      const pending = parseChannelPage(result.body, result.channel)
-        .filter((video) => !stored.has(video.id))
-        .slice(0, SCRAPE_PER_CHANNEL);
-      for (const video of pending) {
+      perChannel.push(
+        parseChannelPage(result.body, result.channel)
+          .filter((video) => !stored.has(video.id))
+          .slice(0, SCRAPE_PER_CHANNEL),
+      );
+    }
+
+    // Round-robin, not channel order. The page lists a channel's videos newest
+    // first, so taking one from each channel in turn spends the budget on the
+    // newest video everywhere before anyone's second -- which is what the
+    // merge window wants. Slicing in channel order instead gave the whole
+    // budget to the first few channels and starved the rest entirely.
+    const next = [];
+    const deepest = Math.max(0, ...perChannel.map((c) => c.length));
+    for (let depth = 0; depth < deepest && next.length < MAX_WATCH_LOOKUPS; depth += 1) {
+      for (const channel of perChannel) {
+        if (next.length >= MAX_WATCH_LOOKUPS) break;
+        const video = channel[depth];
+        if (!video) continue;
         next.push({ key: `watch:${video.id}`, url: video.link, type: 'text', video });
       }
     }
