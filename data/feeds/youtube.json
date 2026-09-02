@@ -1,7 +1,7 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-02T07:12:27.729Z",
+  "builtAt": "2026-09-02T08:29:07.285Z",
   "entries": [
     {
       "id": "J_FJ_5LxkEU",
@@ -71,8 +71,8 @@
           "name": "Scottburgh",
           "region": "south",
           "where": "title",
-          "lat": null,
-          "lon": null
+          "lat": -30.28716,
+          "lon": 30.75978
         }
       ],
       "species": []
@@ -147,8 +147,8 @@
           "name": "Scottburgh",
           "region": "south",
           "where": "title",
-          "lat": null,
-          "lon": null
+          "lat": -30.28716,
+          "lon": 30.75978
         }
       ],
       "species": [
@@ -182,8 +182,8 @@
           "name": "Winklespruit",
           "region": "south",
           "where": "title",
-          "lat": null,
-          "lon": null
+          "lat": -30.09569,
+          "lon": 30.86249
         }
       ],
       "species": [
@@ -302,8 +302,8 @@
           "name": "Warner Beach",
           "region": "south",
           "where": "body",
-          "lat": null,
-          "lon": null
+          "lat": -30.08452,
+          "lon": 30.86834
         }
       ],
       "species": []
@@ -329,8 +329,8 @@
           "name": "Warner Beach",
           "region": "south",
           "where": "body",
-          "lat": null,
-          "lon": null
+          "lat": -30.08452,
+          "lon": 30.86834
         }
       ],
       "species": [
@@ -380,8 +380,8 @@
           "name": "Umkomaas",
           "region": "south",
           "where": "title",
-          "lat": null,
-          "lon": null
+          "lat": -30.20849,
+          "lon": 30.80122
         }
       ],
       "species": [
@@ -476,8 +476,8 @@
           "name": "Umkomaas",
           "region": "south",
           "where": "title",
-          "lat": null,
-          "lon": null
+          "lat": -30.20849,
+          "lon": 30.80122
         }
       ],
       "species": [
@@ -547,8 +547,8 @@
           "name": "Warner Beach",
           "region": "south",
           "where": "body",
-          "lat": null,
-          "lon": null
+          "lat": -30.08452,
+          "lon": 30.86834
         }
       ],
       "species": [

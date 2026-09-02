@@ -357,7 +357,12 @@ test('rss entries are stamped with marks and species', () => {
 
   const [entry] = parseFeed(xml, KENTS, GZ);
 
-  assert.deepEqual(entry.marks, [{ name: 'Umkomaas', region: 'south', where: 'title', lat: null, lon: null }]);
+  // Coordinates come from data/gazetteer.json, which the user edits, so this
+  // asserts what the parser decides -- not what the gazetteer happens to hold.
+  assert.equal(entry.marks.length, 1);
+  assert.equal(entry.marks[0].name, 'Umkomaas');
+  assert.equal(entry.marks[0].region, 'south');
+  assert.equal(entry.marks[0].where, 'title');
   assert.deepEqual(entry.species, ['Shad']);
 });
 
@@ -399,7 +404,9 @@ test('scraped entries are stamped from the title alone', () => {
 
   const { entries } = consume(results, [], CTX);
 
-  assert.deepEqual(entries[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title', lat: null, lon: null }]);
+  assert.equal(entries[0].marks.length, 1);
+  assert.equal(entries[0].marks[0].name, 'Winklespruit');
+  assert.equal(entries[0].marks[0].where, 'title');
   assert.deepEqual(entries[0].species, ['Garrick']);
 });
 
@@ -426,7 +433,9 @@ test('merge re-stamps carried-over entries so gazetteer edits take effect', () =
   const merged = merge([stale], [], CTX);
 
   assert.equal(merged.length, 1);
-  assert.deepEqual(merged[0].marks, [{ name: 'Winklespruit', region: 'south', where: 'title', lat: null, lon: null }]);
+  assert.equal(merged[0].marks.length, 1);
+  assert.equal(merged[0].marks[0].name, 'Winklespruit');
+  assert.equal(merged[0].marks[0].where, 'title');
   assert.deepEqual(merged[0].species, ['Garrick']);
 });
 
@@ -439,7 +448,9 @@ test('merge re-stamps from the description too', () => {
 
   const merged = merge([stale], [], CTX);
 
-  assert.deepEqual(merged[0].marks, [{ name: 'Scottburgh', region: 'south', where: 'body', lat: null, lon: null }]);
+  assert.equal(merged[0].marks.length, 1);
+  assert.equal(merged[0].marks[0].name, 'Scottburgh');
+  assert.equal(merged[0].marks[0].where, 'body');
 });
 
 test('merge without a gazetteer leaves entries untouched', () => {
