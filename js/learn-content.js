@@ -155,6 +155,81 @@ const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <path d="M278 100 L312 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
 </svg>`;
 
+const RUNNING_SINKER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+  <path d="M60 6 L60 38" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="90" y="20" font-size="11" fill="var(--diagram-label)">main line</text>
+  <path d="M60 38 Q52 50 60 62 Q68 50 60 38 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
+  <text x="90" y="54" font-size="11" fill="var(--diagram-label)">sliding sinker clip</text>
+  <path d="M60 62 L60 71" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="76" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="80" font-size="11" fill="var(--diagram-label)">bead</text>
+  <path d="M60 81 L60 92" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="98" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <circle cx="60" cy="110" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="107" font-size="11" fill="var(--diagram-label)">swivel</text>
+  <path d="M60 115 L60 160" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="66" y="140" font-size="11" fill="var(--diagram-label)">60-90 cm leader</text>
+  <path d="M60 160 Q52 172 58 182 Q66 190 74 180 Q78 174 70 170" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <text x="90" y="176" font-size="11" fill="var(--diagram-label)">hook</text>
+</svg>`;
+
+const PATERNOSTER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+  <path d="M60 6 L60 20" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="26" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <circle cx="60" cy="36" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="34" font-size="11" fill="var(--diagram-label)">swivel</text>
+  <path d="M60 41 L60 62" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="66" y="54" font-size="11" fill="var(--diagram-label)">1 m leader, heavier</text>
+  <path d="M60 62 Q88 56 92 70 Q96 84 68 80 Q60 79 60 62" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <path d="M92 70 Q100 76 96 86 Q92 94 84 88" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <text x="105" y="76" font-size="11" fill="var(--diagram-label)">dropper + hook, ~20 cm</text>
+  <path d="M60 90 L60 106" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <path d="M60 106 Q88 100 92 114 Q96 128 68 124 Q60 123 60 106" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <path d="M92 114 Q100 120 96 130 Q92 138 84 132" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <text x="105" y="120" font-size="11" fill="var(--diagram-label)">second dropper, ~20 cm</text>
+  <path d="M60 134 L60 165" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <path d="M60 165 Q50 178 60 192 Q70 178 60 165 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
+  <text x="90" y="182" font-size="11" fill="var(--diagram-label)">sinker</text>
+</svg>`;
+
+const SLIDING_TRACE_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+  <path d="M60 6 L60 34" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="90" y="20" font-size="11" fill="var(--diagram-label)">main line</text>
+  <path d="M60 34 Q52 46 60 58 Q68 46 60 34 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
+  <text x="90" y="50" font-size="11" fill="var(--diagram-label)">sliding sinker</text>
+  <path d="M60 58 L60 65" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="70" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="74" font-size="11" fill="var(--diagram-label)">bead</text>
+  <path d="M60 75 L60 83" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="90" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <circle cx="60" cy="100" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="98" font-size="11" fill="var(--diagram-label)">swivel</text>
+  <path d="M60 105 L60 140" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="66" y="125" font-size="11" fill="var(--diagram-label)">0.5 m heavy mono leader</text>
+  <path d="M60 140 L60 162" stroke="var(--diagram-line)" stroke-width="3" fill="none" stroke-dasharray="3 3"/>
+  <text x="66" y="154" font-size="11" fill="var(--diagram-label)">15 cm wire bite trace</text>
+  <path d="M60 162 Q52 174 58 184 Q66 192 74 182 Q78 176 70 172" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <text x="90" y="178" font-size="11" fill="var(--diagram-label)">hook</text>
+</svg>`;
+
+const ESTUARY_RIG_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+  <path d="M60 6 L60 28" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="90" y="18" font-size="11" fill="var(--diagram-label)">main line</text>
+  <path d="M60 28 Q54 37 60 46 Q66 37 60 28 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
+  <text x="90" y="40" font-size="11" fill="var(--diagram-label)">small sliding sinker</text>
+  <path d="M60 46 L60 52" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="56" r="4" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="60" font-size="11" fill="var(--diagram-label)">bead</text>
+  <path d="M60 60 L60 66" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="72" r="4" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <circle cx="60" cy="80" r="4" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
+  <text x="90" y="79" font-size="11" fill="var(--diagram-label)">small swivel</text>
+  <path d="M60 85 L60 165" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <text x="66" y="128" font-size="11" fill="var(--diagram-label)">1 m+ fine fluorocarbon leader</text>
+  <path d="M60 165 Q54 175 60 183 Q66 175 60 165" stroke="var(--diagram-accent)" stroke-width="2.5" fill="none"/>
+  <text x="90" y="179" font-size="11" fill="var(--diagram-label)">small hook</text>
+</svg>`;
+
 export const LEARN = Object.freeze([
   {
     id: 'rip-currents',
@@ -302,6 +377,70 @@ export const LEARN = Object.freeze([
       'Wrap that loop around the shank and both strands six or seven times, working towards the point.',
       'Hold the wraps against the shank and pull the standing line to draw them tight.',
       'Check the line leaves the eye on the point side, and trim.',
+    ],
+    note: null,
+  },
+  {
+    id: 'running-sinker',
+    section: 'knots',
+    title: 'Running sinker rig',
+    blurb: 'The standard bait rig off the beach. The sinker slides on the main line, so a fish picking up the bait feels the trace and not the lead.',
+    svg: RUNNING_SINKER_SVG,
+    svgAlt: 'A trace with the main line running through a sliding sinker clip, then a bead, then a swivel, then a leader down to a single hook.',
+    steps: [
+      'Thread a sliding sinker clip onto the main line, then a bead below it.',
+      'Tie the main line to a swivel with a uni knot. The bead stops the clip battering the knot.',
+      'Tie sixty to ninety centimetres of leader to the other end of the swivel.',
+      'Snell or uni the hook onto the leader.',
+      'Lengthen the leader in clear, calm water and shorten it in dirty water or a strong side-sweep.',
+    ],
+    note: null,
+  },
+  {
+    id: 'paternoster',
+    section: 'knots',
+    title: 'Paternoster (flapper)',
+    blurb: 'Two hooks standing off the trace above a sinker on the bottom. The workhorse for edibles off the beach when you want two baits in the water.',
+    svg: PATERNOSTER_SVG,
+    svgAlt: 'A vertical trace with a swivel at the top, two dropper loops standing out at intervals each carrying a hook, and a sinker at the bottom.',
+    steps: [
+      'Tie a swivel to the top of a metre of leader, heavier than your main line.',
+      'Tie two dropper loops into it, one about twenty centimetres below the swivel and one about twenty centimetres below that.',
+      'Attach a hook to each loop by passing the loop through the eye and over the hook point.',
+      'Tie a sinker clip or a loop for the sinker at the bottom of the trace.',
+      'Keep the droppers short enough that the two hooks cannot reach each other and tangle.',
+    ],
+    note: null,
+  },
+  {
+    id: 'sliding-trace',
+    section: 'knots',
+    title: 'Heavy sliding trace',
+    blurb: 'For live or dead bait off the rocks and the deeper beaches, where the fish have teeth and the ground is rough.',
+    svg: SLIDING_TRACE_SVG,
+    svgAlt: 'A heavy trace with a sliding sinker above a swivel, a heavy monofilament leader, a short wire bite trace and a single hook.',
+    steps: [
+      'Run a sliding sinker on the main line above a bead and a strong swivel.',
+      'Tie half a metre or so of heavy mono leader below the swivel - it takes the abrasion on rock and on a fish\'s tail.',
+      'For shad, add a short wire bite trace, fifteen centimetres or so, between the leader and the hook. Without it you lose the fish and the trace.',
+      'Where there are no teeth to worry about, skip the wire and run heavy mono straight to the hook - it gets far more takes in clear water.',
+      'Check the leader for nicks after every fish and after every snag. Rock finds the weak spot.',
+    ],
+    note: null,
+  },
+  {
+    id: 'estuary-rig',
+    section: 'knots',
+    title: 'Light estuary running rig',
+    blurb: 'Scaled down for grunter, springer and river snapper in the estuaries, where a heavy trace gets ignored.',
+    svg: ESTUARY_RIG_SVG,
+    svgAlt: 'A light trace with a small sliding sinker, a bead, a small swivel and a long fine leader to a single small hook.',
+    steps: [
+      'Use the lightest sinker that holds bottom in the current, and no more.',
+      'Slide it on the main line above a bead and a small swivel.',
+      'Run a metre or more of fine fluorocarbon leader below the swivel - length and thinness both matter in clear estuary water.',
+      'Snell a small hook, sized to the bait rather than to the fish you hope for.',
+      'Fish it on the moving water. In an estuary the push and the pull do the work, not the cast.',
     ],
     note: null,
   },
