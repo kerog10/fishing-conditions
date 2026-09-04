@@ -21,8 +21,7 @@ test('entry ids are unique, since they become element ids', () => {
   assert.equal(new Set(ids).size, ids.length);
 });
 
-// Deliberately deferred until Task 5: the knots section gets its first entry only then.
-test.todo('both sections have content, so neither renders as an empty heading — becomes a real assertion once the first knots entry lands in Task 5', () => {
+test('both sections have content, so neither renders as an empty heading', () => {
   for (const key of KEYS) {
     assert.ok(LEARN.some((e) => e.section === key), `empty section: ${key}`);
   }
