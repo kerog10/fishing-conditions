@@ -40,11 +40,6 @@ const GULLY_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <text x="288" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)">bank</text>
 </svg>`;
 
-const KNOT_PLACEHOLDER_SVG = `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-  <rect width="100" height="100" fill="var(--diagram-sea)"/>
-  <text x="50" y="50" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="var(--diagram-label)">Coming soon</text>
-</svg>`;
-
 export const LEARN = Object.freeze([
   {
     id: 'rip-currents',
@@ -78,16 +73,6 @@ export const LEARN = Object.freeze([
       'The surface often looks oily and slick compared to the broken water around it.',
       'Put the bait in the gully or on its edge, not on top of the bank behind it.',
     ],
-    note: null,
-  },
-  {
-    id: 'knots-placeholder',
-    section: 'knots',
-    title: 'Knots and traces',
-    blurb: 'How to tie the knots that hold your rig together and your fish on the line. More entries coming.',
-    svg: KNOT_PLACEHOLDER_SVG,
-    svgAlt: 'Placeholder for knots section.',
-    steps: ['Coming in the next update.'],
     note: null,
   },
 ]);
