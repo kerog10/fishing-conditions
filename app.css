@@ -85,17 +85,34 @@ main { padding: 16px; max-width: 900px; margin: 0 auto; }
 h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 24px 0 10px; }
 
 .spot-name { margin: 0 0 4px; font-weight: 600; }
-.status { margin: 0 0 12px; color: var(--muted); font-size: 14px; min-height: 1.2em; }
+.status { margin: 0 0 12px; color: var(--muted); font-size: 14px; min-height: 1.2em; transition: color var(--transition-fast); }
 .status.error { color: var(--poor); }
 
-.now-bar { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: var(--radius-lg); padding: 14px; }
+.status.loading::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  border: 2px solid var(--muted);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  vertical-align: -2px;
+  animation: status-spin 0.6s linear infinite;
+}
+
+@keyframes status-spin {
+  to { transform: rotate(360deg); }
+}
+
+.now-bar { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: var(--radius-lg); padding: 14px; transition: border-left-color var(--transition-fast); }
 .now-verdict { display: flex; align-items: baseline; gap: 12px; }
 .now-score { font-size: 40px; font-weight: 700; line-height: 1; }
 .strip { display: flex; gap: 3px; margin-top: 12px; }
 .strip span { flex: 1; height: 26px; border-radius: 3px; }
 
 .windows { display: grid; gap: 10px; }
-.window { background: var(--panel); border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 12px; }
+.window { background: var(--panel); border: 1px solid var(--line); border-left-width: 5px; border-radius: 10px; padding: 12px; transition: border-left-color var(--transition-fast); }
 .window header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .window .when { font-weight: 600; }
 .window .score { font-size: 26px; font-weight: 700; }
@@ -121,6 +138,11 @@ table.grid .row-label { position: sticky; left: 0; background: var(--panel); tex
 
 .tide-notice { margin: 28px 0 40px; padding: 12px; border: 1px solid var(--line); border-left: 4px solid var(--fair); border-radius: var(--radius-md); background: var(--panel); color: var(--muted); font-size: 13px; }
 .tide-notice strong { color: var(--ink); display: block; margin-bottom: 4px; }
+
+[role="tabpanel"] { transition: opacity var(--transition-fast); }
+[role="tabpanel"][hidden] { display: none; }
+[role="tabpanel"]:not([hidden]) { opacity: 1; }
+[role="tabpanel"].panel-enter { opacity: 0; }
 
 .preview { padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
 .preview-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }

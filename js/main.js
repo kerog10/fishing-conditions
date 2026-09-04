@@ -145,7 +145,14 @@ const tabs = createTabs({
 function paintTabs() {
   for (const name of tabs.names) {
     const selected = name === tabs.current();
-    els.panels[name].hidden = !selected;
+    const panel = els.panels[name];
+    if (selected && panel.hidden) {
+      panel.classList.add('panel-enter');
+      panel.hidden = false;
+      requestAnimationFrame(() => panel.classList.remove('panel-enter'));
+    } else {
+      panel.hidden = !selected;
+    }
     els.tabButtons[name].setAttribute('aria-selected', String(selected));
     els.tabButtons[name].tabIndex = selected ? 0 : -1;
   }
@@ -342,7 +349,7 @@ async function previewPoint(lat, lon, name = '') {
   };
   paintChips();
   paintPreviewBar();
-  setStatus(els.status, 'Loading forecast…');
+  setStatus(els.status, 'Loading forecast…', false, true);
 
   const { payload, stale, error, ageMs } = await loadSpotData(lat, lon);
   // A newer point was tapped while this was in flight; its result wins.
@@ -462,7 +469,7 @@ els.searchForm.addEventListener('submit', async (e) => {
   }
 
   suggester.cancel();
-  setStatus(els.status, 'Searching…');
+  setStatus(els.status, 'Searching…', false, true);
   try {
     const results = await geocode(term);
     if (!results.length) {

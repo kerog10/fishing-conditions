@@ -29,9 +29,10 @@ function metricsLine(hour) {
   return bits.join(' · ');
 }
 
-export function setStatus(target, message, isError = false) {
+export function setStatus(target, message, isError = false, isLoading = false) {
   target.textContent = message ?? '';
   target.classList.toggle('error', Boolean(isError));
+  target.classList.toggle('loading', Boolean(isLoading));
 }
 
 function currentIndex(hours, now) {
