@@ -10,6 +10,12 @@
   --poor: #d1594a;
   /* Tunable without a code change: the hatch has to stay legible in daylight. */
   --hatch-opacity: 0.22;
+  --diagram-sea: #16323f;
+  --diagram-sand: #8f7a52;
+  --diagram-foam: #cfe3ee;
+  --diagram-line: #e8eef2;
+  --diagram-accent: #35c26a;
+  --diagram-label: #93a6b3;
 }
 
 * { box-sizing: border-box; }
@@ -212,7 +218,7 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .spot-remove { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; background: none; border: 0; color: var(--muted); font-size: 18px; line-height: 1; }
 .empty { color: var(--muted); font-size: 14px; }
 
-.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 12px 0; }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 12px 0; }
 .tab { padding: 10px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
 .tab[aria-selected="true"] { color: var(--ink); border-color: var(--excellent); }
 
@@ -352,3 +358,17 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 }
 
 .spot-intel { color: var(--fair); }
+
+.learn { padding-bottom: 24px; }
+
+.guide-section { margin: 24px 0 10px; }
+.guide-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.guide-title { margin: 0 0 6px; font-size: 16px; }
+.guide-blurb { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+.guide-diagram { margin: 0 0 12px; }
+.guide-diagram svg { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--bg); }
+.guide-steps { margin: 0; padding-left: 20px; }
+.guide-step { margin-bottom: 6px; }
+.guide-note { margin: 12px 0 0; padding: 10px; border-radius: 8px; font-size: 14px; }
+.guide-note-safety { background: rgba(209, 89, 74, 0.15); border: 1px solid var(--poor); }
+.guide-note-tip { background: color-mix(in srgb, var(--good) 12%, transparent); border: 1px solid var(--good); color: var(--muted); }

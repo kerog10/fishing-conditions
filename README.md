@@ -10,14 +10,17 @@ Tap a point on the map to preview it, then add it to the comparison. Up to 6
 spots are compared as a grid of best-score-per-day; tap any cell to jump to that
 spot's detail for that day.
 
-Two tabs: **Spots** ranks every saved spot by its current score, with tide
+Three tabs: **Spots** ranks every saved spot by its current score, with tide
 state, wind and the next good window on each card, plus a week-at-a-glance
 grid. It also carries the human intelligence — the latest KZN fishing report,
 a ranked list of hotspots, and recent videos from local anglers. **7 days**
 shows one spot at a time as a Windguru-style forecast table: thirteen rows of
 readings against 3-hourly columns, colour-banded by severity, marked where the
 weather models disagree, and scroll-snapped a day at a time. Tap any column
-for the reasons behind that slot's score.
+for the reasons behind that slot's score. **Learn** carries the reference
+material: how to read a beach for rips, gullies and sandbanks, and the knots
+and traces for rock-and-surf and estuary fishing. It is static content - no
+forecast, no feed, no network.
 
 The place search suggests matches as you type (debounced, keyboard-navigable)
 using Open-Meteo's geocoder — no API key, no signup.
