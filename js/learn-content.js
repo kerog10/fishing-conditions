@@ -46,6 +46,7 @@ const SANDBANK_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid m
   <path d="M40 70 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M40 100 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M40 130 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <path d="M95 149 Q160 163 225 149" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
   <text x="160" y="176" text-anchor="middle" font-size="11" fill="var(--diagram-label)">fish the edge</text>
 </svg>`;
 
@@ -57,7 +58,7 @@ const SPRING_LOW_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid
   <path d="M0 176 L60 176 L96 146 L224 146 L260 176 L320 176 L320 200 L0 200 z" fill="var(--diagram-sand)" opacity="0.55"/>
   <path d="M96 44 L224 44" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.5"/>
   <text x="160" y="192" text-anchor="middle" font-size="11" fill="var(--diagram-label)">high water - same shape, now hidden</text>
-  <path d="M160 60 L160 158" stroke="var(--diagram-accent)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+  <path d="M160 60 L160 158" stroke="var(--diagram-accent)" stroke-width="3" stroke-dasharray="4 4" fill="none"/>
 </svg>`;
 
 export const LEARN = Object.freeze([
