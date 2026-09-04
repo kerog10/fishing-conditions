@@ -22,6 +22,8 @@ import { renderVideoList } from './ui-videos.js';
 import { buildHotspots } from './hotspots.js';
 import { attachIntel } from './spot-intel.js';
 import { renderHotspots, hotspotRowId } from './ui-hotspots.js';
+import { LEARN, SECTIONS } from './learn-content.js';
+import { renderLearn } from './ui-learn.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -149,6 +151,8 @@ function paintTabs() {
   }
   if (tabs.current() === 'spots') paintSpotCards();
 }
+
+renderLearn(els.panels.learn, LEARN, SECTIONS);
 
 for (const name of tabs.names) {
   els.tabButtons[name].addEventListener('click', () => tabs.select(name));

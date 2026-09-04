@@ -360,3 +360,15 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .spot-intel { color: var(--fair); }
 
 .learn { padding-bottom: 24px; }
+
+.guide-section { margin: 24px 0 10px; }
+.guide-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.guide-title { margin: 0 0 6px; font-size: 16px; }
+.guide-blurb { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+.guide-diagram { margin: 0 0 12px; }
+.guide-diagram svg { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--bg); }
+.guide-steps { margin: 0; padding-left: 20px; }
+.guide-step { margin-bottom: 6px; }
+.guide-note { margin: 12px 0 0; padding: 10px; border-radius: 8px; font-size: 14px; }
+.guide-note-safety { background: rgba(209, 89, 74, 0.15); border: 1px solid var(--poor); }
+.guide-note-tip { background: rgba(53, 194, 106, 0.12); border: 1px solid var(--good); color: var(--muted); }

@@ -30,6 +30,7 @@ const SHELL = [
   './js/suggest.js',
   './js/tabs.js',
   './js/learn-content.js',
+  './js/ui-learn.js',
   './js/compare.js',
   './js/ui-compare.js',
   './js/ui-spots-tab.js',
