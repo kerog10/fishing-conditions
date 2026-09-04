@@ -10,6 +10,12 @@
   --poor: #d1594a;
   /* Tunable without a code change: the hatch has to stay legible in daylight. */
   --hatch-opacity: 0.22;
+  --diagram-sea: #16323f;
+  --diagram-sand: #3b3323;
+  --diagram-foam: #cfe3ee;
+  --diagram-line: #e8eef2;
+  --diagram-accent: #35c26a;
+  --diagram-label: #93a6b3;
 }
 
 * { box-sizing: border-box; }
@@ -352,3 +358,5 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 }
 
 .spot-intel { color: var(--fair); }
+
+.learn { padding-bottom: 24px; }

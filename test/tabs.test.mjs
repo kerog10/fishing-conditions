@@ -11,7 +11,7 @@ const fakeStorage = () => {
   };
 };
 
-const NAMES = ['spots', 'days'];
+const NAMES = ['spots', 'days', 'learn'];
 
 test('with nothing remembered the first tab wins', () => {
   assert.equal(initialTab(NAMES, null), 'spots');
@@ -61,4 +61,20 @@ test('a spot with storage unavailable still switches tabs', () => {
   tabs.select('days');
 
   assert.equal(tabs.current(), 'days');
+});
+
+test('a remembered learn tab is restored', () => {
+  assert.equal(initialTab(NAMES, 'learn'), 'learn');
+});
+
+test('selecting learn reports it and remembers it', () => {
+  const storage = fakeStorage();
+  const seen = [];
+  const tabs = createTabs({ names: NAMES, storage, onChange: (n) => seen.push(n) });
+
+  tabs.select('learn');
+
+  assert.equal(tabs.current(), 'learn');
+  assert.deepEqual(seen, ['learn']);
+  assert.equal(storage.getItem('fc:tab'), 'learn');
 });

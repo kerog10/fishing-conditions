@@ -32,6 +32,7 @@
   <div class="tabs" role="tablist" aria-label="Views">
     <button id="tab-spots" class="tab" role="tab" type="button" aria-controls="panel-spots" aria-selected="true">Spots</button>
     <button id="tab-days" class="tab" role="tab" type="button" aria-controls="panel-days" aria-selected="false" tabindex="-1">7 days</button>
+    <button id="tab-learn" class="tab" role="tab" type="button" aria-controls="panel-learn" aria-selected="false" tabindex="-1">Learn</button>
   </div>
 
   <section id="panel-spots" role="tabpanel" aria-labelledby="tab-spots">
@@ -56,6 +57,8 @@
       <div id="days" class="ftable"></div>
     </section>
   </section>
+
+  <section id="panel-learn" class="learn" role="tabpanel" aria-labelledby="tab-learn" hidden></section>
 
   <p id="tide-notice" class="tide-notice">
     <strong>Tides are modelled, not measured.</strong>

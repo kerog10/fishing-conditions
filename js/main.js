@@ -42,8 +42,8 @@ const els = {
   feed: $('feed'),
   videos: $('videos'),
   hotspots: $('hotspots'),
-  panels: { spots: $('panel-spots'), days: $('panel-days') },
-  tabButtons: { spots: $('tab-spots'), days: $('tab-days') },
+  panels: { spots: $('panel-spots'), days: $('panel-days'), learn: $('panel-learn') },
+  tabButtons: { spots: $('tab-spots'), days: $('tab-days'), learn: $('tab-learn') },
 };
 
 const state = {
@@ -136,7 +136,7 @@ function paintCompare() {
 }
 
 const tabs = createTabs({
-  names: ['spots', 'days'],
+  names: ['spots', 'days', 'learn'],
   onChange: () => paintTabs(),
 });
 
