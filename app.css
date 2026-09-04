@@ -59,6 +59,7 @@ body {
 .search button {
   padding: 10px 14px; border-radius: var(--radius-md); border: 0;
   background: var(--accent); color: var(--accent-ink);
+  display: inline-flex; align-items: center; min-height: 44px;
   transition: background-color var(--transition-fast),
     border-color var(--transition-fast), color var(--transition-fast);
 }
