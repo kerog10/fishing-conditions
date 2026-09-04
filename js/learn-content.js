@@ -8,69 +8,97 @@ export const SECTIONS = Object.freeze([
   { key: 'knots', title: 'Knots and traces' },
 ]);
 
-const RIP_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const RIP_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <defs>
-    <marker id="rip-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+    <marker id="rip-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-accent)"/>
     </marker>
+    <linearGradient id="rip-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--diagram-sea-2)"/>
+      <stop offset="1" stop-color="var(--diagram-sea)"/>
+    </linearGradient>
   </defs>
-  <rect x="0" y="0" width="320" height="150" fill="var(--diagram-sea)"/>
+  <rect x="0" y="0" width="320" height="150" fill="url(#rip-sea)"/>
   <rect x="0" y="150" width="320" height="50" fill="var(--diagram-sand)"/>
   <path d="M0 118 q20 -10 40 0 t40 0 t40 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M200 118 q20 -10 40 0 t40 0 t40 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M0 96 q20 -10 40 0 t40 0 t40 0" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.7"/>
   <path d="M200 96 q20 -10 40 0 t40 0 t40 0" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.7"/>
-  <path d="M136 150 L128 40 L192 40 L184 150 z" fill="var(--diagram-sea)" opacity="0.85"/>
-  <path d="M160 146 L160 56" stroke="var(--diagram-accent)" stroke-width="3" fill="none" marker-end="url(#rip-arrow)"/>
-  <text x="160" y="176" text-anchor="middle" font-size="11" fill="var(--diagram-label)">gap in the breakers</text>
-  <text x="52" y="86" text-anchor="middle" font-size="11" fill="var(--diagram-label)">waves break</text>
-  <text x="268" y="86" text-anchor="middle" font-size="11" fill="var(--diagram-label)">waves break</text>
-  <text x="160" y="32" text-anchor="middle" font-size="11" fill="var(--diagram-label)">water running out</text>
-  <text x="8" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">from above</text>
+  <path d="M136 150 L128 40 L192 40 L184 150 z" fill="var(--diagram-sea)" opacity="0.9"/>
+  <path d="M160 146 L160 56" stroke="var(--diagram-accent)" stroke-width="4" fill="none" marker-end="url(#rip-arrow)"/>
+  <rect x="110" y="167" width="100" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.8"/>
+  <text x="160" y="178" text-anchor="middle" font-size="11" fill="var(--diagram-label)">gap in the breakers</text>
+  <rect x="16" y="78" width="72" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.8"/>
+  <text x="52" y="89" text-anchor="middle" font-size="11" fill="var(--diagram-label)">waves break</text>
+  <rect x="232" y="78" width="72" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.8"/>
+  <text x="268" y="89" text-anchor="middle" font-size="11" fill="var(--diagram-label)">waves break</text>
+  <rect x="104" y="24" width="112" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.8"/>
+  <text x="160" y="35" text-anchor="middle" font-size="11" fill="var(--diagram-label)">water running out</text>
+  <text x="8" y="14" text-anchor="start" font-size="10" fill="var(--diagram-label)" opacity="0.7">FROM ABOVE</text>
 </svg>`;
 
-const GULLY_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
-  <rect x="0" y="0" width="320" height="200" fill="var(--diagram-sea)" opacity="0.35"/>
+const GULLY_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <linearGradient id="gully-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--diagram-sea-2)"/>
+      <stop offset="1" stop-color="var(--diagram-sea)"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="320" height="200" fill="url(#gully-sea)" opacity="0.5"/>
   <path d="M0 150 L60 150 L96 104 L224 104 L260 150 L320 150 L320 200 L0 200 z" fill="var(--diagram-sand)"/>
   <path d="M0 74 q16 -9 32 0 t32 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M256 74 q16 -9 32 0 t32 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M96 74 L224 74" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.5"/>
-  <rect x="96" y="74" width="128" height="30" fill="var(--diagram-accent)" opacity="0.25"/>
-  <text x="160" y="96" text-anchor="middle" font-size="11" fill="var(--diagram-label)">deep, dark, unbroken</text>
-  <text x="34" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)">bank</text>
-  <text x="288" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)">bank</text>
-  <text x="8" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">side on</text>
+  <rect x="96" y="74" width="128" height="30" fill="var(--diagram-accent)" opacity="0.3"/>
+  <rect x="105" y="86" width="110" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.8"/>
+  <text x="160" y="97" text-anchor="middle" font-size="11" fill="var(--diagram-label)">deep, dark, unbroken</text>
+  <text x="34" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)" font-weight="600">bank</text>
+  <text x="288" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)" font-weight="600">bank</text>
+  <text x="8" y="14" text-anchor="start" font-size="10" fill="var(--diagram-label)" opacity="0.7">SIDE ON</text>
 </svg>`;
 
-const SANDBANK_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
-  <rect x="0" y="0" width="320" height="200" fill="var(--diagram-sea)"/>
+const SANDBANK_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <linearGradient id="sandbank-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--diagram-sea-2)"/>
+      <stop offset="1" stop-color="var(--diagram-sea)"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="320" height="200" fill="url(#sandbank-sea)"/>
   <ellipse cx="160" cy="100" rx="130" ry="56" fill="var(--diagram-sand)"/>
   <path d="M35 70 q31.25 -12 62.5 0 t62.5 0 t62.5 0 t62.5 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M35 100 q31.25 -12 62.5 0 t62.5 0 t62.5 0 t62.5 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M35 130 q31.25 -12 62.5 0 t62.5 0 t62.5 0 t62.5 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
-  <path d="M95 149 Q160 163 225 149" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
-  <text x="160" y="176" text-anchor="middle" font-size="11" fill="var(--diagram-label)">fish the edge</text>
-  <text x="8" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">from above</text>
+  <path d="M95 149 Q160 163 225 149" stroke="var(--diagram-accent)" stroke-width="4" fill="none"/>
+  <rect x="118" y="167" width="84" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.8"/>
+  <text x="160" y="178" text-anchor="middle" font-size="11" fill="var(--diagram-label)">fish the edge</text>
+  <text x="8" y="14" text-anchor="start" font-size="10" fill="var(--diagram-label)" opacity="0.7">FROM ABOVE</text>
 </svg>`;
 
-const SPRING_LOW_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
-  <rect x="0" y="0" width="320" height="94" fill="var(--diagram-sea)" opacity="0.25"/>
+const SPRING_LOW_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="0" y="0" width="320" height="94" fill="var(--diagram-sea)" opacity="0.3"/>
   <path d="M0 74 L60 74 L96 44 L224 44 L260 74 L320 74 L320 94 L0 94 z" fill="var(--diagram-sand)"/>
-  <text x="6" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">side on</text>
-  <text x="160" y="30" text-anchor="middle" font-size="11" fill="var(--diagram-label)">spring low - the shape is visible</text>
-  <rect x="0" y="106" width="320" height="94" fill="var(--diagram-sea)" opacity="0.7"/>
-  <path d="M0 176 L60 176 L96 146 L224 146 L260 176 L320 176 L320 200 L0 200 z" fill="var(--diagram-sand)" opacity="0.55"/>
+  <text x="6" y="14" text-anchor="start" font-size="10" fill="var(--diagram-label)" opacity="0.7">SIDE ON</text>
+  <rect x="70" y="21" width="180" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.85"/>
+  <text x="160" y="32" text-anchor="middle" font-size="11" fill="var(--diagram-accent)" font-weight="600">spring low - the shape is visible</text>
+  <line x1="0" y1="100" x2="320" y2="100" stroke="var(--diagram-line)" stroke-width="1" opacity="0.2" stroke-dasharray="2 4"/>
+  <rect x="0" y="106" width="320" height="94" fill="var(--diagram-sea)" opacity="0.75"/>
+  <path d="M0 176 L60 176 L96 146 L224 146 L260 176 L320 176 L320 200 L0 200 z" fill="var(--diagram-sand)" opacity="0.5"/>
   <path d="M96 44 L224 44" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.5"/>
-  <text x="160" y="192" text-anchor="middle" font-size="11" fill="var(--diagram-label)">high water - same shape, now hidden</text>
-  <path d="M160 60 L160 158" stroke="var(--diagram-accent)" stroke-width="3" stroke-dasharray="4 4" fill="none"/>
+  <rect x="55" y="183" width="210" height="16" rx="8" fill="var(--diagram-panel)" opacity="0.85"/>
+  <text x="160" y="194" text-anchor="middle" font-size="11" fill="var(--diagram-label)">high water - same shape, now hidden</text>
+  <path d="M160 60 L160 158" stroke="var(--diagram-accent-2)" stroke-width="3" stroke-dasharray="5 5" fill="none"/>
 </svg>`;
 
-const UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
-  <text x="14" y="22" font-size="11" fill="var(--diagram-label)">1</text>
-  <text x="121" y="22" font-size="11" fill="var(--diagram-label)">2</text>
-  <text x="228" y="22" font-size="11" fill="var(--diagram-label)">3</text>
+  <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="20" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">1</text>
+  <circle cx="127" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="127" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">2</text>
+  <circle cx="234" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="234" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">3</text>
   <circle cx="26" cy="100" r="7" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M4 100 L26 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M26 100 L96 88" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
@@ -84,12 +112,15 @@ const UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
   <path d="M280 100 L312 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
 </svg>`;
 
-const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
-  <text x="14" y="22" font-size="11" fill="var(--diagram-label)">1</text>
-  <text x="121" y="22" font-size="11" fill="var(--diagram-label)">2</text>
-  <text x="228" y="22" font-size="11" fill="var(--diagram-label)">3</text>
+  <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="20" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">1</text>
+  <circle cx="127" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="127" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">2</text>
+  <circle cx="234" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="234" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">3</text>
   <path d="M4 84 L98 84" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M4 116 L98 116" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M116 84 L204 84" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
@@ -101,12 +132,15 @@ const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid
   <ellipse cx="271" cy="100" rx="18" ry="10" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
 </svg>`;
 
-const BLOOD_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const BLOOD_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
-  <text x="14" y="22" font-size="11" fill="var(--diagram-label)">1</text>
-  <text x="121" y="22" font-size="11" fill="var(--diagram-label)">2</text>
-  <text x="228" y="22" font-size="11" fill="var(--diagram-label)">3</text>
+  <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="20" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">1</text>
+  <circle cx="127" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="127" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">2</text>
+  <circle cx="234" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="234" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">3</text>
   <path d="M8 76 L98 124" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M8 124 L98 76" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M116 88 L160 88" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
@@ -120,12 +154,15 @@ const BLOOD_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <path d="M268 100 L296 116" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
 </svg>`;
 
-const DROPPER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const DROPPER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
-  <text x="14" y="22" font-size="11" fill="var(--diagram-label)">1</text>
-  <text x="121" y="22" font-size="11" fill="var(--diagram-label)">2</text>
-  <text x="228" y="22" font-size="11" fill="var(--diagram-label)">3</text>
+  <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="20" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">1</text>
+  <circle cx="127" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="127" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">2</text>
+  <circle cx="234" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="234" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">3</text>
   <path d="M4 100 L36 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M36 100 Q36 130 60 130 Q84 130 84 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M84 100 L98 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
@@ -138,12 +175,15 @@ const DROPPER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid me
   <path d="M264 106 L264 150" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
 </svg>`;
 
-const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
-  <text x="14" y="22" font-size="11" fill="var(--diagram-label)">1</text>
-  <text x="121" y="22" font-size="11" fill="var(--diagram-label)">2</text>
-  <text x="228" y="22" font-size="11" fill="var(--diagram-label)">3</text>
+  <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="20" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">1</text>
+  <circle cx="127" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="127" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">2</text>
+  <circle cx="234" cy="18" r="12" fill="var(--diagram-accent)"/>
+  <text x="234" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">3</text>
   <circle cx="20" cy="100" r="6" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M20 106 Q10 130 30 150 Q46 164 62 150" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M4 88 L20 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
@@ -159,7 +199,7 @@ const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <path d="M278 100 L312 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
 </svg>`;
 
-const RUNNING_SINKER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const RUNNING_SINKER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 38" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="90" y="20" font-size="11" fill="var(--diagram-label)">main line</text>
   <path d="M60 38 Q52 50 60 62 Q68 50 60 38 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
@@ -177,7 +217,7 @@ const RUNNING_SINKER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMid
   <text x="90" y="176" font-size="11" fill="var(--diagram-label)">hook</text>
 </svg>`;
 
-const PATERNOSTER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const PATERNOSTER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 20" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <circle cx="60" cy="26" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <circle cx="60" cy="36" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
@@ -196,7 +236,7 @@ const PATERNOSTER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMi
   <text x="90" y="182" font-size="11" fill="var(--diagram-label)">sinker</text>
 </svg>`;
 
-const SLIDING_TRACE_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const SLIDING_TRACE_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 34" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="90" y="20" font-size="11" fill="var(--diagram-label)">main line</text>
   <path d="M60 34 Q52 46 60 58 Q68 46 60 34 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
@@ -216,7 +256,7 @@ const SLIDING_TRACE_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidY
   <text x="90" y="178" font-size="11" fill="var(--diagram-label)">hook</text>
 </svg>`;
 
-const ESTUARY_RIG_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+const ESTUARY_RIG_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 28" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="90" y="18" font-size="11" fill="var(--diagram-label)">main line</text>
   <path d="M60 28 Q54 37 60 46 Q66 37 60 28 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>

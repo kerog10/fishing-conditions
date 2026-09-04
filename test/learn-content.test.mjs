@@ -63,13 +63,16 @@ test('no interpolation, no imports, no fetch; fills/strokes stay on palette toke
   assert.ok(!/\bimport\b/.test(code), 'import keyword found in learn-content.js');
   assert.ok(!/\bfetch\b/.test(code), 'fetch keyword found in learn-content.js');
 
-  const allowedStrokeWidths = new Set(['1', '1.5', '2', '3']);
+  const allowedStrokeWidths = new Set(['1', '1.5', '2', '3', '4']);
 
   for (const entry of LEARN) {
     for (const match of entry.svg.matchAll(/\b(fill|stroke)="([^"]*)"/g)) {
       const [, attr, value] = match;
       assert.ok(
-        value === 'none' || value.startsWith('var(--diagram-'),
+        // url(#...) refers to a <linearGradient> defined in this same entry's
+        // svg, stitched from --diagram- tokens only -- still on-palette, just
+        // not a flat colour.
+        value === 'none' || value.startsWith('var(--diagram-') || value.startsWith('url(#'),
         `off-palette ${attr}="${value}" in ${entry.id}`,
       );
     }
