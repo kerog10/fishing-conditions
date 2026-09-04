@@ -103,13 +103,21 @@ const UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" 
   <path d="M4 100 L26 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M26 100 L96 88" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M26 100 L96 112" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
-  <path d="M116 88 L204 88" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <path d="M116 112 L204 112" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <path d="M204 112 Q204 74 188 74 Q172 74 172 100 Q172 126 156 126 Q140 126 140 100 Q140 74 124 74" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <path d="M116 88 L204 88" stroke="var(--diagram-line)" stroke-width="3" fill="none" opacity="0.35"/>
+  <path d="M116 112 L204 112" stroke="var(--diagram-line)" stroke-width="3" fill="none" opacity="0.35"/>
+  <g stroke="var(--diagram-accent)" stroke-width="3" fill="none">
+    <ellipse cx="132" cy="100" rx="9" ry="17"/>
+    <ellipse cx="148" cy="100" rx="9" ry="17"/>
+    <ellipse cx="164" cy="100" rx="9" ry="17"/>
+    <ellipse cx="180" cy="100" rx="9" ry="17"/>
+    <ellipse cx="196" cy="100" rx="9" ry="17"/>
+  </g>
   <circle cx="234" cy="100" r="7" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
-  <path d="M234 100 L254 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <ellipse cx="268" cy="100" rx="12" ry="9" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
-  <path d="M280 100 L312 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <path d="M234 100 L244 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <ellipse cx="253" cy="100" rx="9" ry="8" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <path d="M262 100 L272 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <ellipse cx="288" cy="100" rx="12" ry="9" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <path d="M300 100 L316 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
 </svg>`;
 
 const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
@@ -123,10 +131,18 @@ const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid
   <text x="234" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="var(--diagram-panel)">3</text>
   <path d="M4 84 L98 84" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M4 116 L98 116" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <path d="M116 84 L204 84" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <path d="M116 116 L204 116" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <path d="M136 84 Q136 68 148 68 Q160 68 160 84 Q160 100 172 100 Q184 100 184 84" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
-  <path d="M148 116 Q148 132 160 132 Q172 132 172 116 Q172 100 184 100 Q196 100 196 116" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <path d="M116 84 L204 84" stroke="var(--diagram-line)" stroke-width="3" fill="none" opacity="0.35"/>
+  <path d="M116 116 L204 116" stroke="var(--diagram-line)" stroke-width="3" fill="none" opacity="0.35"/>
+  <g stroke="var(--diagram-accent)" stroke-width="3" fill="none">
+    <ellipse cx="138" cy="84" rx="7" ry="13"/>
+    <ellipse cx="150" cy="84" rx="7" ry="13"/>
+    <ellipse cx="162" cy="84" rx="7" ry="13"/>
+  </g>
+  <g stroke="var(--diagram-accent)" stroke-width="3" fill="none">
+    <ellipse cx="158" cy="116" rx="7" ry="13"/>
+    <ellipse cx="170" cy="116" rx="7" ry="13"/>
+    <ellipse cx="182" cy="116" rx="7" ry="13"/>
+  </g>
   <path d="M222 100 L246 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M296 100 L316 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <ellipse cx="271" cy="100" rx="18" ry="10" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
@@ -169,6 +185,12 @@ const DROPPER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid me
   <path d="M116 100 L148 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M180 100 L204 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M148 100 Q148 84 160 84 Q172 84 172 100 Q172 116 160 116 Q148 116 148 100" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <g stroke="var(--diagram-accent)" stroke-width="2" fill="none">
+    <path d="M150 88 L168 82"/>
+    <path d="M148 96 L168 90"/>
+    <path d="M148 104 L168 98"/>
+    <path d="M150 112 L168 106"/>
+  </g>
   <path d="M160 116 Q160 132 168 132" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
   <path d="M222 100 L306 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <circle cx="264" cy="100" r="6" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
@@ -191,7 +213,13 @@ const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <circle cx="128" cy="100" r="6" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M128 106 Q118 130 138 150 Q154 164 170 150" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M128 100 L200 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
-  <path d="M134 94 Q150 84 150 100 Q150 116 166 106 Q182 96 182 100" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <g stroke="var(--diagram-accent)" stroke-width="3" fill="none">
+    <ellipse cx="140" cy="100" rx="7" ry="13"/>
+    <ellipse cx="152" cy="100" rx="7" ry="13"/>
+    <ellipse cx="164" cy="100" rx="7" ry="13"/>
+    <ellipse cx="176" cy="100" rx="7" ry="13"/>
+    <ellipse cx="188" cy="100" rx="7" ry="13"/>
+  </g>
   <circle cx="236" cy="100" r="6" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M236 106 Q226 130 246 150 Q262 164 278 150" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M236 100 L246 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
