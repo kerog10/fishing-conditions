@@ -40,6 +40,26 @@ const GULLY_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <text x="288" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)">bank</text>
 </svg>`;
 
+const SANDBANK_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+  <rect x="0" y="0" width="320" height="200" fill="var(--diagram-sea)"/>
+  <ellipse cx="160" cy="100" rx="130" ry="56" fill="var(--diagram-sand)"/>
+  <path d="M40 70 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <path d="M40 100 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <path d="M40 130 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <text x="160" y="176" text-anchor="middle" font-size="11" fill="var(--diagram-label)">fish the edge</text>
+</svg>`;
+
+const SPRING_LOW_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+  <rect x="0" y="0" width="320" height="94" fill="var(--diagram-sea)" opacity="0.25"/>
+  <path d="M0 74 L60 74 L96 44 L224 44 L260 74 L320 74 L320 94 L0 94 z" fill="var(--diagram-sand)"/>
+  <text x="160" y="16" text-anchor="middle" font-size="11" fill="var(--diagram-label)">spring low - the shape is visible</text>
+  <rect x="0" y="106" width="320" height="94" fill="var(--diagram-sea)" opacity="0.7"/>
+  <path d="M0 176 L60 176 L96 146 L224 146 L260 176 L320 176 L320 200 L0 200 z" fill="var(--diagram-sand)" opacity="0.55"/>
+  <path d="M96 44 L224 44" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.5"/>
+  <text x="160" y="192" text-anchor="middle" font-size="11" fill="var(--diagram-label)">high water - same shape, now hidden</text>
+  <path d="M160 60 L160 158" stroke="var(--diagram-accent)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+</svg>`;
+
 export const LEARN = Object.freeze([
   {
     id: 'rip-currents',
@@ -72,6 +92,38 @@ export const LEARN = Object.freeze([
       'Swell rolls across it without breaking, then breaks on the shallow bank inshore of it.',
       'The surface often looks oily and slick compared to the broken water around it.',
       'Put the bait in the gully or on its edge, not on top of the bank behind it.',
+    ],
+    note: null,
+  },
+  {
+    id: 'sandbanks',
+    section: 'water',
+    title: 'Sandbanks',
+    blurb: 'The shallow humps of sand that the gullies run between. Bait washes over them and fish come up onto them to feed, mostly on a pushing tide.',
+    svg: SANDBANK_SVG,
+    svgAlt: 'A beach from above showing a pale shallow bank with waves breaking consistently across it and darker deep water on either side.',
+    steps: [
+      'Waves break in the same place over a bank, every set, rather than passing through.',
+      'The broken water is white and foaming and stays that way.',
+      'The water over the bank looks pale brown or sandy against the darker gullies.',
+      'At low tide the bank shows as an exposed hump or as water only ankle deep.',
+      'Fish the edge where the bank drops into the gully, and fish it as the tide pushes.',
+    ],
+    note: null,
+  },
+  {
+    id: 'spring-low',
+    section: 'water',
+    title: 'Map the beach at spring low',
+    blurb: 'The single most useful hour you can spend on a new beach. At spring low the banks and gullies are laid bare, and the shape holds for weeks.',
+    svg: SPRING_LOW_SVG,
+    svgAlt: 'The same stretch of beach at low water, where the bank and gully are exposed, and at high water, where the identical shape is hidden beneath the surface.',
+    steps: [
+      'Go at the lowest spring tide you can, and walk the stretch you intend to fish.',
+      'Note where the gullies run, where the banks sit, and where a channel cuts through.',
+      'Photograph it, or mark the gully mouths against something fixed on the shore.',
+      'Fish that map on the pushing tide, when the same holes are under water and holding fish.',
+      'Re-walk it after a big sea. Heavy swell rearranges banks; a quiet month barely moves them.',
     ],
     note: null,
   },
