@@ -16,6 +16,29 @@
   --diagram-line: #e8eef2;
   --diagram-accent: #35c26a;
   --diagram-label: #93a6b3;
+  --accent: #2b6ea8;
+  --accent-ink: #ffffff;
+  --focus-ring: var(--good);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --transition-fast: 120ms ease;
+  --ramp-wind-0: #123028;
+  --ramp-wind-1: #1b5138;
+  --ramp-wind-2: #46682a;
+  --ramp-wind-3: #7a6a1f;
+  --ramp-wind-4: #8c5320;
+  --ramp-wind-5: #93331f;
+  --ramp-wind-6: #a01f1f;
+  --ramp-tide-0: #12303f;
+  --ramp-tide-1: #17435a;
+  --ramp-tide-2: #1c5878;
+  --ramp-tide-3: #206e97;
+  --ramp-score-0: #14361f;
+  --ramp-score-1: #3a3016;
+  --ramp-score-2: #3c1d18;
 }
 
 * { box-sizing: border-box; }
@@ -31,11 +54,11 @@ body {
 .topbar h1 { margin: 0 0 8px; font-size: 18px; }
 
 .search { display: flex; gap: 8px; }
-.search input { flex: 1; min-width: 0; padding: 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
-.search button { padding: 10px 14px; border-radius: 8px; border: 0; background: #2b6ea8; color: #fff; }
+.search input { flex: 1; min-width: 0; padding: 10px; border-radius: var(--radius-md); border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.search button { padding: 10px 14px; border-radius: var(--radius-md); border: 0; background: var(--accent); color: var(--accent-ink); }
 
 .results { list-style: none; margin: 8px 0 0; padding: 0; }
-.results li button { width: 100%; text-align: left; padding: 10px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 4px; }
+.results li button { width: 100%; text-align: left; padding: 10px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-md); margin-bottom: 4px; }
 
 #map { height: 38vh; min-height: 220px; }
 
@@ -46,7 +69,7 @@ h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: v
 .status { margin: 0 0 12px; color: var(--muted); font-size: 14px; min-height: 1.2em; }
 .status.error { color: var(--poor); }
 
-.now-bar { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 12px; padding: 14px; }
+.now-bar { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: var(--radius-lg); padding: 14px; }
 .now-verdict { display: flex; align-items: baseline; gap: 12px; }
 .now-score { font-size: 40px; font-weight: 700; line-height: 1; }
 .strip { display: flex; gap: 3px; margin-top: 12px; }
@@ -77,7 +100,7 @@ table.grid .row-label { position: sticky; left: 0; background: var(--panel); tex
 .bg-fair { background: var(--fair); }
 .bg-poor { background: var(--poor); }
 
-.tide-notice { margin: 28px 0 40px; padding: 12px; border: 1px solid var(--line); border-left: 4px solid var(--fair); border-radius: 8px; background: var(--panel); color: var(--muted); font-size: 13px; }
+.tide-notice { margin: 28px 0 40px; padding: 12px; border: 1px solid var(--line); border-left: 4px solid var(--fair); border-radius: var(--radius-md); background: var(--panel); color: var(--muted); font-size: 13px; }
 .tide-notice strong { color: var(--ink); display: block; margin-bottom: 4px; }
 
 .preview { padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
@@ -85,15 +108,15 @@ table.grid .row-label { position: sticky; left: 0; background: var(--panel); tex
 .preview-name { font-weight: 600; }
 .preview-score { font-weight: 700; font-size: 20px; }
 .preview-reason { color: var(--muted); font-size: 13px; }
-.add-spot { margin-left: auto; padding: 8px 12px; border: 0; border-radius: 8px; background: #2b6ea8; color: #fff; }
+.add-spot { margin-left: auto; padding: 8px 12px; border: 0; border-radius: var(--radius-md); background: var(--accent); color: var(--accent-ink); }
 
 .spots { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px 0; max-width: 900px; margin: 0 auto; }
 .chip { display: inline-flex; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
-.chip-active { border-color: #2b6ea8; }
+.chip-active { border-color: var(--accent); }
 .chip-name { background: none; border: 0; color: var(--ink); padding: 6px 4px 6px 12px; font-size: 14px; }
 .chip-remove { background: none; border: 0; color: var(--muted); padding: 6px 10px 6px 6px; font-size: 16px; line-height: 1; }
 
-table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-weight: 700; color: #06231a; min-width: 40px; }
+table.compare .cell { border: 0; border-radius: var(--radius-sm); padding: 6px 10px; font-weight: 700; color: #06231a; min-width: 40px; }
 .best-line { margin: 10px 0 0; font-size: 14px; }
 
 .clear-all { margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); padding: 6px 12px; font-size: 13px; }
@@ -106,7 +129,7 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .ftable-scroll {
   display: flex; overflow-x: auto; overflow-y: visible;
   scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-  border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--panel);
 }
 .ftable-scroll::-webkit-scrollbar { height: 6px; }
 .ftable-scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
@@ -172,26 +195,26 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 /* One severity ramp shared by wind, gusts and swell. rain has one fewer bound
    and so simply never reaches the last step. */
 .ramp-wind, .ramp-gusts, .ramp-swell, .ramp-rain { color: var(--ink); }
-.ramp-wind[data-band="0"], .ramp-gusts[data-band="0"], .ramp-swell[data-band="0"], .ramp-rain[data-band="0"] { background: #123028; }
-.ramp-wind[data-band="1"], .ramp-gusts[data-band="1"], .ramp-swell[data-band="1"], .ramp-rain[data-band="1"] { background: #1b5138; }
-.ramp-wind[data-band="2"], .ramp-gusts[data-band="2"], .ramp-swell[data-band="2"], .ramp-rain[data-band="2"] { background: #46682a; }
-.ramp-wind[data-band="3"], .ramp-gusts[data-band="3"], .ramp-swell[data-band="3"], .ramp-rain[data-band="3"] { background: #7a6a1f; }
-.ramp-wind[data-band="4"], .ramp-gusts[data-band="4"], .ramp-swell[data-band="4"], .ramp-rain[data-band="4"] { background: #8c5320; }
-.ramp-wind[data-band="5"], .ramp-gusts[data-band="5"], .ramp-swell[data-band="5"], .ramp-rain[data-band="5"] { background: #93331f; }
-.ramp-wind[data-band="6"], .ramp-gusts[data-band="6"], .ramp-swell[data-band="6"] { background: #a01f1f; }
+.ramp-wind[data-band="0"], .ramp-gusts[data-band="0"], .ramp-swell[data-band="0"], .ramp-rain[data-band="0"] { background: var(--ramp-wind-0); }
+.ramp-wind[data-band="1"], .ramp-gusts[data-band="1"], .ramp-swell[data-band="1"], .ramp-rain[data-band="1"] { background: var(--ramp-wind-1); }
+.ramp-wind[data-band="2"], .ramp-gusts[data-band="2"], .ramp-swell[data-band="2"], .ramp-rain[data-band="2"] { background: var(--ramp-wind-2); }
+.ramp-wind[data-band="3"], .ramp-gusts[data-band="3"], .ramp-swell[data-band="3"], .ramp-rain[data-band="3"] { background: var(--ramp-wind-3); }
+.ramp-wind[data-band="4"], .ramp-gusts[data-band="4"], .ramp-swell[data-band="4"], .ramp-rain[data-band="4"] { background: var(--ramp-wind-4); }
+.ramp-wind[data-band="5"], .ramp-gusts[data-band="5"], .ramp-swell[data-band="5"], .ramp-rain[data-band="5"] { background: var(--ramp-wind-5); }
+.ramp-wind[data-band="6"], .ramp-gusts[data-band="6"], .ramp-swell[data-band="6"] { background: var(--ramp-wind-6); }
 
 /* Blue, and only four steps: tide is normalised inside the day, so the ramp
    says "low or high for today", not "deep or shallow". */
-.ramp-tide[data-band="0"] { background: #12303f; }
-.ramp-tide[data-band="1"] { background: #17435a; }
-.ramp-tide[data-band="2"] { background: #1c5878; }
-.ramp-tide[data-band="3"] { background: #206e97; }
+.ramp-tide[data-band="0"] { background: var(--ramp-tide-0); }
+.ramp-tide[data-band="1"] { background: var(--ramp-tide-1); }
+.ramp-tide[data-band="2"] { background: var(--ramp-tide-2); }
+.ramp-tide[data-band="3"] { background: var(--ramp-tide-3); }
 
 /* Three bands, from the same variables the day cards use, so the table and the
    cards cannot disagree about what 56 means. */
-.ramp-score[data-band="0"] { background: #14361f; color: var(--excellent); }
-.ramp-score[data-band="1"] { background: #3a3016; color: var(--fair); }
-.ramp-score[data-band="2"] { background: #3c1d18; color: var(--poor); }
+.ramp-score[data-band="0"] { background: var(--ramp-score-0); color: var(--excellent); }
+.ramp-score[data-band="1"] { background: var(--ramp-score-1); color: var(--fair); }
+.ramp-score[data-band="2"] { background: var(--ramp-score-2); color: var(--poor); }
 
 .ftable-detail { margin-top: 10px; }
 
@@ -200,7 +223,7 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-.slot-detail { margin-top: 8px; padding: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+.slot-detail { margin-top: 8px; padding: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-md); }
 .slot-head { display: flex; justify-content: space-between; align-items: center; font-weight: 600; margin-bottom: 8px; }
 .slot-rows { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
 .slot-rows dt { color: var(--muted); font-size: 13px; }
@@ -219,7 +242,7 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .empty { color: var(--muted); font-size: 14px; }
 
 .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 12px 0; }
-.tab { padding: 10px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+.tab { padding: 10px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); border-radius: var(--radius-md); font-size: 14px; }
 .tab[aria-selected="true"] { color: var(--ink); border-color: var(--excellent); }
 
 /* Kingfisher report card, top of the Spots tab. */
@@ -366,9 +389,9 @@ table.compare .cell { border: 0; border-radius: 6px; padding: 6px 10px; font-wei
 .guide-title { margin: 0 0 6px; font-size: 16px; }
 .guide-blurb { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
 .guide-diagram { margin: 0 0 12px; }
-.guide-diagram svg { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--bg); }
+.guide-diagram svg { width: 100%; height: auto; display: block; border-radius: var(--radius-md); background: var(--bg); }
 .guide-steps { margin: 0; padding-left: 20px; }
 .guide-step { margin-bottom: 6px; }
-.guide-note { margin: 12px 0 0; padding: 10px; border-radius: 8px; font-size: 14px; }
+.guide-note { margin: 12px 0 0; padding: 10px; border-radius: var(--radius-md); font-size: 14px; }
 .guide-note-safety { background: rgba(209, 89, 74, 0.15); border: 1px solid var(--poor); }
 .guide-note-tip { background: color-mix(in srgb, var(--good) 12%, transparent); border: 1px solid var(--good); color: var(--muted); }
