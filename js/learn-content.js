@@ -26,6 +26,7 @@ const RIP_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
   <text x="52" y="86" text-anchor="middle" font-size="11" fill="var(--diagram-label)">waves break</text>
   <text x="268" y="86" text-anchor="middle" font-size="11" fill="var(--diagram-label)">waves break</text>
   <text x="160" y="32" text-anchor="middle" font-size="11" fill="var(--diagram-label)">water running out</text>
+  <text x="8" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">from above</text>
 </svg>`;
 
 const GULLY_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
@@ -38,22 +39,25 @@ const GULLY_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <text x="160" y="96" text-anchor="middle" font-size="11" fill="var(--diagram-label)">deep, dark, unbroken</text>
   <text x="34" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)">bank</text>
   <text x="288" y="132" text-anchor="middle" font-size="11" fill="var(--diagram-label)">bank</text>
+  <text x="8" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">side on</text>
 </svg>`;
 
 const SANDBANK_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
   <rect x="0" y="0" width="320" height="200" fill="var(--diagram-sea)"/>
   <ellipse cx="160" cy="100" rx="130" ry="56" fill="var(--diagram-sand)"/>
-  <path d="M40 70 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
-  <path d="M40 100 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
-  <path d="M40 130 q30 -12 60 0 t60 0 t60 0 t60 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <path d="M35 70 q31.25 -12 62.5 0 t62.5 0 t62.5 0 t62.5 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <path d="M35 100 q31.25 -12 62.5 0 t62.5 0 t62.5 0 t62.5 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
+  <path d="M35 130 q31.25 -12 62.5 0 t62.5 0 t62.5 0 t62.5 0" stroke="var(--diagram-foam)" stroke-width="3" fill="none"/>
   <path d="M95 149 Q160 163 225 149" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
   <text x="160" y="176" text-anchor="middle" font-size="11" fill="var(--diagram-label)">fish the edge</text>
+  <text x="8" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">from above</text>
 </svg>`;
 
 const SPRING_LOW_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
   <rect x="0" y="0" width="320" height="94" fill="var(--diagram-sea)" opacity="0.25"/>
   <path d="M0 74 L60 74 L96 44 L224 44 L260 74 L320 74 L320 94 L0 94 z" fill="var(--diagram-sand)"/>
-  <text x="160" y="16" text-anchor="middle" font-size="11" fill="var(--diagram-label)">spring low - the shape is visible</text>
+  <text x="6" y="14" text-anchor="start" font-size="11" fill="var(--diagram-label)">side on</text>
+  <text x="160" y="30" text-anchor="middle" font-size="11" fill="var(--diagram-label)">spring low - the shape is visible</text>
   <rect x="0" y="106" width="320" height="94" fill="var(--diagram-sea)" opacity="0.7"/>
   <path d="M0 176 L60 176 L96 146 L224 146 L260 176 L320 176 L320 200 L0 200 z" fill="var(--diagram-sand)" opacity="0.55"/>
   <path d="M96 44 L224 44" stroke="var(--diagram-foam)" stroke-width="2" fill="none" opacity="0.5"/>
@@ -226,7 +230,7 @@ const ESTUARY_RIG_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMi
   <text x="90" y="79" font-size="11" fill="var(--diagram-label)">small swivel</text>
   <path d="M60 85 L60 165" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="66" y="128" font-size="11" fill="var(--diagram-label)">1 m+ fine fluorocarbon leader</text>
-  <path d="M60 165 Q54 175 60 183 Q66 175 60 165" stroke="var(--diagram-accent)" stroke-width="2.5" fill="none"/>
+  <path d="M60 165 Q55 172 59 178 Q64 183 68 177 Q71 173 66 171" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
   <text x="90" y="179" font-size="11" fill="var(--diagram-label)">small hook</text>
 </svg>`;
 

@@ -14,6 +14,7 @@ function diagram(entry) {
   // Author-written constant from learn-content.js, never interpolated and
   // never fetched. test/learn-content.test.mjs holds that invariant.
   node.innerHTML = entry.svg;
+  node.firstElementChild?.setAttribute('aria-hidden', 'true');
   return node;
 }
 
