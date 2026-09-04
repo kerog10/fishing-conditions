@@ -199,7 +199,7 @@ const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <path d="M278 100 L312 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
 </svg>`;
 
-const RUNNING_SINKER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+const RUNNING_SINKER_SVG = `<svg viewBox="0 0 270 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 38" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="90" y="20" font-size="11" fill="var(--diagram-label)">main line</text>
   <path d="M60 38 Q52 50 60 62 Q68 50 60 38 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
@@ -217,7 +217,7 @@ const RUNNING_SINKER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMid
   <text x="90" y="176" font-size="11" fill="var(--diagram-label)">hook</text>
 </svg>`;
 
-const PATERNOSTER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+const PATERNOSTER_SVG = `<svg viewBox="0 0 270 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 20" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <circle cx="60" cy="26" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <circle cx="60" cy="36" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
@@ -236,7 +236,7 @@ const PATERNOSTER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMi
   <text x="90" y="182" font-size="11" fill="var(--diagram-label)">sinker</text>
 </svg>`;
 
-const SLIDING_TRACE_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+const SLIDING_TRACE_SVG = `<svg viewBox="0 0 270 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 34" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="90" y="20" font-size="11" fill="var(--diagram-label)">main line</text>
   <path d="M60 34 Q52 46 60 58 Q68 46 60 34 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
@@ -256,7 +256,7 @@ const SLIDING_TRACE_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidY
   <text x="90" y="178" font-size="11" fill="var(--diagram-label)">hook</text>
 </svg>`;
 
-const ESTUARY_RIG_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+const ESTUARY_RIG_SVG = `<svg viewBox="0 0 270 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
   <path d="M60 6 L60 28" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <text x="90" y="18" font-size="11" fill="var(--diagram-label)">main line</text>
   <path d="M60 28 Q54 37 60 46 Q66 37 60 28 Z" fill="var(--diagram-sand)" stroke="var(--diagram-line)" stroke-width="1.5"/>
