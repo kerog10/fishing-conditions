@@ -149,6 +149,7 @@ function paintTabs() {
     if (selected && panel.hidden) {
       panel.classList.add('panel-enter');
       panel.hidden = false;
+      void panel.offsetHeight;
       requestAnimationFrame(() => panel.classList.remove('panel-enter'));
     } else {
       panel.hidden = !selected;

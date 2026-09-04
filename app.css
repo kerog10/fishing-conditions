@@ -318,7 +318,7 @@ table.compare .cell:focus-visible { outline: 2px solid var(--focus-ring); outlin
 
 .spot-card { position: relative; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .spot-open {
-  display: block; width: 100%; text-align: left; padding: 12px 40px 12px 12px;
+  display: block; width: 100%; text-align: left; padding: 12px 56px 12px 12px;
   background: none; border: 0; color: var(--ink);
   transition: background-color var(--transition-fast),
     border-color var(--transition-fast), color var(--transition-fast);
@@ -378,6 +378,10 @@ table.compare .cell:focus-visible { outline: 2px solid var(--focus-ring); outlin
 .feed-title { margin: 6px 0 4px; font-size: 15px; }
 .feed-excerpt { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
 .feed-link { font-size: 13px; }
+.feed-link:focus-visible,
+.video-title:focus-visible,
+.hotspot-video-link:focus-visible,
+.hotspot-report-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
 .videos { display: block; margin-bottom: 12px; }
 .videos[hidden] { display: none; }
