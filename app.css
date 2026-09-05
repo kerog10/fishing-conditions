@@ -586,9 +586,9 @@ table.compare .cell:focus-visible { outline: 2px solid var(--focus-ring); outlin
 .guide-blurb { margin: 0 0 14px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 
 .guide-diagram {
-  margin: 0 0 14px; padding: 10px; background: var(--diagram-panel);
+  margin: 0 0 14px; padding: 16px; background: var(--diagram-panel);
   border: 1px solid var(--line); border-radius: var(--radius-lg);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4), var(--shadow-sm);
 }
 .guide-diagram svg { width: 100%; height: auto; display: block; border-radius: var(--radius-sm); }
 .guide-diagram--knot { background: var(--diagram-panel-2); }
@@ -614,7 +614,7 @@ ul.guide-steps .guide-step::before { content: '•'; background: var(--panel); c
 .guide-note-tip { background: color-mix(in srgb, var(--good) 12%, transparent); border: 1px solid var(--good); color: var(--muted); }
 
 @media (min-width: 640px) {
-  .guide-card { display: grid; grid-template-columns: 260px 1fr; gap: 18px; align-items: start; }
+  .guide-card { display: grid; grid-template-columns: minmax(320px, 44%) 1fr; gap: 24px; align-items: start; }
   .guide-title, .guide-blurb, .guide-note { grid-column: 1 / -1; }
   .guide-diagram { margin: 0; }
 }
