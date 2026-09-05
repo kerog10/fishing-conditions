@@ -48,9 +48,6 @@ export function renderPreview(target, preview, { onAdd } = {}) {
 
   const row = el('div', 'preview-row');
   row.appendChild(el('span', 'preview-name', preview.name));
-  if (Number.isFinite(preview.score)) {
-    row.appendChild(el('span', `preview-score band-${scoreBand(preview.score)}`, String(preview.score)));
-  }
 
   if (preview.canAdd) {
     const add = el('button', 'add-spot', '+ Add to compare');

@@ -8,7 +8,7 @@ const el = (tag, className, text) => {
 };
 
 function diagram(entry) {
-  const node = el('div', 'guide-diagram');
+  const node = el('div', entry.section === 'knots' ? 'guide-diagram guide-diagram--knot' : 'guide-diagram');
   node.setAttribute('role', 'img');
   node.setAttribute('aria-label', entry.svgAlt);
   // Author-written constant from learn-content.js, never interpolated and

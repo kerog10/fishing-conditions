@@ -91,6 +91,11 @@ const SPRING_LOW_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid
 </svg>`;
 
 const UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <marker id="uni-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-accent-2)"/>
+    </marker>
+  </defs>
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
@@ -118,9 +123,16 @@ const UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" 
   <path d="M262 100 L272 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <ellipse cx="288" cy="100" rx="12" ry="9" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M300 100 L316 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <path d="M200 138 Q170 128 152 112" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#uni-arrow)"/>
+  <text x="204" y="148" text-anchor="middle" font-size="10" fill="var(--diagram-accent-2)" font-weight="600">pull tag to cinch</text>
 </svg>`;
 
 const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <marker id="dbluni-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-accent-2)"/>
+    </marker>
+  </defs>
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
@@ -146,9 +158,17 @@ const DOUBLE_UNI_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid
   <path d="M222 100 L246 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <path d="M296 100 L316 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <ellipse cx="271" cy="100" rx="18" ry="10" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <path d="M96 100 L60 100" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#dbluni-arrow)"/>
+  <path d="M246 100 L282 100" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#dbluni-arrow)"/>
+  <text x="160" y="150" text-anchor="middle" font-size="10" fill="var(--diagram-accent-2)" font-weight="600">pull both mains apart to lock</text>
 </svg>`;
 
 const BLOOD_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <marker id="blood-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-accent-2)"/>
+    </marker>
+  </defs>
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
@@ -168,9 +188,17 @@ const BLOOD_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <circle cx="268" cy="100" r="5" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M268 100 L296 84" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
   <path d="M268 100 L296 116" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <path d="M112 100 L84 100" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#blood-arrow)"/>
+  <path d="M228 100 L256 100" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#blood-arrow)"/>
+  <text x="160" y="150" text-anchor="middle" font-size="10" fill="var(--diagram-accent-2)" font-weight="600">pull both mains steadily</text>
 </svg>`;
 
 const DROPPER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <marker id="dropper-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-accent-2)"/>
+    </marker>
+  </defs>
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
@@ -195,9 +223,16 @@ const DROPPER_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid me
   <path d="M222 100 L306 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <circle cx="264" cy="100" r="6" stroke="var(--diagram-line)" stroke-width="2" fill="none"/>
   <path d="M264 106 L264 150" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
+  <path d="M168 132 L168 150" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#dropper-arrow)"/>
+  <text x="168" y="166" text-anchor="middle" font-size="10" fill="var(--diagram-accent-2)" font-weight="600">pull loop through and cinch</text>
 </svg>`;
 
 const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <marker id="snell-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--diagram-accent-2)"/>
+    </marker>
+  </defs>
   <line x1="106.67" y1="8" x2="106.67" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <line x1="213.33" y1="8" x2="213.33" y2="192" stroke="var(--diagram-line)" stroke-width="1" opacity="0.25"/>
   <circle cx="20" cy="18" r="12" fill="var(--diagram-accent)"/>
@@ -225,6 +260,8 @@ const SNELL_SVG = `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet
   <path d="M236 100 L246 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
   <ellipse cx="262" cy="100" rx="16" ry="7" stroke="var(--diagram-accent)" stroke-width="3" fill="none"/>
   <path d="M278 100 L312 100" stroke="var(--diagram-line)" stroke-width="3" fill="none"/>
+  <path d="M140 122 L140 140" stroke="var(--diagram-accent-2)" stroke-width="2" fill="none" marker-end="url(#snell-arrow)"/>
+  <text x="140" y="156" text-anchor="middle" font-size="10" fill="var(--diagram-accent-2)" font-weight="600">pull tight down the shank</text>
 </svg>`;
 
 const RUNNING_SINKER_SVG = `<svg viewBox="0 0 270 200" preserveAspectRatio="xMidYMid meet" stroke-linecap="round" stroke-linejoin="round">
