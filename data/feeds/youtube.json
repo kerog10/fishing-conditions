@@ -1,8 +1,55 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-04T07:15:22.889Z",
+  "builtAt": "2026-09-06T07:08:55.110Z",
   "entries": [
+    {
+      "id": "Fs3amg4UE58",
+      "channel": "Pa's Xtreme Fishing",
+      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
+      "title": "FISHING THE UNCHARTED WILD COAST | Mtentu | Big Kob and Bream fishing | SOUTH AFRICA",
+      "link": "https://www.youtube.com/watch?v=Fs3amg4UE58",
+      "date": "2026-09-06T07:06:26.000Z",
+      "description": "🎣 MTENTU FISHING ADVENTURE! 🌊\n\nWe headed down to the beautiful Mtentu for an unforgettable day-and-night fishing trip, taking our clients along for an incredible guided fishing experience.\n\nThe fishing did not disappoint! We managed to land some beautiful Bronze Bream and big Kob, making for an action-packed trip in one of the most stunning locations on the South Coast. 🔥🐟\n\nThis place is truly something special — beautiful scenery, incredible fishing, and an experience you won’t forget.\n\nAnd the best part? Guided fishing trips at Mtentu are now available, including accommodation! 🎣🏕️\n\nWe had an amazing time and we’re already looking forward to heading back and creating even more unforgettable fishing adventures.\n\nCome experience Mtentu with Pa’s Xtreme Fishing! 🎣🔥",
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Bronze Bream",
+        "Kob"
+      ]
+    },
+    {
+      "id": "JHD3chQU5e4",
+      "channel": "Michael and Angie Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
+      "title": "1.2m views #michaelandangiefishingadventures #fishing #daiwa #2026",
+      "link": "https://www.youtube.com/watch?v=JHD3chQU5e4",
+      "date": "2026-09-04T12:36:53.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "j7vvXYQM0aI",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Scottburgh - View From Above! #Scottburgh #KznSouthCoast #DroneVideography #DjiDrone #JuelzVisuelz",
+      "link": "https://www.youtube.com/watch?v=j7vvXYQM0aI",
+      "date": "2026-09-04T07:17:53.000Z",
+      "description": "Scottburgh - View From Above!\n\n#Scottburgh #KznSouthCoast #DroneVideography #DjiDrone #JuelzVisuelz",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Scottburgh",
+          "region": "south",
+          "where": "title",
+          "lat": -30.28716,
+          "lon": 30.75978
+        }
+      ],
+      "species": []
+    },
     {
       "id": "kJGgK6MA2aQ",
       "channel": "Kayz Adventures",
@@ -667,44 +714,6 @@
       "link": "https://www.youtube.com/watch?v=TyolEwzlbmg",
       "date": "2026-08-16T11:24:53.000Z",
       "description": "In Loving Memory of Stephen Tharmiha, affectionately known as Alan Mark\n\n14 January 1954 – 12 August 2026\n\nThis video is a celebration of the life, memories and legacy of my dad, Stephen Tharmiha, known to many as Alan Mark.\n\nFrom photographs of his younger years, his wedding and family life, to birthdays, special moments with family and friends, and videos of him doing what he loved most, playing music and entertaining, this is a journey through a life that meant so much to so many people.\n\nMusic was a huge part of my dad’s life. He was a gifted musician and entertainer who performed with bands including The Magnets and Gold Medallions before later performing as a solo artist and one man band. Put a guitar in his hands and the quiet, reserved man many of us knew could suddenly become the life of the party.\n\nBut for me, one of the most precious parts of his story came during the latter years of his life.\n\nAfter suffering a stroke, my dad reconnected with Jesus Christ.\n\nIt became one of the greatest privileges of my life to share the love of Jesus with my dad, to speak to him about the Gospel, to pray with him and to serve him communion daily as he reconnected with the Lord and accepted Jesus Christ as the Lord and Saviour of his life.\n\nIncluded in this video is something I will treasure for the rest of my life: the last prayer I heard my dad pray aloud.\n\nThis memorial was originally created and played at his funeral as we gathered to remember and celebrate his life. I am sharing it here so that our family and friends will always have somewhere to return to whenever we want to see his face, hear his voice, hear his music and remember the moments we shared with him.\n\nDad, your journey on this earth may have ended, but the memories you gave us remain.\n\nThe photographs remain.\nThe stories remain.\nYour music remains.\nAnd most importantly, our hope is in Jesus Christ.\n\n\"For whoever calls on the name of the LORD shall be saved.”\nRomans 10:13 NKJV\n\nRest well, Dad.\n\nStephen Tharmiha\nAlan Mark\n14 January 1954 – 12 August 2026\n\nThe music lives on. ❤️",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "kxyOhNj3iWw",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "YELLOW BELLY ROCK COD CATCH AND RELEASE",
-      "link": "https://www.youtube.com/watch?v=kxyOhNj3iWw",
-      "date": "2026-08-13T14:00:03.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "9KNvgmMrpQs",
-      "channel": "The RodFather",
-      "channelUrl": "https://www.youtube.com/channel/UC2ilfQtmI6rwd3mbh3bp6Ig",
-      "title": "Shad on the Low Tide. Fishing Durban KZN",
-      "link": "https://www.youtube.com/watch?v=9KNvgmMrpQs",
-      "date": "2026-08-13T08:00:14.000Z",
-      "description": "A productive ultralight fishing session with a mixed bad of species! \n\n\nSetup: \nRod: Okuma Lrf 7ft \nReel: Okuma Ceymar 2000\nLine: 15lb grinder braid 4x \nLeader: 10lb boss braid 3x \n1/8oz Jighead \n2.5 inch jerk minnow (River prawn Colour)\n\n#fishing #shad #bluefish #tailor #durban #KZN #southafrica",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Shad"
-      ]
-    },
-    {
-      "id": "kcskhkHRdWs",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "TWO TONE FINGERFIN AKA BUTTERFISH",
-      "link": "https://www.youtube.com/watch?v=kcskhkHRdWs",
-      "date": "2026-08-12T14:00:03.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
       "via": "rss",
       "marks": [],
       "species": []
