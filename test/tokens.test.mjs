@@ -91,3 +91,43 @@ test('--ink-nontext is deliberately excluded from the AA text set', () => {
   assert.ok(ratio < 4.5, 'if this now passes AA, promote it and delete this test');
   assert.ok(ratio >= 3, `${ratio.toFixed(2)}:1 is too low even for icons and borders`);
 });
+
+test('the sentinel exists exactly once', () => {
+  const first = css.indexOf(SENTINEL);
+  assert.notEqual(first, -1, 'sentinel line is missing from app.css');
+  assert.equal(css.indexOf(SENTINEL, first + 1), -1, 'sentinel line is duplicated');
+});
+
+test('no component rule uses a literal colour', () => {
+  const body = css.slice(css.indexOf(SENTINEL) + SENTINEL.length);
+  const hexes = body.match(/#[0-9a-f]{3,8}\b/gi) ?? [];
+  const funcs = body.match(/\b(?:rgba?|hsla?)\s*\(/gi) ?? [];
+  assert.deepEqual(hexes, [], `literal hex below the sentinel: ${hexes.join(', ')}`);
+  assert.deepEqual(funcs, [], `literal colour function below the sentinel: ${funcs.join(', ')}`);
+});
+
+test('no component rule reaches past the semantic layer', () => {
+  const body = css.slice(css.indexOf(SENTINEL) + SENTINEL.length);
+  const prims = body.match(/var\(\s*--(?:n|blue|green|olive|amber|red)-\d+/gi) ?? [];
+  assert.deepEqual(prims, [], `primitive tokens below the sentinel: ${prims.join(', ')}`);
+});
+
+test('--ink-nontext is never used as a text colour', () => {
+  const body = css.slice(css.indexOf(SENTINEL) + SENTINEL.length);
+  const misuse = body.match(/(?<!-)\bcolor\s*:\s*var\(\s*--ink-nontext\s*\)/gi) ?? [];
+  assert.deepEqual(misuse, [], 'use --ink-muted for text; --ink-nontext is below AA');
+});
+
+test('every token a component rule references is actually defined', () => {
+  // Deleting a token block is easy; noticing that a rule 300 lines away still
+  // referenced one of its names is not. Without this, an undefined var()
+  // fails silently in the browser as a transparent background.
+  const vars = declaredVars(css);
+  const body = css.slice(css.indexOf(SENTINEL) + SENTINEL.length);
+  const used = new Set((body.match(/var\(\s*(--[a-z0-9-]+)/gi) ?? [])
+    .map((m) => m.replace(/^var\(\s*/i, '')));
+
+  const undefinedNames = [...used].filter((n) => !vars.has(n)).sort();
+
+  assert.deepEqual(undefinedNames, [], `referenced but never defined: ${undefinedNames.join(', ')}`);
+});
