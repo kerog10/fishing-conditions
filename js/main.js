@@ -6,7 +6,7 @@ import { buildComparison } from './compare.js';
 import { load as loadCache, save as saveCache, clearAll, clearCaches } from './cache.js';
 import { loadSpots, saveSpots, addSpot, removeSpot, makeSpot } from './spots.js';
 import { initMap } from './map.js';
-import { renderNow, renderWindows, renderSpotResults, highlightResult, setStatus, ageNotice } from './ui.js';
+import { renderHero, renderWindows, renderSpotResults, highlightResult, setStatus, ageNotice } from './ui.js';
 import { buildTable } from './table.js';
 import { renderTable } from './ui-table.js';
 import { renderSpotChips, renderCompare, renderPreview } from './ui-compare.js';
@@ -93,12 +93,22 @@ function nearestIndex(hours, now = Date.now()) {
 
 function paintDetail() {
   const view = shown();
-  if (!view) return;
   const now = new Date();
 
+  // No spot yet: the hero says so and offers the map, rather than leaving
+  // whatever the last spot rendered sitting there.
+  if (!view) {
+    renderHero(els.now, null, { now, onPickSpot: () => { els.mapDetails.open = true; } });
+    return;
+  }
+
   els.spotName.textContent = view.spot.name;
-  renderNow(els.now, view.hours, now);
-  renderWindows(els.windows, findWindows(view.hours), now);
+  const windows = findWindows(view.hours);
+  renderHero(els.now, summariseSpot(view.hours, windows, tideExtremes(view.hours), now), {
+    now,
+    onPickSpot: () => { els.mapDetails.open = true; },
+  });
+  renderWindows(els.windows, windows, now);
   renderTable(
     els.days,
     buildTable(summariseDays(view.hours, view.spot.lat, view.spot.lon, view.offset), now),

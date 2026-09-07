@@ -16,6 +16,8 @@ function el(tag, className, text) {
   return node;
 }
 
+// Still used by renderWindows. The hero builds its own metric grid instead,
+// but the window cards want this one-line form.
 function metricsLine(hour) {
   const bits = [];
   if (Number.isFinite(hour.windSpeed)) {
@@ -45,32 +47,68 @@ function currentIndex(hours, now) {
   return best;
 }
 
-export function renderNow(target, hours, now = new Date()) {
+const DASH = '—';
+
+function metric(label, value) {
+  const cell = el('div', 'metric');
+  cell.appendChild(el('span', 'metric-key', label));
+  cell.appendChild(el('span', 'metric-value', value));
+  return cell;
+}
+
+function emptyHero(onPickSpot) {
+  const empty = el('div', 'hero-empty');
+  empty.appendChild(el('p', 'hero-empty-text', 'Pick a spot to see conditions.'));
+  const button = el('button', 'hero-empty-action', 'Open the map');
+  button.type = 'button';
+  if (onPickSpot) button.addEventListener('click', onPickSpot);
+  empty.appendChild(button);
+  return empty;
+}
+
+// The answer the app exists to give, rendered large. Everything here comes
+// from summariseSpot; there is deliberately no second computation path.
+export function renderHero(target, summary, { onPickSpot, now = new Date() } = {}) {
   target.replaceChildren();
   target.classList.remove(...BANDS);
-  if (!hours.length) return;
 
-  const i = currentIndex(hours, now);
-  const hour = hours[i];
-  const band = scoreBand(hour.final);
+  if (!summary || summary.score === null || summary.score === undefined) {
+    target.appendChild(emptyHero(onPickSpot));
+    return;
+  }
+
+  const band = scoreBand(summary.score);
   target.classList.add(`band-${band}`);
 
-  const verdict = el('div', 'now-verdict');
-  verdict.appendChild(el('span', 'now-score', String(hour.final)));
-
-  const detail = el('div');
-  detail.appendChild(el('div', null, VERDICTS[band]));
-  detail.appendChild(el('div', 'metrics', metricsLine(hour)));
-  verdict.appendChild(detail);
+  const verdict = el('div', 'hero-verdict');
+  verdict.appendChild(el('span', 'hero-score', String(summary.score)));
+  verdict.appendChild(el('span', 'hero-word', VERDICTS[band]));
+  if (summary.nextWindow) {
+    verdict.appendChild(el(
+      'span',
+      'hero-when',
+      `${dayLabel(summary.nextWindow.start, now)} ${timeRange(summary.nextWindow.start, summary.nextWindow.end)}`,
+    ));
+  }
   target.appendChild(verdict);
 
-  const strip = el('div', 'strip');
-  for (const h of hours.slice(i, i + 12)) {
-    const cell = el('span', `bg-${scoreBand(h.final)}`);
-    cell.title = `${hhmm(h.time)} — ${h.final}`;
-    strip.appendChild(cell);
-  }
-  target.appendChild(strip);
+  const grid = el('div', 'hero-metrics');
+  grid.appendChild(metric(
+    'Wind',
+    Number.isFinite(summary.wind.speed)
+      ? `${Math.round(summary.wind.speed)} km/h ${compass(summary.wind.direction)}`.trim()
+      : DASH,
+  ));
+  grid.appendChild(metric('Tide', summary.tide.state ?? DASH));
+  grid.appendChild(metric(
+    'Swell',
+    Number.isFinite(summary.swell.height) ? `${summary.swell.height.toFixed(1)} m` : DASH,
+  ));
+  grid.appendChild(metric(
+    'Next turn',
+    summary.tide.nextTurn ? `${summary.tide.nextTurn.type} ${hhmm(summary.tide.nextTurn.time)}` : DASH,
+  ));
+  target.appendChild(grid);
 }
 
 export function renderWindows(target, windows, now = new Date()) {
