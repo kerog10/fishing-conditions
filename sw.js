@@ -17,6 +17,7 @@ const SHELL = [
   './js/config.js',
   './js/format.js',
   './js/map.js',
+  './js/map-disclosure.js',
   './js/score.js',
   './js/spot-summary.js',
   './js/ui.js',
