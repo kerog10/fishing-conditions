@@ -129,6 +129,12 @@
 
 /* === components: semantic tokens only below this line === */
 
+/* The hidden attribute loses on specificity to any class that sets display,
+   which silently un-hides elements toggled from JS. The tab panels and the
+   videos/hotspots sections each worked around this locally; this states it
+   once. Task 5 hit it with the collapsed search form. */
+[hidden] { display: none !important; }
+
 * { box-sizing: border-box; }
 
 body {

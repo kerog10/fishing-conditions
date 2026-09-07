@@ -46,6 +46,13 @@ export function initMap(elementId, onPick) {
 
   return {
     start,
+    // Leaflet measures zero inside a closed <details>, so the map must be told
+    // to re-measure when the disclosure opens. rAF rather than a bare call:
+    // the toggle event fires before the browser has laid the element out. A
+    // timeout would be a guess about how long that takes.
+    invalidateSize() {
+      requestAnimationFrame(() => map.invalidateSize());
+    },
     moveTo(lat, lon, zoom = 12) {
       map.setView([lat, lon], zoom);
       pick(lat, lon);

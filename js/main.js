@@ -13,6 +13,7 @@ import { renderSpotChips, renderCompare, renderPreview } from './ui-compare.js';
 import { createSuggester } from './suggest.js';
 import { CONFIG } from './config.js';
 import { createTabs } from './tabs.js';
+import { initialMapOpen, readMapOpen, rememberMapOpen } from './map-disclosure.js';
 import { summariseSpot } from './spot-summary.js';
 import { renderSpotsTab } from './ui-spots-tab.js';
 import { loadFeed, currentEntry } from './feed.js';
@@ -35,6 +36,8 @@ const els = {
   days: $('days'),
   spots: $('spots'),
   preview: $('preview'),
+  mapDetails: $('map-details'),
+  searchToggle: $('search-toggle'),
   compare: $('compare'),
   compareSection: $('compare-section'),
   searchForm: $('spot-search-form'),
@@ -382,6 +385,25 @@ async function refreshSavedSpots() {
 }
 
 const map = initMap('map', ({ lat, lon }) => previewPoint(lat, lon));
+
+// The map lives in a <details> so the score is the first thing on screen.
+// Leaflet cannot measure itself while that is closed, hence invalidateSize.
+els.mapDetails.open = initialMapOpen(readMapOpen(), state.spots.length);
+if (els.mapDetails.open) map.invalidateSize();
+
+els.mapDetails.addEventListener('toggle', () => {
+  rememberMapOpen(els.mapDetails.open);
+  if (els.mapDetails.open) map.invalidateSize();
+});
+
+// The search field costs a whole row above the fold and is used rarely once
+// spots are saved, so it collapses behind its own button.
+els.searchToggle.addEventListener('click', () => {
+  const open = els.searchForm.hidden;
+  els.searchForm.hidden = !open;
+  els.searchToggle.setAttribute('aria-expanded', String(open));
+  if (open) els.search.focus();
+});
 
 // --- Place search -----------------------------------------------------------
 

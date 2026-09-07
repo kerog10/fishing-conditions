@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b3d5c">
+<meta name="theme-color" content="#16659e">
 <title>Fishing Conditions</title>
 <link rel="stylesheet" href="vendor/leaflet.css">
 <link rel="stylesheet" href="app.css">
@@ -11,8 +11,13 @@
 </head>
 <body>
 <header class="topbar">
-  <h1>Fishing Conditions</h1>
-  <form id="spot-search-form" class="search" role="search">
+  <h1 id="spot-name" class="spot-name">Fishing Conditions</h1>
+  <button id="search-toggle" class="search-toggle" type="button"
+          aria-expanded="false" aria-controls="spot-search-form">
+    <span class="visually-hidden">Search for a place</span>
+    <span aria-hidden="true">&#9906;</span>
+  </button>
+  <form id="spot-search-form" class="search" role="search" hidden>
     <input id="spot-search" type="search" placeholder="Search a place, or tap the map" autocomplete="off"
            role="combobox" aria-controls="spot-results" aria-expanded="false" aria-autocomplete="list">
     <button type="submit">Find</button>
@@ -20,14 +25,16 @@
   <ul id="spot-results" class="results" role="listbox" aria-label="Place suggestions" hidden></ul>
 </header>
 
-<div id="map" aria-label="Pick a fishing spot"></div>
-<section id="preview" class="preview" aria-live="polite" hidden></section>
-
 <main>
+  <details id="map-details" class="map-details">
+    <summary class="map-summary">Map &mdash; tap to pick a spot</summary>
+    <div id="map" aria-label="Pick a fishing spot"></div>
+    <section id="preview" class="preview" aria-live="polite" hidden></section>
+  </details>
+
   <div class="hero-card">
-    <p id="spot-name" class="spot-name">Tap the map to pick a spot</p>
-    <p id="status" class="status" role="status"></p>
     <section id="now-bar" class="now-bar" aria-label="Right now"></section>
+    <p id="status" class="status" role="status"></p>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Views">
