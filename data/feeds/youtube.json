@@ -1,8 +1,28 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-06T07:08:55.110Z",
+  "builtAt": "2026-09-07T07:20:56.648Z",
   "entries": [
+    {
+      "id": "36uzUiTayFA",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "A TRIP TO THE WEST (SOUTH PIER) THE ARMY BASE - PART TWO",
+      "link": "https://www.youtube.com/watch?v=36uzUiTayFA",
+      "date": "2026-09-06T14:00:20.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nWelcome back for part two of my journey through the army base for some fishing and adventure.\nEnjoy...",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "South Pier",
+          "region": "central",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
     {
       "id": "Fs3amg4UE58",
       "channel": "Pa's Xtreme Fishing",
@@ -704,18 +724,6 @@
           "lon": null
         }
       ],
-      "species": []
-    },
-    {
-      "id": "TyolEwzlbmg",
-      "channel": "Juelz T",
-      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
-      "title": "In Loving Memory of Stephen Tharmiha (Alan Mark) | 1954 – 2026",
-      "link": "https://www.youtube.com/watch?v=TyolEwzlbmg",
-      "date": "2026-08-16T11:24:53.000Z",
-      "description": "In Loving Memory of Stephen Tharmiha, affectionately known as Alan Mark\n\n14 January 1954 – 12 August 2026\n\nThis video is a celebration of the life, memories and legacy of my dad, Stephen Tharmiha, known to many as Alan Mark.\n\nFrom photographs of his younger years, his wedding and family life, to birthdays, special moments with family and friends, and videos of him doing what he loved most, playing music and entertaining, this is a journey through a life that meant so much to so many people.\n\nMusic was a huge part of my dad’s life. He was a gifted musician and entertainer who performed with bands including The Magnets and Gold Medallions before later performing as a solo artist and one man band. Put a guitar in his hands and the quiet, reserved man many of us knew could suddenly become the life of the party.\n\nBut for me, one of the most precious parts of his story came during the latter years of his life.\n\nAfter suffering a stroke, my dad reconnected with Jesus Christ.\n\nIt became one of the greatest privileges of my life to share the love of Jesus with my dad, to speak to him about the Gospel, to pray with him and to serve him communion daily as he reconnected with the Lord and accepted Jesus Christ as the Lord and Saviour of his life.\n\nIncluded in this video is something I will treasure for the rest of my life: the last prayer I heard my dad pray aloud.\n\nThis memorial was originally created and played at his funeral as we gathered to remember and celebrate his life. I am sharing it here so that our family and friends will always have somewhere to return to whenever we want to see his face, hear his voice, hear his music and remember the moments we shared with him.\n\nDad, your journey on this earth may have ended, but the memories you gave us remain.\n\nThe photographs remain.\nThe stories remain.\nYour music remains.\nAnd most importantly, our hope is in Jesus Christ.\n\n\"For whoever calls on the name of the LORD shall be saved.”\nRomans 10:13 NKJV\n\nRest well, Dad.\n\nStephen Tharmiha\nAlan Mark\n14 January 1954 – 12 August 2026\n\nThe music lives on. ❤️",
-      "via": "rss",
-      "marks": [],
       "species": []
     }
   ]
