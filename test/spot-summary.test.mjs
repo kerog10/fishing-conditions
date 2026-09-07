@@ -105,3 +105,32 @@ test('a gap before now does not invert a rising tide', () => {
 
   assert.equal(card.tide.state, 'rising');
 });
+
+test('the summary carries the swell reading for the current hour', () => {
+  const hours = [
+    { time: new Date('2026-09-07T09:00:00Z'), final: 72, windSpeed: 19, windDirection: 45,
+      seaLevel: 1.2, swellHeight: 1.6, swellPeriod: 11 },
+  ];
+  const card = summariseSpot(hours, [], [], new Date('2026-09-07T09:00:00Z'));
+
+  assert.equal(card.swell.height, 1.6);
+  assert.equal(card.swell.period, 11);
+});
+
+test('a missing swell reading reports null rather than NaN', () => {
+  const hours = [
+    { time: new Date('2026-09-07T09:00:00Z'), final: 72, windSpeed: 19, windDirection: 45,
+      seaLevel: 1.2 },
+  ];
+  const card = summariseSpot(hours, [], [], new Date('2026-09-07T09:00:00Z'));
+
+  assert.equal(card.swell.height, null);
+  assert.equal(card.swell.period, null);
+});
+
+test('an empty hour series still yields a swell shape', () => {
+  // The hero destructures summary.swell unconditionally; it must always exist.
+  const card = summariseSpot([], [], [], new Date('2026-09-07T09:00:00Z'));
+
+  assert.deepEqual(card.swell, { height: null, period: null });
+});

@@ -50,6 +50,10 @@ export function summariseSpot(hours, windows, tides, now = new Date()) {
       speed: hour ? hour.windSpeed : null,
       direction: hour ? hour.windDirection : null,
     },
+    swell: {
+      height: Number.isFinite(hour?.swellHeight) ? hour.swellHeight : null,
+      period: Number.isFinite(hour?.swellPeriod) ? hour.swellPeriod : null,
+    },
     tide: {
       state: hour ? tideState(hours, i) : null,
       height: Number.isFinite(hour?.seaLevel) ? hour.seaLevel : null,
