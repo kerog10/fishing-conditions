@@ -22,6 +22,13 @@
 - **Sentinel line, verbatim:** `/* === components: semantic tokens only below this line === */`
 - **`--ink-nontext` may never be used as a `color`.** Icons, borders and disabled states only.
 - Sub-projects B (Learn diagrams) and C (data-dense screens) are out of scope. Do not modify `js/ui-slot.js`, `js/ui-table.js`, `js/ui-compare.js`, `js/ui-hotspots.js`, `js/ui-feed.js`, `js/ui-videos.js`, `js/ui-learn.js` or `js/learn-content.js`.
+- **Visual claims must be backed by a screenshot, never by reading source.** This project has twice rejected work whose visual verification was mechanical. Playwright works here without adding a project dependency, and this machine already has browsers cached at `~/AppData/Local/ms-playwright/`:
+
+```bash
+npm install --no-save playwright   # in a scratch dir, not the project
+```
+
+Then launch headless Chromium from a short Node script against the running `npm run serve`, screenshot at 390x844 (mobile) and 1100x900 (desktop), and **view the PNGs with the Read tool** - it renders images. Do not claim a layout looks right on the strength of the CSS.
 
 ---
 
@@ -1156,9 +1163,11 @@ Task 5's markup uses it for the search button label. Below the sentinel:
 Run: `npm test`
 Expected: PASS, including the boundary test - every rule above uses semantic tokens only.
 
-- [ ] **Step 8: Browser check**
+- [ ] **Step 8: Screenshot check**
 
-Run: `npm run serve`, then open on a phone-sized viewport (390x844 in devtools, and on a real phone if reachable).
+Run `npm run serve`, then drive headless Chromium per the Global Constraints and capture 390x844 and 1100x900. **Read the PNGs.** This is the gate the whole sub-project is judged on, so it is a screenshot, not a source review.
+
+Capture four states: first run with `localStorage` cleared; a spot selected with the map collapsed; the same with the map expanded; and the 7 days tab.
 
 Verify:
 - with a spot selected and the map collapsed, the score is visible without scrolling
