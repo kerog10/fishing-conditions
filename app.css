@@ -51,6 +51,95 @@
   --ramp-score-2: #3c1d18;
 }
 
+/* === layer 1: primitives =============================================
+   Raw values. Referenced only by layer 2, never by a component rule.
+   One ramp per dimension: a value that is not on a ramp does not exist. */
+:root {
+  --n-0: #ffffff;
+  --n-50: #f7fafb;
+  --n-100: #eef3f6;
+  --n-200: #dfe8ee;
+  --n-300: #c8d7e0;
+  --n-400: #9ab0bd;
+  --n-500: #6d8896;
+  --n-600: #4d6675;
+  --n-700: #33505f;
+  --n-800: #1d3644;
+  --n-900: #0d1c26;
+
+  --blue-600: #16659e;
+  --blue-700: #0f4f7d;
+
+  --green-700: #15763a;
+  --olive-700: #4f7a1f;
+  --amber-800: #8a5f05;
+  --red-700: #b83f30;
+
+  /* 16px is body text and the floor for anything read as a sentence.
+     --text-2xs is for uppercase micro-labels and sub-project C's 34px
+     forecast columns, which cannot carry more. Nowhere else. */
+  --text-3xl: 40px;
+  --text-2xl: 24px;
+  --text-lg: 20px;
+  --text-base: 16px;
+  --text-sm: 14px;
+  --text-xs: 12.5px;
+  --text-2xs: 11px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+}
+
+/* === layer 2: semantic tokens ========================================
+   What a thing does, not what colour it is. Components use only these. */
+:root {
+  --bg: var(--n-100);
+  --surface: var(--n-0);
+  --surface-sunk: var(--n-50);
+  --line: var(--n-200);
+  --line-strong: var(--n-300);
+
+  --ink: var(--n-900);
+  --ink-muted: var(--n-600);
+  /* Below AA for text by design. Icons, borders, disabled states only. */
+  --ink-nontext: var(--n-500);
+
+  --accent: var(--blue-600);
+  --accent-ink: var(--n-0);
+
+  --score-excellent: var(--green-700);
+  --score-good: var(--olive-700);
+  --score-fair: var(--amber-800);
+  --score-poor: var(--red-700);
+
+  --shadow-sm: 0 1px 2px rgba(13, 28, 38, 0.06);
+  --shadow-md: 0 4px 12px rgba(13, 28, 38, 0.08);
+  --shadow-lg: 0 12px 28px rgba(13, 28, 38, 0.12);
+
+  /* Consumed by sub-project B. Defined here so the diagram rewrite cannot
+     invent its own palette the way the current diagrams did. */
+  --diagram-ground: var(--n-0);
+  --diagram-line: var(--n-800);
+  --diagram-line-soft: var(--n-400);
+  --diagram-hardware: var(--n-600);
+  --diagram-accent: var(--blue-600);
+  --diagram-callout: var(--amber-800);
+  --diagram-label: var(--n-600);
+  --diagram-sea: var(--blue-600);
+  --diagram-sand: var(--amber-800);
+  --diagram-foam: var(--n-200);
+}
+
 * { box-sizing: border-box; }
 
 body {

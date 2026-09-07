@@ -34,10 +34,14 @@ Then launch headless Chromium from a short Node script against the running `npm 
 
 ### Task 1: Token layers and the contrast test
 
-Defines layers 1 and 2 and proves them, without touching a single component rule. The app looks exactly the same after this task - the old variables are still there and still in use. That is deliberate: it makes Task 2 a pure conversion with a green test already guarding it.
+Defines layers 1 and 2 and proves them, without touching a single component rule. Task 2 then becomes a pure conversion with a green test already guarding it.
+
+**The new blocks go BELOW the existing `:root`, not above it.** Fourteen names collide - `--bg`, `--ink`, `--line`, `--accent`, `--accent-ink`, `--radius-sm/md/lg`, `--shadow-sm/md/lg`, `--diagram-line`, `--diagram-accent`, `--diagram-sea`, `--diagram-sand`, `--diagram-foam`, `--diagram-label` - and CSS takes the last declaration. Inserting above would leave the old dark values winning, and the contrast test would then compare dark `--ink` against white `--surface` and fail while pointing at the wrong cause.
+
+**Consequence, accepted:** the app is visibly half-converted after this task. Those fourteen names go light immediately while `--panel`, `--panel-2` and `--muted` stay dark, so the page will look wrong until Task 2 finishes the job. That is a one-task window, not a defect.
 
 **Files:**
-- Modify: `app.css:1-51` (the current `:root` block; new tokens are added above it, nothing is deleted yet)
+- Modify: `app.css` (new token blocks appended directly below the current `:root` block; nothing is deleted yet)
 - Test: `test/tokens.test.mjs` (create)
 
 **Interfaces:**
@@ -150,7 +154,7 @@ Expected: FAIL on `every semantic token resolves to a defined primitive` with `-
 
 - [ ] **Step 3: Add the token layers to app.css**
 
-Insert this **above** the existing `:root` block at `app.css:1`, leaving the existing block untouched below it:
+Insert this **immediately below** the existing `:root` block (which ends around `app.css:51`), leaving that block in place for now:
 
 ```css
 /* === layer 1: primitives =============================================
@@ -172,9 +176,9 @@ Insert this **above** the existing `:root` block at `app.css:1`, leaving the exi
   --blue-600: #16659e;
   --blue-700: #0f4f7d;
 
-  --green-700: #17803f;
+  --green-700: #15763a;
   --olive-700: #4f7a1f;
-  --amber-800: #9a6b06;
+  --amber-800: #8a5f05;
   --red-700: #b83f30;
 
   /* 16px is body text and the floor for anything read as a sentence.
@@ -246,7 +250,7 @@ Insert this **above** the existing `:root` block at `app.css:1`, leaving the exi
 - [ ] **Step 4: Run the test to verify it passes**
 
 Run: `npm test`
-Expected: PASS, all four token tests green. The rest of the suite stays green - nothing consumed these yet.
+Expected: PASS, all four token tests green, and the rest of the suite unaffected - no test reads colours.
 
 - [ ] **Step 5: Commit**
 

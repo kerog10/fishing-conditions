@@ -109,7 +109,7 @@ by layer 2. One ramp per dimension.
 |---|---|
 | Neutral | `--n-0` `#ffffff`, `--n-50` `#f7fafb`, `--n-100` `#eef3f6`, `--n-200` `#dfe8ee`, `--n-300` `#c8d7e0`, `--n-400` `#9ab0bd`, `--n-500` `#6d8896`, `--n-600` `#4d6675`, `--n-700` `#33505f`, `--n-800` `#1d3644`, `--n-900` `#0d1c26` |
 | Accent | `--blue-600` `#16659e`, `--blue-700` `#0f4f7d` |
-| Score | `--green-700` `#17803f`, `--olive-700` `#4f7a1f`, `--amber-800` `#9a6b06`, `--red-700` `#b83f30` |
+| Score | `--green-700` `#15763a`, `--olive-700` `#4f7a1f`, `--amber-800` `#8a5f05`, `--red-700` `#b83f30` |
 | Type | `--text-3xl` 40px, `--text-2xl` 24px, `--text-lg` 20px, `--text-base` 16px, `--text-sm` 14px, `--text-xs` 12.5px, `--text-2xs` 11px |
 | Space | `--space-1` 4px through `--space-7` 48px: `4 / 8 / 12 / 16 / 24 / 32 / 48` |
 | Radius | `--radius-sm` 8px, `--radius-md` 12px, `--radius-lg` 16px, `--radius-full` 999px |
@@ -177,16 +177,28 @@ the naming is enforced by test rather than by memory.
 
 ### Contrast
 
-Hand-computed WCAG ratios against `--surface` `#ffffff`:
+Measured WCAG ratios. The binding surface is `--bg`, not `--surface` - it is
+the darkest of the three, so a token that clears white can still fail the page
+ground. Both columns are given because the white figure is the one that looks
+reassuring and the worst-case figure is the one that matters.
 
-| Pair | Ratio |
-|---|---|
-| `--score-excellent` | ~5.00:1 |
-| `--score-good` | ~5.08:1 |
-| `--score-fair` | ~4.68:1 |
-| `--score-poor` | ~5.53:1 |
-| `--ink-muted` | ~6.05:1 |
-| `--ink-nontext` | ~3.75:1 (non-text only) |
+| Token | On `--surface` | Worst of the three surfaces |
+|---|---|---|
+| `--score-excellent` | 5.70:1 | 5.10:1 |
+| `--score-good` | 5.08:1 | 4.54:1 |
+| `--score-fair` | 5.65:1 | 5.05:1 |
+| `--score-poor` | 5.54:1 | 4.95:1 |
+| `--ink` | 17.34:1 | 15.51:1 |
+| `--ink-muted` | 6.05:1 | 5.41:1 |
+| `--ink-nontext` | 3.74:1 | 3.35:1 (non-text only) |
+
+**Two values moved during implementation, and the test is why.** The first run
+of `test/tokens.test.mjs` failed on `--score-fair` at 4.47:1 and then
+`--score-excellent` at 4.48:1 against the lighter surfaces. Both had been
+hand-computed against pure white, where they passed. `--green-700` moved from
+`#17803f` to `#15763a` and `--amber-800` from `#9a6b06` to `#8a5f05`, chosen
+with headroom rather than sitting on the 4.5 line, since sub-project C will put
+them on further surfaces.
 
 These numbers are stated for review, not relied upon. `test/tokens.test.mjs`
 recomputes them (see Testing), so an arithmetic error here fails the build
