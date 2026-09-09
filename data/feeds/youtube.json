@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-08T07:15:50.478Z",
+  "builtAt": "2026-09-09T07:24:15.161Z",
   "entries": [
+    {
+      "id": "y8UrTXUhXhY",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "It’s a windy afternoon in Durban! #Durban #Windy #Afternoon #JuelzVisuelz",
+      "link": "https://www.youtube.com/watch?v=y8UrTXUhXhY",
+      "date": "2026-09-08T13:15:25.000Z",
+      "description": "It’s a windy afternoon in Durban! #Durban #Windy #Afternoon #JuelzVisuelz",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "SYy0YTs-mNI",
       "channel": "Juelz T",
@@ -698,26 +710,6 @@
       "species": [
         "Garrick"
       ]
-    },
-    {
-      "id": "wDDD4_idgDs",
-      "channel": "Kayz Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC-Gmr9Xe_6rifFb-7u6J2ZQ",
-      "title": "Fishing Amanzimtoti |  Lucky Catch !",
-      "link": "https://www.youtube.com/watch?v=wDDD4_idgDs",
-      "date": "2026-08-18T14:02:35.000Z",
-      "description": null,
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Amanzimtoti",
-          "region": "south",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": []
     }
   ]
 }
