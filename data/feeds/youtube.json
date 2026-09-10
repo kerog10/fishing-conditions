@@ -1,8 +1,69 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-09T07:24:15.161Z",
+  "builtAt": "2026-09-10T07:19:56.116Z",
   "entries": [
+    {
+      "id": "PmidauR8uxQ",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Isipingo Beach Floods 2022! #IsipingoBeach #Floods #Kzn #JuelzT",
+      "link": "https://www.youtube.com/watch?v=PmidauR8uxQ",
+      "date": "2026-09-10T07:14:29.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Isipingo",
+          "region": "central",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
+    {
+      "id": "kmQFVlBvSk8",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Doonside & Warner Beach From Above | The History of Two Coastal Communities",
+      "link": "https://www.youtube.com/watch?v=kmQFVlBvSk8",
+      "date": "2026-09-09T16:08:39.000Z",
+      "description": "Discover Doonside and Warner Beach from above as we explore the history, coastline and character of these neighbouring communities on the Sapphire Coast of KwaZulu Natal.\n\nDoonside developed around a railway siding that was renamed in 1910 after a nearby house called Lorna Doone. Just beyond the Little Amanzimtoti River, Warner Beach was formally laid out by surveyor P. A. Warner and later developed into a popular seaside holiday village.\n\nFrom the railway running beside the ocean to the historic hotels, Warner Beach tidal pool, Warnadoone Surf Lifesaving Club and the annual Sardine Run, this coastline has been shaped by tourism, sport and generations of coastal living.\n\nDoonside is known for its quieter beach, river mouth and elevated ocean views, while Warner Beach retains the character of an established surfing and holiday community.\n\nJoin me as we experience Doonside and Warner Beach from an entirely different perspective.\n\nWhich of these two coastal communities holds the most memories for you? Share your story in the comments.\n\nPlease like the video, subscribe to Juelz Visuelz and turn on notifications for more aerial documentaries, local history and incredible destinations across KwaZulu Natal.\n\n📍 Doonside and Warner Beach\n🌍 Kingsburgh, KwaZulu Natal, South Africa\n🎥 Filmed and produced by Juelz Visuelz\n\n#Doonside #WarnerBeach #JuelzVisuelz #Amanzimtoti #Kingsburgh #SapphireCoast #KwaZuluNatal #KZN #DroneVideo \n\n⚠️ All rights reserved. This content is the intellectual property of Juelz Visuelz. Any use, reproduction, or distribution without prior written consent is strictly prohibited. \n\n📩 For licensing or authorized use, please contact juelzvisuelz@gmail.com.",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Amanzimtoti",
+          "region": "south",
+          "where": "body",
+          "lat": null,
+          "lon": null
+        },
+        {
+          "name": "Warner Beach",
+          "region": "south",
+          "where": "title",
+          "lat": -30.08452,
+          "lon": 30.86834
+        }
+      ],
+      "species": [
+        "Sardine"
+      ]
+    },
+    {
+      "id": "K2EuuyCysNY",
+      "channel": "Fishing Unfiltered",
+      "channelUrl": "https://www.youtube.com/channel/UCOZsf26qw8MuprQuq5Ee3DQ",
+      "title": "MASSIVE WHITE MUSSEL CRACKER | FISHING AT GREEN POINT | BIG BLACKTAILS | DANGEROUS ROCKS ! #fishing",
+      "link": "https://www.youtube.com/watch?v=K2EuuyCysNY",
+      "date": "2026-09-09T08:09:51.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "y8UrTXUhXhY",
       "channel": "Juelz Visuelz",
@@ -653,62 +714,6 @@
       "species": [
         "Bronze Bream",
         "Shad"
-      ]
-    },
-    {
-      "id": "rOUWhzllams",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Port St Johns 2026 - Fishing for Kob and Grunter - Beautiful views - Awesome food and fishing",
-      "link": "https://www.youtube.com/watch?v=rOUWhzllams",
-      "date": "2026-08-19T12:00:06.000Z",
-      "description": "After a 5-hour road trip filled with incredible views, we finally made it to the beautiful Port St Johns in the Transkei for an unforgettable fishing adventure!\n\nWe hit the water that first night and it didn’t take long before we landed the giant Kob we came for! 🐟🔥\n\nThe following day was all about slowing down, relaxing with the locals, enjoying some amazing food and having a proper braai while taking in the stunning surroundings.\n\nPa also shared an important message about why we need to stop illegally jigging fish and protect our fisheries for future generations.\nFrom the epic fishing action and beautiful scenery to the incredible drone footage, this trip had it all. Come along for the adventure and experience the beauty of Port St Johns with us! 🎣❤️",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Grunter",
-        "Kob"
-      ]
-    },
-    {
-      "id": "csTfxvMXsQg",
-      "channel": "Keegan Pillay - Fishing South Africa",
-      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
-      "title": "https://youtu.be/toWyWQ3R9_4?si=Ks4CI7dxbh6lQJ_i",
-      "link": "https://www.youtube.com/watch?v=csTfxvMXsQg",
-      "date": "2026-08-19T08:02:12.000Z",
-      "description": "#fishing \n#catchandcook \n#fishinglife \n#fishingvideo \n#garrick",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "toWyWQ3R9_4",
-      "channel": "Keegan Pillay - Fishing South Africa",
-      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
-      "title": "Epic Garrick Catch / Catch and Cook / Cooking Chicken Curry without the Chilli Powder",
-      "link": "https://www.youtube.com/watch?v=toWyWQ3R9_4",
-      "date": "2026-08-19T05:01:33.000Z",
-      "description": "Epic surf fishing and a delicious kitchen cook-off! In this video, my good friend Kaylin hooks into and lands his very first Garrick of the season after an awesome fight in the surf at Warner Beach in Toti. Kaylin was kind enough to share his catch, so I took these nice thick pieces of Garrick back to my famous kitchen for an epic Catch and Cook! \n\nJoining me is my son, and together we cook up the fresh fish alongside another crowd favorite: a flavorful, aromatic Chicken Curry made completely without chilli powder—perfect for the whole family!If you love surf fishing in South Africa, fresh seafood recipes, and hearty family cooking, this video is for you. Don't forget to like, comment, and subscribe for more fishing and cooking adventures!\n\nGarrick fishing South Africa, Warner Beach fishing, Toti surf fishing, catch and cook Garrick, how to cook Garrick fish, mild chicken curry recipe, chicken curry without chilli powder, family cooking vlog, fishing Amanzimtoti, surf angling KZN.\n\n#GarrickFishing #CatchAndCook #WarnerBeach #Toti Fishing #SurfFishing #SouthAfricaFishing #FishRecipe #ChickenCurry #MildCurry #FamilyCooking #KZNfishing",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Amanzimtoti",
-          "region": "south",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        },
-        {
-          "name": "Warner Beach",
-          "region": "south",
-          "where": "body",
-          "lat": -30.08452,
-          "lon": 30.86834
-        }
-      ],
-      "species": [
-        "Garrick"
       ]
     }
   ]
