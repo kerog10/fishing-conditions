@@ -1,8 +1,113 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-09-01T06:20:28.475Z",
+  "builtAt": "2026-09-19T07:21:33.437Z",
   "entries": [
+    {
+      "id": 30776,
+      "date": "2026-09-17T08:24:57Z",
+      "title": "KZN Fishing Report (17 September 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-17-september-2026/",
+      "excerpt": "PREDATORS ON THE PROWL AS KZN COAST HEATS UP KwaZulu-Natal anglers have plenty to be excited about this weekend, with reports from the coastline pointing to a significant increase in activity from Durban through to the lower South Coast. A combination of baitfish movement, improving water conditions and the arrival…",
+      "regions": {
+        "south": {
+          "species": [
+            "Blacktail",
+            "Garrick",
+            "Kingfish",
+            "Kob",
+            "Rockcod",
+            "Shad",
+            "Snoek",
+            "Tuna"
+          ]
+        },
+        "north": {
+          "species": [
+            "Couta",
+            "Snoek",
+            "Tuna"
+          ]
+        },
+        "central": {
+          "species": [
+            "Couta",
+            "Rockcod",
+            "Sardine",
+            "Snoek",
+            "Tuna"
+          ]
+        }
+      }
+    },
+    {
+      "id": 30777,
+      "date": "2026-09-10T08:25:05Z",
+      "title": "KZN Fishing Report (10 September 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-10-september-2026/",
+      "excerpt": "Trophy Fish, Calmer Seas and Non-Stop Action If you’ve been waiting for a sign to hit the coast this weekend, this is it. KwaZulu-Natal’s rock-and-surf scene is absolutely exploding right now, with action stretching from Durban right down the South Coast. Fish are on the chew, rods are folding, drags…",
+      "regions": {
+        "south": {
+          "species": [
+            "Blacktail",
+            "Garrick",
+            "Kingfish",
+            "Kob",
+            "Rockcod",
+            "Shad"
+          ]
+        },
+        "north": {
+          "species": [
+            "Kob",
+            "Snoek",
+            "Tuna"
+          ]
+        },
+        "central": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Snoek"
+          ]
+        }
+      }
+    },
+    {
+      "id": 30778,
+      "date": "2026-09-03T08:25:21Z",
+      "title": "KZN Fishing Report (03 September 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-03-september-2026/",
+      "excerpt": "Predators on the Move Along the KZN Coast The hottest topic on every angler’s lips right now is simple: Who will be crowned this year’s Shad Champion? With massive numbers of shad flooding the coastline, the competition is heating up and the excitement within the angling fraternity is reaching fever…",
+      "regions": {
+        "north": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Rockcod",
+            "Shad"
+          ]
+        },
+        "central": {
+          "species": [
+            "Garrick",
+            "Kob",
+            "Shad"
+          ]
+        },
+        "south": {
+          "species": [
+            "Garrick",
+            "Kingfish",
+            "Kob",
+            "Sardine",
+            "Shad",
+            "Snoek",
+            "Tuna"
+          ]
+        }
+      }
+    },
     {
       "id": 30568,
       "date": "2026-08-27T14:21:53Z",
