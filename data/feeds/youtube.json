@@ -1,8 +1,30 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-19T07:21:37.347Z",
+  "builtAt": "2026-09-21T07:59:09.084Z",
   "entries": [
+    {
+      "id": "LjJsFcnygnU",
+      "channel": "Pa's Xtreme Fishing",
+      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
+      "title": "OUR BIGGEST ONE THIS SEASON | ASOLUTE MONSTER AT WINKLESPRUIT | LIVE BAIT FISHING",
+      "link": "https://www.youtube.com/watch?v=LjJsFcnygnU",
+      "date": "2026-09-20T08:30:52.000Z",
+      "description": "WHAT A SESSION AT WINKLESPRUIT! 🎣🔥\n\nWe headed out for another day of fishing and Pa made the perfect call — choosing exactly what to target and where we needed to be.\n\nThe decision paid off BIG TIME!\n\nWe managed to land two beautiful Garrick, but one of them was on a completely different level. The big fish weighed over 14KG, making it our biggest Garrick of the season so far! 😱🔥\n\nOnce Pa hooked into this monster, the real battle began. This fish had plenty of power and wasn't giving up easily. Pa had to follow it for an incredible 2KM down the beach before finally getting the opportunity to land it.\n\nIt was an unbelievable fight that showed exactly why experience, patience and knowing how to read the conditions can make such a huge difference.\n\nFrom choosing the right target, finding the right spot and staying patient throughout the fight — Pa put his experience on display once again.\n\nTwo Garrick. One absolute monster. Over 14KG. 2KM of beach. One unforgettable session. 🎣🔥\n\nPa's Xtreme Fishing does it again! 💪\n\nA massive thank you to everyone who continues to support the channel. We appreciate every single one of you! ❤️\n\nIf you enjoyed the video, don't forget to LIKE 👍, COMMENT 💬, SHARE 🔄 and SUBSCRIBE 🔔 for more fishing adventures from the KZN South Coast.\n\n🎣 PA'S XTREME FISHING\nAdventure • Education • Fishing • Good Times\n\n#PasXtremeFishing #GarrickFishing #Garrick #Winklespruit #KZNFishing #SouthCoastFishing #FishingSouthAfrica #MonsterGarrick #SurfFishing #FishingAdventure",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Winklespruit",
+          "region": "south",
+          "where": "title",
+          "lat": -30.09569,
+          "lon": 30.86249
+        }
+      ],
+      "species": [
+        "Garrick"
+      ]
+    },
     {
       "id": "h9yCPdEr6m0",
       "channel": "Fishing Unfiltered",
@@ -679,28 +701,6 @@
       "species": [
         "Garrick",
         "Shad"
-      ]
-    },
-    {
-      "id": "FfK_V-Q1XwM",
-      "channel": "Juelz T",
-      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
-      "title": "Sardine Run 2026 - Port Edward!#SardineRun #SardineRun2026 #PortEdward #JuelzT",
-      "link": "https://www.youtube.com/watch?v=FfK_V-Q1XwM",
-      "date": "2026-08-27T07:12:32.000Z",
-      "description": "Sardine Run 2026 - Port Edward!\n\n#SardineRun #SardineRun2026 #PortEdward #JuelzT",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Port Edward",
-          "region": "south",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Sardine"
       ]
     }
   ]
