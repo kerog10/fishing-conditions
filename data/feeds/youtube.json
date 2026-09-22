@@ -1,13 +1,33 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-21T07:59:09.084Z",
+  "builtAt": "2026-09-22T07:44:05.754Z",
   "entries": [
+    {
+      "id": "5nkG-vaQue4",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "A Whale Washed Ashore at uMhlanga Lighthouse | August 2023",
+      "link": "https://www.youtube.com/watch?v=5nkG-vaQue4",
+      "date": "2026-09-21T13:00:04.000Z",
+      "description": "A sobering sight unfolded at uMhlanga Beach on Wednesday, 16 August 2023, when the carcass of a juvenile whale washed ashore roughly 200 metres south of the iconic uMhlanga Lighthouse.\n\nIn this video, we look back at the moment that drew crowds to the beachfront and the reminder it gave us of the vast, vulnerable world that exists just beyond our shoreline.\n\nWhile contemporary reports described the whale as juvenile, there was no reliable public confirmation of its species or cause of death. This video keeps the story factual and honours the animal without speculating.\n\nIf you were there that morning, share what you remember in the comments.\n\n📍 uMhlanga Beach, KwaZulu-Natal, South Africa\n📅 Wednesday, 16 August 2023\n\nSubscribe to Juelz Visuelz for more stories, aerial views and moments from Durban and the KZN coastline.\n\n⚠️ All rights reserved. This content is the intellectual property of Juelz Visuelz. Any use, reproduction, or distribution without prior written consent is strictly prohibited.\n\n📩 For licensing or authorized use, please contact [juelzvisuelz@gmail.com]\n\n#Umhlanga #WhaleStranding #Durban #KZN #JuelzVisuelz",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Umhlanga",
+          "region": "north",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
     {
       "id": "LjJsFcnygnU",
       "channel": "Pa's Xtreme Fishing",
       "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "OUR BIGGEST ONE THIS SEASON | ASOLUTE MONSTER AT WINKLESPRUIT | LIVE BAIT FISHING",
+      "title": "OUR BIGGEST ONE THIS SEASON | ABSOLUTE MONSTER AT WINKLESPRUIT | LIVE BAIT FISHING",
       "link": "https://www.youtube.com/watch?v=LjJsFcnygnU",
       "date": "2026-09-20T08:30:52.000Z",
       "description": "WHAT A SESSION AT WINKLESPRUIT! 🎣🔥\n\nWe headed out for another day of fishing and Pa made the perfect call — choosing exactly what to target and where we needed to be.\n\nThe decision paid off BIG TIME!\n\nWe managed to land two beautiful Garrick, but one of them was on a completely different level. The big fish weighed over 14KG, making it our biggest Garrick of the season so far! 😱🔥\n\nOnce Pa hooked into this monster, the real battle began. This fish had plenty of power and wasn't giving up easily. Pa had to follow it for an incredible 2KM down the beach before finally getting the opportunity to land it.\n\nIt was an unbelievable fight that showed exactly why experience, patience and knowing how to read the conditions can make such a huge difference.\n\nFrom choosing the right target, finding the right spot and staying patient throughout the fight — Pa put his experience on display once again.\n\nTwo Garrick. One absolute monster. Over 14KG. 2KM of beach. One unforgettable session. 🎣🔥\n\nPa's Xtreme Fishing does it again! 💪\n\nA massive thank you to everyone who continues to support the channel. We appreciate every single one of you! ❤️\n\nIf you enjoyed the video, don't forget to LIKE 👍, COMMENT 💬, SHARE 🔄 and SUBSCRIBE 🔔 for more fishing adventures from the KZN South Coast.\n\n🎣 PA'S XTREME FISHING\nAdventure • Education • Fishing • Good Times\n\n#PasXtremeFishing #GarrickFishing #Garrick #Winklespruit #KZNFishing #SouthCoastFishing #FishingSouthAfrica #MonsterGarrick #SurfFishing #FishingAdventure",
@@ -679,29 +699,6 @@
       "via": "rss",
       "marks": [],
       "species": []
-    },
-    {
-      "id": "ufWZwP0h0AM",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Monster Garrick at Winklespruit | KZN South Coast | 4 MASSIVE Garrick caught | Live bait fishing",
-      "link": "https://www.youtube.com/watch?v=ufWZwP0h0AM",
-      "date": "2026-08-27T08:16:14.000Z",
-      "description": "Pa and the team headed down to Winklespruit this past week in search of some monster Garrick — and guess what? They found exactly what they were looking for! \n\nThe team managed to land 4 beautiful Garrick, with the biggest weighing an incredible 13kg. We used live Shad as bait and slid them out using braid and line.\n\nIt turned out to be an amazing morning of fishing, with plenty of action and some serious fish!\n\nTo make it even more special, Pa gave his cameraman Trev the opportunity to fight and land a beautiful Garrick of his own. It was Trev’s first time fighting a fish of this size, and what an experience it was!\n\nAnother fantastic day on the water with Pa and the team.",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Winklespruit",
-          "region": "south",
-          "where": "title",
-          "lat": -30.09569,
-          "lon": 30.86249
-        }
-      ],
-      "species": [
-        "Garrick",
-        "Shad"
-      ]
     }
   ]
 }
