@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-22T07:44:05.754Z",
+  "builtAt": "2026-09-23T07:47:18.255Z",
   "entries": [
+    {
+      "id": "tzpOPDOiaBI",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "Gold Reef City Rides 🎢 | POV & Thrill Ride Experience",
+      "link": "https://www.youtube.com/watch?v=tzpOPDOiaBI",
+      "date": "2026-09-22T11:00:24.000Z",
+      "description": "Come along with me for a day of adrenaline at Gold Reef City! 🎢\n\nFrom POV ride footage to moments captured from the outside, here’s what it feels like to take on some of the park’s thrilling rides. If you love rollercoasters, big drops, and a little healthy panic, this one’s for you.\n\nWhich ride would you be brave enough to try — and which one are you skipping? Let me know in the comments.\n\nLike, subscribe, and share for more experiences, places, and adventures with Juelz T.\n\n#GoldReefCity #JuelzT #ThemePark #RollerCoaster #POV #Johannesburg #SouthAfrica #AmusementPark #ThrillRides #TravelSouthAfrica",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "5nkG-vaQue4",
       "channel": "Juelz Visuelz",
@@ -687,18 +699,6 @@
         "Blacktail",
         "Shad"
       ]
-    },
-    {
-      "id": "7e60YugP5PU",
-      "channel": "Keegan Pillay - Fishing South Africa",
-      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
-      "title": "https://youtu.be/VE8S9LUFqeI?si=x7Usz0APp_SHSUq_",
-      "link": "https://www.youtube.com/watch?v=7e60YugP5PU",
-      "date": "2026-08-27T13:06:13.000Z",
-      "description": null,
-      "via": "rss",
-      "marks": [],
-      "species": []
     }
   ]
 }
