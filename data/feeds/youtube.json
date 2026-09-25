@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-24T07:37:21.766Z",
+  "builtAt": "2026-09-25T07:51:40.062Z",
   "entries": [
+    {
+      "id": "9qz1yAwQb_o",
+      "channel": "Keegan Pillay - Fishing South Africa",
+      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
+      "title": "https://youtu.be/528utrOmOFM?si=vs1FFCxDxENkbcUq",
+      "link": "https://www.youtube.com/watch?v=9qz1yAwQb_o",
+      "date": "2026-09-24T19:27:46.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "qe-EQb_k6QU",
       "channel": "Juelz Visuelz",
@@ -695,26 +707,6 @@
       "species": [
         "Sardine"
       ]
-    },
-    {
-      "id": "Pm9FQWHyuEY",
-      "channel": "Juelz T",
-      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
-      "title": "Spinning at Isipingo Beach | Finally Hooked Something!",
-      "link": "https://www.youtube.com/watch?v=Pm9FQWHyuEY",
-      "date": "2026-08-31T14:57:02.000Z",
-      "description": "How many casts do you think it took me to finally hook something?\n\nI recently spent some time spinning at Isipingo Beach, throwing spoons into the surf and hoping something would take an interest. Shore fishing can test your patience, but every cast brings another opportunity.\n\nWatch until the end to see how many casts it took, what I hooked and whether I managed to land it.\n\nDrop your guess in the comments before the answer is revealed.\n\nIf you enjoy fishing, outdoor adventures and local South African content, please like the video, subscribe to Juelz T and share it with another angler.\n\n📍 Location: Isipingo Beach, KwaZulu Natal, South Africa\n🎣 Fishing method: Spinning from the shore\n🪝 Lure: Spoon\n\n#IsipingoBeach #FishingSouthAfrica #ShoreFishing #Spinning #KZNFishing #JuelzT",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Isipingo",
-          "region": "central",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": []
     }
   ]
 }
