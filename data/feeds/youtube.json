@@ -1,8 +1,28 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-09-25T07:51:40.062Z",
+  "builtAt": "2026-09-26T07:44:58.951Z",
   "entries": [
+    {
+      "id": "WgeDerMoz7I",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "An incredible encounter just offshore as humpback whales put on a spectacular display! #Whales",
+      "link": "https://www.youtube.com/watch?v=WgeDerMoz7I",
+      "date": "2026-09-25T10:52:49.000Z",
+      "description": "🐋🌊 WHAT A SIGHT OFF ISIPINGO BEACH!\n\nAn incredible encounter just offshore as humpback whales put on a spectacular display, breaching from the ocean and slapping those massive pectoral fins against the water, with their calves right alongside them. 🐋💙\n\nMoments like these remind you just how alive our KZN coastline really is. To witness these giants of the ocean and their babies from our own shores is something special.\n\n📍 Isipingo Beach, KwaZulu-Natal 🇿🇦\n\n🎥 Juelz Visuelz\n\n#JuelzVisuelz #IsipingoBeach #HumpbackWhales #WhaleWatching #WhaleSeason #KwaZuluNatal #KZN #Durban #SouthAfrica #OceanLife #MarineLife #KZNCoast #DroneFootage",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Isipingo",
+          "region": "central",
+          "where": "body",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
     {
       "id": "9qz1yAwQb_o",
       "channel": "Keegan Pillay - Fishing South Africa",
@@ -693,20 +713,6 @@
         }
       ],
       "species": []
-    },
-    {
-      "id": "0OQbK7Yq7BY",
-      "channel": "Juelz T",
-      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
-      "title": "Sardine Run 2026!",
-      "link": "https://www.youtube.com/watch?v=0OQbK7Yq7BY",
-      "date": "2026-08-31T18:15:17.000Z",
-      "description": "Sardine Run 2026!",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Sardine"
-      ]
     }
   ]
 }
