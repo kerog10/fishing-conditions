@@ -55,9 +55,28 @@ export function modelMarineUrl(lat, lon) {
     + `&models=${CONFIG.models.marine.join(',')}`;
 }
 
-export function geocodeUrl(name) {
-  return 'https://geocoding-api.open-meteo.com/v1/search'
-    + `?name=${encodeURIComponent(name)}&count=5&format=json`;
+// Photon searches OpenStreetMap, which knows suburbs and beaches that
+// Open-Meteo's GeoNames-based geocoder does not: Beachwood, Glenashley and
+// uShaka Beach all came back empty there. The tag list keeps the kinds of
+// place you would fish from and drops the streets, buildings and shops that
+// otherwise crowd them out. Photon ORs repeated osm_tag parameters.
+const PLACE_TAGS = [
+  'place', 'natural', 'waterway:river', 'man_made:pier', 'man_made:breakwater',
+  'leisure:nature_reserve', 'leisure:park', 'leisure:beach_resort',
+  'leisure:marina', 'leisure:slipway',
+];
+const SEARCH_LIMIT = 5;
+
+export function geocodeUrl(name, near = null) {
+  const bias = near && Number.isFinite(near.lat) && Number.isFinite(near.lon)
+    ? `&lat=${near.lat.toFixed(4)}&lon=${near.lon.toFixed(4)}`
+    : '';
+  // Asks for extra because duplicates are dropped after the fact: OSM often
+  // maps one reserve or river as several ways under the same name.
+  return 'https://photon.komoot.io/api/'
+    + `?q=${encodeURIComponent(name)}&limit=${SEARCH_LIMIT * 2}&lang=en`
+    + bias
+    + PLACE_TAGS.map((t) => `&osm_tag=${t}`).join('');
 }
 
 // Open-Meteo returns local wall-clock strings like "2026-08-19T14:00" when
@@ -173,13 +192,48 @@ export async function fetchConditions(lat, lon, fetchImpl = globalThis.fetch) {
   return normalise(forecast.value, value(marine), agreement);
 }
 
-export async function geocode(name, fetchImpl = globalThis.fetch) {
-  const data = await getJson(geocodeUrl(name), fetchImpl);
-  return (data.results ?? []).map((r) => ({
-    name: r.name,
-    admin: r.admin1 ?? '',
-    country: r.country ?? '',
-    lat: r.latitude,
-    lon: r.longitude,
-  }));
+// The same list as the URL filter, checked again here so a result Photon lets
+// through anyway never reaches the list.
+function wanted(p) {
+  return PLACE_TAGS.some((t) => {
+    const [key, value] = t.split(':');
+    return p.osm_key === key && (value === undefined || p.osm_value === value);
+  });
+}
+
+// The part of the label between the name and the country: suburb, town and
+// province, so two Beachwoods can be told apart. Ward numbers and
+// municipality names are administrative noise nobody searches by.
+function adminLabel(p) {
+  const noise = /\bward\b|municipality/i;
+  const parts = [];
+  for (const part of [p.district, p.city, p.state]) {
+    if (!part || noise.test(part) || part === p.name || parts.includes(part)) continue;
+    parts.push(part);
+  }
+  return parts.join(', ');
+}
+
+export function parsePlaces(data) {
+  const seen = new Set();
+  const out = [];
+  for (const f of data?.features ?? []) {
+    const p = f.properties ?? {};
+    const [lon, lat] = f.geometry?.coordinates ?? [];
+    if (!p.name || !Number.isFinite(lat) || !Number.isFinite(lon) || !wanted(p)) continue;
+    const place = { name: p.name, admin: adminLabel(p), country: p.country ?? '', lat, lon };
+    const key = [place.name, place.admin, place.country].join('|');
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(place);
+    if (out.length === SEARCH_LIMIT) break;
+  }
+  return out;
+}
+
+// near is the map's current centre. Photon ranks results close to it first,
+// which is what turns "Beachwood" into the Durban North suburb rather than
+// one of the American towns.
+export async function geocode(name, near = null, fetchImpl = globalThis.fetch) {
+  return parsePlaces(await getJson(geocodeUrl(name, near), fetchImpl));
 }

@@ -462,7 +462,7 @@ function moveActive(step) {
 }
 
 const suggester = createSuggester({
-  search: geocode,
+  search: (term) => geocode(term, map.center()),
   onResults: showSuggestions,
   // A failed look-up while typing is not worth an error banner: the next
   // keystroke usually fixes it, and the map is still there to tap.
@@ -504,7 +504,7 @@ els.searchForm.addEventListener('submit', async (e) => {
   suggester.cancel();
   setStatus(els.status, 'Searching…', false, true);
   try {
-    const results = await geocode(term);
+    const results = await geocode(term, map.center());
     if (!results.length) {
       setStatus(els.status, `No match for “${term}”.`, true);
       closeSuggestions();

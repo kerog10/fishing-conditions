@@ -53,6 +53,12 @@ export function initMap(elementId, onPick) {
     invalidateSize() {
       requestAnimationFrame(() => map.invalidateSize());
     },
+    // Where the map is looking, which the place search uses to rank nearby
+    // matches first.
+    center() {
+      const c = map.getCenter();
+      return { lat: c.lat, lon: c.lng };
+    },
     moveTo(lat, lon, zoom = 12) {
       map.setView([lat, lon], zoom);
       pick(lat, lon);

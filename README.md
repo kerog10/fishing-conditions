@@ -23,7 +23,9 @@ and traces for rock-and-surf and estuary fishing. It is static content - no
 forecast, no feed, no network.
 
 The place search suggests matches as you type (debounced, keyboard-navigable)
-using Open-Meteo's geocoder — no API key, no signup.
+using Photon's OpenStreetMap search — no API key, no signup. Matches near the
+map's current view are listed first, and streets and buildings are left out, so
+suburbs and beaches such as Beachwood or uShaka Beach are found.
 
 ## Run it
 
@@ -158,7 +160,9 @@ anything safety-critical, use the
 
 - [Open-Meteo Forecast API](https://open-meteo.com/en/docs) — wind, pressure, rain, sun times
 - [Open-Meteo Marine API](https://open-meteo.com/en/docs/marine-weather-api) — tide, swell, sea temperature
-- [Open-Meteo Geocoding API](https://open-meteo.com/en/docs/geocoding-api) — place search
+- [Photon](https://photon.komoot.io) by komoot — place search, over
+  [OpenStreetMap](https://www.openstreetmap.org/copyright) data
+  © OpenStreetMap contributors, available under the Open Database License
 - [SunCalc](https://github.com/mourner/suncalc) — moon position and phase, computed locally
 - [Leaflet](https://leafletjs.com/) and [OpenStreetMap](https://www.openstreetmap.org/copyright) — map
 - [The Kingfisher](https://www.kingfisher.co.za/) — weekly KZN fishing report (excerpt and link only)

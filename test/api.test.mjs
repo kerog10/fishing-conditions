@@ -1,11 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { forecastUrl, marineUrl, modelForecastUrl, modelMarineUrl, geocodeUrl, normalise, fetchConditions } from '../js/api.js';
+import { forecastUrl, marineUrl, modelForecastUrl, modelMarineUrl, geocodeUrl, parsePlaces, normalise, fetchConditions } from '../js/api.js';
 import { CONFIG } from '../js/config.js';
 
 const forecast = JSON.parse(await readFile(new URL('./fixtures/forecast-durban.json', import.meta.url)));
 const marine = JSON.parse(await readFile(new URL('./fixtures/marine-durban.json', import.meta.url)));
+// A real Photon response for "Beachwood Durban North", fetched without the tag
+// filter so it still carries the streets and buildings parsePlaces must drop.
+const photon = JSON.parse(await readFile(new URL('./fixtures/photon-beachwood.json', import.meta.url)));
 
 test('urls carry no api key and request 7 days', () => {
   for (const url of [forecastUrl(-29.85, 31.05), marineUrl(-29.85, 31.05)]) {
@@ -16,7 +19,42 @@ test('urls carry no api key and request 7 days', () => {
 });
 
 test('geocode url encodes the search term', () => {
-  assert.match(geocodeUrl('Port Edward'), /name=Port(%20|\+)Edward/);
+  assert.match(geocodeUrl('Port Edward'), /q=Port(%20|\+)Edward/);
+});
+
+test('geocode url biases towards the map centre only when given one', () => {
+  assert.match(geocodeUrl('Beachwood', { lat: -29.8, lon: 31.05 }), /&lat=-29\.8000&lon=31\.0500/);
+  assert.doesNotMatch(geocodeUrl('Beachwood'), /&lat=/);
+  assert.doesNotMatch(geocodeUrl('Beachwood', { lat: NaN, lon: 31 }), /&lat=/);
+});
+
+test('geocode url asks Photon for places, not streets or buildings', () => {
+  const url = geocodeUrl('Beachwood');
+  assert.match(url, /^https:\/\/photon\.komoot\.io\/api\//);
+  assert.match(url, /&osm_tag=place(&|$)/);
+  assert.match(url, /&osm_tag=natural(&|$)/);
+  assert.doesNotMatch(url, /osm_tag=(highway|building)/);
+});
+
+test('parsePlaces keeps the suburb and the reserve, drops streets and buildings', () => {
+  const places = parsePlaces(photon);
+  assert.deepEqual(places.map((p) => p.name), [
+    'Beachwood',
+    'Beachwood Mangroves Nature Reserve',
+  ]);
+  const [suburb] = places;
+  assert.equal(suburb.admin, 'Durban North, KwaZulu-Natal');
+  assert.equal(suburb.country, 'South Africa');
+  // GeoJSON is [lon, lat]; swapping them puts Durban off the coast of Somalia.
+  assert.equal(suburb.lat, -29.7833333);
+  assert.equal(suburb.lon, 31.0452778);
+});
+
+test('parsePlaces tolerates an empty or malformed response', () => {
+  assert.deepEqual(parsePlaces({ features: [] }), []);
+  assert.deepEqual(parsePlaces({}), []);
+  assert.deepEqual(parsePlaces(null), []);
+  assert.deepEqual(parsePlaces({ features: [{ properties: { name: 'X', osm_key: 'place' } }] }), []);
 });
 
 test('normalise merges forecast and marine into hourly records', () => {

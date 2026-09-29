@@ -1,0 +1,313 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 262694963,
+        "osm_key": "place",
+        "osm_value": "suburb",
+        "type": "locality",
+        "name": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4051",
+        "countrycode": "ZA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0452778,
+          -29.7833333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 493806665,
+        "osm_key": "leisure",
+        "osm_value": "nature_reserve",
+        "type": "other",
+        "name": "Beachwood Mangroves Nature Reserve",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "countrycode": "ZA",
+        "extent": [
+          31.0277873,
+          -29.7925354,
+          31.0476299,
+          -29.8096844
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0423823,
+          -29.800716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "N",
+        "osm_id": 345456032,
+        "osm_key": "leisure",
+        "osm_value": "nature_reserve",
+        "type": "other",
+        "name": "Beachwood Mangroves Nature Reserve",
+        "locality": "Prospect Hall",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4016",
+        "countrycode": "ZA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0425,
+          -29.7997222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 48611130,
+        "osm_key": "highway",
+        "osm_value": "service",
+        "type": "street",
+        "name": "Beachwood Place",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4051",
+        "countrycode": "ZA",
+        "extent": [
+          31.0496264,
+          -29.7811215,
+          31.0519201,
+          -29.7826065
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0509872,
+          -29.7814866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 566167011,
+        "osm_key": "highway",
+        "osm_value": "footway",
+        "type": "street",
+        "name": "Beachwood Foot Path",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4051",
+        "countrycode": "ZA",
+        "extent": [
+          31.0478311,
+          -29.7794216,
+          31.0487863,
+          -29.7799321
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0483212,
+          -29.7796341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 630740601,
+        "osm_key": "building",
+        "osm_value": "yes",
+        "type": "house",
+        "name": "Beachwood Golf Course Clubhouse",
+        "street": "Beachwood Place",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4051",
+        "countrycode": "ZA",
+        "extent": [
+          31.0515481,
+          -29.7816884,
+          31.0521607,
+          -29.7822206
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0518544,
+          -29.7819585
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 566167012,
+        "osm_key": "bridge",
+        "osm_value": "yes",
+        "type": "house",
+        "name": "Beachwood Foot Bridge",
+        "street": "Ruth First Highway",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4016",
+        "countrycode": "ZA",
+        "extent": [
+          31.049271,
+          -29.780628,
+          31.0494589,
+          -29.7807927
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0493236,
+          -29.7807837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 759070854,
+        "osm_key": "bridge",
+        "osm_value": "yes",
+        "type": "house",
+        "name": "Beachwood Foot Bridge",
+        "street": "Beachwood Foot Path",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4051",
+        "countrycode": "ZA",
+        "extent": [
+          31.0487863,
+          -29.7799321,
+          31.0494427,
+          -29.78066
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0491195,
+          -29.7802915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "W",
+        "osm_id": 139843991,
+        "osm_key": "leisure",
+        "osm_value": "golf_course",
+        "type": "house",
+        "name": "DCC Beachwood Golf Course",
+        "street": "Beachwood Foot Path",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "postcode": "4051",
+        "countrycode": "ZA",
+        "extent": [
+          31.0463145,
+          -29.7752577,
+          31.0554776,
+          -29.791172
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0507743,
+          -29.7831714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_type": "R",
+        "osm_id": 8074804,
+        "osm_key": "landuse",
+        "osm_value": "education",
+        "type": "other",
+        "name": "Northwood Lower Campus",
+        "locality": "Beachwood",
+        "district": "eThekwini Ward 36",
+        "city": "Durban North",
+        "county": "eThekwini Metropolitan Municipality",
+        "state": "KwaZulu-Natal",
+        "country": "South Africa",
+        "countrycode": "ZA",
+        "extent": [
+          31.046728,
+          -29.7745759,
+          31.0478089,
+          -29.7751684
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.0472462,
+          -29.7748608
+        ]
+      }
+    }
+  ]
+}
