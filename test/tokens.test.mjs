@@ -82,6 +82,23 @@ test('accent ink is legible on the accent', () => {
   assert.ok(ratio >= 4.5, `--accent-ink on --accent is ${ratio.toFixed(2)}:1`);
 });
 
+test('forecast table digits clear WCAG AA on every ramp step', () => {
+  const vars = declaredVars(css);
+  const lit = (n) => resolve(vars, vars.get(n));
+  const pairs = [
+    ...[0, 1, 2, 3, 4, 5, 6].map((i) => ['--ink', `--ramp-wind-${i}`]),
+    ...[0, 1, 2, 3].map((i) => ['--ink', `--ramp-tide-${i}`]),
+    ['--score-excellent', '--ramp-score-0'],
+    ['--score-fair', '--ramp-score-1'],
+    ['--score-poor', '--ramp-score-2'],
+  ];
+
+  for (const [ink, bg] of pairs) {
+    const ratio = contrast(lit(ink), lit(bg));
+    assert.ok(ratio >= 4.5, `${ink} on ${bg} is ${ratio.toFixed(2)}:1, below AA 4.5:1`);
+  }
+});
+
 test('--ink-nontext is deliberately excluded from the AA text set', () => {
   // It is a legitimate neutral that does NOT clear 4.5:1, which is exactly why
   // it must never be used as a colour. Task 2 adds the rule that enforces that.
