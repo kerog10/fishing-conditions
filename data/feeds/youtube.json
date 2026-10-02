@@ -1,8 +1,34 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-01T08:59:09.201Z",
+  "builtAt": "2026-10-02T08:34:34.643Z",
   "entries": [
+    {
+      "id": "AoA2vLePrLY",
+      "channel": "Fun Fishing Frenzy",
+      "channelUrl": "https://www.youtube.com/channel/UC3mWWydsffzvNC7bap1rvMg",
+      "title": "Bobby with a Garrick",
+      "link": "https://www.youtube.com/watch?v=AoA2vLePrLY",
+      "date": "2026-10-02T05:21:46.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Garrick"
+      ]
+    },
+    {
+      "id": "9p14Cj7eDms",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "MNGAZANA - LET THE HUNT(FISHING) BEGIN - PART TWO",
+      "link": "https://www.youtube.com/watch?v=9p14Cj7eDms",
+      "date": "2026-10-01T14:00:18.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\nWelcome back for part two of the series.\nFrom here on things became very challenging but we persevered throughout.",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "K0zJKt9XgLI",
       "channel": "Juelz T",
@@ -647,55 +673,6 @@
       "via": "rss",
       "marks": [],
       "species": []
-    },
-    {
-      "id": "PmidauR8uxQ",
-      "channel": "Juelz T",
-      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
-      "title": "Isipingo Beach Floods 2022! #IsipingoBeach #Floods #Kzn #JuelzT",
-      "link": "https://www.youtube.com/watch?v=PmidauR8uxQ",
-      "date": "2026-09-10T07:14:29.000Z",
-      "description": null,
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Isipingo",
-          "region": "central",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": []
-    },
-    {
-      "id": "kmQFVlBvSk8",
-      "channel": "Juelz Visuelz",
-      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
-      "title": "Doonside & Warner Beach From Above | The History of Two Coastal Communities",
-      "link": "https://www.youtube.com/watch?v=kmQFVlBvSk8",
-      "date": "2026-09-09T16:08:39.000Z",
-      "description": "Discover Doonside and Warner Beach from above as we explore the history, coastline and character of these neighbouring communities on the Sapphire Coast of KwaZulu Natal.\n\nDoonside developed around a railway siding that was renamed in 1910 after a nearby house called Lorna Doone. Just beyond the Little Amanzimtoti River, Warner Beach was formally laid out by surveyor P. A. Warner and later developed into a popular seaside holiday village.\n\nFrom the railway running beside the ocean to the historic hotels, Warner Beach tidal pool, Warnadoone Surf Lifesaving Club and the annual Sardine Run, this coastline has been shaped by tourism, sport and generations of coastal living.\n\nDoonside is known for its quieter beach, river mouth and elevated ocean views, while Warner Beach retains the character of an established surfing and holiday community.\n\nJoin me as we experience Doonside and Warner Beach from an entirely different perspective.\n\nWhich of these two coastal communities holds the most memories for you? Share your story in the comments.\n\nPlease like the video, subscribe to Juelz Visuelz and turn on notifications for more aerial documentaries, local history and incredible destinations across KwaZulu Natal.\n\n📍 Doonside and Warner Beach\n🌍 Kingsburgh, KwaZulu Natal, South Africa\n🎥 Filmed and produced by Juelz Visuelz\n\n#Doonside #WarnerBeach #JuelzVisuelz #Amanzimtoti #Kingsburgh #SapphireCoast #KwaZuluNatal #KZN #DroneVideo \n\n⚠️ All rights reserved. This content is the intellectual property of Juelz Visuelz. Any use, reproduction, or distribution without prior written consent is strictly prohibited. \n\n📩 For licensing or authorized use, please contact juelzvisuelz@gmail.com.",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Amanzimtoti",
-          "region": "south",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        },
-        {
-          "name": "Warner Beach",
-          "region": "south",
-          "where": "title",
-          "lat": -30.08452,
-          "lon": 30.86834
-        }
-      ],
-      "species": [
-        "Sardine"
-      ]
     }
   ]
 }
