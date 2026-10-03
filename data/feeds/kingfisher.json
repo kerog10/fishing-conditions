@@ -1,8 +1,16 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-09-19T07:21:33.437Z",
+  "builtAt": "2026-10-03T08:08:46.499Z",
   "entries": [
+    {
+      "id": 31006,
+      "date": "2026-10-01T08:48:30Z",
+      "title": "KZN Fishing Report (01 October 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-01-october-2026/",
+      "excerpt": "THE FISH ARE HERE… AND THE EAST COAST IS AMPED! Rock & Surf: If you’ve been waiting for a sign to get the tackle together, sharpen those hooks and hit the East Coast this weekend, this is it! The edible fishing has really come alive along the beaches over the…",
+      "regions": {}
+    },
     {
       "id": 30776,
       "date": "2026-09-17T08:24:57Z",
@@ -237,40 +245,6 @@
             "Garrick",
             "Kingfish",
             "Kob",
-            "Sardine",
-            "Shad",
-            "Snoek",
-            "Tuna"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30253,
-      "date": "2026-07-30T16:32:10Z",
-      "title": "KZN Fishing Report (30 July 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-30-july-2026/",
-      "excerpt": "A Frosty Twist Fuels Fresh Fishing Opportunities Shad Clinic this Saturday morning at Blue Lagoon (08:30)…Don’t miss out on all the latest Shad tips and techniques as well bonus prizes for the biggest Shad fishing event of 2026! Join the Foton and KingFisher Shad Fishing Competition from 14 to 31…",
-      "regions": {
-        "north": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Shad"
-          ]
-        },
-        "central": {
-          "species": [
-            "Grunter",
-            "Shad"
-          ]
-        },
-        "south": {
-          "species": [
-            "Garrick",
-            "Kingfish",
-            "Kob",
-            "Rockcod",
             "Sardine",
             "Shad",
             "Snoek",
