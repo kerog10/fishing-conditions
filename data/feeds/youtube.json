@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-05T09:07:18.635Z",
+  "builtAt": "2026-10-06T09:01:02.467Z",
   "entries": [
+    {
+      "id": "H0FUxWyz7qk",
+      "channel": "Juelz T",
+      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
+      "title": "MADO - Turkish Restaurant, Florida Rd, Durban!#Mado #TurkishRestaurant #FloridaRoad #Durban #JuelzT",
+      "link": "https://www.youtube.com/watch?v=H0FUxWyz7qk",
+      "date": "2026-10-05T14:59:02.000Z",
+      "description": "MADO - Turkish Restaurant, Florida Road, Durban!\n\n#Mado #TurkishRestaurant #FloridaRoad #Durban #JuelzT",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "fk38kmxX18g",
       "channel": "Kents Fishing",
@@ -639,20 +651,6 @@
       "via": "rss",
       "marks": [],
       "species": []
-    },
-    {
-      "id": "DWXsk_7Dwso",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "A Garrick He’ll Never Forget! | First ever Garrick for Erza | 12-Year-Old Ezra’s Incredible Story",
-      "link": "https://www.youtube.com/watch?v=DWXsk_7Dwso",
-      "date": "2026-09-12T09:17:37.000Z",
-      "description": "Some fishing moments are about much more than catching a fish… ❤️🎣\n\nMeet Ezra, an incredible 12-year-old boy who has already faced challenges that no child should ever have to go through. After undergoing several open-heart surgeries, Ezra has shown an unbelievable amount of strength, courage and determination.\n\nPa had the privilege of taking Ezra fishing, hoping to give him a day he would never forget. And somehow, Ezra gave us a moment that WE will never forget.\n\n🎣 Ezra hooked into an incredible Garrick weighing around 10kg!\n\nWatching him fight that fish, seeing his determination, and then seeing the excitement on Ezra’s face and the faces of his family when he landed it… it was truly something special.\n\nThis wasn't just a fishing trip. It was a reminder of how powerful a little happiness, an unforgettable experience and the love of family can be. ❤️\n\nEzra, you are an absolute inspiration. Your strength and courage are incredible, and we are honoured that Pa’s Xtreme Fishing could be part of this special moment.\n\nWe hope this video brings a smile to your face and reminds you that you are capable of amazing things. 💪❤️\n\n🎣 Congratulations, Ezra, on an incredible Garrick!\n\nThank you to Ezra and his family for allowing us to share this special story with the PXF family.\n\nThis one was for Ezra. ❤️🎣\n\n#PasXtremeFishing #PXF #Ezra #Garrick #Fishing #KZNFishing #SouthCoastFishing #FishingAdventure #Inspiration #NeverGiveUp",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Garrick"
-      ]
     }
   ]
 }
