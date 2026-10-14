@@ -1,8 +1,40 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-12T09:15:36.316Z",
+  "builtAt": "2026-10-14T07:40:30.632Z",
   "entries": [
+    {
+      "id": "T3Yb__L6MW8",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "MNGAZANA - DRONE VIEWS, FISH, AND MORE - PART THREE",
+      "link": "https://www.youtube.com/watch?v=T3Yb__L6MW8",
+      "date": "2026-10-13T14:00:24.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nPart three is out and Part Four is almost at your door.\nEnjoy the rest of your series and don't forget to hit the like button.",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "ggpxaeJ4TH4",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "PENNINGTON BEACH & ESTATES FROM ABOVE | KZN South Coast, South Africa 🇿🇦",
+      "link": "https://www.youtube.com/watch?v=ggpxaeJ4TH4",
+      "date": "2026-10-13T11:12:08.000Z",
+      "description": "Welcome to Pennington — one of KwaZulu-Natal’s quieter coastal gems.\n\nIn this aerial journey, we fly over Pennington Beach, its beautiful coastline, tidal pool, surrounding estates and the lush greenery that gives this part of the KZN South Coast its peaceful character.\n\nJust under an hour south of Durban, Pennington is known for its relaxed atmosphere, natural coastline, family-friendly beach and scenic lifestyle. From the Indian Ocean to the homes nestled among the trees, this is coastal living from a whole different perspective.\n\nHave you visited Pennington before? Let me know your favourite part of the KZN South Coast in the comments.\n\nSubscribe to Juelz Visuelz for more drone videos, hidden gems, coastal towns and beautiful places across KwaZulu-Natal.\n\n📍 Pennington, KwaZulu-Natal, South Africa\n🎥 Captured by Juelz Visuelz\n\n#Pennington #KZNSouthCoast #SouthAfrica #DroneVideo #JuelzVisuelz #KwaZuluNatal #BeachFromAbove #SouthCoast",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Pennington",
+          "region": "south",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
     {
       "id": "3pCGMiWcRFM",
       "channel": "Juelz Visuelz",
@@ -647,47 +679,6 @@
         }
       ],
       "species": []
-    },
-    {
-      "id": "F6umVMO1ER4",
-      "channel": "Keegan Pillay - Fishing South Africa",
-      "channelUrl": "https://www.youtube.com/channel/UCBMsDqoK93sB3GW5r-OvUCA",
-      "title": "https://youtu.be/OCu2uncEZMs",
-      "link": "https://www.youtube.com/watch?v=F6umVMO1ER4",
-      "date": "2026-09-17T16:38:29.000Z",
-      "description": "#fishing\n#fishing deep sea\n#catchandcook \n#catchandrelease",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "ZUcyCT4S0iY",
-      "channel": "Juelz Visuelz",
-      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
-      "title": "Durban You Never See | Inside Durban Harbour From Above",
-      "link": "https://www.youtube.com/watch?v=ZUcyCT4S0iY",
-      "date": "2026-09-17T10:54:17.000Z",
-      "description": "There is a side of Durban that most people never get to see.\n\nCaptured from above in 2022, this journey begins over the Bluff before moving towards the entrance of Durban Harbour, the Millennium Tower and South Pier.\n\nWe then fly deeper into one of South Africa’s most important ports, passing cargo ships, dry-bulk operations, industrial storage tanks and the extensive Island View terminal area.\n\nA full 360-degree aerial view reveals how the harbour, Bluff, Indian Ocean and city all connect. Later, we explore the back of the port around Bayhead and Grunter Gully—an industrial landscape hidden from most residents and visitors.\n\nThis is more than a beautiful aerial view. It is a closer look at the working side of Durban and the infrastructure helping connect South Africa to the rest of the world.\n\nWhich part of Durban should I explore next? Let me know in the comments.\n\nPlease remember to LIKE the video, SUBSCRIBE and turn on notifications for more aerial journeys, local history and hidden places around Durban and KwaZulu-Natal.\n\nFilmed in Durban, KwaZulu-Natal, South Africa.\nFootage captured in 2022.\n\n#Durban #DurbanHarbour #JuelzVisuelz #DurbanIndustrial #DroneVideo \n\n⚠️ All rights reserved. This content is the intellectual property of Juelz Visuelz. Any use, reproduction, or distribution without prior written consent is strictly prohibited.\n\n📩 For licensing or authorized use, please contact juelzvisuelz@gmail.com.",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "South Pier",
-          "region": "central",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        },
-        {
-          "name": "The Bluff",
-          "region": "central",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Grunter"
-      ]
     }
   ]
 }
