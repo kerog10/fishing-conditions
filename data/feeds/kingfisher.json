@@ -1,8 +1,38 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-10-03T08:08:46.499Z",
+  "builtAt": "2026-10-16T07:12:34.441Z",
   "entries": [
+    {
+      "id": 31674,
+      "date": "2026-10-15T12:46:48Z",
+      "title": "KZN Fishing Report (15 October 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-15-october-2026/",
+      "excerpt": "KOBTOBER IS HEATING UP! Rock & Surf: South Coast anglers, the ocean is serving up action, and this weekend could be your moment! If there was ever a time to dust off those rods, sharpen those hooks, pump the live bait and get ready for a proper South Coast fishing…",
+      "regions": {
+        "south": {
+          "species": [
+            "Bronze Bream",
+            "Couta",
+            "Garrick",
+            "Kob",
+            "Musselcracker",
+            "Rockcod",
+            "Shad",
+            "Snoek",
+            "Stumpnose"
+          ]
+        }
+      }
+    },
+    {
+      "id": 31667,
+      "date": "2026-10-08T11:36:21Z",
+      "title": "KZN Fishing Report (08 October 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-08-october-2026/",
+      "excerpt": "KZN COAST ERUPTS WITH FISHING ACTION Cancel the excuses and hit the water this weekend! Rock & Surf: The edible fishing along the East Coast has absolutely exploded over the last few days, and anglers putting in the hours are being rewarded in a big way. Brusher are chewing with…",
+      "regions": {}
+    },
     {
       "id": 31006,
       "date": "2026-10-01T08:48:30Z",
@@ -178,76 +208,6 @@
             "Garrick",
             "Sardine",
             "Shad",
-            "Tuna"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30463,
-      "date": "2026-08-13T07:28:27Z",
-      "title": "KZN Fishing Report (13 August 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-13-august-2026/",
-      "excerpt": "Shad Fever Grips the KZN Coast Despite Cold Conditions The recent cold front that swept up the East Coast certainly made conditions a little more challenging, with rough seas, cooler water temperatures and strong winds keeping many anglers off the water for parts of the week. Despite these less-than-ideal conditions,…",
-      "regions": {
-        "north": {
-          "species": [
-            "Couta",
-            "Garrick",
-            "Snoek"
-          ]
-        },
-        "central": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Sardine",
-            "Snoek"
-          ]
-        },
-        "south": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Sardine",
-            "Shad",
-            "Snoek",
-            "Tuna"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30307,
-      "date": "2026-08-06T14:27:15Z",
-      "title": "KZN Fishing Report (06 August 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-06-august-2026/",
-      "excerpt": "The Ocean Took a Breather… Now It’s Time to Get Ready Get ready for the biggest Shad fishing event of 2026! Join the Foton and KingFisher Shad Fishing Competition from 14 to 31 August for your chance to compete for an incredible R85,000 prize pool , including R60,000 for first…",
-      "regions": {
-        "north": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Rockcod",
-            "Shad"
-          ]
-        },
-        "central": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Shad"
-          ]
-        },
-        "south": {
-          "species": [
-            "Couta",
-            "Garrick",
-            "Kingfish",
-            "Kob",
-            "Sardine",
-            "Shad",
-            "Snoek",
             "Tuna"
           ]
         }
