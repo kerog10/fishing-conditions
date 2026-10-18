@@ -1,8 +1,40 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-15T07:28:29.194Z",
+  "builtAt": "2026-10-18T07:15:24.326Z",
   "entries": [
+    {
+      "id": "hJgvms6WQuY",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "SILVER BREAM ON THE 4'' 38",
+      "link": "https://www.youtube.com/watch?v=hJgvms6WQuY",
+      "date": "2026-10-17T13:00:33.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "mCI-ZeIsJyA",
+      "channel": "Juelz Visuelz",
+      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
+      "title": "Thompsons Bay, Ballito | Charlie’s Pool & the Hole in the Wall",
+      "link": "https://www.youtube.com/watch?v=mCI-ZeIsJyA",
+      "date": "2026-10-16T13:28:50.000Z",
+      "description": "Discover Thompsons Bay, one of the best-known coastal landmarks on KwaZulu-Natal’s Dolphin Coast. Just north of Ballito, this beautiful stretch of coastline brings together sandy beaches, rugged rock formations, the Indian Ocean and the famous tidal pool known as Charlie’s Pool.\n\nBuilt in 1962 by Charles de Charmoy, his family and farm labourers, the pool took around seven weeks and approximately 2,000 pockets of cement to complete. It measures about 106 metres long and 30 metres wide. More than six decades later, it remains a popular place for swimming, relaxing and snorkelling among the fish and marine life.\n\nThe Hole in the Wall is a natural rock arch beside the pool. Beyond it is a smaller beach and rocky pools where shells and marine life can be found. Access can be affected by the tide, so check local conditions before exploring the passage. \n\nOverlooking the bay are the white, Greek-inspired buildings of Santorini Estate, in Shaka’s Rock. The estate has access to Thompsons Bay and the neighbouring semi-private Perissa beach.\n\n📍 Thompsons Bay, Ballito, KwaZulu-Natal, South Africa\n\nHave you visited Thompsons Bay?\nTell us what you enjoyed most: Charlie’s Pool, the beach or the Hole in the Wall.\n\n#ThompsonsBay #Ballito #KwaZuluNatal #DolphinCoast #JuelzVisuelz #CharliesPool #HoleInTheWall\n\nCopyright notice\nAll footage and content © Juelz Visuelz. All rights reserved.\nFor licensing enquiries: juelzvisuelz@gmail.com",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Ballito",
+          "region": "north",
+          "where": "title",
+          "lat": null,
+          "lon": null
+        }
+      ],
+      "species": []
+    },
     {
       "id": "rs4MMLdEc5I",
       "channel": "Kayz Adventures",
@@ -65,7 +97,7 @@
       "id": "T3Yb__L6MW8",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-DRONE VIEWS, FISH, AND MORE-PART THREE",
+      "title": "MNGAZANA-DRONE VIEWS, FISH, AND MORE-PART THREE #fishing #mngazana #transkei",
       "link": "https://www.youtube.com/watch?v=T3Yb__L6MW8",
       "date": "2026-10-13T14:00:24.000Z",
       "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nPart three is out and Part Four is almost at your door.\nEnjoy the rest of your series and don't forget to hit the like button.",
@@ -306,7 +338,7 @@
       "id": "9p14Cj7eDms",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-LET THE HUNT(FISHING) BEGIN-PART TWO",
+      "title": "MNGAZANA-LET THE HUNT(FISHING) BEGIN-PART TWO #fishing #mngazana #transkei",
       "link": "https://www.youtube.com/watch?v=9p14Cj7eDms",
       "date": "2026-10-01T14:00:18.000Z",
       "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\nWelcome back for part two of the series.\nFrom here on things became very challenging but we persevered throughout.",
@@ -601,7 +633,7 @@
       "id": "7W4N9gTj5ZE",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-LET THE JOURNEY BEGIN-PART ONE",
+      "title": "MNGAZANA-LET THE JOURNEY BEGIN-PART ONE #fishing #mngazana #transkei",
       "link": "https://www.youtube.com/watch?v=7W4N9gTj5ZE",
       "date": "2026-09-23T14:00:12.000Z",
       "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
@@ -660,48 +692,6 @@
           "where": "title",
           "lat": null,
           "lon": null
-        }
-      ],
-      "species": []
-    },
-    {
-      "id": "LjJsFcnygnU",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "OUR BIGGEST ONE THIS SEASON | ABSOLUTE MONSTER AT WINKLESPRUIT | LIVE BAIT FISHING",
-      "link": "https://www.youtube.com/watch?v=LjJsFcnygnU",
-      "date": "2026-09-20T08:30:52.000Z",
-      "description": "WHAT A SESSION AT WINKLESPRUIT! 🎣🔥\n\nWe headed out for another day of fishing and Pa made the perfect call — choosing exactly what to target and where we needed to be.\n\nThe decision paid off BIG TIME!\n\nWe managed to land two beautiful Garrick, but one of them was on a completely different level. The big fish weighed over 14KG, making it our biggest Garrick of the season so far! 😱🔥\n\nOnce Pa hooked into this monster, the real battle began. This fish had plenty of power and wasn't giving up easily. Pa had to follow it for an incredible 2KM down the beach before finally getting the opportunity to land it.\n\nIt was an unbelievable fight that showed exactly why experience, patience and knowing how to read the conditions can make such a huge difference.\n\nFrom choosing the right target, finding the right spot and staying patient throughout the fight — Pa put his experience on display once again.\n\nTwo Garrick. One absolute monster. Over 14KG. 2KM of beach. One unforgettable session. 🎣🔥\n\nPa's Xtreme Fishing does it again! 💪\n\nA massive thank you to everyone who continues to support the channel. We appreciate every single one of you! ❤️\n\nIf you enjoyed the video, don't forget to LIKE 👍, COMMENT 💬, SHARE 🔄 and SUBSCRIBE 🔔 for more fishing adventures from the KZN South Coast.\n\n🎣 PA'S XTREME FISHING\nAdventure • Education • Fishing • Good Times\n\n#PasXtremeFishing #GarrickFishing #Garrick #Winklespruit #KZNFishing #SouthCoastFishing #FishingSouthAfrica #MonsterGarrick #SurfFishing #FishingAdventure",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Winklespruit",
-          "region": "south",
-          "where": "title",
-          "lat": -30.09569,
-          "lon": 30.86249
-        }
-      ],
-      "species": [
-        "Garrick"
-      ]
-    },
-    {
-      "id": "h9yCPdEr6m0",
-      "channel": "Fishing Unfiltered",
-      "channelUrl": "https://www.youtube.com/channel/UCOZsf26qw8MuprQuq5Ee3DQ",
-      "title": "WHITE MUSSEL CRACKER IN UMKOMAAS | CRAB AND MUSSEL BAIT DEMO | TRACE DEMO#mussels#southafricafishing",
-      "link": "https://www.youtube.com/watch?v=h9yCPdEr6m0",
-      "date": "2026-09-19T06:27:07.000Z",
-      "description": null,
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Umkomaas",
-          "region": "south",
-          "where": "title",
-          "lat": -30.20849,
-          "lon": 30.80122
         }
       ],
       "species": []
