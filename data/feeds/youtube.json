@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-19T07:49:12.363Z",
+  "builtAt": "2026-10-20T07:36:45.513Z",
   "entries": [
+    {
+      "id": "xngOI0C8FBo",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "SILVER BREAM ON THE MULTIPLIER",
+      "link": "https://www.youtube.com/watch?v=xngOI0C8FBo",
+      "date": "2026-10-19T16:00:04.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "bM5oRztezK0",
       "channel": "Buddyz Fishing Adventures",
@@ -674,29 +686,6 @@
       "via": "rss",
       "marks": [],
       "species": []
-    },
-    {
-      "id": "qEASZopgNIw",
-      "channel": "The RodFather",
-      "channelUrl": "https://www.youtube.com/channel/UC2ilfQtmI6rwd3mbh3bp6Ig",
-      "title": "Fishing after the rains. Shad & Kingfish GT. Bluff Durban KZN South Coast",
-      "link": "https://www.youtube.com/watch?v=qEASZopgNIw",
-      "date": "2026-09-23T08:00:12.000Z",
-      "description": null,
-      "via": "rss",
-      "marks": [
-        {
-          "name": "The Bluff",
-          "region": "central",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Kingfish",
-        "Shad"
-      ]
     }
   ]
 }
