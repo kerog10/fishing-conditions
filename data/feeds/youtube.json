@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-20T07:36:45.513Z",
+  "builtAt": "2026-10-21T07:41:31.204Z",
   "entries": [
+    {
+      "id": "b5EMBdt9l1E",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "HARVESTING OCTOPUS",
+      "link": "https://www.youtube.com/watch?v=b5EMBdt9l1E",
+      "date": "2026-10-20T16:00:21.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "xngOI0C8FBo",
       "channel": "Buddyz Fishing Adventures",
@@ -22,7 +34,7 @@
       "title": "MNGAZANA-CIT HEIST(COPPERS IN TRANSIT)-PART FOUR #fishing #mngazana #transkei #bronzebream",
       "link": "https://www.youtube.com/watch?v=bM5oRztezK0",
       "date": "2026-10-18T14:00:11.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nWe finally managed to find some fish and a heist it was.\nSit back, relax and enjoy as the rest oof the series gets totally action packed.",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nWe finally managed to find some fish and a heist it was.\nSit back, relax and enjoy as the rest of the series gets totally action packed.",
       "via": "rss",
       "marks": [],
       "species": []
@@ -674,18 +686,6 @@
       "species": [
         "Shad"
       ]
-    },
-    {
-      "id": "7W4N9gTj5ZE",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-LET THE JOURNEY BEGIN-PART ONE #fishing #mngazana #transkei",
-      "link": "https://www.youtube.com/watch?v=7W4N9gTj5ZE",
-      "date": "2026-09-23T14:00:12.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
     }
   ]
 }
