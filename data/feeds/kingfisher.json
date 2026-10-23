@@ -1,8 +1,31 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-10-16T07:12:34.441Z",
+  "builtAt": "2026-10-23T07:34:34.355Z",
   "entries": [
+    {
+      "id": 32158,
+      "date": "2026-10-22T12:58:00Z",
+      "title": "KZN Fishing Report (22 October 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-22-october-2026/",
+      "excerpt": "THE FORECAST IS BROKEN… BUT THE FISHING IS ON FIRE! After a week of changing weather, cold fronts and unpredictable forecasts, KwaZulu-Natal anglers are finding themselves in the middle of one of the most exciting fishing periods of the season. From Durban Bay to the deep reefs and surf of…",
+      "regions": {
+        "south": {
+          "species": [
+            "Blacktail",
+            "Couta",
+            "Garrick",
+            "Grunter",
+            "Kingfish",
+            "Kob",
+            "Pompano",
+            "Rockcod",
+            "Stumpnose",
+            "Tuna"
+          ]
+        }
+      }
+    },
     {
       "id": 31674,
       "date": "2026-10-15T12:46:48Z",
@@ -176,38 +199,6 @@
             "Sardine",
             "Shad",
             "Snoek",
-            "Tuna"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30566,
-      "date": "2026-08-20T14:18:56Z",
-      "title": "KZN Fishing Report (20 August 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-20-august-2026/",
-      "excerpt": "Spring Fever Brings Shad Fever Saltwater If there’s one fish stealing the show right now, it’s shad! Their arrival has injected a serious dose of excitement into the tail end of winter fishing, and with good reason. They’re accessible, aggressive and more than willing to smash a variety of baits…",
-      "regions": {
-        "north": {
-          "species": [
-            "Couta",
-            "Garrick",
-            "Snoek"
-          ]
-        },
-        "central": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Sardine",
-            "Snoek"
-          ]
-        },
-        "south": {
-          "species": [
-            "Garrick",
-            "Sardine",
-            "Shad",
             "Tuna"
           ]
         }

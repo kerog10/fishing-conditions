@@ -1,8 +1,22 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-22T07:37:16.440Z",
+  "builtAt": "2026-10-23T07:34:36.298Z",
   "entries": [
+    {
+      "id": "J7fbPatJuBY",
+      "channel": "Fishing Unfiltered",
+      "channelUrl": "https://www.youtube.com/channel/UCOZsf26qw8MuprQuq5Ee3DQ",
+      "title": "CHASING MONSTER KOB|MULLOWAY in South Africa! 🎣 Live Bait Mission! #castnetting#livebait#fishing",
+      "link": "https://www.youtube.com/watch?v=J7fbPatJuBY",
+      "date": "2026-10-23T05:09:40.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Kob"
+      ]
+    },
     {
       "id": "xzYCIBiG9ks",
       "channel": "Pa's Xtreme Fishing",
@@ -639,18 +653,6 @@
       "link": "https://www.youtube.com/watch?v=9qz1yAwQb_o",
       "date": "2026-09-24T19:27:46.000Z",
       "description": null,
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "qe-EQb_k6QU",
-      "channel": "Juelz Visuelz",
-      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
-      "title": "Happy Heritage Day, Mzansi! ❤️💚💛💙#HeritageDay #SouthAfrica #Mzansi #ZuluCulture #JuelzVisuelz",
-      "link": "https://www.youtube.com/watch?v=qe-EQb_k6QU",
-      "date": "2026-09-24T07:29:37.000Z",
-      "description": "Different cultures. Different traditions. One proud nation. 🇿🇦\n\nToday we celebrate the beauty, rhythm and heritage that make South Africa truly special.\n\nHappy Heritage Day, Mzansi! ❤️💚💛💙\n\n#HeritageDay #SouthAfrica #Mzansi #ZuluCulture #AfricanCulture #JuelzVisuelz",
       "via": "rss",
       "marks": [],
       "species": []
