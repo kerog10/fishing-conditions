@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-24T07:19:32.099Z",
+  "builtAt": "2026-10-27T07:54:30.703Z",
   "entries": [
+    {
+      "id": "5Ry3ry05vcw",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "MNGAZANA-KEEP BREAMING-PART FIVE",
+      "link": "https://www.youtube.com/watch?v=5Ry3ry05vcw",
+      "date": "2026-10-26T16:30:37.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nMore action with the bream as we continue making the most of eventually finding the fish. We had our fair share and headed home after a tiring day out.",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "8piRkf6zOO0",
       "channel": "Juelz Visuelz",
@@ -636,26 +648,6 @@
       "species": [
         "Grunter"
       ]
-    },
-    {
-      "id": "WgeDerMoz7I",
-      "channel": "Juelz Visuelz",
-      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
-      "title": "An incredible encounter just offshore as humpback whales put on a spectacular display! #Whales",
-      "link": "https://www.youtube.com/watch?v=WgeDerMoz7I",
-      "date": "2026-09-25T10:52:49.000Z",
-      "description": "🐋🌊 WHAT A SIGHT OFF ISIPINGO BEACH!\n\nAn incredible encounter just offshore as humpback whales put on a spectacular display, breaching from the ocean and slapping those massive pectoral fins against the water, with their calves right alongside them. 🐋💙\n\nMoments like these remind you just how alive our KZN coastline really is. To witness these giants of the ocean and their babies from our own shores is something special.\n\n📍 Isipingo Beach, KwaZulu-Natal 🇿🇦\n\n🎥 Juelz Visuelz\n\n#JuelzVisuelz #IsipingoBeach #HumpbackWhales #WhaleWatching #WhaleSeason #KwaZuluNatal #KZN #Durban #SouthAfrica #OceanLife #MarineLife #KZNCoast #DroneFootage",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Isipingo",
-          "region": "central",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": []
     }
   ]
 }
