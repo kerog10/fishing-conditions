@@ -1,13 +1,25 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-10-27T07:54:30.703Z",
+  "builtAt": "2026-10-28T08:36:33.604Z",
   "entries": [
+    {
+      "id": "mU0xkVvAlcI",
+      "channel": "Michael and Angie Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
+      "title": "Guess The Spot!!!! Traveling North",
+      "link": "https://www.youtube.com/watch?v=mU0xkVvAlcI",
+      "date": "2026-10-27T21:38:21.000Z",
+      "description": "Greetings dearest friends and welcome back to another awesome adventure with your Guide Michael and Angie fishing adventures and tours. Let's travel north, #margatepier #michaelandangiefishingadventures #southcoast #fishing #beach #2026 #daiwa #southcoasttourism",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "5Ry3ry05vcw",
       "channel": "Buddyz Fishing Adventures",
       "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-KEEP BREAMING-PART FIVE",
+      "title": "MNGAZANA-KEEP BREAMING-PART FIVE #fishing #mngazana #transkei #bronzebream",
       "link": "https://www.youtube.com/watch?v=5Ry3ry05vcw",
       "date": "2026-10-26T16:30:37.000Z",
       "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nMore action with the bream as we continue making the most of eventually finding the fish. We had our fair share and headed home after a tiring day out.",
@@ -634,20 +646,6 @@
       "via": "rss",
       "marks": [],
       "species": []
-    },
-    {
-      "id": "ZpBbNt6EQfM",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Port St. John's at its best.Awesome Grunter Fishing |AN ANNIVERSARY TRIP TO REMEMBER! Food&Adventure",
-      "link": "https://www.youtube.com/watch?v=ZpBbNt6EQfM",
-      "date": "2026-09-26T08:15:18.000Z",
-      "description": "Join Pa and Mrs Pa on an incredible three-day getaway to the beautiful Port St. John’s! This trip was extra special because the couple was celebrating their anniversary, making it a journey filled with love, laughter, adventure, and unforgettable memories. ❤️\n\nFrom exploring the beautiful surroundings of PSJ to enjoying some incredible fishing, this trip had something special around every corner.\n\n🎣 MRS PA CATCHES HER FIRST GRUNTER! A special fishing moment that made the trip even more memorable!\n\n🍤 INCREDIBLE FOOD & AMAZING EXPERIENCES! The couple visited one of the best restaurants in Port St. John’s, enjoyed delicious meals, and even prepared some mouthwatering food at home.\n\n🔥 A cooked up an absolutely delicious prawn chutney with savoury rice, making for a proper feast after a day of adventure!\n\nThis video is packed with beautiful travel footage, exciting fishing moments, delicious food, and a glimpse into Pa and Mrs Pa's special anniversary getaway.\n\nThree days in Port St. John’s, countless memories, and an adventure they will never forget!\n\n❤️ Thank you for being part of the Pa’s Xtreme Fishing family! Don't forget to LIKE, COMMENT, SHARE, and SUBSCRIBE for more fishing adventures, travel experiences, and unforgettable moments with Pa and the team.\n\n#PasXtremeFishing #PortStJohns #FishingAdventure #AnniversaryTrip #GrunterFishing #FishingSouthAfrica #FoodAndFishing #KZNFishing",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Grunter"
-      ]
     }
   ]
 }
