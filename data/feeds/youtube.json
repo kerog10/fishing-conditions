@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-02T09:32:36.593Z",
+  "builtAt": "2026-11-03T09:35:37.685Z",
   "entries": [
+    {
+      "id": "d9KCgv48ILM",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "GEORGE OUR GILLY GETS HIS BREAM",
+      "link": "https://www.youtube.com/watch?v=d9KCgv48ILM",
+      "date": "2026-11-02T15:00:34.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "b-qkUoPyGOY",
       "channel": "Buddyz Fishing Adventures",
@@ -590,20 +602,6 @@
       "link": "https://www.youtube.com/watch?v=uhzgNXVEDWw",
       "date": "2026-10-02T16:00:06.000Z",
       "description": "Pa and the team set out to give this family the Pa’s Xtreme Fishing experience of a lifetime — and what a day it turned out to be!\n\nThe goal was simple: help our clients catch their bucket-list fish and create memories they would never forget. But nobody expected the action that followed! 😱\n\nThe father and son suddenly got hooked up at the exact same time… DOUBLE UP! 🎣🎣 Two incredible Garrick fighting at once, with the whole boat buzzing as we worked together to get both fish to the boat!\n\nAnd the action wasn't over yet… the wife got her turn and landed a beautiful Garrick of her own! 🙌\n\nThree amazing fish, plenty of unforgettable moments, and a family memory that will last a lifetime. ❤️\n\nThis is what Pa’s Xtreme Fishing is all about — incredible fishing, family, adventure and making memories that you’ll talk about for years to come.\n\n🔥 3 BEAUTIFUL GARRICK\n🔥 FATHER & SON DOUBLE-UP!\n🔥 BUCKET-LIST FISH\n🔥 A FAMILY MEMORY OF A LIFETIME\n\nNothing compares to the Pa’s Xtreme Fishing experience!\n\n🎣 Subscribe and join us for more epic fishing adventures!\n\n#PasXtremeFishing #GarrickFishing #FishingSouthAfrica #SaltwaterFishing #FishingAdventure #BucketListFishing #DoubleUp #Garrick #FamilyFishing #FishingMemories",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Garrick"
-      ]
-    },
-    {
-      "id": "AoA2vLePrLY",
-      "channel": "Fun Fishing Frenzy",
-      "channelUrl": "https://www.youtube.com/channel/UC3mWWydsffzvNC7bap1rvMg",
-      "title": "Bobby with a Garrick",
-      "link": "https://www.youtube.com/watch?v=AoA2vLePrLY",
-      "date": "2026-10-02T05:21:46.000Z",
-      "description": null,
       "via": "rss",
       "marks": [],
       "species": [
