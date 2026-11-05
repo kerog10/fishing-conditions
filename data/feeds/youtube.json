@@ -1,8 +1,22 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-04T09:16:49.152Z",
+  "builtAt": "2026-11-05T09:31:29.617Z",
   "entries": [
+    {
+      "id": "b7pUxT_ijV0",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "BUDDYZ SECOND BRONZE BREAM",
+      "link": "https://www.youtube.com/watch?v=b7pUxT_ijV0",
+      "date": "2026-11-04T14:00:01.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Bronze Bream"
+      ]
+    },
     {
       "id": "Qo_7h5OpplY",
       "channel": "Kayz Adventures",
@@ -583,18 +597,6 @@
       "species": [
         "Kob"
       ]
-    },
-    {
-      "id": "lwZb1XnWylQ",
-      "channel": "Juelz T",
-      "channelUrl": "https://www.youtube.com/channel/UCexoxqWGHpw5fVLhk6M6mog",
-      "title": "Homemade Snickers-style bars… and now I’m wondering why I didn’t try these sooner! 🍫🥜🤤",
-      "link": "https://www.youtube.com/watch?v=lwZb1XnWylQ",
-      "date": "2026-10-06T12:51:54.000Z",
-      "description": "Homemade Snickers-style bars… and now I’m wondering why I didn’t try these sooner! 🍫🥜🤤\n\nDates, almonds, peanut butter, a splash of milk and dark chocolate — chewy, crunchy and absolutely delicious. Simple ingredients, serious satisfaction!\n\nThe chocolate coating got a little messy, but the taste made up for it 😂\n\nSave this for your next homemade treat, and let me know: would you give these a try? 👇\n\n#JuelzT #HomemadeSnickers #DateBars #HomemadeTreats #DarkChocolate #EasyDesserts",
-      "via": "rss",
-      "marks": [],
-      "species": []
     }
   ]
 }
