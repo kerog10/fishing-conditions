@@ -1,8 +1,32 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-05T09:31:29.617Z",
+  "builtAt": "2026-11-06T09:26:30.516Z",
   "entries": [
+    {
+      "id": "1tUxHGWAUy8",
+      "channel": "Pa's Xtreme Fishing",
+      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
+      "title": "Our First Fishing Trip on Serenity II. An amazing time with some amazing people.",
+      "link": "https://www.youtube.com/watch?v=1tUxHGWAUy8",
+      "date": "2026-11-06T08:00:16.000Z",
+      "description": "🚤🎣 AN AWESOME DAY AT SEA ABOARD SERENITY II ! 🐟🔥\n\nPa was called in to take some awesome people out for a day of fishing, and what a day it turned out to be!\n\nAboard the brand-new boat, Serenity II, Pa took the crew out to sea for an incredible fishing adventure. With Pa at the helm, the team managed to land some beautiful fish, including Englishman seabream, soldiers, rockcods, and even a HUGE Tiger Shark! 😱🦈\n\nIt was an absolute pleasure being part of such an amazing day out on the water. Beautiful fish, great company, and unforgettable memories made out at sea.\n\nA massive thank you to the crew for having Pa along for the adventure. Here's to many more incredible days on the water! 🤙\n\n🎥 Sit back, relax, and enjoy this awesome fishing adventure with Pa and the team!\n\nDon't forget to LIKE, COMMENT, SHARE & SUBSCRIBE to Pa's Xtreme Fishing for more fishing action, adventures, and unforgettable moments!\n\n#PasXtremeFishing #PXF #BoatFishing #Serenity2 #TigerShark #DeepSeaFishing #FishingAdventure #KZNFishing",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "zQRsCYafvjk",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "NO COMPETITON-JUST FUN AND GAMES",
+      "link": "https://www.youtube.com/watch?v=zQRsCYafvjk",
+      "date": "2026-11-05T15:00:07.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "b7pUxT_ijV0",
       "channel": "Buddyz Fishing Adventures",
@@ -571,32 +595,6 @@
         }
       ],
       "species": []
-    },
-    {
-      "id": "Y5aXZADfTsU",
-      "channel": "Juelz Visuelz",
-      "channelUrl": "https://www.youtube.com/channel/UCpBFaKuglt7taad6cx-BN5Q",
-      "title": "Watching the yachts and boats come and go at the Durban Port! #Durban #PortOfDurban #Yachts",
-      "link": "https://www.youtube.com/watch?v=Y5aXZADfTsU",
-      "date": "2026-10-06T16:49:31.000Z",
-      "description": "Watching the yachts and boats come and go at the Durban Port! #Durban #PortOfDurban #Yachts #JuelzVisuelz",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "0sHmm2gTqDE",
-      "channel": "Kents Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UC1QUL3Z5Ho7_Y0M562eqb8Q",
-      "title": "Kobtober mission Sandspitt",
-      "link": "https://www.youtube.com/watch?v=0sHmm2gTqDE",
-      "date": "2026-10-06T16:44:49.000Z",
-      "description": "Kobtober is here and I was fortunate to get this Kob at the very start of the season. Still chasing a 20 killo, so watch this space and make sure you follow me for more!",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Kob"
-      ]
     }
   ]
 }
