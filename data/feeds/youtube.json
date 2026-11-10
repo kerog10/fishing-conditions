@@ -1,8 +1,34 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-09T09:50:15.987Z",
+  "builtAt": "2026-11-10T09:53:41.436Z",
   "entries": [
+    {
+      "id": "U7_bgI7VWIc",
+      "channel": "Michael and Angie Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
+      "title": "It's Game Fish Bonanza @Kzn South Coast",
+      "link": "https://www.youtube.com/watch?v=U7_bgI7VWIc",
+      "date": "2026-11-09T20:34:35.000Z",
+      "description": "Greetings dearest friends, It is Game fish Bonanza at the awesome Kzn South Coast. Lots  of Garrick, Salmon and other mega Species around. Come and Join us while the action is Hot. #michaelandangiefishingadventures #fishingadventures #kznfishing #daiwa #margatepier #beach #fishinglife #fishing #Kzntourism #championship8 #championship7 #southcoasttourism #exploresouthafrica",
+      "via": "rss",
+      "marks": [],
+      "species": [
+        "Garrick"
+      ]
+    },
+    {
+      "id": "UGlo0wtgTYc",
+      "channel": "Michael and Angie Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
+      "title": "Kzn South coast Game fish Bonanza #margatepier",
+      "link": "https://www.youtube.com/watch?v=UGlo0wtgTYc",
+      "date": "2026-11-09T20:11:08.000Z",
+      "description": "#margatepier #fishing #michaelandangiefishingadventures #fish #daiwa #marawa #wanima #marondera #mawe #mawe #mawa #maruwa #mingala #mtwara #yanga #southcoasttourism #exploresouthafrica #eastcoastradio",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "bxjQNq2R5vs",
       "channel": "Juelz Visuelz",
@@ -534,51 +560,6 @@
       "via": "rss",
       "marks": [],
       "species": []
-    },
-    {
-      "id": "qmYfT_BSNaM",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Giant Bronze Bream are here !!!  |  Fishing for bream and brusher at our local spots",
-      "link": "https://www.youtube.com/watch?v=qmYfT_BSNaM",
-      "date": "2026-10-09T15:33:13.000Z",
-      "description": "🎣 HAPPY CLIENTS, MONSTER BRONZE BREAM & UNFORGETTABLE MEMORIES! 🔥\n\nPa and the team take a father and son on an unforgettable bronze bream fishing adventure! Despite the challenging conditions, the team put their experience and knowledge to the test, searching different spots until they found the fish.\n\nThe result? 5 MONSTER BRONZE BREAM! 🐟💪\n\nIt was a day filled with excitement, laughter, and plenty of learning. More than just catching fish, it was about sharing knowledge, creating memories, and enjoying the beautiful experience of fishing together.\n\nThis is what Pa’s Xtreme Fishing is all about — helping anglers improve their skills, sharing our passion for fishing, and making every trip a memorable one!\n\nWant to experience an adventure like this? 🎣 Our guided fishing trips are available for anglers of all experience levels.\n\n📩 Email: pasxtremefishing@gmail.com\n📞 Call/WhatsApp: 062 748 5621\n\n👍 LIKE the video, SUBSCRIBE to the channel, and join the PXF family for more fishing adventures!\n\n#PasXtremeFishing #BronzeBream #GuidedFishingTrips #FishingSouthAfrica #KZNFishing #FishingAdventure",
-      "via": "rss",
-      "marks": [],
-      "species": [
-        "Bronze Bream",
-        "Musselcracker"
-      ]
-    },
-    {
-      "id": "Tb6CtAofylE",
-      "channel": "Michael and Angie Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UCLsOuB7JTlIY0uz_tIyWZGA",
-      "title": "Big Shad on live bait after season closed! We had to release it #margatepier #FFTF",
-      "link": "https://www.youtube.com/watch?v=Tb6CtAofylE",
-      "date": "2026-10-08T20:38:52.000Z",
-      "description": "🎣 LAST DAYS OF SHAD SEASON - EPIC ACTION BEFORE CLOSURE! | Margate Pier | Shelly Beach\n\nWhat an end to shad season! Season closed 30th September and re-opens 1st October.\n\nIn this video we share the hot action from the final days before closure at Margate Pier and South Coast reefs. Non-stop shad on light tackle! Plus a surprise - we hooked a good size shad on live karanteen while fishing for Garrick, AFTER season closed. Don't worry, it was safely released unharmed - we fish for the future! 🌊\n\nPreserving our marine ecosystem is key. Like, subscribe and join Michael & Angie Fishing Adventures!\n\n#ShadFishing #MargatePier #kznfishing #michaelandangiefishingadventures #daiwa #fishing #2026 #beach #fishingadventures\n #fishinglife #gaming #margatepier  #draindiagnosticssa",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "Shelly Beach",
-          "region": "south",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        },
-        {
-          "name": "Margate",
-          "region": "south",
-          "where": "body",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Garrick",
-        "Shad"
-      ]
     }
   ]
 }
