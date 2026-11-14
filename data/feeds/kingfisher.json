@@ -1,8 +1,16 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-10-23T07:34:34.355Z",
+  "builtAt": "2026-11-14T08:59:46.834Z",
   "entries": [
+    {
+      "id": 33079,
+      "date": "2026-11-12T14:27:37Z",
+      "title": "KZN Fishing Report (12 November 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-12-november-2026/",
+      "excerpt": "RAIN PRESSES PAUSE ON KZN ACTION, BUT THE BEST IS STILL TO COME After weeks of red-hot fishing along the KZN coastline, Mother Nature finally decided to take centre stage. Heavy rainfall, dirty water and limited weather windows kept many anglers off the beaches this past week, resulting in fewer…",
+      "regions": {}
+    },
     {
       "id": 32158,
       "date": "2026-10-22T12:58:00Z",
@@ -140,41 +148,6 @@
       "title": "KZN Fishing Report (03 September 2026)",
       "link": "https://www.kingfisher.co.za/kzn-fishing-report-03-september-2026/",
       "excerpt": "Predators on the Move Along the KZN Coast The hottest topic on every angler’s lips right now is simple: Who will be crowned this year’s Shad Champion? With massive numbers of shad flooding the coastline, the competition is heating up and the excitement within the angling fraternity is reaching fever…",
-      "regions": {
-        "north": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Rockcod",
-            "Shad"
-          ]
-        },
-        "central": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Shad"
-          ]
-        },
-        "south": {
-          "species": [
-            "Garrick",
-            "Kingfish",
-            "Kob",
-            "Sardine",
-            "Shad",
-            "Snoek",
-            "Tuna"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30568,
-      "date": "2026-08-27T14:21:53Z",
-      "title": "KZN Fishing Report (27 August 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-27-august-2026/",
-      "excerpt": "The Final Countdown: Shad Championship Race Heats Up. Rock and Surf: There are some weeks when Mother Nature reminds us that she calls the shots, and this past week was certainly one of them. Massive winds kept angler contemplating whether to hit the rocks and beaches or not along the…",
       "regions": {
         "north": {
           "species": [
