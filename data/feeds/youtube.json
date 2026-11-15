@@ -1,8 +1,44 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-14T08:59:48.554Z",
+  "builtAt": "2026-11-15T09:29:08.246Z",
   "entries": [
+    {
+      "id": "PCyxv4ZrPNk",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "TIKTOK LIVE THAT WENT VIRAL-DIAMOND RAY ON A BONNIE SLIDE TO KICK OFF SUMMER",
+      "link": "https://www.youtube.com/watch?v=PCyxv4ZrPNk",
+      "date": "2026-11-14T14:30:18.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nKicking off summer on the first session out with a lovely diamond ray .\nThe TikTok live went viral.\nMy subscriber Luigi enjoyed his share of the fight very much.",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "5mmkE4ChGxk",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "MARSHALL AGAIN #fishing #mngazana",
+      "link": "https://www.youtube.com/watch?v=5mmkE4ChGxk",
+      "date": "2026-11-14T13:00:33.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
+    {
+      "id": "E3nyDsGK0Iw",
+      "channel": "Kents Fishing",
+      "channelUrl": "https://www.youtube.com/channel/UC1QUL3Z5Ho7_Y0M562eqb8Q",
+      "title": "Adventure awaits you! #fishing",
+      "link": "https://www.youtube.com/watch?v=E3nyDsGK0Iw",
+      "date": "2026-11-14T10:03:37.000Z",
+      "description": null,
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "RPq8_OvZlfA",
       "channel": "Buddyz Fishing Adventures",
@@ -480,52 +516,6 @@
       "title": "SILVER BREAM ON THE MULTIPLIER",
       "link": "https://www.youtube.com/watch?v=xngOI0C8FBo",
       "date": "2026-10-19T16:00:04.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "bM5oRztezK0",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-CIT HEIST(COPPERS IN TRANSIT)-PART FOUR #fishing #mngazana #transkei #bronzebream",
-      "link": "https://www.youtube.com/watch?v=bM5oRztezK0",
-      "date": "2026-10-18T14:00:11.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nWe finally managed to find some fish and a heist it was.\nSit back, relax and enjoy as the rest of the series gets totally action packed.",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "OcLLa_Z2R7w",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "GARRICK AT SOUTH PIER",
-      "link": "https://www.youtube.com/watch?v=OcLLa_Z2R7w",
-      "date": "2026-10-18T13:00:11.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
-      "via": "rss",
-      "marks": [
-        {
-          "name": "South Pier",
-          "region": "central",
-          "where": "title",
-          "lat": null,
-          "lon": null
-        }
-      ],
-      "species": [
-        "Garrick"
-      ]
-    },
-    {
-      "id": "hJgvms6WQuY",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "SILVER BREAM ON THE 4'' 38",
-      "link": "https://www.youtube.com/watch?v=hJgvms6WQuY",
-      "date": "2026-10-17T13:00:33.000Z",
       "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join",
       "via": "rss",
       "marks": [],
