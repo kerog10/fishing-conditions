@@ -1,8 +1,16 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-11-14T08:59:46.834Z",
+  "builtAt": "2026-11-20T10:03:34.560Z",
   "entries": [
+    {
+      "id": 33851,
+      "date": "2026-11-19T10:47:41Z",
+      "title": "KZN Fishing Report (19 November 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-19-november-2026/",
+      "excerpt": "CLEAR SKIES, CLEAN WATER AND PLENTY OF OPPORTUNITY AHEAD After weeks of unpredictable weather and scattered rain, the East Coast is finally settling into a much more favourable pattern, with clear skies, calmer conditions and plenty of optimism among anglers heading into the week ahead. Rock and Surf: While the…",
+      "regions": {}
+    },
     {
       "id": 33079,
       "date": "2026-11-12T14:27:37Z",
@@ -138,41 +146,6 @@
             "Garrick",
             "Kob",
             "Snoek"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30778,
-      "date": "2026-09-03T08:25:21Z",
-      "title": "KZN Fishing Report (03 September 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-03-september-2026/",
-      "excerpt": "Predators on the Move Along the KZN Coast The hottest topic on every angler’s lips right now is simple: Who will be crowned this year’s Shad Champion? With massive numbers of shad flooding the coastline, the competition is heating up and the excitement within the angling fraternity is reaching fever…",
-      "regions": {
-        "north": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Rockcod",
-            "Shad"
-          ]
-        },
-        "central": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Shad"
-          ]
-        },
-        "south": {
-          "species": [
-            "Garrick",
-            "Kingfish",
-            "Kob",
-            "Sardine",
-            "Shad",
-            "Snoek",
-            "Tuna"
           ]
         }
       }

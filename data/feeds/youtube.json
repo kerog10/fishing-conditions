@@ -1,8 +1,20 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-18T10:12:28.038Z",
+  "builtAt": "2026-11-20T10:03:36.466Z",
   "entries": [
+    {
+      "id": "zj-LTbDVmBg",
+      "channel": "Buddyz Fishing Adventures",
+      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
+      "title": "BAIT DEMO-CHOKKA ON A FLOATED DANGLE WITH A C",
+      "link": "https://www.youtube.com/watch?v=zj-LTbDVmBg",
+      "date": "2026-11-19T14:00:13.000Z",
+      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nA Chokka bait made up on a dingle dangle with a circle hook.\nThis bait can be used for edibles and inedibles and works extremely well.",
+      "via": "rss",
+      "marks": [],
+      "species": []
+    },
     {
       "id": "X1kW-I8BRwU",
       "channel": "Kayz Adventures",
@@ -525,18 +537,6 @@
       "species": [
         "Kob"
       ]
-    },
-    {
-      "id": "xzYCIBiG9ks",
-      "channel": "Pa's Xtreme Fishing",
-      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
-      "title": "Fishing The Wild Coast Of South Africa | Uncharted Adventures",
-      "link": "https://www.youtube.com/watch?v=xzYCIBiG9ks",
-      "date": "2026-10-22T07:00:07.000Z",
-      "description": "🌊🎣 A DAY IN THE WILD COAST | MTENTU FISHING ADVENTURE!\n\nPa and the team headed to the uncharted Wild Coast for a well-deserved day out at the beautiful, remote fishing destination of Mtentu!\n\nSurrounded by breathtaking scenery, the crew enjoyed an incredible day filled with beautiful fish, good laughs, an awesome braai, and memories to last a lifetime. ❤️🔥\n\nWith our year-round guided fishing trips and busy schedule with clients, it's always special to take a step back, relax, and simply enjoy what we love most — fishing, good company, and the great outdoors.\n\nSometimes, it's not about chasing the biggest fish or having the most intense session. It's about enjoying the moment, appreciating God's beautiful creation, and making memories with the team. 🙌🌿\n\nJoin us for this awesome Wild Coast adventure with Pa's Xtreme Fishing!\n\n👍 If you enjoyed the video, please LIKE, COMMENT, and SUBSCRIBE to support the channel. Your support means the world to us!\n\n🎣 Pa's Xtreme Fishing (PXF)\n📧 Email: pasxtremefishing@gmail.com\n📞 Guided Fishing Trips: 062 748 5621\n\n#PasXtremeFishing #Mtentu #WildCoast #FishingAdventure #SouthCoastFishing #FishingLife #FishingMemories",
-      "via": "rss",
-      "marks": [],
-      "species": []
     }
   ]
 }
