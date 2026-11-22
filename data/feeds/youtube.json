@@ -1,8 +1,32 @@
 {
   "source": "youtube",
   "url": "https://www.youtube.com/",
-  "builtAt": "2026-11-21T09:52:16.184Z",
+  "builtAt": "2026-11-22T09:48:50.666Z",
   "entries": [
+    {
+      "id": "ESl_2sJvgFk",
+      "channel": "Pa's Xtreme Fishing",
+      "channelUrl": "https://www.youtube.com/channel/UCh8UMAxna8IRRu2sRV3kDIQ",
+      "title": "How to catch huge fish on live blacktail and Dollar fish",
+      "link": "https://www.youtube.com/watch?v=ESl_2sJvgFk",
+      "date": "2026-11-22T09:47:40.000Z",
+      "description": "TWO BEAUTIFUL GARRICK AT WINKLESPRUIT! | AND NOT WITH YOUR USUAL BAIT \n\nPa and the team headed down to Winklespruit for another exciting day of Garrick fishing, and what a day it turned out to be! 🔥\n\nThe mission was to find some Garrick, and the team managed to land two beautiful-sized Garrick, using live blacktail and dollar fish as bait.\n\nWe're so used to using shad when targeting Garrick, but this session was all about trying something a little different and showing our fishing community that there are other bait options that can produce fantastic results!\n\nIt's all about experimenting, learning and sharing different techniques. You don't always have to stick to the same bait to catch quality fish!\n\nAnother awesome day on the beach, with live bait fishing, beautiful fish and plenty of memories made. 🎣🐟\n\nA big thank you to everyone who continues to support Pa's Xtreme Fishing. We appreciate every single one of you!\n\nRemember, we're here to share, teach and enjoy this passion together. Tight lines, everyone!\n\n#PasXtremeFishing #GarrickFishing #Winklespruit #LiveBaitFishing #FishingSouthAfrica #KZNFishing #ShoreFishing #FishingAdventures",
+      "via": "rss",
+      "marks": [
+        {
+          "name": "Winklespruit",
+          "region": "south",
+          "where": "body",
+          "lat": -30.09569,
+          "lon": 30.86249
+        }
+      ],
+      "species": [
+        "Blacktail",
+        "Garrick",
+        "Shad"
+      ]
+    },
     {
       "id": "S0tKtDcMxD8",
       "channel": "Fishing Unfiltered",
@@ -528,18 +552,6 @@
       "link": "https://www.youtube.com/watch?v=mU0xkVvAlcI",
       "date": "2026-10-27T21:38:21.000Z",
       "description": "Greetings dearest friends and welcome back to another awesome adventure with your Guide Michael and Angie fishing adventures and tours. Let's travel north, #margatepier #michaelandangiefishingadventures #southcoast #fishing #beach #2026 #daiwa #southcoasttourism",
-      "via": "rss",
-      "marks": [],
-      "species": []
-    },
-    {
-      "id": "5Ry3ry05vcw",
-      "channel": "Buddyz Fishing Adventures",
-      "channelUrl": "https://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw",
-      "title": "MNGAZANA-KEEP BREAMING-PART FIVE #fishing #mngazana #transkei #bronzebream",
-      "link": "https://www.youtube.com/watch?v=5Ry3ry05vcw",
-      "date": "2026-10-26T16:30:37.000Z",
-      "description": "Join this channel to get access to perks:\nhttps://www.youtube.com/channel/UC68dR_gNnGmNYcMENCxNeWw/join\n\nMore action with the bream as we continue making the most of eventually finding the fish. We had our fair share and headed home after a tiring day out.",
       "via": "rss",
       "marks": [],
       "species": []
