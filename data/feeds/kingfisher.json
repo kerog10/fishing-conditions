@@ -1,8 +1,33 @@
 {
   "source": "kingfisher",
   "url": "https://www.kingfisher.co.za/",
-  "builtAt": "2026-11-20T10:03:34.560Z",
+  "builtAt": "2026-11-27T10:54:11.121Z",
   "entries": [
+    {
+      "id": 34201,
+      "date": "2026-11-26T13:49:00Z",
+      "title": "KZN Fishing Report (26 November 2026)",
+      "link": "https://www.kingfisher.co.za/kzn-fishing-report-26-november-2026/",
+      "excerpt": "KZN EAST COAST COMES ALIVE! KOB, KINGIES, TUNA AND SHARKS SET THE STAGE FOR A BIG WEEKEND There are weeks when the fish seem to jump into the boat, and then there are weeks when anglers have to earn every bite. This past week fell somewhere in between. It’s that…",
+      "regions": {
+        "south": {
+          "species": [
+            "Bronze Bream",
+            "Couta",
+            "Grunter",
+            "Kingfish",
+            "Kob",
+            "Musselcracker",
+            "Rockcod",
+            "Sardine",
+            "Shad",
+            "Snoek",
+            "Stumpnose",
+            "Tuna"
+          ]
+        }
+      }
+    },
     {
       "id": 33851,
       "date": "2026-11-19T10:47:41Z",
@@ -113,39 +138,6 @@
             "Sardine",
             "Snoek",
             "Tuna"
-          ]
-        }
-      }
-    },
-    {
-      "id": 30777,
-      "date": "2026-09-10T08:25:05Z",
-      "title": "KZN Fishing Report (10 September 2026)",
-      "link": "https://www.kingfisher.co.za/kzn-fishing-report-10-september-2026/",
-      "excerpt": "Trophy Fish, Calmer Seas and Non-Stop Action If you’ve been waiting for a sign to hit the coast this weekend, this is it. KwaZulu-Natal’s rock-and-surf scene is absolutely exploding right now, with action stretching from Durban right down the South Coast. Fish are on the chew, rods are folding, drags…",
-      "regions": {
-        "south": {
-          "species": [
-            "Blacktail",
-            "Garrick",
-            "Kingfish",
-            "Kob",
-            "Rockcod",
-            "Shad"
-          ]
-        },
-        "north": {
-          "species": [
-            "Kob",
-            "Snoek",
-            "Tuna"
-          ]
-        },
-        "central": {
-          "species": [
-            "Garrick",
-            "Kob",
-            "Snoek"
           ]
         }
       }
